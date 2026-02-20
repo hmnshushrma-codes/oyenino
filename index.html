@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Your Name — Portfolio</title>
+    <meta
+      name="description"
+      content="Single-page portfolio website with About, Skills, Experience, Projects, and Contact."
+    />
+    <style>
+      :root {
+        --bg: #0b1020;
+        --card: rgba(255, 255, 255, 0.06);
+        --card2: rgba(255, 255, 255, 0.08);
+        --text: rgba(255, 255, 255, 0.92);
+        --muted: rgba(255, 255, 255, 0.72);
+        --faint: rgba(255, 255, 255, 0.55);
+        --line: rgba(255, 255, 255, 0.12);
+        --accent: #7cdbff;
+        --accent2: #8cffc7;
+        --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+        --radius: 16px;
+        --max: 1080px;
+        --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+          "Courier New", monospace;
+        --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+          "Apple Color Emoji", "Segoe UI Emoji";
+      }
+
+      @media (prefers-color-scheme: light) {
+        :root {
+          --bg: #f7f8fb;
+          --card: rgba(0, 0, 0, 0.04);
+          --card2: rgba(0, 0, 0, 0.06);
+          --text: rgba(0, 0, 0, 0.88);
+          --muted: rgba(0, 0, 0, 0.65);
+          --faint: rgba(0, 0, 0, 0.5);
+          --line: rgba(0, 0, 0, 0.1);
+          --shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+        }
+      }
+
+      * { box-sizing: border-box; }
+      html, body { height: 100%; }
+      body {
+        margin: 0;
+        font-family: var(--sans);
+        color: var(--text);
+        background: radial-gradient(1200px 600px at 15% 10%, rgba(124, 219, 255, 0.18), transparent 55%),
+          radial-gradient(900px 500px at 85% 20%, rgba(140, 255, 199, 0.14), transparent 55%),
+          radial-gradient(900px 700px at 50% 95%, rgba(124, 219, 255, 0.10), transparent 60%),
+          var(--bg);
+        line-height: 1.6;
+      }
+
+      a { color: inherit; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+
+      .skip-link {
+        position: absolute;
+        left: -999px;
+        top: 10px;
+        padding: 10px 12px;
+        background: var(--card2);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+      }
+      .skip-link:focus { left: 12px; z-index: 9999; }
+
+      .container {
+        width: min(var(--max), calc(100% - 40px));
+        margin: 0 auto;
+        padding: 28px 0 64px;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        background: linear-gradient(to bottom, rgba(11, 16, 32, 0.75), rgba(11, 16, 32, 0.35));
+        border-bottom: 1px solid var(--line);
+      }
+      @media (prefers-color-scheme: light) {
+        header {
+          background: linear-gradient(to bottom, rgba(247, 248, 251, 0.85), rgba(247, 248, 251, 0.55));
+        }
+      }
+
+      .nav {
+        width: min(var(--max), calc(100% - 40px));
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 14px 0;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 180px;
+      }
+      .logo {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        background: linear-gradient(135deg, rgba(124, 219, 255, 0.95), rgba(140, 255, 199, 0.85));
+        box-shadow: var(--shadow);
+      }
+      .brand .name {
+        font-weight: 700;
+        letter-spacing: 0.2px;
+      }
+      .brand .role {
+        display: block;
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: -2px;
+      }
+
+      .navlinks {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+      .navlinks a {
+        font-size: 14px;
+        color: var(--muted);
+        padding: 8px 10px;
+        border-radius: 10px;
+        border: 1px solid transparent;
+      }
+      .navlinks a:hover {
+        color: var(--text);
+        border-color: var(--line);
+        background: var(--card);
+        text-decoration: none;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 22px;
+        align-items: stretch;
+        margin-top: 18px;
+      }
+      @media (max-width: 900px) {
+        .hero { grid-template-columns: 1fr; }
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .hero-main {
+        padding: 22px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .eyebrow {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--faint);
+        letter-spacing: 0.6px;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 10px 0 10px;
+        font-size: clamp(28px, 4vw, 44px);
+        line-height: 1.15;
+        letter-spacing: -0.6px;
+      }
+
+      .subtitle {
+        margin: 0;
+        color: var(--muted);
+        font-size: 16px;
+        max-width: 70ch;
+      }
+
+      .cta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 12px;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        background: var(--card2);
+        color: var(--text);
+        font-weight: 600;
+        font-size: 14px;
+        text-decoration: none;
+      }
+      .btn:hover { text-decoration: none; filter: brightness(1.03); }
+      .btn.primary {
+        border-color: transparent;
+        background: linear-gradient(135deg, rgba(124, 219, 255, 0.95), rgba(140, 255, 199, 0.85));
+        color: #071018;
+      }
+
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 18px;
+        padding-top: 16px;
+        border-top: 1px dashed var(--line);
+      }
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.03);
+        font-size: 13px;
+        color: var(--muted);
+      }
+      @media (prefers-color-scheme: light) {
+        .chip { background: rgba(0, 0, 0, 0.03); }
+      }
+
+      .hero-side {
+        padding: 18px;
+        display: grid;
+        gap: 14px;
+      }
+
+      .photo {
+        border-radius: var(--radius);
+        border: 1px solid var(--line);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+        aspect-ratio: 1 / 1;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .photo .placeholder {
+        text-align: center;
+        padding: 16px;
+      }
+      .photo .placeholder strong {
+        display: block;
+        margin-bottom: 6px;
+      }
+      .photo .placeholder span {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .quick-links {
+        display: grid;
+        gap: 10px;
+      }
+
+      .link-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 12px;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.03);
+      }
+      @media (prefers-color-scheme: light) {
+        .link-row { background: rgba(0, 0, 0, 0.03); }
+      }
+      .link-row .label {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .link-row .value {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--text);
+        opacity: 0.9;
+      }
+
+      section {
+        margin-top: 22px;
+        padding: 22px;
+      }
+
+      .section-title {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 16px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid var(--line);
+        margin-bottom: 14px;
+      }
+      .section-title h2 {
+        margin: 0;
+        font-size: 18px;
+        letter-spacing: -0.2px;
+      }
+      .section-title p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      @media (max-width: 900px) {
+        .grid-2 { grid-template-columns: 1fr; }
+      }
+
+      .skills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .pill {
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.03);
+        color: var(--muted);
+        font-size: 13px;
+        white-space: nowrap;
+      }
+      @media (prefers-color-scheme: light) {
+        .pill { background: rgba(0, 0, 0, 0.03); }
+      }
+
+      .timeline {
+        display: grid;
+        gap: 12px;
+      }
+
+      .item {
+        padding: 14px;
+        border-radius: 14px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.03);
+      }
+      @media (prefers-color-scheme: light) {
+        .item { background: rgba(0, 0, 0, 0.03); }
+      }
+
+      .item-header {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: baseline;
+        justify-content: space-between;
+      }
+
+      .item h3 {
+        margin: 0;
+        font-size: 15px;
+        letter-spacing: -0.2px;
+      }
+      .item .when {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--faint);
+      }
+      .item .where {
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .item ul {
+        margin: 10px 0 0 18px;
+        color: var(--muted);
+      }
+      .item li { margin: 6px 0; }
+
+      .projects {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 14px;
+      }
+      @media (max-width: 1000px) {
+        .projects { grid-template-columns: repeat(2, 1fr); }
+      }
+      @media (max-width: 700px) {
+        .projects { grid-template-columns: 1fr; }
+      }
+
+      .proj {
+        padding: 16px;
+        border-radius: 16px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.03);
+        display: grid;
+        gap: 10px;
+        min-height: 180px;
+      }
+      @media (prefers-color-scheme: light) {
+        .proj { background: rgba(0, 0, 0, 0.03); }
+      }
+
+      .proj .top {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .proj h3 { margin: 0; font-size: 15px; }
+      .tag {
+        font-family: var(--mono);
+        font-size: 11px;
+        padding: 4px 8px;
+        border-radius: 999px;
+        border: 1px solid var(--line);
+        color: var(--faint);
+      }
+      .proj p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .proj .links {
+        margin-top: auto;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .proj .links a {
+        font-size: 13px;
+        color: var(--text);
+        opacity: 0.92;
+        border-bottom: 1px dashed transparent;
+      }
+      .proj .links a:hover { border-bottom-color: var(--line); text-decoration: none; }
+
+      .contact {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 14px;
+        align-items: start;
+      }
+      @media (max-width: 900px) {
+        .contact { grid-template-columns: 1fr; }
+      }
+
+      form {
+        display: grid;
+        gap: 10px;
+      }
+      label {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      input, textarea {
+        width: 100%;
+        padding: 12px 12px;
+        border-radius: 12px;
+        border: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.02);
+        color: var(--text);
+        outline: none;
+        font-family: var(--sans);
+      }
+      textarea { min-height: 120px; resize: vertical; }
+
+      .note {
+        font-size: 12px;
+        color: var(--faint);
+        margin: 0;
+      }
+
+      footer {
+        margin-top: 26px;
+        color: var(--faint);
+        font-size: 12px;
+        text-align: center;
+        padding: 12px 0 0;
+      }
+
+      /* Print-friendly */
+      @media print {
+        header { position: static; backdrop-filter: none; }
+        .btn, .navlinks { display: none !important; }
+        body { background: white; color: black; }
+        .card { box-shadow: none; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header>
+      <div class="nav">
+        <div class="brand">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <div class="name">Your Name</div>
+            <span class="role">Your Title • City, Country</span>
+          </div>
+        </div>
+
+        <nav class="navlinks" aria-label="Primary">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#experience">Experience</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" class="container">
+      <div class="hero">
+        <div class="card hero-main">
+          <div class="eyebrow">Single-page portfolio</div>
+          <h1>Your Name — building clean products & scalable UI</h1>
+          <p class="subtitle">
+            Paste your resume text into the placeholders below to personalize this page.
+            This template is clean, modern, mobile-friendly, and designed to be deployed
+            as a single <span style="font-family: var(--mono)">index.html</span> file.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn primary" href="#projects" aria-label="Jump to projects">View Projects</a>
+            <a class="btn" href="#contact" aria-label="Jump to contact">Contact Me</a>
+            <a class="btn" href="#" aria-label="Placeholder for resume PDF link">Resume (PDF)</a>
+          </div>
+
+          <div class="meta" aria-label="Quick facts">
+            <span class="chip">📍 Location: <strong>City</strong></span>
+            <span class="chip">💼 Open to: <strong>Roles / Freelance</strong></span>
+            <span class="chip">🧠 Focus: <strong>Web / Mobile / Backend</strong></span>
+          </div>
+        </div>
+
+        <aside class="card hero-side" aria-label="Profile and links">
+          <div class="photo" aria-label="Profile photo placeholder">
+            <div class="placeholder">
+              <strong>Photo Placeholder</strong>
+              <span>Replace this block with an <code>&lt;img&gt;</code> tag.</span>
+            </div>
+          </div>
+
+          <div class="quick-links" aria-label="Quick links">
+            <div class="link-row">
+              <div>
+                <div class="label">Email</div>
+                <div class="value"><a href="mailto:you@example.com">you@example.com</a></div>
+              </div>
+              <span class="tag">CONTACT</span>
+            </div>
+            <div class="link-row">
+              <div>
+                <div class="label">LinkedIn</div>
+                <div class="value"><a href="#" target="_blank" rel="noreferrer">linkedin.com/in/yourname</a></div>
+              </div>
+              <span class="tag">LINK</span>
+            </div>
+            <div class="link-row">
+              <div>
+                <div class="label">GitHub</div>
+                <div class="value"><a href="#" target="_blank" rel="noreferrer">github.com/yourhandle</a></div>
+              </div>
+              <span class="tag">CODE</span>
+            </div>
+            <div class="link-row">
+              <div>
+                <div class="label">Portfolio</div>
+                <div class="value"><a href="#" target="_blank" rel="noreferrer">yourdomain.com</a></div>
+              </div>
+              <span class="tag">SITE</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <!-- ABOUT -->
+      <section id="about" class="card" aria-label="About section">
+        <div class="section-title">
+          <h2>About</h2>
+          <p>Short bio pulled from your resume</p>
+        </div>
+
+        <div class="grid-2">
+          <div>
+            <p style="margin-top: 0; color: var(--muted)">
+              <strong style="color: var(--text)">Replace this text with your professional summary.</strong>
+              Mention your years of experience, the kinds of products you build, and what you’re known for:
+              performance, architecture, leadership, product thinking, shipping fast, etc.
+            </p>
+            <p style="color: var(--muted); margin-bottom: 0">
+              Add 2–3 “signature” themes here: e.g. “frontend systems,” “microfrontends,” “design systems,”
+              “full-stack with Go/Node,” “data-heavy dashboards,” “UX-first engineering.”
+            </p>
+          </div>
+
+          <div class="item">
+            <div class="item-header">
+              <h3>Highlights</h3>
+              <span class="when">Quick scan</span>
+            </div>
+            <ul>
+              <li>Impact: <em>Reduced load time by X%, improved conversion by Y%, saved Z hours/week.</em></li>
+              <li>Leadership: <em>Led a team of N engineers, mentored, reviewed architecture, shipped releases.</em></li>
+              <li>Stack: <em>React / TypeScript / Node / Go / Cloud / CI/CD (edit to match).</em></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills" class="card" aria-label="Skills section">
+        <div class="section-title">
+          <h2>Skills</h2>
+          <p>Grouped for fast readability</p>
+        </div>
+
+        <div class="grid-2">
+          <div class="item">
+            <div class="item-header">
+              <h3>Core</h3>
+              <span class="when">Add / remove</span>
+            </div>
+            <div class="skills" aria-label="Core skills">
+              <span class="pill">JavaScript</span>
+              <span class="pill">TypeScript</span>
+              <span class="pill">React</span>
+              <span class="pill">HTML5</span>
+              <span class="pill">CSS / SCSS</span>
+              <span class="pill">Web Performance</span>
+              <span class="pill">Accessibility</span>
+              <span class="pill">System Design</span>
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="item-header">
+              <h3>Tooling & Platforms</h3>
+              <span class="when">Add / remove</span>
+            </div>
+            <div class="skills" aria-label="Tools and platforms">
+              <span class="pill">Node.js</span>
+              <span class="pill">Go</span>
+              <span class="pill">REST APIs</span>
+              <span class="pill">SQL / NoSQL</span>
+              <span class="pill">Docker</span>
+              <span class="pill">CI/CD</span>
+              <span class="pill">Git</span>
+              <span class="pill">Testing</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- EXPERIENCE -->
+      <section id="experience" class="card" aria-label="Experience section">
+        <div class="section-title">
+          <h2>Experience</h2>
+          <p>Timeline-style roles</p>
+        </div>
+
+        <div class="timeline" aria-label="Experience timeline">
+          <article class="item">
+            <div class="item-header">
+              <h3>Job Title — Company Name</h3>
+              <span class="when">MMM YYYY — Present</span>
+            </div>
+            <div class="where">City, Country • Team/Domain (optional)</div>
+            <ul>
+              <li>Owned <strong>feature/system</strong> that improved <strong>metric</strong> by <strong>X%</strong>.</li>
+              <li>Built <strong>architecture</strong> (e.g., microfrontends, design system, data pipeline).</li>
+              <li>Collaborated with product/design, shipped iteratively, maintained quality via testing/CI.</li>
+            </ul>
+          </article>
+
+          <article class="item">
+            <div class="item-header">
+              <h3>Previous Role — Company Name</h3>
+              <span class="when">MMM YYYY — MMM YYYY</span>
+            </div>
+            <div class="where">City, Country</div>
+            <ul>
+              <li>Led a team of <strong>N</strong>, handled planning, reviews, mentoring, delivery.</li>
+              <li>Improved performance: cut bundle size by <strong>X%</strong>, improved LCP/TTI, etc.</li>
+              <li>Implemented key integrations: auth, payments, analytics, observability (edit to match).</li>
+            </ul>
+          </article>
+
+          <article class="item">
+            <div class="item-header">
+              <h3>Earlier Role — Company Name</h3>
+              <span class="when">MMM YYYY — MMM YYYY</span>
+            </div>
+            <div class="where">City, Country</div>
+            <ul>
+              <li>Shipped product features end-to-end across frontend + backend (edit to match).</li>
+              <li>Worked with databases, caching, and API design for scalability.</li>
+              <li>Created reusable UI components and documentation for maintainability.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="card" aria-label="Projects section">
+        <div class="section-title">
+          <h2>Projects</h2>
+          <p>Selected work (add links)</p>
+        </div>
+
+        <div class="projects" aria-label="Projects grid">
+          <article class="proj">
+            <div class="top">
+              <h3>Project Name</h3>
+              <span class="tag">WEB</span>
+            </div>
+            <p>
+              1–2 lines on what it does, who it’s for, and what makes it interesting. Mention impact and tech.
+            </p>
+            <p style="font-family: var(--mono); font-size: 12px; color: var(--faint)">
+              Stack: React • TypeScript • API • DB
+            </p>
+            <div class="links">
+              <a href="#" target="_blank" rel="noreferrer">Live</a>
+              <a href="#" target="_blank" rel="noreferrer">GitHub</a>
+              <a href="#" target="_blank" rel="noreferrer">Case Study</a>
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="top">
+              <h3>Project Name</h3>
+              <span class="tag">MOBILE</span>
+            </div>
+            <p>
+              Brief description. Call out something nerdy: offline-first, perf, elegant state management, etc.
+            </p>
+            <p style="font-family: var(--mono); font-size: 12px; color: var(--faint)">
+              Stack: React Native • Redux • APIs
+            </p>
+            <div class="links">
+              <a href="#" target="_blank" rel="noreferrer">Demo</a>
+              <a href="#" target="_blank" rel="noreferrer">Repo</a>
+            </div>
+          </article>
+
+          <article class="proj">
+            <div class="top">
+              <h3>Project Name</h3>
+              <span class="tag">BACKEND</span>
+            </div>
+            <p>
+              Short description. Mention auth, RBAC, multi-tenant, scaling, observability, etc.
+            </p>
+            <p style="font-family: var(--mono); font-size: 12px; color: var(--faint)">
+              Stack: Go • Gin • MySQL • Docker
+            </p>
+            <div class="links">
+              <a href="#" target="_blank" rel="noreferrer">Docs</a>
+              <a href="#" target="_blank" rel="noreferrer">GitHub</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="card" aria-label="Contact section">
+        <div class="section-title">
+          <h2>Contact</h2>
+          <p>Ways to reach you</p>
+        </div>
+
+        <div class="contact">
+          <div class="item">
+            <div class="item-header">
+              <h3>Send a message</h3>
+              <span class="when">Placeholder form</span>
+            </div>
+            <p class="note">
+              This form is a static placeholder. To make it functional, connect it to a service
+              (Formspree, Netlify Forms, or your own backend endpoint).
+            </p>
+
+            <form onsubmit="event.preventDefault(); alert('This is a placeholder. Add a form handler to enable sending.');">
+              <div>
+                <label for="name">Name</label>
+                <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" />
+              </div>
+              <div>
+                <label for="message">Message</label>
+                <textarea id="message" name="message" placeholder="Write your message..."></textarea>
+              </div>
+              <button class="btn primary" type="submit">Send</button>
+            </form>
+          </div>
+
+          <div class="item">
+            <div class="item-header">
+              <h3>Direct links</h3>
+              <span class="when">Replace placeholders</span>
+            </div>
+
+            <div class="quick-links" style="margin-top: 10px">
+              <div class="link-row">
+                <div>
+                  <div class="label">Email</div>
+                  <div class="value"><a href="mailto:you@example.com">you@example.com</a></div>
+                </div>
+                <span class="tag">MAIL</span>
+              </div>
+              <div class="link-row">
+                <div>
+                  <div class="label">LinkedIn</div>
+                  <div class="value"><a href="#" target="_blank" rel="noreferrer">linkedin.com/in/yourname</a></div>
+                </div>
+                <span class="tag">SOCIAL</span>
+              </div>
+              <div class="link-row">
+                <div>
+                  <div class="label">GitHub</div>
+                  <div class="value"><a href="#" target="_blank" rel="noreferrer">github.com/yourhandle</a></div>
+                </div>
+                <span class="tag">CODE</span>
+              </div>
+              <div class="link-row">
+                <div>
+                  <div class="label">Phone</div>
+                  <div class="value"><a href="tel:+910000000000">+91 00000 00000</a></div>
+                </div>
+                <span class="tag">CALL</span>
+              </div>
+            </div>
+
+            <p class="note" style="margin-top: 12px">
+              Tip: host this on GitHub Pages (Settings → Pages) and you’re live.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div>
+          © <span id="year"></span> Your Name • Built with one stubborn HTML file
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      // tiny helper for the footer year
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>
