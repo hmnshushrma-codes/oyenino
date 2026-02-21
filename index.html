@@ -14,6 +14,9 @@
         gtag('config', 'G-XXXXXXXXXX');
     </script>
 
+    <!-- CLOUDFLARE TURNSTILE -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
     <!-- PRIMARY SEO META TAGS -->
     <title>Himanshu | Senior Frontend Developer & Technical Consultant — React, AI, Web Development</title>
     <meta name="description" content="Hire Himanshu — Senior Frontend Engineer & Technical Consultant specializing in React.js, Next.js, AI integration, and scalable web applications. Available for freelance consulting worldwide.">
@@ -116,42 +119,26 @@
             z-index: 9999;
         }
 
-        /* CURSOR GLOW */
         .cursor-glow {
-            position: fixed;
-            width: 300px;
-            height: 300px;
+            position: fixed; width: 300px; height: 300px;
             background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 1;
-            transform: translate(-50%, -50%);
-            transition: opacity 0.3s;
-            opacity: 0;
-            filter: blur(40px);
+            border-radius: 50%; pointer-events: none; z-index: 1;
+            transform: translate(-50%, -50%); transition: opacity 0.3s; opacity: 0; filter: blur(40px);
         }
         body:hover .cursor-glow { opacity: 1; }
 
-        /* NAV */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            padding: 1rem 2rem;
-            display: flex; justify-content: space-between; align-items: center;
-            backdrop-filter: blur(24px) saturate(1.2);
-            -webkit-backdrop-filter: blur(24px) saturate(1.2);
-            background: rgba(5, 5, 5, 0.75);
-            border-bottom: 1px solid rgba(255,255,255,0.04);
+            padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center;
+            backdrop-filter: blur(24px) saturate(1.2); -webkit-backdrop-filter: blur(24px) saturate(1.2);
+            background: rgba(5, 5, 5, 0.75); border-bottom: 1px solid rgba(255,255,255,0.04);
         }
-        .nav-logo {
-            font-family: var(--sans); font-size: 1.25rem; font-weight: 600;
-            color: var(--text); text-decoration: none; letter-spacing: -0.02em;
-        }
+        .nav-logo { font-family: var(--sans); font-size: 1.25rem; font-weight: 600; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
         .nav-logo span { color: var(--accent); }
         .nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
         .nav-links a {
             color: var(--text-muted); text-decoration: none; font-size: 0.85rem;
-            font-weight: 400; letter-spacing: 0.02em; transition: color var(--transition);
-            position: relative;
+            font-weight: 400; letter-spacing: 0.02em; transition: color var(--transition); position: relative;
         }
         .nav-links a::after {
             content: ''; position: absolute; bottom: -4px; left: 0;
@@ -168,7 +155,6 @@
         .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 24px var(--accent-glow-strong); }
         .mobile-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.4rem; cursor: pointer; }
 
-        /* HERO */
         .hero {
             min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
             padding: 8rem 2rem 4rem; max-width: 1100px; margin: 0 auto; position: relative;
@@ -179,10 +165,7 @@
             color: var(--accent); margin-bottom: 2rem; font-weight: 500;
             opacity: 0; animation: fadeUp 0.7s ease forwards 0.1s;
         }
-        .hero-badge .pulse {
-            width: 8px; height: 8px; background: var(--accent);
-            border-radius: 50%; animation: pulse 2s ease-in-out infinite;
-        }
+        .hero-badge .pulse { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
         @keyframes pulse {
             0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--accent-glow-strong); }
             50% { opacity: 0.7; box-shadow: 0 0 0 8px transparent; }
@@ -235,11 +218,7 @@
             opacity: 0; animation: fadeUp 0.7s ease forwards 1s;
         }
         .scroll-hint span { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
-        .scroll-line {
-            width: 1px; height: 40px;
-            background: linear-gradient(to bottom, var(--accent), transparent);
-            animation: scrollPulse 2s ease-in-out infinite;
-        }
+        .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--accent), transparent); animation: scrollPulse 2s ease-in-out infinite; }
         @keyframes scrollPulse {
             0% { transform: scaleY(0); transform-origin: top; }
             50% { transform: scaleY(1); transform-origin: top; }
@@ -247,19 +226,15 @@
             100% { transform: scaleY(0); transform-origin: bottom; }
         }
 
-        /* PROOF BAR */
         .proof-bar { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 2.5rem 2rem; text-align: center; }
         .proof-inner { max-width: 900px; margin: 0 auto; }
         .proof-stats { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
         .proof-stat { position: relative; padding: 0 2rem; }
-        .proof-stat:not(:last-child)::after {
-            content: ''; position: absolute; right: 0; top: 10%; height: 80%; width: 1px; background: var(--border);
-        }
+        .proof-stat:not(:last-child)::after { content: ''; position: absolute; right: 0; top: 10%; height: 80%; width: 1px; background: var(--border); }
         .proof-num { font-size: 2.5rem; font-weight: 700; color: var(--text); line-height: 1.2; letter-spacing: -0.02em; }
         .proof-num .accent-dot { color: var(--accent); }
         .proof-desc { font-size: 0.8rem; color: var(--text-muted); margin-top: 0.2rem; letter-spacing: 0.03em; }
 
-        /* SECTIONS */
         section { padding: 7rem 2rem; max-width: 1100px; margin: 0 auto; }
         .section-eyebrow {
             font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
@@ -267,42 +242,21 @@
             display: flex; align-items: center; gap: 0.75rem;
         }
         .section-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
-        .section-title {
-            font-family: var(--serif); font-size: clamp(2rem, 4.5vw, 3.25rem);
-            font-weight: 400; letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.2;
-        }
+        .section-title { font-family: var(--serif); font-size: clamp(2rem, 4.5vw, 3.25rem); font-weight: 400; letter-spacing: -0.02em; margin-bottom: 1rem; line-height: 1.2; }
         .section-desc { color: var(--text-mid); max-width: 560px; line-height: 1.75; font-size: 1.05rem; font-weight: 300; }
 
-        /* VALUE SECTION */
-        .value-section {
-            background: var(--bg-elevated); border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border); padding: 6rem 2rem; margin: 0; max-width: 100%;
-        }
+        .value-section { background: var(--bg-elevated); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 6rem 2rem; margin: 0; max-width: 100%; }
         .value-inner { max-width: 1100px; margin: 0 auto; text-align: center; }
-        .value-heading {
-            font-family: var(--serif); font-size: clamp(1.5rem, 4vw, 2.5rem);
-            font-weight: 400; line-height: 1.5; max-width: 700px;
-            margin: 0 auto 3.5rem; color: var(--text-mid);
-        }
+        .value-heading { font-family: var(--serif); font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 400; line-height: 1.5; max-width: 700px; margin: 0 auto 3.5rem; color: var(--text-mid); }
         .value-heading strong { color: var(--text); font-weight: 500; }
-        .value-cards {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-            background: var(--border); border-radius: var(--radius); overflow: hidden;
-        }
-        .value-card {
-            background: var(--bg-card); padding: 2.5rem 2rem;
-            transition: background var(--transition); cursor: default;
-        }
+        .value-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border-radius: var(--radius); overflow: hidden; }
+        .value-card { background: var(--bg-card); padding: 2.5rem 2rem; transition: background var(--transition); cursor: default; }
         .value-card:hover { background: var(--bg-card-hover); }
         .value-card:hover .vc-icon { transform: scale(1.15); color: var(--accent); }
-        .vc-icon {
-            font-size: 1.75rem; margin-bottom: 1.25rem; display: block;
-            transition: transform var(--transition), color var(--transition); color: var(--text-mid);
-        }
+        .vc-icon { font-size: 1.75rem; margin-bottom: 1.25rem; display: block; transition: transform var(--transition), color var(--transition); color: var(--text-mid); }
         .value-card h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.6rem; color: var(--text); }
         .value-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
 
-        /* SERVICES */
         .services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; margin-top: 3.5rem; }
         .service-card {
             background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
@@ -317,10 +271,7 @@
         .service-card:hover { border-color: var(--border-hover); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.3); }
         .service-card:hover::before { opacity: 1; }
         .sc-number { font-size: 0.75rem; font-weight: 600; color: var(--accent); opacity: 0.5; letter-spacing: 0.05em; }
-        .service-card h3 {
-            font-family: var(--serif); font-size: 1.5rem; font-weight: 400;
-            margin-bottom: 0.75rem; margin-top: 0.75rem; transition: color var(--transition);
-        }
+        .service-card h3 { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; margin-bottom: 0.75rem; margin-top: 0.75rem; transition: color var(--transition); }
         .service-card:hover h3 { color: var(--accent); }
         .service-card p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.65; font-weight: 300; }
         .sc-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1.5rem; }
@@ -332,7 +283,6 @@
         }
         .service-card:hover .sc-tags span { border-color: var(--border-hover); color: var(--text-mid); }
 
-        /* PROCESS */
         .process-section { padding: 7rem 2rem; max-width: 1100px; margin: 0 auto; }
         .process-timeline { margin-top: 4rem; position: relative; }
         .process-timeline::before {
@@ -353,11 +303,7 @@
         .ps-content h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.4rem; color: var(--text); }
         .ps-content p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.65; font-weight: 300; max-width: 500px; }
 
-        /* STACK */
-        .stack-section {
-            background: var(--bg-elevated); border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border); padding: 5rem 2rem; margin: 0; max-width: 100%; overflow: hidden;
-        }
+        .stack-section { background: var(--bg-elevated); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 5rem 2rem; margin: 0; max-width: 100%; overflow: hidden; }
         .stack-inner { max-width: 1100px; margin: 0 auto; }
         .stack-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 2.5rem; }
         .stack-chip {
@@ -369,31 +315,19 @@
         .stack-chip:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 16px var(--accent-glow); }
         .stack-chip:hover::before { opacity: 1; }
 
-        /* TESTIMONIAL */
         .testimonial-block { border-top: 1px solid var(--border); padding: 6rem 2rem; max-width: 800px; margin: 0 auto; }
-        .testi-container {
-            position: relative; padding: 3rem; border: 1px solid var(--border);
-            border-radius: var(--radius); background: var(--bg-card);
-        }
-        .testi-quote-mark {
-            font-family: var(--serif); font-size: 5rem; color: var(--accent); opacity: 0.15;
-            line-height: 1; position: absolute; top: 1rem; left: 2rem;
-        }
-        .testi-text {
-            font-family: var(--sans); font-size: 1.15rem; font-weight: 300;
-            line-height: 1.8; color: var(--text-mid); position: relative; z-index: 2;
-        }
+        .testi-container { position: relative; padding: 3rem; border: 1px solid var(--border); border-radius: var(--radius); background: var(--bg-card); }
+        .testi-quote-mark { font-family: var(--serif); font-size: 5rem; color: var(--accent); opacity: 0.15; line-height: 1; position: absolute; top: 1rem; left: 2rem; }
+        .testi-text { font-family: var(--sans); font-size: 1.15rem; font-weight: 300; line-height: 1.8; color: var(--text-mid); position: relative; z-index: 2; }
         .testi-author { margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem; }
         .testi-avatar {
             width: 44px; height: 44px; border-radius: 50%;
             background: linear-gradient(135deg, var(--accent-glow-strong), var(--bg-card));
-            border: 1px solid var(--border); display: flex; align-items: center;
-            justify-content: center; font-size: 1.1rem;
+            border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
         }
         .testi-meta strong { display: block; font-weight: 500; font-size: 0.95rem; color: var(--text); }
         .testi-meta span { font-size: 0.8rem; color: var(--text-muted); }
 
-        /* CTA BANNER */
         .cta-banner { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
         .cta-inner {
             background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0,240,160,0.04) 100%);
@@ -410,16 +344,12 @@
         .cta-inner p { color: var(--text-mid); margin-bottom: 2rem; font-weight: 300; font-size: 1.05rem; position: relative; }
         .cta-inner .btn-primary { position: relative; }
 
-        /* CONTACT */
         #contact { padding-top: 5rem; padding-bottom: 5rem; }
         .contact-layout { display: grid; grid-template-columns: 1fr 1.15fr; gap: 4rem; margin-top: 3rem; }
         .contact-left h3 { font-family: var(--serif); font-size: 1.75rem; margin-bottom: 1rem; font-weight: 400; }
         .contact-left p { color: var(--text-muted); line-height: 1.75; margin-bottom: 2rem; font-weight: 300; font-size: 0.95rem; }
         .contact-channels { display: flex; flex-direction: column; gap: 0.75rem; }
-        .ch-item {
-            display: flex; align-items: center; gap: 1rem; text-decoration: none;
-            color: var(--text-muted); transition: color var(--transition); font-size: 0.9rem;
-        }
+        .ch-item { display: flex; align-items: center; gap: 1rem; text-decoration: none; color: var(--text-muted); transition: color var(--transition); font-size: 0.9rem; }
         .ch-item:hover { color: var(--accent); }
         .ch-icon {
             width: 40px; height: 40px; border: 1px solid var(--border); border-radius: 10px;
@@ -428,30 +358,21 @@
         }
         .ch-item:hover .ch-icon { border-color: var(--accent); background: var(--accent-glow); }
 
-        /* FORM */
         .contact-form {
             background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
             padding: 2.5rem; position: relative; overflow: hidden;
         }
-        .contact-form::before {
-            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
-            background: linear-gradient(90deg, var(--accent), transparent 60%);
-        }
+        .contact-form::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent 60%); }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
         .form-group { margin-bottom: 1.2rem; }
-        .form-group label {
-            display: block; font-size: 0.75rem; color: var(--text-muted);
-            text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; font-weight: 500;
-        }
+        .form-group label { display: block; font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; font-weight: 500; }
         .form-group input, .form-group textarea, .form-group select {
             width: 100%; padding: 0.85rem 1rem; background: var(--bg);
             border: 1px solid var(--border); border-radius: 10px;
             color: var(--text); font-family: var(--sans); font-size: 0.9rem;
             font-weight: 300; transition: border-color var(--transition), box-shadow var(--transition); outline: none;
         }
-        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
-            border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow);
-        }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
         .form-group textarea { resize: vertical; min-height: 120px; }
         .form-group select option { background: var(--bg); color: var(--text); }
         .form-group input::placeholder, .form-group textarea::placeholder { color: #444; }
@@ -482,7 +403,6 @@
         .form-success h3 { font-family: var(--serif); font-size: 1.75rem; margin-bottom: 0.5rem; color: var(--text); }
         .form-success p { color: var(--text-muted); font-weight: 300; }
 
-        /* FOOTER */
         footer {
             border-top: 1px solid var(--border); padding: 2.5rem 2rem;
             max-width: 1100px; margin: 0 auto;
@@ -493,14 +413,12 @@
         .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; font-weight: 400; transition: color var(--transition); }
         .footer-links a:hover { color: var(--accent); }
 
-        /* ANIMATIONS */
         @keyframes fadeUp { from { opacity: 0; transform: translateY(25px); } to { opacity: 1; transform: translateY(0); } }
         .reveal { opacity: 0; transform: translateY(35px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .reveal.visible { opacity: 1; transform: translateY(0); }
         .stagger-parent.visible .stagger-child { opacity: 1; transform: translateY(0); }
         .stagger-child { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
 
-        /* RESPONSIVE */
         @media (max-width: 900px) {
             .services-grid { grid-template-columns: 1fr; }
             .value-cards { grid-template-columns: 1fr; }
@@ -534,7 +452,6 @@
 
     <div class="cursor-glow" id="cursorGlow"></div>
 
-    <!-- NAV -->
     <nav>
         <a href="#" class="nav-logo">himanshu<span>.</span></a>
         <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">&#9776;</button>
@@ -546,7 +463,6 @@
         </ul>
     </nav>
 
-    <!-- HERO -->
     <header class="hero">
         <div class="hero-glow"></div>
         <div class="hero-badge"><span class="pulse"></span> Available for consulting</div>
@@ -562,7 +478,6 @@
         <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
     </header>
 
-    <!-- PROOF -->
     <div class="proof-bar">
         <div class="proof-inner">
             <div class="proof-stats reveal stagger-parent">
@@ -586,7 +501,6 @@
         </div>
     </div>
 
-    <!-- VALUE PROP -->
     <div class="value-section" data-section="value_proposition">
         <div class="value-inner">
             <p class="section-eyebrow reveal" style="justify-content:center;"><span></span>Why Me</p>
@@ -614,7 +528,6 @@
         </div>
     </div>
 
-    <!-- SERVICES -->
     <section id="services" data-section="services">
         <p class="section-eyebrow reveal">What I Do</p>
         <h2 class="section-title reveal">Technical consulting<br>that actually ships.</h2>
@@ -647,7 +560,6 @@
         </div>
     </section>
 
-    <!-- PROCESS -->
     <section id="process" class="process-section" data-section="process">
         <p class="section-eyebrow reveal">How It Works</p>
         <h2 class="section-title reveal">From first call to<br>first deploy. Simply.</h2>
@@ -683,7 +595,6 @@
         </div>
     </section>
 
-    <!-- STACK -->
     <div class="stack-section" id="stack" data-section="tech_stack">
         <div class="stack-inner">
             <p class="section-eyebrow reveal">Tech Stack</p>
@@ -714,7 +625,6 @@
         </div>
     </div>
 
-    <!-- TESTIMONIAL -->
     <div class="testimonial-block" data-section="testimonial">
         <div class="testi-container reveal">
             <div class="testi-quote-mark">&ldquo;</div>
@@ -733,7 +643,6 @@
         </div>
     </div>
 
-    <!-- CTA -->
     <div class="cta-banner reveal" data-section="cta_banner">
         <div class="cta-inner">
             <h2>Got a project? Let's make it real.</h2>
@@ -742,7 +651,6 @@
         </div>
     </div>
 
-    <!-- CONTACT -->
     <section id="contact" data-section="contact">
         <p class="section-eyebrow reveal">Get In Touch</p>
         <h2 class="section-title reveal">Start with a<br>simple message.</h2>
@@ -806,7 +714,17 @@
                     <input type="hidden" name="geo_lon" id="geo_lon">
                     <input type="hidden" name="geo_timezone" id="geo_timezone">
                     <input type="hidden" name="geo_org" id="geo_org">
-                    <button type="submit" class="form-submit" id="submitBtn">Send Message &#8594;</button>
+
+                    <!-- CLOUDFLARE TURNSTILE -->
+                    <div class="cf-turnstile" 
+                         data-sitekey="0x4AAAAAACgSvRvZpT5d_Ab5" 
+                         data-theme="dark" 
+                         data-callback="onTurnstileSuccess"
+                         data-expired-callback="onTurnstileExpired"
+                         style="margin-bottom: 1rem; display: flex; justify-content: center;">
+                    </div>
+
+                    <button type="submit" class="form-submit" id="submitBtn" disabled>Verify you're human first &#8593;</button>
                     <p class="form-note">Free consultation included. No spam, no pressure.</p>
                 </form>
                 <div class="form-success" id="formSuccess">
@@ -829,18 +747,29 @@
     </footer>
 
     <script>
-        // ========================================
-        // ANALYTICS HELPER — fires GA4 custom events
-        // ========================================
         function trackEvent(eventName, params = {}) {
-            if (typeof gtag === 'function') {
-                gtag('event', eventName, params);
-            }
+            if (typeof gtag === 'function') gtag('event', eventName, params);
         }
 
-        // ========================================
-        // 1. CTA & NAV CLICK TRACKING
-        // ========================================
+        // CLOUDFLARE TURNSTILE CALLBACKS
+        let turnstileVerified = false;
+
+        function onTurnstileSuccess(token) {
+            turnstileVerified = true;
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = false;
+            btn.textContent = 'Send Message \u2192';
+            trackEvent('turnstile_verified', { form_id: 'contact_form' });
+        }
+
+        function onTurnstileExpired() {
+            turnstileVerified = false;
+            const btn = document.getElementById('submitBtn');
+            btn.disabled = true;
+            btn.textContent = 'Verify you\'re human first \u2191';
+        }
+
+        // CTA & NAV CLICK TRACKING
         document.querySelectorAll('[data-ga]').forEach(el => {
             el.addEventListener('click', () => {
                 trackEvent('cta_click', {
@@ -851,23 +780,15 @@
             });
         });
 
-        // ========================================
-        // 2. SERVICE CARD ENGAGEMENT
-        // ========================================
+        // SERVICE CARD ENGAGEMENT
         document.querySelectorAll('.service-card').forEach(card => {
-            // Track hover (with debounce — only fires after 500ms hover)
             let hoverTimer;
             card.addEventListener('mouseenter', () => {
                 hoverTimer = setTimeout(() => {
-                    trackEvent('service_card_engage', {
-                        service: card.dataset.service,
-                        interaction: 'hover_500ms'
-                    });
+                    trackEvent('service_card_engage', { service: card.dataset.service, interaction: 'hover_500ms' });
                 }, 500);
             });
             card.addEventListener('mouseleave', () => clearTimeout(hoverTimer));
-
-            // Spotlight effect
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
                 card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
@@ -875,109 +796,63 @@
             });
         });
 
-        // ========================================
-        // 3. SECTION VISIBILITY TRACKING
-        // ========================================
+        // SECTION VISIBILITY TRACKING
         const sectionObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    trackEvent('section_view', {
-                        section_name: entry.target.dataset.section
-                    });
+                    trackEvent('section_view', { section_name: entry.target.dataset.section });
                     sectionObserver.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.3 });
-
         document.querySelectorAll('[data-section]').forEach(el => sectionObserver.observe(el));
 
-        // ========================================
-        // 4. SCROLL DEPTH TRACKING (25/50/75/100%)
-        // ========================================
+        // SCROLL DEPTH TRACKING
         const scrollMilestones = { 25: false, 50: false, 75: false, 100: false };
         window.addEventListener('scroll', () => {
-            const scrollPercent = Math.round(
-                (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100
-            );
+            const scrollPercent = Math.round((window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100);
             [25, 50, 75, 100].forEach(milestone => {
                 if (scrollPercent >= milestone && !scrollMilestones[milestone]) {
                     scrollMilestones[milestone] = true;
-                    trackEvent('scroll_depth', {
-                        percent: milestone,
-                        page_title: document.title
-                    });
+                    trackEvent('scroll_depth', { percent: milestone, page_title: document.title });
                 }
             });
         }, { passive: true });
 
-        // ========================================
-        // 5. FORM INTERACTION TRACKING
-        // ========================================
+        // FORM INTERACTION TRACKING
         let formStartTracked = false;
         document.querySelectorAll('#contactForm input, #contactForm textarea, #contactForm select').forEach(field => {
             field.addEventListener('focus', () => {
-                // Track first form interaction
-                if (!formStartTracked) {
-                    formStartTracked = true;
-                    trackEvent('form_start', { form_id: 'contact_form' });
-                }
-                // Track individual field focus
-                trackEvent('form_field_focus', {
-                    field_name: field.name || field.id,
-                    form_id: 'contact_form'
-                });
+                if (!formStartTracked) { formStartTracked = true; trackEvent('form_start', { form_id: 'contact_form' }); }
+                trackEvent('form_field_focus', { field_name: field.name || field.id, form_id: 'contact_form' });
             });
         });
-
-        // Track service dropdown selection
         document.getElementById('service').addEventListener('change', function() {
-            if (this.value) {
-                trackEvent('form_service_selected', {
-                    service_selected: this.value
-                });
-            }
+            if (this.value) trackEvent('form_service_selected', { service_selected: this.value });
         });
 
-        // ========================================
-        // 6. TECH STACK CHIP HOVER TRACKING
-        // ========================================
+        // TECH STACK CHIP HOVER
         document.querySelectorAll('.stack-chip').forEach(chip => {
-            chip.addEventListener('mouseenter', () => {
-                trackEvent('tech_stack_hover', {
-                    technology: chip.textContent.trim()
-                });
-            });
+            chip.addEventListener('mouseenter', () => { trackEvent('tech_stack_hover', { technology: chip.textContent.trim() }); });
         });
 
-        // ========================================
-        // 7. TIME ON PAGE TRACKING
-        // ========================================
+        // TIME ON PAGE
         let timeOnPage = 0;
         const timeTracker = setInterval(() => {
             timeOnPage += 15;
             if (timeOnPage === 30 || timeOnPage === 60 || timeOnPage === 120 || timeOnPage === 300) {
-                trackEvent('time_on_page', {
-                    seconds: timeOnPage,
-                    milestone: timeOnPage + 's'
-                });
+                trackEvent('time_on_page', { seconds: timeOnPage, milestone: timeOnPage + 's' });
             }
             if (timeOnPage >= 300) clearInterval(timeTracker);
         }, 15000);
 
-        // ========================================
         // CURSOR GLOW
-        // ========================================
         const glow = document.getElementById('cursorGlow');
         if (window.matchMedia('(pointer: fine)').matches) {
-            document.addEventListener('mousemove', (e) => {
-                glow.style.left = e.clientX + 'px';
-                glow.style.top = e.clientY + 'px';
-            });
+            document.addEventListener('mousemove', (e) => { glow.style.left = e.clientX + 'px'; glow.style.top = e.clientY + 'px'; });
         }
 
-        // ========================================
         // GEOLOCATION
-        // ========================================
         (async function() {
             try {
                 const res = await fetch('https://ipapi.co/json/');
@@ -993,29 +868,19 @@
                     document.getElementById('geo_org').value = d.org || '';
                     const c = document.getElementById('city');
                     if (!c.value && d.city && d.country_name) c.value = d.city + ', ' + d.country_name;
-
-                    // Track visitor geo to GA4
-                    trackEvent('visitor_geo_detected', {
-                        visitor_city: d.city,
-                        visitor_country: d.country_name,
-                        visitor_region: d.region,
-                        visitor_timezone: d.timezone
-                    });
+                    trackEvent('visitor_geo_detected', { visitor_city: d.city, visitor_country: d.country_name, visitor_region: d.region, visitor_timezone: d.timezone });
                 }
             } catch(e) {}
         })();
 
-        // ========================================
         // FORM SUBMISSION
-        // ========================================
         const form = document.getElementById('contactForm');
         const submitBtn = document.getElementById('submitBtn');
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
+            if (!turnstileVerified) { alert('Please complete the verification first.'); return; }
             submitBtn.disabled = true;
             submitBtn.textContent = 'Sending...';
-
-            // Track form submit attempt
             trackEvent('form_submit_attempt', {
                 form_id: 'contact_form',
                 service_selected: document.getElementById('service').value || 'none',
@@ -1023,36 +888,25 @@
                 visitor_city: document.getElementById('geo_city').value || 'unknown',
                 visitor_country: document.getElementById('geo_country').value || 'unknown'
             });
-
             try {
                 const r = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
                 if (r.ok) {
                     form.style.display = 'none';
                     document.getElementById('formSuccess').style.display = 'block';
-
-                    // Track successful submission — THIS IS YOUR MAIN CONVERSION
-                    trackEvent('form_submit_success', {
-                        form_id: 'contact_form',
-                        service_selected: document.getElementById('service').value || 'none'
-                    });
-
-                    // Also fire as a GA4 conversion event
-                    trackEvent('generate_lead', {
-                        currency: 'USD',
-                        value: 1
-                    });
+                    trackEvent('form_submit_success', { form_id: 'contact_form', service_selected: document.getElementById('service').value || 'none' });
+                    trackEvent('generate_lead', { currency: 'USD', value: 1 });
                 } else throw new Error();
             } catch {
                 submitBtn.disabled = false;
                 submitBtn.textContent = 'Send Message \u2192';
+                if (typeof turnstile !== 'undefined') turnstile.reset();
+                turnstileVerified = true;
                 trackEvent('form_submit_error', { form_id: 'contact_form' });
                 alert('Something went wrong. Please try emailing me directly.');
             }
         });
 
-        // ========================================
         // SCROLL REVEAL + STAGGER
-        // ========================================
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
