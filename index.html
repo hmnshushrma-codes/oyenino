@@ -154,6 +154,24 @@
         }
         .nav-cta::after { display: none !important; }
         .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 24px var(--accent-glow-strong); }
+
+        /* NEW: Free Prompts nav link styling */
+        .nav-prompts {
+            color: var(--accent) !important;
+            font-weight: 500 !important;
+            border: 1px solid rgba(0, 240, 160, 0.3) !important;
+            padding: 0.4rem 1rem !important;
+            border-radius: 100px !important;
+            transition: background 0.3s, border-color 0.3s, transform 0.2s !important;
+        }
+        .nav-prompts::after { display: none !important; }
+        .nav-prompts:hover {
+            background: var(--accent-glow) !important;
+            border-color: var(--accent) !important;
+            color: var(--accent) !important;
+            transform: translateY(-1px);
+        }
+
         .mobile-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.4rem; cursor: pointer; }
 
         .hero {
@@ -226,6 +244,54 @@
             51% { transform: scaleY(1); transform-origin: bottom; }
             100% { transform: scaleY(0); transform-origin: bottom; }
         }
+
+        /* ═══════════════════════════════════════
+           FREE PROMPTS BANNER — NEW ADDITION
+        ═══════════════════════════════════════ */
+        .prompts-banner {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 2rem 1rem;
+        }
+        .prompts-banner-inner {
+            background: linear-gradient(135deg, rgba(0,240,160,0.05) 0%, rgba(0,240,160,0.02) 100%);
+            border: 1px solid rgba(0, 240, 160, 0.25);
+            border-radius: var(--radius);
+            padding: 1.75rem 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            position: relative;
+            overflow: hidden;
+        }
+        .prompts-banner-inner::before {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, var(--accent), transparent 70%);
+        }
+        .pb-emoji { font-size: 2rem; flex-shrink: 0; }
+        .pb-content { flex: 1; min-width: 200px; }
+        .pb-label {
+            font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+            color: var(--accent); font-weight: 600; margin-bottom: 0.3rem;
+        }
+        .pb-title {
+            font-family: var(--serif);
+            font-size: 1.35rem; font-weight: 400; color: var(--text);
+            line-height: 1.3; margin-bottom: 0.3rem;
+        }
+        .pb-desc { font-size: 0.85rem; color: var(--text-muted); font-weight: 300; }
+        .pb-desc strong { color: var(--accent); font-weight: 600; }
+        .pb-cta {
+            background: var(--accent); color: var(--bg);
+            padding: 0.75rem 1.75rem; border-radius: 100px;
+            text-decoration: none; font-weight: 600; font-size: 0.88rem;
+            transition: transform 0.2s, box-shadow 0.3s;
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            white-space: nowrap; flex-shrink: 0;
+        }
+        .pb-cta:hover { transform: translateY(-2px); box-shadow: 0 6px 28px var(--accent-glow-strong); }
 
         .proof-bar { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 2.5rem 2rem; text-align: center; }
         .proof-inner { max-width: 900px; margin: 0 auto; }
@@ -424,6 +490,7 @@
             .services-grid { grid-template-columns: 1fr; }
             .value-cards { grid-template-columns: 1fr; }
             .contact-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+            .prompts-banner-inner { flex-direction: column; text-align: center; gap: 1.25rem; }
         }
         @media (max-width: 768px) {
             .nav-links {
@@ -460,6 +527,8 @@
             <li><a href="#services" data-ga="nav_services">Services</a></li>
             <li><a href="#process" data-ga="nav_process">Process</a></li>
             <li><a href="#stack" data-ga="nav_stack">Stack</a></li>
+            <!-- FREE PROMPTS NAV LINK -->
+            <li><a href="/prompts.html" class="nav-prompts" data-ga="nav_free_prompts">🔓 Free Prompts</a></li>
             <li><a href="#contact" class="nav-cta" data-ga="nav_cta_lets_talk">Let's Talk</a></li>
         </ul>
     </nav>
@@ -478,6 +547,23 @@
         </div>
         <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
     </header>
+
+    <!-- ═══════════════════════════════════════
+         FREE PROMPTS BANNER — NEW SECTION
+    ═══════════════════════════════════════ -->
+    <div class="prompts-banner reveal">
+        <div class="prompts-banner-inner">
+            <div class="pb-emoji">🔓</div>
+            <div class="pb-content">
+                <div class="pb-label">Free Resource — 1,000+ Already Got These</div>
+                <div class="pb-title">ChatGPT Prompts that actually work</div>
+                <div class="pb-desc">Resume, Portfolio, Landing Page — <strong>9 ready-to-use prompts</strong>, free. Enter your email, grab them instantly.</div>
+            </div>
+            <a href="/prompts.html" class="pb-cta" data-ga="prompts_banner_cta">
+                Get Free Prompts &#8594;
+            </a>
+        </div>
+    </div>
 
     <div class="proof-bar">
         <div class="proof-inner">
@@ -744,6 +830,7 @@
             <a href="https://www.linkedin.com/in/hmnshu-shrma/" target="_blank" rel="noopener" data-ga="footer_linkedin">LinkedIn</a>
             <a href="https://www.youtube.com/@oye_nino" target="_blank" rel="noopener" data-ga="footer_youtube">YouTube</a>
             <a href="https://www.instagram.com/oye.nino" target="_blank" rel="noopener" data-ga="footer_instagram">Instagram</a>
+            <a href="/prompts.html" data-ga="footer_prompts">Free Prompts</a>
         </div>
     </footer>
 
