@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BGL94NLVL7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-BGL94NLVL7");
+    </script>
+
+    <title>Free AI Prompt — Build a Blinkit-Style Shopping Website in 10 Minutes | Himanshu (@oye.nino)</title>
+    <meta name="description" content="Get the exact AI prompt to build a Blinkit-style shopping website with cart and email orders — zero investment, 10 minutes. Free prompt by Himanshu (@oye.nino)." />
+    <meta name="keywords" content="free shopping website prompt, AI shopping website, Blinkit clone free, zero investment business, shopping website ChatGPT prompt, ecommerce without payment gateway, free online store, AI website builder prompt, oye nino, Himanshu, shopping website Hindi, online business India, zero budget startup, AI prompt for website" />
+    <meta name="author" content="Himanshu (@oye.nino)" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://oyenino.com/shopping-prompt.html" />
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:title" content="Free AI Prompt — Build a Shopping Website in 10 Min | Zero Investment" />
+    <meta property="og:description" content="Blinkit jaisi shopping website 10 minute mein. AI se. Free mein. Get the exact prompt — zero investment, zero coding." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://oyenino.com/shopping-prompt.html" />
+    <meta property="og:image" content="https://oyenino.com/og-image.jpg" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Free AI Prompt — Shopping Website in 10 Min | Zero Investment" />
+    <meta name="twitter:description" content="Blinkit jaisi website. 10 min. Free. Get the exact AI prompt." />
+    <meta name="twitter:image" content="https://oyenino.com/og-image.jpg" />
+
+    <!-- STRUCTURED DATA -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Free AI Prompt — Build a Shopping Website in 10 Minutes",
+      "description": "Get the exact AI prompt to build a Blinkit-style shopping website with cart and email orders. Zero investment, 10 minutes.",
+      "url": "https://oyenino.com/shopping-prompt.html",
+      "author": {
+        "@type": "Person",
+        "name": "Himanshu",
+        "sameAs": [
+          "https://www.instagram.com/oye.nino",
+          "https://youtube.com/@oye_nino"
+        ]
+      },
+      "isPartOf": { "@type": "WebSite", "url": "https://oyenino.com" }
+    }
+    </script>
+
+    <!-- CLOUDFLARE TURNSTILE -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <style>
+      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+      :root {
+        --bg: #050505; --bg-elevated: #0c0c0c; --bg-card: #111111; --bg-card-hover: #161616;
+        --text: #eeeae4; --text-mid: #b5b0a8; --text-muted: #706c66;
+        --accent: #00F0A0; --accent-dim: #00c583;
+        --accent-glow: rgba(0,240,160,0.1); --accent-glow-strong: rgba(0,240,160,0.2);
+        --border: #1a1a1a; --border-hover: #2a2a2a;
+        --serif: 'Playfair Display', Georgia, serif;
+        --sans: 'Outfit', system-ui, sans-serif;
+        --radius: 16px;
+        --transition: 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+      }
+      html { scroll-behavior: smooth; }
+      body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+      ::selection { background: var(--accent); color: var(--bg); }
+      body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; }
+
+      nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); background: rgba(5,5,5,0.85); border-bottom: 1px solid rgba(255,255,255,0.04); }
+      .nav-logo { font-family: var(--sans); font-size: 1.25rem; font-weight: 600; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+      .nav-logo span { color: var(--accent); }
+      .nav-back { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem; transition: color var(--transition); }
+      .nav-back:hover { color: var(--accent); }
+
+      .page-hero { padding: 9rem 2rem 5rem; max-width: 900px; margin: 0 auto; text-align: center; position: relative; }
+      .hero-glow { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 700px; height: 400px; background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 65%); pointer-events: none; filter: blur(80px); animation: breathe 6s ease-in-out infinite; }
+      @keyframes breathe { 0%,100% { opacity: 0.4; transform: translateX(-50%) scale(1); } 50% { opacity: 0.7; transform: translateX(-50%) scale(1.05); } }
+      .page-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; font-weight: 500; animation: fadeUp 0.6s ease forwards; }
+      .pulse { width: 7px; height: 7px; background: var(--accent); border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+      @keyframes pulse { 0%,100% { opacity: 1; box-shadow: 0 0 0 0 var(--accent-glow-strong); } 50% { opacity: 0.6; box-shadow: 0 0 0 8px transparent; } }
+      .page-hero h1 { font-family: var(--serif); font-size: clamp(2.2rem, 6vw, 4rem); font-weight: 400; line-height: 1.1; letter-spacing: -0.03em; margin-bottom: 1.25rem; animation: fadeUp 0.6s ease forwards 0.1s; opacity: 0; }
+      .page-hero h1 em { font-style: italic; color: var(--accent); }
+      .page-hero p { font-size: 1.1rem; color: var(--text-mid); max-width: 560px; margin: 0 auto 1rem; font-weight: 300; line-height: 1.75; animation: fadeUp 0.6s ease forwards 0.2s; opacity: 0; }
+      .social-proof { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: var(--text-muted); margin-top: 0.5rem; animation: fadeUp 0.6s ease forwards 0.3s; opacity: 0; }
+      .social-proof strong { color: var(--accent); }
+      @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+      .gate-wrap { max-width: 520px; margin: 0 auto 5rem; padding: 0 2rem; animation: fadeUp 0.6s ease forwards 0.4s; opacity: 0; }
+      .gate-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 2.5rem; position: relative; overflow: hidden; }
+      .gate-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--accent), transparent 60%); }
+      .gate-title { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; margin-bottom: 0.4rem; color: var(--text); }
+      .gate-subtitle { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.75rem; font-weight: 300; }
+      .gate-subtitle strong { color: var(--text-mid); font-weight: 500; }
+
+      .teaser-list { list-style: none; margin-bottom: 1.75rem; display: flex; flex-direction: column; gap: 0.6rem; }
+      .teaser-list li { display: flex; align-items: center; gap: 0.75rem; font-size: 0.88rem; color: var(--text-mid); font-weight: 300; }
+      .teaser-list li::before { content: '✓'; color: var(--accent); font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+
+      .form-group { margin-bottom: 1rem; }
+      .form-group label { display: block; font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.45rem; font-weight: 500; }
+      .form-group input { width: 100%; padding: 0.8rem 1rem; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; color: var(--text); font-family: var(--sans); font-size: 0.9rem; font-weight: 300; transition: border-color var(--transition), box-shadow var(--transition); outline: none; }
+      .form-group input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-glow); }
+      .form-group input::placeholder { color: #444; }
+
+      .btn-unlock { width: 100%; padding: 1rem; background: var(--accent); color: var(--bg); border: none; border-radius: 100px; font-family: var(--sans); font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.3s; margin-top: 0.5rem; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+      .btn-unlock:hover { transform: translateY(-2px); box-shadow: 0 8px 32px var(--accent-glow-strong); }
+      .btn-unlock:disabled { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none; }
+      .gate-privacy { text-align: center; font-size: 0.75rem; color: var(--text-muted); margin-top: 1rem; font-weight: 300; }
+
+      .error-msg { color: #ff6b6b; font-size: 0.8rem; margin-top: 0.5rem; display: none; }
+      .error-msg.show { display: block; }
+
+      /* PROMPT CONTENT */
+      #prompt-content { display: none; max-width: 900px; margin: 0 auto; padding: 0 2rem 6rem; }
+      #prompt-content.unlocked { display: block; animation: fadeUp 0.7s ease forwards; }
+
+      .unlock-banner { background: linear-gradient(135deg, rgba(0,240,160,0.06), rgba(0,240,160,0.02)); border: 1px solid rgba(0,240,160,0.2); border-radius: var(--radius); padding: 1.5rem 2rem; margin-bottom: 3rem; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+      .unlock-icon { font-size: 1.75rem; }
+      .unlock-text strong { display: block; font-size: 1rem; color: var(--text); margin-bottom: 0.2rem; }
+      .unlock-text span { font-size: 0.85rem; color: var(--text-muted); font-weight: 300; }
+
+      .prompt-category { margin-bottom: 3rem; }
+      .category-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.75rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border); flex-wrap: wrap; }
+      .category-icon { width: 48px; height: 48px; border-radius: 12px; background: var(--accent-glow); border: 1px solid rgba(0,240,160,0.2); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+      .category-info { flex: 1; min-width: 200px; }
+      .category-eyebrow { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); font-weight: 500; margin-bottom: 0.2rem; }
+      .category-title { font-family: var(--serif); font-size: 1.6rem; font-weight: 400; color: var(--text); }
+
+      .prompt-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem 1.75rem; transition: border-color var(--transition), box-shadow 0.3s; position: relative; margin-bottom: 1.25rem; }
+      .prompt-card:hover { border-color: var(--border-hover); box-shadow: 0 4px 24px rgba(0,0,0,0.3); }
+      .prompt-label { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 0.6rem; }
+      .prompt-card h4 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; }
+      .prompt-text { font-size: 0.85rem; color: var(--text-muted); line-height: 1.75; background: var(--bg); border: 1px solid var(--border); border-radius: 10px; padding: 1.25rem 1.5rem; font-family: 'Courier New', monospace; font-weight: 400; position: relative; white-space: pre-wrap; word-break: break-word; max-height: 500px; overflow-y: auto; }
+      .prompt-text::-webkit-scrollbar { width: 6px; }
+      .prompt-text::-webkit-scrollbar-track { background: var(--bg); }
+      .prompt-text::-webkit-scrollbar-thumb { background: var(--border-hover); border-radius: 3px; }
+      .copy-btn { position: absolute; top: 0.65rem; right: 0.75rem; background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; padding: 0.3rem 0.7rem; font-size: 0.72rem; font-weight: 500; color: var(--text-muted); cursor: pointer; transition: all 0.2s; font-family: var(--sans); z-index: 2; }
+      .copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+      .copy-btn.copied { background: var(--accent-glow); border-color: var(--accent); color: var(--accent); }
+
+      .prompt-tip { margin-top: 0.85rem; font-size: 0.8rem; color: var(--text-muted); font-weight: 300; display: flex; gap: 0.5rem; align-items: flex-start; }
+      .prompt-tip::before { content: '💡'; font-size: 0.8rem; margin-top: 0.05rem; flex-shrink: 0; }
+
+      /* HOW TO USE STEPS */
+      .how-to-use { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem 2.25rem; margin: 2.5rem 0; }
+      .how-to-use h3 { font-family: var(--serif); font-size: 1.25rem; font-weight: 400; color: var(--text); margin-bottom: 1.25rem; }
+      .step-item { display: flex; gap: 1rem; margin-bottom: 1rem; align-items: flex-start; }
+      .step-num { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 600; color: var(--accent); flex-shrink: 0; margin-top: 0.1rem; }
+      .step-text { font-size: 0.9rem; color: var(--text-mid); font-weight: 300; line-height: 1.6; }
+      .step-text strong { color: var(--text); font-weight: 500; }
+
+      /* BOTTOM CTA */
+      .prompts-cta { background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0,240,160,0.03) 100%); border: 1px solid var(--border); border-radius: var(--radius); padding: 3rem; text-align: center; margin-top: 3rem; position: relative; overflow: hidden; }
+      .prompts-cta::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(circle at 30% 50%, var(--accent-glow) 0%, transparent 50%); pointer-events: none; animation: rotateSlow 15s linear infinite; }
+      @keyframes rotateSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+      .prompts-cta h3 { font-family: var(--serif); font-size: 2rem; font-weight: 400; margin-bottom: 0.6rem; position: relative; }
+      .prompts-cta p { color: var(--text-mid); margin-bottom: 1.75rem; font-weight: 300; font-size: 1rem; position: relative; }
+      .btn-primary { background: var(--accent); color: var(--bg); padding: 0.9rem 2.25rem; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.3s; display: inline-flex; align-items: center; gap: 0.5rem; position: relative; }
+      .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 40px var(--accent-glow-strong); }
+      .btn-ghost { background: transparent; color: var(--text-mid); padding: 0.9rem 2rem; border-radius: 100px; text-decoration: none; font-weight: 400; font-size: 0.95rem; border: 1px solid var(--border); transition: border-color var(--transition), color var(--transition); display: inline-flex; align-items: center; gap: 0.5rem; }
+      .btn-ghost:hover { border-color: var(--border-hover); color: var(--text); }
+
+      footer { border-top: 1px solid var(--border); padding: 2rem 2rem; max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+      .footer-left { color: var(--text-muted); font-size: 0.8rem; font-weight: 300; }
+      .footer-links { display: flex; gap: 1.5rem; }
+      .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; transition: color var(--transition); }
+      .footer-links a:hover { color: var(--accent); }
+
+      @media (max-width: 600px) {
+        .page-hero { padding: 7rem 1.5rem 3.5rem; }
+        .gate-card { padding: 1.75rem; }
+        .prompt-text { font-size: 0.8rem; padding: 1rem; }
+        .how-to-use { padding: 1.5rem; }
+        .prompts-cta { padding: 2rem 1.5rem; }
+        .cta-buttons { flex-direction: column; align-items: center; }
+      }
+      .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    </style>
+  </head>
+  <body>
+
+    <nav>
+      <a href="/" class="nav-logo">himanshu<span>.</span></a>
+      <a href="/" class="nav-back">&larr; Back to Portfolio</a>
+    </nav>
+
+    <div class="page-hero">
+      <div class="hero-glow"></div>
+      <div class="page-badge"><span class="pulse"></span> Free Prompt — The Existence Series</div>
+      <h1>Blinkit jaisi website.<br>10 min. <em>₹0.</em></h1>
+      <p>Kitna kar sakte ho zero investment mein? Yeh woh prompt hai jisse maine reel mein shopping website banayi. 4,000+ log maang rahe the — lo, free hai.</p>
+      <div class="social-proof">🔥 <strong>4,000+</strong> people commented asking for this prompt</div>
+    </div>
+
+    <!-- GATE: Form before prompt -->
+    <div class="gate-wrap" id="gate-section">
+      <div class="gate-card">
+        <div class="gate-title">Prompt unlock karo — free hai</div>
+        <div class="gate-subtitle">Apna naam aur email daalo, prompt turant milega. <strong>No spam, promise.</strong></div>
+
+        <ul class="teaser-list">
+          <li>Complete shopping website — products, cart, checkout</li>
+          <li>Orders seedha tumhare email inbox mein</li>
+          <li>Images free CDN (imgbb) pe hosted</li>
+          <li>Zero payment gateway needed</li>
+          <li>Copy-paste ready — ChatGPT mein daalo, website lo</li>
+        </ul>
+
+        <form id="gateForm">
+          <div class="form-group">
+            <label for="gate-name">Tumhara Naam *</label>
+            <input type="text" id="gate-name" name="name" placeholder="Rahul Sharma" required />
+          </div>
+          <div class="form-group">
+            <label for="gate-phone">Phone Number *</label>
+            <input type="tel" id="gate-phone" name="phone" placeholder="+91 98765 43210" required />
+          </div>
+          <div class="form-group">
+            <label for="gate-email">Email Address *</label>
+            <input type="email" id="gate-email" name="email" placeholder="rahul@gmail.com" required />
+          </div>
+
+          <div class="cf-turnstile"
+               data-sitekey="0x4AAAAAACgSvRvZpT5d_Ab5"
+               data-theme="dark"
+               data-callback="onTurnstileSuccess"
+               data-expired-callback="onTurnstileExpired"
+               style="margin-bottom: 1rem; display: flex; justify-content: center;">
+          </div>
+
+          <div class="error-msg" id="formError"></div>
+          <button type="submit" class="btn-unlock" id="unlockBtn" disabled>Verify you're human first &uarr;</button>
+          <p class="gate-privacy"><span>🔒 Your info safe hai. Kabhi bhi unsubscribe kar sakte ho.</span></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- PROMPT CONTENT — hidden until unlocked -->
+    <div id="prompt-content">
+
+      <div class="unlock-banner">
+        <div class="unlock-icon">🎉</div>
+        <div class="unlock-text">
+          <strong>Prompt unlock ho gaya!</strong>
+          <span>Copy karo, ChatGPT mein paste karo, aur 10 minute mein tumhari shopping website taiyaar. Maine personally test kiya hai.</span>
+        </div>
+      </div>
+
+      <!-- THE PROMPT -->
+      <div class="prompt-category">
+        <div class="category-header">
+          <div class="category-icon">🛒</div>
+          <div class="category-info">
+            <div class="category-eyebrow">The Existence Series — Part 4</div>
+            <div class="category-title">Shopping Website Prompt</div>
+          </div>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-label">🔥 The Full Prompt</div>
+          <h4>Complete Shopping Website with Cart &amp; Email Orders</h4>
+          <div class="prompt-text" id="main-prompt">Build me a complete, single-file shopping website in pure HTML, CSS, and JavaScript. No frameworks. No backend. No payment gateway.
+
+This is for a small local business that wants to take orders online with zero investment.
+
+=== BUSINESS DETAILS (REPLACE WITH YOUR OWN) ===
+- Shop Name: [Your Shop Name — e.g., "Sharma General Store"]
+- Shop Tagline: [One line — e.g., "Fresh groceries delivered to your door"]
+- Shop Location: [Your area — e.g., "Varanasi, UP"]
+- Shop Phone: [WhatsApp number for customers to contact]
+- Shop Owner Email: [Email where orders will be received]
+- Product Categories: [e.g., "Groceries, Dairy, Snacks, Beverages"]
+
+=== PRODUCTS (REPLACE WITH YOUR OWN) ===
+Add 8-12 products with these details for each:
+- Product Name
+- Price (in ₹)
+- Category
+- Image URL (hosted on imgbb.com — upload your images there and paste the direct link)
+- Short description (1 line)
+
+Example:
+1. Aashirvaad Atta (5kg) | ₹280 | Groceries | https://i.ibb.co/xxxxx/atta.jpg | "Premium whole wheat flour"
+2. Amul Butter (500g) | ₹280 | Dairy | https://i.ibb.co/xxxxx/butter.jpg | "Fresh salted butter"
+[Add your products here...]
+
+=== WEBSITE REQUIREMENTS ===
+
+DESIGN:
+- Clean, modern, mobile-first design (80%+ users will be on phone)
+- Shop name and tagline in header
+- Product grid with images, name, price, and "Add to Cart" button
+- Category filter buttons at the top to filter products
+- Sticky cart icon in bottom-right showing item count
+- Color scheme: [choose your preference or say "choose a clean, trustworthy scheme"]
+
+CART FUNCTIONALITY:
+- Clicking "Add to Cart" adds item with quantity 1
+- Cart page/modal shows all added items with:
+  - Product name, price, quantity
+  - Plus/minus buttons to change quantity
+  - Remove button for each item
+  - Running subtotal for each item
+  - Grand total at bottom
+- Cart data stored in browser (localStorage)
+
+ORDER / CHECKOUT:
+- "Place Order" button opens a simple form asking:
+  - Customer Name (required)
+  - Phone Number (required)
+  - Delivery Address (required)
+  - Any special instructions (optional)
+- When form is submitted, it sends an email containing:
+  - All cart items (name, quantity, price)
+  - Grand total
+  - Customer details (name, phone, address, instructions)
+- Use Formspree (formspree.io) or EmailJS for sending the email — NO backend needed
+  - For Formspree: action="https://formspree.io/f/[YOUR_FORM_ID]" (the shop owner creates a free Formspree account and gets the form ID)
+  - Construct hidden fields that compile the full cart summary into the email body
+- After successful submission:
+  - Clear the cart
+  - Show a confirmation message: "Order placed! [Shop Name] will contact you on WhatsApp to confirm."
+  - Show the shop's WhatsApp link so customer can directly message
+
+IMAGES:
+- All product images hosted on imgbb.com (free image hosting, works as CDN)
+- DO NOT put images in the project folder or on GitHub
+- Use direct imgbb URLs in img src tags
+- Add lazy loading to all images: loading="lazy"
+- Add proper alt text for each product image
+
+TECHNICAL:
+- Everything in a SINGLE HTML file (HTML + CSS + JS)
+- Mobile responsive — looks great on phones
+- Fast loading — minimal code, optimized images via imgbb CDN
+- No external dependencies except Google Fonts (optional)
+- Smooth animations on cart interactions
+- WhatsApp integration: "Chat on WhatsApp" floating button linking to wa.me/[shop_phone]
+
+=== IMPORTANT NOTES ===
+- This is NOT an e-commerce store with payment processing
+- This is an ORDER COLLECTION system — shopkeeper receives order via email, then contacts customer to confirm availability, pricing, and delivery
+- Keep it simple, fast, and functional
+- The entire website should work by just opening the HTML file in a browser — no server needed
+- Make sure the email contains a COMPLETE, READABLE order summary — not just form field names
+
+Output: Complete, deployment-ready single HTML file.</div>
+          <button class="copy-btn" onclick="copyPrompt('main-prompt', this)">Copy</button>
+          <div class="prompt-tip">
+            Brackets [ ] mein jo bhi likha hai — woh TUMHARE details se replace karo. Shop name, products, images, email, phone — sab apna daalo.
+          </div>
+        </div>
+      </div>
+
+      <!-- HOW TO USE -->
+      <div class="how-to-use">
+        <h3>Kaise use karna hai? 5 steps.</h3>
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-text"><strong>Product images upload karo</strong> — imgbb.com pe jaao, apni product photos upload karo, direct link copy karo. Yeh free CDN ki tarah kaam karega.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-text"><strong>Formspree pe account banao</strong> — formspree.io pe sign up karo (free), ek form create karo, form ID copy karo. Orders isi email pe aayenge.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-text"><strong>Prompt mein apne details daalo</strong> — shop name, products, prices, imgbb links, Formspree ID, WhatsApp number — sab replace karo brackets mein.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-text"><strong>ChatGPT mein paste karo</strong> — poora prompt copy karke ChatGPT (ya Claude) mein daalo. Ek complete HTML file milegi.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">5</div>
+          <div class="step-text"><strong>Deploy karo — FREE</strong> — GitHub Pages ya Vercel pe upload karo. Custom domain chahiye? Pichli reel dekho. Done. Dukaan live.</div>
+        </div>
+      </div>
+
+      <!-- WHY NOT GITHUB FOR IMAGES -->
+      <div class="prompt-card" style="margin-top: 2rem;">
+        <div class="prompt-label">⚠️ Important</div>
+        <h4>GitHub pe images kyu nahi daalni chahiye?</h4>
+        <div class="prompt-tip" style="margin-top: 0;">
+          GitHub code ke liye hai, storage ke liye nahi. Images daaloge toh repo size badh jaayega, git clone slow hoga, deploy slow hoga, aur GitHub ki bandwidth limit hit hogi. imgbb free hai, fast hai, aur CDN ki tarah kaam karta hai — images wahan host karo, link yahan use karo.
+        </div>
+      </div>
+
+      <!-- BOTTOM CTA -->
+      <div class="prompts-cta">
+        <h3>Aur prompts chahiye? Sab free hai.</h3>
+        <p>Resume, portfolio, landing page — 9 aur free prompts hain mere paas. Ya phir directly baat karo.</p>
+        <div class="cta-buttons">
+          <a href="/prompts.html" class="btn-primary">Get 9 More Free Prompts &rarr;</a>
+          <a href="/#contact" class="btn-ghost">Book a Free Call &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-left">&copy; 2026 Himanshu. Built with code &amp; clarity.</div>
+      <div class="footer-links">
+        <a href="https://youtube.com/@oye_nino" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.instagram.com/oye.nino" target="_blank" rel="noopener">Instagram</a>
+        <a href="/prompts.html">Free Prompts</a>
+        <a href="/">Portfolio</a>
+      </div>
+    </footer>
+
+    <script>
+      const FORM_API = 'https://forms.oyenino.com';
+
+      function trackEvent(eventName, params = {}) {
+        if (typeof gtag === 'function') gtag('event', eventName, params);
+      }
+
+      let turnstileVerified = false;
+
+      function onTurnstileSuccess(token) {
+        turnstileVerified = true;
+        const btn = document.getElementById('unlockBtn');
+        btn.innerHTML = '<span>🔓</span> Prompt Unlock Karo — Free';
+        btn.disabled = false;
+        trackEvent('turnstile_verified', { form_id: 'shopping_prompt_gate' });
+      }
+
+      function onTurnstileExpired() {
+        turnstileVerified = false;
+        const btn = document.getElementById('unlockBtn');
+        btn.innerHTML = "Verify you're human first &uarr;";
+        btn.disabled = true;
+      }
+
+      function copyPrompt(id, btn) {
+        const text = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(text).then(() => {
+          btn.textContent = '✓ Copied!';
+          btn.classList.add('copied');
+          trackEvent('prompt_copied', { prompt_id: id, page: 'shopping_prompt' });
+          setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+        });
+      }
+
+      // Check if already unlocked
+      if (sessionStorage.getItem('shopping_prompt_unlocked') === 'true') {
+        showPrompt();
+      }
+
+      // Gate form
+      document.getElementById('gateForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const name = document.getElementById('gate-name').value.trim();
+        const phone = document.getElementById('gate-phone').value.trim();
+        const email = document.getElementById('gate-email').value.trim();
+        const errorEl = document.getElementById('formError');
+        const btn = document.getElementById('unlockBtn');
+
+        if (!name || !phone || !email) {
+          errorEl.textContent = 'Sab fields fill karo — naam, phone, email.';
+          errorEl.classList.add('show');
+          return;
+        }
+
+        if (!turnstileVerified) {
+          errorEl.textContent = 'Please complete the human verification above.';
+          errorEl.classList.add('show');
+          return;
+        }
+
+        errorEl.classList.remove('show');
+        btn.disabled = true;
+        btn.innerHTML = '<span>⏳</span> Submitting...';
+
+        trackEvent('shopping_prompt_gate_submit', { has_name: !!name, has_phone: !!phone });
+
+        try {
+          await fetch(FORM_API, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+              _form_name: 'shopping_prompt_gate',
+              name,
+              phone,
+              email,
+              source: 'shopping_prompt_page',
+              requested_prompt: 'shopping_website_blinkit_style',
+              turnstile_token: document.querySelector('[name="cf-turnstile-response"]')?.value || ''
+            })
+          });
+          trackEvent('shopping_prompt_gate_success', { visitor_name: name });
+        } catch (err) {
+          trackEvent('shopping_prompt_gate_error');
+        }
+
+        // Always unlock — don't punish user if API fails
+        sessionStorage.setItem('shopping_prompt_unlocked', 'true');
+        showPrompt();
+      });
+
+      function showPrompt() {
+        const gate = document.getElementById('gate-section');
+        gate.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        gate.style.opacity = '0';
+        gate.style.transform = 'translateY(-10px)';
+
+        setTimeout(() => {
+          gate.style.display = 'none';
+          const content = document.getElementById('prompt-content');
+          content.classList.add('unlocked');
+          content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          trackEvent('shopping_prompt_unlocked');
+        }, 400);
+      }
+    </script>
+
+  </body>
+</html>
