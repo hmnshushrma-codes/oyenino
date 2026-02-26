@@ -24,14 +24,14 @@
     <meta name="keywords" content="frontend developer, React developer, technical consultant, hire frontend developer India, React.js consultant, Next.js developer, AI integration, web development consultant, freelance developer, senior software engineer, full stack developer, JavaScript expert, UI/UX developer, web application development, hire React developer, frontend architect, freelance React developer, web app consultant India, hire technical consultant">
     <meta name="author" content="Himanshu">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://yourdomain.com/">
+    <link rel="canonical" href="https://oyenino.com/">
 
     <!-- OPEN GRAPH -->
     <meta property="og:title" content="Himanshu | Senior Frontend Developer & Technical Consultant">
     <meta property="og:description" content="I make tech feel simple. Senior Frontend Engineer specializing in React.js, AI integration, and scalable web solutions. Consulting worldwide.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://yourdomain.com/">
-    <meta property="og:image" content="https://yourdomain.com/og-image.jpg">
+    <meta property="og:url" content="https://oyenino.com/">
+    <meta property="og:image" content="https://oyenino.com/og-image.jpg">
     <meta property="og:locale" content="en_US">
 
     <!-- TWITTER CARD -->
@@ -46,7 +46,7 @@
         "@type": "ProfessionalService",
         "name": "Himanshu — Technical Consulting",
         "description": "Senior Frontend Developer and Technical Consultant specializing in React.js, Next.js, AI integration, and scalable web application development.",
-        "url": "https://yourdomain.com",
+        "url": "https://oyenino.com",
         "areaServed": ["IN", "US", "GB", "AE", "CA", "AU", "DE", "SG"],
         "serviceType": ["Frontend Development", "Technical Consulting", "React.js Development", "AI Integration", "Web Application Development"],
         "priceRange": "$$",
@@ -66,7 +66,7 @@
         "name": "Himanshu",
         "jobTitle": "Senior Frontend Developer & Technical Consultant",
         "knowsAbout": ["React.js", "Next.js", "JavaScript", "TypeScript", "AI Integration", "Frontend Architecture", "Web Performance", "SEO Optimization"],
-        "url": "https://yourdomain.com"
+        "url": "https://oyenino.com"
     }
     </script>
 
@@ -155,7 +155,6 @@
         .nav-cta::after { display: none !important; }
         .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 24px var(--accent-glow-strong); }
 
-        /* NEW: Free Prompts nav link styling */
         .nav-prompts {
             color: var(--accent) !important;
             font-weight: 500 !important;
@@ -245,9 +244,6 @@
             100% { transform: scaleY(0); transform-origin: bottom; }
         }
 
-        /* ═══════════════════════════════════════
-           FREE PROMPTS BANNER — NEW ADDITION
-        ═══════════════════════════════════════ */
         .prompts-banner {
             max-width: 1100px;
             margin: 0 auto;
@@ -527,8 +523,7 @@
             <li><a href="#services" data-ga="nav_services">Services</a></li>
             <li><a href="#process" data-ga="nav_process">Process</a></li>
             <li><a href="#stack" data-ga="nav_stack">Stack</a></li>
-            <!-- FREE PROMPTS NAV LINK -->
-            <li><a href="/prompts.html" class="nav-prompts" data-ga="nav_free_prompts">🔓 Free Prompts</a></li>
+            <li><a href="/prompts.html" class="nav-prompts" data-ga="nav_free_prompts">&#128275; Free Prompts</a></li>
             <li><a href="#contact" class="nav-cta" data-ga="nav_cta_lets_talk">Let's Talk</a></li>
         </ul>
     </nav>
@@ -548,12 +543,9 @@
         <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
     </header>
 
-    <!-- ═══════════════════════════════════════
-         FREE PROMPTS BANNER — NEW SECTION
-    ═══════════════════════════════════════ -->
     <div class="prompts-banner reveal">
         <div class="prompts-banner-inner">
-            <div class="pb-emoji">🔓</div>
+            <div class="pb-emoji">&#128275;</div>
             <div class="pb-content">
                 <div class="pb-label">Free Resource — 1,000+ Already Got These</div>
                 <div class="pb-title">ChatGPT Prompts that actually work</div>
@@ -755,7 +747,9 @@
                 </div>
             </div>
             <div class="contact-form reveal">
-                <form id="contactForm" action="https://formspree.io/f/xykdnlep" method="POST">
+                <!-- ✅ CHANGED: Removed formspree action, added _form_name -->
+                <form id="contactForm" method="POST">
+                    <input type="hidden" name="_form_name" value="contact">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="name">Full Name *</label>
@@ -803,9 +797,9 @@
                     <input type="hidden" name="geo_org" id="geo_org">
 
                     <!-- CLOUDFLARE TURNSTILE -->
-                    <div class="cf-turnstile" 
-                         data-sitekey="0x4AAAAAACgSvRvZpT5d_Ab5" 
-                         data-theme="dark" 
+                    <div class="cf-turnstile"
+                         data-sitekey="0x4AAAAAACgSvRvZpT5d_Ab5"
+                         data-theme="dark"
                          data-callback="onTurnstileSuccess"
                          data-expired-callback="onTurnstileExpired"
                          style="margin-bottom: 1rem; display: flex; justify-content: center;">
@@ -835,6 +829,9 @@
     </footer>
 
     <script>
+        // ✅ CHANGED: Form API endpoint (replaces Formspree)
+        const FORM_API = 'https://forms.oyenino.com';
+
         function trackEvent(eventName, params = {}) {
             if (typeof gtag === 'function') gtag('event', eventName, params);
         }
@@ -977,7 +974,8 @@
                 visitor_country: document.getElementById('geo_country').value || 'unknown'
             });
             try {
-                const r = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+                // ✅ CHANGED: fetch(form.action) → fetch(FORM_API)
+                const r = await fetch(FORM_API, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
                 if (r.ok) {
                     form.style.display = 'none';
                     document.getElementById('formSuccess').style.display = 'block';

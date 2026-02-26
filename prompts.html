@@ -719,6 +719,7 @@ Make it feel personal, not corporate.</div>
         }
 
         // TURNSTILE STATE
+        const FORM_API = 'https://forms.oyenino.com';
         let turnstileVerified = false;
 
         function onTurnstileSuccess(token) {
@@ -791,7 +792,7 @@ Make it feel personal, not corporate.</div>
                 formData.append('source', 'prompts_page');
                 formData.append('_subject', '🔥 New Prompt Page Lead: ' + name);
 
-                const res = await fetch('https://formspree.io/f/xykdnlep', {
+                const res = await fetch(FORM_API, {
                     method: 'POST',
                     body: formData,
                     headers: { 'Accept': 'application/json' }
