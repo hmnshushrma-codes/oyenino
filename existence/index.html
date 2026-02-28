@@ -85,6 +85,7 @@
 
       html {
         scroll-behavior: smooth;
+        overflow-x: hidden;
       }
 
       body {
@@ -107,7 +108,7 @@
         inset: 0;
         background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
         pointer-events: none;
-        z-index: 9999;
+        z-index: 50;
       }
 
       /* ===== NAV ===== */
@@ -1167,6 +1168,12 @@
 
         .hero {
           padding: 7rem 1.5rem 3rem;
+          overflow: hidden;
+        }
+
+        .hero-glow {
+          width: 300px;
+          height: 300px;
         }
 
         .pillars {
@@ -1190,6 +1197,49 @@
 
         .point-box {
           padding: 2rem 1.5rem;
+        }
+
+        .point-template {
+          font-size: 0.72rem;
+          word-break: break-word;
+        }
+
+        .gate-section {
+          padding: 0 1rem 3rem;
+        }
+
+        .gate-card {
+          padding: 1.75rem 1.25rem;
+          overflow: hidden;
+        }
+
+        .cf-turnstile {
+          transform: scale(0.9);
+          transform-origin: left top;
+        }
+
+        #prompts-content {
+          padding: 0 1rem 3rem;
+        }
+
+        .prompt-text {
+          font-size: 0.75rem;
+          padding: 0.75rem 1rem;
+          overflow-x: auto;
+        }
+
+        .prompt-card {
+          padding: 1.25rem;
+        }
+
+        .unlock-banner {
+          flex-direction: column;
+          text-align: center;
+          padding: 1.25rem;
+        }
+
+        .prompts-cta {
+          padding: 2rem 1.25rem;
         }
 
         footer {
