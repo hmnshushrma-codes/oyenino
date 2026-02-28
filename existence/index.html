@@ -1,0 +1,1920 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-BGL94NLVL7"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-BGL94NLVL7");
+    </script>
+
+    <!-- SEO -->
+    <title>The Existence Series — Website Design Demos | oyenino</title>
+
+    <!-- CLOUDFLARE TURNSTILE -->
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer
+    ></script>
+    <meta
+      name="description"
+      content="See how 3 things — Business Nature, Colors & Typography — completely change a website's feel. Live demos by Himanshu (@oye.nino)."
+    />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://oyenino.com/existence/" />
+
+    <!-- OG -->
+    <meta
+      property="og:title"
+      content="The Existence Series — Website Design Demos"
+    />
+    <meta
+      property="og:description"
+      content="Same layout, completely different feel. See how Nature, Colors & Typography change everything."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://oyenino.com/existence/" />
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --bg: #050505;
+        --bg-elevated: #0c0c0c;
+        --bg-card: #111111;
+        --bg-card-hover: #161616;
+        --text: #eeeae4;
+        --text-mid: #b5b0a8;
+        --text-muted: #706c66;
+        --accent: #00f0a0;
+        --accent-dim: #00c583;
+        --accent-glow: rgba(0, 240, 160, 0.1);
+        --accent-glow-strong: rgba(0, 240, 160, 0.2);
+        --border: #1a1a1a;
+        --border-hover: #2a2a2a;
+        --serif: "Playfair Display", Georgia, serif;
+        --sans: "Outfit", system-ui, sans-serif;
+        --radius: 16px;
+        --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--sans);
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      ::selection {
+        background: var(--accent);
+        color: var(--bg);
+      }
+
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 9999;
+      }
+
+      /* ===== NAV ===== */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        backdrop-filter: blur(24px) saturate(1.2);
+        -webkit-backdrop-filter: blur(24px) saturate(1.2);
+        background: rgba(5, 5, 5, 0.75);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      }
+
+      .nav-logo {
+        font-family: var(--sans);
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: var(--text);
+        text-decoration: none;
+        letter-spacing: -0.02em;
+      }
+
+      .nav-logo span {
+        color: var(--accent);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 400;
+        letter-spacing: 0.02em;
+        transition: color var(--transition);
+      }
+
+      .nav-links a:hover {
+        color: var(--text);
+      }
+
+      .nav-cta {
+        background: var(--accent) !important;
+        color: var(--bg) !important;
+        padding: 0.5rem 1.5rem !important;
+        border-radius: 100px;
+        font-weight: 600 !important;
+        transition: transform 0.2s, box-shadow 0.3s !important;
+      }
+
+      .nav-cta:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 24px var(--accent-glow-strong);
+      }
+
+      .mobile-toggle {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--text);
+        font-size: 1.4rem;
+        cursor: pointer;
+      }
+
+      /* ===== HERO ===== */
+      .hero {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 10rem 2rem 4rem;
+        text-align: center;
+        position: relative;
+      }
+
+      .hero-glow {
+        position: absolute;
+        top: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+          circle,
+          var(--accent-glow) 0%,
+          transparent 65%
+        );
+        border-radius: 50%;
+        pointer-events: none;
+        filter: blur(100px);
+        opacity: 0.5;
+      }
+
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 2rem;
+        font-weight: 500;
+        opacity: 0;
+        animation: fadeUp 0.7s ease forwards 0.1s;
+      }
+
+      .hero-badge .pulse {
+        width: 8px;
+        height: 8px;
+        background: var(--accent);
+        border-radius: 50%;
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      .hero h1 {
+        font-family: var(--serif);
+        font-size: clamp(2.4rem, 6vw, 4.5rem);
+        font-weight: 400;
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+        margin-bottom: 1.5rem;
+        opacity: 0;
+        animation: fadeUp 0.7s ease forwards 0.25s;
+      }
+
+      .hero h1 em {
+        font-style: italic;
+        color: var(--accent);
+      }
+
+      .hero-sub {
+        font-size: 1.1rem;
+        color: var(--text-mid);
+        max-width: 560px;
+        margin: 0 auto 1.5rem;
+        line-height: 1.75;
+        font-weight: 300;
+        opacity: 0;
+        animation: fadeUp 0.7s ease forwards 0.45s;
+      }
+
+      /* ===== 3 PILLARS ===== */
+      .pillars {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 2rem 4rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        opacity: 0;
+        animation: fadeUp 0.7s ease forwards 0.6s;
+      }
+
+      .pillar {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 2rem 1.5rem;
+        text-align: center;
+        transition: all var(--transition);
+      }
+
+      .pillar:hover {
+        border-color: var(--border-hover);
+        transform: translateY(-4px);
+        background: var(--bg-card-hover);
+      }
+
+      .pillar-emoji {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+        display: block;
+      }
+
+      .pillar h3 {
+        font-family: var(--sans);
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--text);
+        margin-bottom: 0.5rem;
+      }
+
+      .pillar p {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        line-height: 1.6;
+      }
+
+      .pillar-clickable {
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .pillar-cta {
+        display: block;
+        margin-top: 0.75rem;
+        font-size: 0.8rem;
+        font-weight: 500;
+        color: var(--accent);
+        opacity: 0;
+        transform: translateY(4px);
+        transition: all 0.3s ease;
+      }
+
+      .pillar-clickable:hover .pillar-cta {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ===== DEMOS ===== */
+      .demos-section {
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 2rem 2rem 6rem;
+      }
+
+      .demos-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .section-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 500;
+        margin-bottom: 1rem;
+      }
+
+      .section-eyebrow::before {
+        content: "";
+        width: 20px;
+        height: 1px;
+        background: var(--accent);
+      }
+
+      .demos-title {
+        font-family: var(--serif);
+        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        font-weight: 400;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        color: var(--text);
+      }
+
+      .demos-title em {
+        font-style: italic;
+        color: var(--accent);
+      }
+
+      .demos-desc {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        margin-top: 0.75rem;
+      }
+
+      .demos-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+      }
+
+      .demo-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        transition: all var(--transition);
+        position: relative;
+      }
+
+      .demo-card:hover {
+        border-color: var(--border-hover);
+        transform: translateY(-6px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+
+      .demo-preview {
+        width: 100%;
+        height: 240px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .demo-card:nth-child(1) .demo-preview {
+        background: linear-gradient(135deg, #0a0a08 0%, #1a180e 100%);
+      }
+
+      .demo-card:nth-child(2) .demo-preview {
+        background: linear-gradient(135deg, #FFFDF7 0%, #FFF5F0 100%);
+      }
+
+      .demo-preview-icon {
+        font-size: 4rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .demo-preview-glow {
+        position: absolute;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.3;
+      }
+
+      .demo-card:nth-child(1) .demo-preview-glow {
+        background: #c9a84c;
+      }
+
+      .demo-card:nth-child(2) .demo-preview-glow {
+        background: #FF6B6B;
+      }
+
+      .demo-tags {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        display: flex;
+        gap: 6px;
+      }
+
+      .demo-tag {
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        padding: 4px 10px;
+        border-radius: 4px;
+      }
+
+      .demo-card:nth-child(1) .demo-tag {
+        background: rgba(201, 168, 76, 0.2);
+        color: #c9a84c;
+      }
+
+      .demo-card:nth-child(2) .demo-tag {
+        background: rgba(255, 107, 107, 0.15);
+        color: #FF6B6B;
+      }
+
+      .demo-info {
+        padding: 1.5rem;
+      }
+
+      .demo-name {
+        font-family: var(--serif);
+        font-size: 1.4rem;
+        font-weight: 400;
+        color: var(--text);
+        margin-bottom: 0.35rem;
+      }
+
+      .demo-type {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        margin-bottom: 1rem;
+      }
+
+      .demo-attributes {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1.25rem;
+      }
+
+      .demo-attr {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.8rem;
+      }
+
+      .demo-attr-label {
+        color: var(--text-muted);
+        min-width: 80px;
+      }
+
+      .demo-attr-value {
+        color: var(--text-mid);
+        font-weight: 500;
+      }
+
+      .demo-attr-colors {
+        display: flex;
+        gap: 4px;
+        align-items: center;
+      }
+
+      .color-dot {
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .demo-btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        padding: 0.85rem;
+        font-family: var(--sans);
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--bg);
+        text-decoration: none;
+        border-radius: 8px;
+        transition: all 0.3s;
+      }
+
+      .demo-card:nth-child(1) .demo-btn {
+        background: #c9a84c;
+      }
+
+      .demo-card:nth-child(1) .demo-btn:hover {
+        background: #e8d48a;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3);
+      }
+
+      .demo-card:nth-child(2) .demo-btn {
+        background: #FF6B6B;
+      }
+
+      .demo-card:nth-child(2) .demo-btn:hover {
+        background: #FF8E8E;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
+      }
+
+      /* ===== THE POINT ===== */
+      .point-section {
+        max-width: 700px;
+        margin: 0 auto;
+        padding: 0 2rem 5rem;
+        text-align: center;
+      }
+
+      .point-box {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 3rem 2.5rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .point-box::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      }
+
+      .point-box h2 {
+        font-family: var(--serif);
+        font-size: 1.6rem;
+        font-weight: 400;
+        line-height: 1.4;
+        color: var(--text);
+        margin-bottom: 1rem;
+      }
+
+      .point-box h2 em {
+        font-style: italic;
+        color: var(--accent);
+      }
+
+      .point-box p {
+        font-size: 0.95rem;
+        color: var(--text-muted);
+        line-height: 1.7;
+        margin-bottom: 2rem;
+      }
+
+      .point-template {
+        background: rgba(0, 240, 160, 0.05);
+        border: 1px solid rgba(0, 240, 160, 0.12);
+        border-radius: 10px;
+        padding: 1.5rem;
+        text-align: left;
+        font-family: "Courier New", monospace;
+        font-size: 0.8rem;
+        line-height: 1.8;
+        color: var(--text-mid);
+      }
+
+      .point-template .tmpl-label {
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .point-template .tmpl-placeholder {
+        color: var(--text-muted);
+        font-style: italic;
+      }
+
+      /* ===== BACK TO MAIN ===== */
+      .back-section {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 2rem 3rem;
+        text-align: center;
+      }
+
+      .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 400;
+        transition: color var(--transition);
+      }
+
+      .back-link:hover {
+        color: var(--accent);
+      }
+
+      /* ===== FOOTER ===== */
+      footer {
+        padding: 2rem;
+        border-top: 1px solid var(--border);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .footer-left {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .footer-links a {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color var(--transition);
+      }
+
+      .footer-links a:hover {
+        color: var(--text);
+      }
+
+      /* ===== ANIMATIONS ===== */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          box-shadow: 0 0 0 0 var(--accent-glow-strong);
+        }
+        50% {
+          opacity: 0.7;
+          box-shadow: 0 0 0 8px transparent;
+        }
+      }
+
+      /* ===== GATE FORM ===== */
+      .gate-section {
+        max-width: 560px;
+        margin: 0 auto;
+        padding: 0 2rem 4rem;
+      }
+
+      .gate-wrap { width: 100%; }
+
+      .gate-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 2.5rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .gate-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent), transparent 60%);
+      }
+
+      .gate-title {
+        font-family: var(--serif);
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin-bottom: 0.4rem;
+        color: var(--text);
+      }
+
+      .gate-subtitle {
+        font-size: 0.88rem;
+        color: var(--text-muted);
+        margin-bottom: 1.75rem;
+        font-weight: 300;
+      }
+
+      .gate-subtitle strong {
+        color: var(--text-mid);
+        font-weight: 500;
+      }
+
+      .teaser-list {
+        list-style: none;
+        margin-bottom: 1.75rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+
+      .teaser-list li {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.88rem;
+        color: var(--text-mid);
+        font-weight: 300;
+      }
+
+      .teaser-list li::before {
+        content: "✓";
+        color: var(--accent);
+        font-weight: 700;
+        font-size: 0.9rem;
+        flex-shrink: 0;
+      }
+
+      .form-group {
+        margin-bottom: 1rem;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 0.45rem;
+        font-weight: 500;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 0.8rem 1rem;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        color: var(--text);
+        font-family: var(--sans);
+        font-size: 0.9rem;
+        font-weight: 300;
+        transition: border-color var(--transition), box-shadow var(--transition);
+        outline: none;
+      }
+
+      .form-group input:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-glow);
+      }
+
+      .form-group input::placeholder {
+        color: #444;
+      }
+
+      /* Email validation states */
+      .email-status {
+        font-size: 0.78rem;
+        margin-top: 0.4rem;
+        display: none;
+        padding: 0.3rem 0;
+        transition: all 0.2s;
+      }
+
+      .email-status.email-success {
+        color: var(--accent);
+      }
+
+      .email-status.email-error {
+        color: #ff6b6b;
+      }
+
+      .email-status.email-typo {
+        color: #FFD93D;
+      }
+
+      .email-status.email-pending {
+        color: var(--text-muted);
+      }
+
+      .email-checking {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        animation: pulse 1.5s ease-in-out infinite;
+      }
+
+      .typo-fix-btn {
+        background: rgba(255, 217, 61, 0.15);
+        border: 1px solid rgba(255, 217, 61, 0.3);
+        color: #FFD93D;
+        font-family: var(--sans);
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 0.2rem 0.6rem;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-left: 0.3rem;
+        transition: all 0.2s;
+      }
+
+      .typo-fix-btn:hover {
+        background: rgba(255, 217, 61, 0.25);
+        border-color: #FFD93D;
+      }
+
+      .btn-unlock {
+        width: 100%;
+        padding: 1rem;
+        background: var(--accent);
+        color: var(--bg);
+        border: none;
+        border-radius: 100px;
+        font-family: var(--sans);
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.3s;
+        margin-top: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+
+      .btn-unlock:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px var(--accent-glow-strong);
+      }
+
+      .btn-unlock:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
+      }
+
+      .gate-privacy {
+        text-align: center;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+        margin-top: 1rem;
+        font-weight: 300;
+      }
+
+      .error-msg {
+        color: #ff6b6b;
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+        display: none;
+      }
+
+      .error-msg.show {
+        display: block;
+      }
+
+      /* ===== PROMPTS CONTENT ===== */
+      #prompts-content {
+        display: none;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 0 2rem 4rem;
+      }
+
+      #prompts-content.unlocked {
+        display: block;
+        animation: fadeUp 0.7s ease forwards;
+      }
+
+      .unlock-banner {
+        background: linear-gradient(135deg, rgba(0, 240, 160, 0.06), rgba(0, 240, 160, 0.02));
+        border: 1px solid rgba(0, 240, 160, 0.2);
+        border-radius: var(--radius);
+        padding: 1.5rem 2rem;
+        margin-bottom: 3rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .unlock-icon { font-size: 1.75rem; }
+
+      .unlock-text strong {
+        display: block;
+        font-size: 1rem;
+        color: var(--text);
+        margin-bottom: 0.2rem;
+      }
+
+      .unlock-text span {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        font-weight: 300;
+      }
+
+      .prompt-category {
+        margin-bottom: 2.5rem;
+      }
+
+      .category-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .category-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: var(--accent-glow);
+        border: 1px solid rgba(0, 240, 160, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+      }
+
+      .category-eyebrow {
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 500;
+        margin-bottom: 0.15rem;
+      }
+
+      .category-title {
+        font-family: var(--serif);
+        font-size: 1.35rem;
+        font-weight: 400;
+        color: var(--text);
+      }
+
+      .template-desc {
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 1rem;
+        font-weight: 300;
+      }
+
+      .prompt-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 1.5rem 1.75rem;
+        transition: border-color var(--transition), box-shadow 0.3s;
+        position: relative;
+      }
+
+      .prompt-card:hover {
+        border-color: var(--border-hover);
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+      }
+
+      .prompt-text {
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        line-height: 1.7;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 1rem 1.25rem;
+        font-family: "Courier New", monospace;
+        font-weight: 400;
+        position: relative;
+        white-space: pre-wrap;
+        word-break: break-word;
+      }
+
+      .copy-btn {
+        position: absolute;
+        top: 0.65rem;
+        right: 0.75rem;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 0.3rem 0.7rem;
+        font-size: 0.72rem;
+        font-weight: 500;
+        color: var(--text-muted);
+        cursor: pointer;
+        transition: all 0.2s;
+        font-family: var(--sans);
+        z-index: 2;
+      }
+
+      .copy-btn:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .copy-btn.copied {
+        background: var(--accent-glow);
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .prompt-tip {
+        margin-top: 0.85rem;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        font-weight: 300;
+        display: flex;
+        gap: 0.5rem;
+        align-items: flex-start;
+      }
+
+      .prompt-tip::before {
+        content: "💡";
+        font-size: 0.8rem;
+        flex-shrink: 0;
+      }
+
+      .section-divider {
+        border: none;
+        border-top: 1px solid var(--border);
+        margin: 1rem 0 2rem;
+      }
+
+      .prompts-cta {
+        background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0, 240, 160, 0.03) 100%);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 3rem;
+        text-align: center;
+        margin-top: 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .prompts-cta h3 {
+        font-family: var(--serif);
+        font-size: 1.8rem;
+        font-weight: 400;
+        margin-bottom: 0.6rem;
+      }
+
+      .prompts-cta p {
+        color: var(--text-mid);
+        margin-bottom: 1.5rem;
+        font-weight: 300;
+      }
+
+      .btn-cta-primary {
+        background: var(--accent);
+        color: var(--bg);
+        padding: 0.9rem 2.25rem;
+        border-radius: 100px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: transform 0.2s, box-shadow 0.3s;
+      }
+
+      .btn-cta-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 40px var(--accent-glow-strong);
+      }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 768px) {
+        nav {
+          padding: 0.8rem 1.25rem;
+        }
+
+        .nav-links {
+          display: none;
+          position: fixed;
+          top: 56px;
+          left: 0;
+          right: 0;
+          background: rgba(5, 5, 5, 0.97);
+          flex-direction: column;
+          padding: 1.5rem;
+          gap: 0.25rem;
+          border-bottom: 1px solid var(--border);
+          backdrop-filter: blur(24px);
+        }
+
+        .nav-links.open {
+          display: flex;
+        }
+
+        .nav-links li {
+          width: 100%;
+        }
+
+        .nav-links a {
+          display: block;
+          padding: 0.75rem 1rem;
+          border-radius: 8px;
+          font-size: 0.95rem;
+        }
+
+        .mobile-toggle {
+          display: block;
+        }
+
+        .hero {
+          padding: 7rem 1.5rem 3rem;
+        }
+
+        .pillars {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+          padding: 0 1.5rem 3rem;
+        }
+
+        .demos-section {
+          padding: 2rem 1.5rem 4rem;
+        }
+
+        .demos-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .point-section {
+          padding: 0 1.5rem 4rem;
+        }
+
+        .point-box {
+          padding: 2rem 1.5rem;
+        }
+
+        footer {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <a href="/" class="nav-logo">himanshu<span>.</span></a>
+      <button
+        class="mobile-toggle"
+        onclick="document.querySelector('.nav-links').classList.toggle('open')"
+        aria-label="Toggle navigation"
+      >
+        &#9776;
+      </button>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/prompts.html">🔓 Free Prompts</a></li>
+        <li><a href="/shopping-prompt.html">🛒 Shopping Prompt</a></li>
+        <li>
+          <a href="#contact" class="nav-cta">Let's Talk</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-glow"></div>
+      <div class="hero-badge">
+        <span class="pulse"></span> The Existence Series
+      </div>
+      <h1>
+        3 cheezein jo website ko<br /><em>sundar</em> banati hain.
+      </h1>
+      <p class="hero-sub">
+        Business Nature. Colors. Typography. Same layout, completely different
+        feel. Yeh teen cheezein soch lo — AI se kuch bhi bana lo.
+      </p>
+    </header>
+
+    <!-- 3 PILLARS -->
+    <div class="pillars">
+      <a href="/existence/business-nature.html" class="pillar pillar-clickable">
+        <span class="pillar-emoji">🏪</span>
+        <h3>Business Nature</h3>
+        <p>
+          Luxury ya playful? Aggressive ya calm? Tumhara business kya FEEL
+          karta hai — wahi design language honi chahiye.
+        </p>
+        <span class="pillar-cta">See Examples →</span>
+      </a>
+      <a href="/existence/color-psychology.html" class="pillar pillar-clickable">
+        <span class="pillar-emoji">🎨</span>
+        <h3>Colors</h3>
+        <p>
+          Red = urgency. Blue = trust. Black + Gold = premium. Colors sirf
+          sundar dikhne ke liye nahi — FEEL karaane ke liye hain.
+        </p>
+        <span class="pillar-cta">See Examples →</span>
+      </a>
+      <a href="/existence/typography.html" class="pillar pillar-clickable">
+        <span class="pillar-emoji">🔤</span>
+        <h3>Typography</h3>
+        <p>
+          Font = brand ki awaaz. Bold font = confidence. Serif = elegance.
+          Rounded = friendly. Kaise bolni hai brand — wahi font choose karo.
+        </p>
+        <span class="pillar-cta">See Examples →</span>
+      </a>
+    </div>
+
+    <!-- DEMOS -->
+    <section class="demos-section">
+      <div class="demos-header">
+        <p class="section-eyebrow">Live Demos</p>
+        <h2 class="demos-title">
+          Same layout.<br />Completely <em>different</em> feel.
+        </h2>
+        <p class="demos-desc">
+          Both websites have the same structure — Hero, Services, Testimonial,
+          CTA. Sirf Nature, Colors & Typography change ki.
+        </p>
+      </div>
+
+      <div class="demos-grid">
+        <!-- NOIR STUDIO -->
+        <div class="demo-card">
+          <div class="demo-preview">
+            <div class="demo-preview-glow"></div>
+            <span class="demo-preview-icon">✂️</span>
+            <div class="demo-tags">
+              <span class="demo-tag">Luxury</span>
+              <span class="demo-tag">Dark Theme</span>
+            </div>
+          </div>
+          <div class="demo-info">
+            <h3 class="demo-name">NOIR Studio</h3>
+            <p class="demo-type">Premium Men's Grooming Salon</p>
+            <div class="demo-attributes">
+              <div class="demo-attr">
+                <span class="demo-attr-label">Nature</span>
+                <span class="demo-attr-value"
+                  >Luxury, Masculine, Refined</span
+                >
+              </div>
+              <div class="demo-attr">
+                <span class="demo-attr-label">Colors</span>
+                <span class="demo-attr-colors">
+                  <span
+                    class="color-dot"
+                    style="background: #0a0a08"
+                  ></span>
+                  <span
+                    class="color-dot"
+                    style="background: #c9a84c"
+                  ></span>
+                  <span
+                    class="color-dot"
+                    style="background: #f0ece0"
+                  ></span>
+                  <span class="demo-attr-value"
+                    >Black, Gold, Cream</span
+                  >
+                </span>
+              </div>
+              <div class="demo-attr">
+                <span class="demo-attr-label">Typography</span>
+                <span class="demo-attr-value"
+                  >Cormorant Garamond (Serif)</span
+                >
+              </div>
+            </div>
+            <a href="/existence/noir-studio.html" class="demo-btn"
+              >View Live Demo →</a
+            >
+          </div>
+        </div>
+
+        <!-- LITTLE CREATORS -->
+        <div class="demo-card">
+          <div class="demo-preview">
+            <div class="demo-preview-glow"></div>
+            <span class="demo-preview-icon">🎨</span>
+            <div class="demo-tags">
+              <span class="demo-tag">Playful</span>
+              <span class="demo-tag">Bright Theme</span>
+            </div>
+          </div>
+          <div class="demo-info">
+            <h3 class="demo-name">Little Creators</h3>
+            <p class="demo-type">Kids Art & Craft Studio</p>
+            <div class="demo-attributes">
+              <div class="demo-attr">
+                <span class="demo-attr-label">Nature</span>
+                <span class="demo-attr-value"
+                  >Playful, Joyful, Creative</span
+                >
+              </div>
+              <div class="demo-attr">
+                <span class="demo-attr-label">Colors</span>
+                <span class="demo-attr-colors">
+                  <span
+                    class="color-dot"
+                    style="background: #FF6B6B"
+                  ></span>
+                  <span
+                    class="color-dot"
+                    style="background: #FFD93D"
+                  ></span>
+                  <span
+                    class="color-dot"
+                    style="background: #6BC5F8"
+                  ></span>
+                  <span class="demo-attr-value"
+                    >Coral, Yellow, Blue</span
+                  >
+                </span>
+              </div>
+              <div class="demo-attr">
+                <span class="demo-attr-label">Typography</span>
+                <span class="demo-attr-value"
+                  >Bubblegum Sans (Rounded)</span
+                >
+              </div>
+            </div>
+            <a href="/existence/little-creators.html" class="demo-btn"
+              >View Live Demo →</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GATE: Get the Prompts -->
+    <section class="gate-section" id="gate-section">
+      <div class="gate-wrap">
+        <div class="gate-card">
+          <div class="gate-title">Yeh prompts chahiye? Unlock karo — free hai</div>
+          <div class="gate-subtitle">
+            Dono websites ke <strong>exact prompts</strong> + reusable template.
+            Naam aur email daalo, turant milenge.
+          </div>
+
+          <ul class="teaser-list">
+            <li>NOIR Studio ka complete prompt (luxury salon)</li>
+            <li>Little Creators ka complete prompt (kids studio)</li>
+            <li>Reusable framework template — kisi bhi website ke liye</li>
+            <li>Sab copy-paste ready — seedha AI mein daalo</li>
+          </ul>
+
+          <form id="gateForm" novalidate>
+            <div class="form-group">
+              <label for="gate-name">Tumhara Naam *</label>
+              <input
+                type="text"
+                id="gate-name"
+                name="name"
+                placeholder="Rahul Sharma"
+                required
+                autocomplete="name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="gate-phone">Phone Number *</label>
+              <input
+                type="tel"
+                id="gate-phone"
+                name="phone"
+                placeholder="+91 98765 43210"
+                required
+                autocomplete="tel"
+              />
+            </div>
+            <div class="form-group">
+              <label for="gate-email">Email Address *</label>
+              <input
+                type="email"
+                id="gate-email"
+                name="email"
+                placeholder="rahul@gmail.com"
+                required
+                autocomplete="email"
+              />
+              <div class="email-status" id="emailStatus"></div>
+            </div>
+
+            <!-- CLOUDFLARE TURNSTILE -->
+            <div
+              class="cf-turnstile"
+              data-sitekey="0x4AAAAAACgSvRvZpT5d_Ab5"
+              data-theme="dark"
+              data-callback="onTurnstileSuccess"
+              data-expired-callback="onTurnstileExpired"
+              style="margin-bottom: 1rem; display: flex; justify-content: center"
+            ></div>
+
+            <div class="error-msg" id="formError"></div>
+            <button type="submit" class="btn-unlock" id="unlockBtn" disabled>
+              Verify you're human first ↑
+            </button>
+            <p class="gate-privacy">
+              <span>🔒 Your info safe hai. Kabhi bhi unsubscribe kar sakte ho.</span>
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROMPTS CONTENT — hidden until unlocked -->
+    <div id="prompts-content">
+      <div class="unlock-banner">
+        <div class="unlock-icon">🎉</div>
+        <div class="unlock-text">
+          <strong>Prompts unlock ho gaye!</strong>
+          <span>Copy karo, AI mein paste karo, aur dekho magic. Yeh prompts Maine personally test kiye hain.</span>
+        </div>
+      </div>
+
+      <!-- PROMPT 1: NOIR -->
+      <div class="prompt-category">
+        <div class="category-header">
+          <div class="category-icon" style="background: rgba(201,168,76,0.1); border-color: rgba(201,168,76,0.2);">✂️</div>
+          <div class="category-info">
+            <div class="category-eyebrow" style="color: #c9a84c;">Prompt 01</div>
+            <div class="category-title">NOIR Studio — Luxury Salon</div>
+          </div>
+        </div>
+        <div class="prompt-card">
+          <div class="prompt-text" id="p1">Build me a complete landing page for a premium men's grooming salon called "NOIR Studio".
+
+Design direction:
+- Nature: Luxury, masculine, refined — think high-end barbershop meets spa
+- Colors: Deep black background, warm gold (#c9a84c) accents, cream (#f0ece0) text. Dark and moody.
+- Typography: Elegant serif fonts for headings (like Cormorant Garamond), clean body text. Feels authoritative but sophisticated.
+
+Sections: Hero with tagline, 3 service cards with prices, a testimonial, and a booking CTA.
+Add smooth fade-up animations and gold hover effects.</div>
+          <button class="copy-btn" onclick="copyPrompt('p1', this)">Copy</button>
+          <div class="prompt-tip">Dark theme + serif font + gold = instant luxury feel. Works for any premium service — salon, restaurant, law firm, jewellery.</div>
+        </div>
+      </div>
+
+      <hr class="section-divider" />
+
+      <!-- PROMPT 2: LITTLE CREATORS -->
+      <div class="prompt-category">
+        <div class="category-header">
+          <div class="category-icon" style="background: rgba(255,107,107,0.1); border-color: rgba(255,107,107,0.2);">🎨</div>
+          <div class="category-info">
+            <div class="category-eyebrow" style="color: #FF6B6B;">Prompt 02</div>
+            <div class="category-title">Little Creators — Kids Studio</div>
+          </div>
+        </div>
+        <div class="prompt-card">
+          <div class="prompt-text" id="p2">Build me a complete landing page for a kids art & craft studio called "Little Creators".
+
+Design direction:
+- Nature: Playful, joyful, creative — like walking into a fun art room
+- Colors: Bright white (#FFFDF7) background with pops of coral (#FF6B6B), sunny yellow (#FFD93D), sky blue (#6BC5F8). Energetic and happy.
+- Typography: Rounded, bubbly fonts for headings (like Bubblegum Sans), friendly readable body text (like Nunito). Feels warm and approachable.
+
+Sections: Hero with tagline, 3 class cards with age groups, a parent testimonial, and a join CTA.
+Add playful bounce animations, floating emoji decorations, and colorful dashed borders.</div>
+          <button class="copy-btn" onclick="copyPrompt('p2', this)">Copy</button>
+          <div class="prompt-tip">Same structure as NOIR — but Nature, Colors, Typography completely different. THAT'S the point. Change these 3 things = change everything.</div>
+        </div>
+      </div>
+
+      <hr class="section-divider" />
+
+      <!-- FRAMEWORK TEMPLATE -->
+      <div class="prompt-category">
+        <div class="category-header">
+          <div class="category-icon">🧩</div>
+          <div class="category-info">
+            <div class="category-eyebrow">Template</div>
+            <div class="category-title">The Framework — Kisi Bhi Website Ke Liye</div>
+          </div>
+        </div>
+        <p class="template-desc">Portfolio ho, shop ho, freelance page ho ya brand — yeh template fill karo, AI ko do, website ban jayegi.</p>
+        <div class="prompt-card">
+          <div class="prompt-text" id="p3">Build me a complete landing page for [YOUR IDEA — shop / portfolio / freelance page / brand / cafe / studio].
+
+Design direction:
+- Nature: [luxury / playful / bold / minimal / professional / artistic / ...]
+- Colors: [describe the emotion — dark & moody / bright & energetic / soft & calming / ...] with specific hex codes if possible
+- Typography: [serif / rounded / bold sans / monospace / handwritten / ...] — describe the personality of the font
+
+Sections: Hero with tagline, 3 service/feature cards, a testimonial, and a CTA section.
+Add smooth animations. Make it mobile responsive. Single HTML file, no frameworks.</div>
+          <button class="copy-btn" onclick="copyPrompt('p3', this)">Copy</button>
+          <div class="prompt-tip">Brackets mein apna content daalo. Jitna specific likhoge — utni better website milegi. "Dark theme" se better hai "Deep navy blue (#1a1a3e) with gold (#c9a84c) accents".</div>
+        </div>
+      </div>
+
+      <!-- Bottom CTA -->
+      <div class="prompts-cta">
+        <h3>Aur help chahiye? Let's talk.</h3>
+        <p>
+          Agar yeh prompts kaam aaye, toh imagine karo kya ho sakta hai jab hum
+          directly kaam karein.
+        </p>
+        <a href="/#contact" class="btn-cta-primary">Book a Free Call →</a>
+      </div>
+    </div>
+
+    <!-- BACK -->
+    <div class="back-section">
+      <a href="/" class="back-link">← Back to oyenino.com</a>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-left">
+        &copy; 2026 Himanshu. Built with code &amp; clarity.
+      </div>
+      <div class="footer-links">
+        <a
+          href="https://www.instagram.com/oye.nino"
+          target="_blank"
+          rel="noopener"
+          >Instagram</a
+        >
+        <a
+          href="https://www.youtube.com/@oye_nino"
+          target="_blank"
+          rel="noopener"
+          >YouTube</a
+        >
+        <a
+          href="https://github.com/hmnshushrma-codes"
+          target="_blank"
+          rel="noopener"
+          >GitHub</a
+        >
+      </div>
+    </footer>
+
+    <script>
+      // ===== CONFIG =====
+      const FORM_API = "https://forms.oyenino.com";
+
+      function trackEvent(eventName, params = {}) {
+        if (typeof gtag === "function") gtag("event", eventName, params);
+      }
+
+      // ===== EMAIL VALIDATION =====
+      const DISPOSABLE_DOMAINS = [
+        "tempmail.com","temp-mail.org","guerrillamail.com","guerrillamail.de",
+        "guerrillamail.net","guerrillamail.org","sharklasers.com","grr.la",
+        "guerrilla.ml","yopmail.com","yopmail.fr","mailinator.com",
+        "trashmail.com","trashmail.net","throwaway.email","fakeinbox.com",
+        "mailnesia.com","maildrop.cc","dispostable.com","getairmail.com",
+        "mailcatch.com","tempr.email","discard.email","mailsac.com",
+        "10minutemail.com","tempail.com","burpcollaborator.net",
+        "temp-mail.io","mohmal.com","getnada.com","emailondeck.com",
+        "tmail.ws","tmpmail.net","tmpmail.org","binkmail.com","trashmail.me"
+      ];
+
+      const TYPO_MAP = {
+        "gmial.com": "gmail.com",
+        "gmal.com": "gmail.com",
+        "gmaill.com": "gmail.com",
+        "gamil.com": "gmail.com",
+        "gnail.com": "gmail.com",
+        "gmail.co": "gmail.com",
+        "gmail.con": "gmail.com",
+        "gmail.om": "gmail.com",
+        "gmail.cm": "gmail.com",
+        "gmai.com": "gmail.com",
+        "gmil.com": "gmail.com",
+        "gmail.comm": "gmail.com",
+        "yaho.com": "yahoo.com",
+        "yahooo.com": "yahoo.com",
+        "yahoo.co": "yahoo.com",
+        "yahoo.con": "yahoo.com",
+        "yahoo.om": "yahoo.com",
+        "yhaoo.com": "yahoo.com",
+        "hotmal.com": "hotmail.com",
+        "hotmial.com": "hotmail.com",
+        "hotmail.con": "hotmail.com",
+        "hotmail.co": "hotmail.com",
+        "outloo.com": "outlook.com",
+        "outlok.com": "outlook.com",
+        "outlook.co": "outlook.com",
+        "outlook.con": "outlook.com",
+        "rediffmal.com": "rediffmail.com",
+        "rediffmail.co": "rediffmail.com",
+      };
+
+      let emailValid = false;
+      let turnstileVerified = false;
+      let mxCache = {}; // cache domain lookups to avoid repeat calls
+
+      const emailInput = document.getElementById("gate-email");
+      const emailStatus = document.getElementById("emailStatus");
+      const unlockBtn = document.getElementById("unlockBtn");
+
+      // MX Record check — verifies domain actually receives email
+      async function checkMX(domain) {
+        if (mxCache[domain] !== undefined) return mxCache[domain];
+
+        try {
+          const res = await fetch(`https://dns.google/resolve?name=${domain}&type=MX`);
+          const data = await res.json();
+          // Status 0 = NOERROR, Answer array should have MX records
+          const hasMX = data.Status === 0 && data.Answer && data.Answer.length > 0;
+          mxCache[domain] = hasMX;
+          return hasMX;
+        } catch {
+          // If DNS check fails (network issue), give benefit of doubt
+          mxCache[domain] = true;
+          return true;
+        }
+      }
+
+      function validateEmailSync(email) {
+        email = email.trim().toLowerCase();
+
+        // Empty
+        if (!email) return { valid: false, msg: "", type: "" };
+
+        // Basic format check
+        const formatRegex = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+        if (!formatRegex.test(email)) {
+          return { valid: false, msg: "Yeh email format sahi nahi lag raha", type: "error" };
+        }
+
+        const domain = email.split("@")[1];
+
+        // Disposable email check
+        if (DISPOSABLE_DOMAINS.includes(domain)) {
+          return { valid: false, msg: "Temporary/disposable email allowed nahi hai. Apna real email use karo.", type: "error" };
+        }
+
+        // Typo check
+        if (TYPO_MAP[domain]) {
+          return {
+            valid: false,
+            msg: `Kya tumhara matlab <strong>${email.split("@")[0]}@${TYPO_MAP[domain]}</strong> tha?`,
+            type: "typo",
+            suggestion: `${email.split("@")[0]}@${TYPO_MAP[domain]}`
+          };
+        }
+
+        // Too short domain
+        if (domain.length < 4) {
+          return { valid: false, msg: "Yeh domain sahi nahi lagta", type: "error" };
+        }
+
+        // Passed all checks
+        return { valid: true, msg: "✓ Email looks good", type: "success" };
+      }
+
+      let mxCheckTimeout;
+      emailInput.addEventListener("input", function () {
+        const val = this.value.trim();
+        clearTimeout(mxCheckTimeout);
+
+        if (!val) {
+          emailValid = false;
+          emailStatus.innerHTML = "";
+          emailStatus.style.display = "none";
+          emailStatus.className = "email-status";
+          updateSubmitBtn();
+          return;
+        }
+
+        const result = validateEmailSync(val);
+        emailStatus.style.display = "block";
+        emailStatus.className = "email-status";
+
+        if (!result.valid) {
+          emailValid = false;
+          emailStatus.innerHTML = result.msg;
+          emailStatus.classList.add(`email-${result.type}`);
+
+          if (result.type === "typo" && result.suggestion) {
+            emailStatus.innerHTML += ` <button type="button" class="typo-fix-btn" onclick="fixTypo('${result.suggestion}')">Fix it</button>`;
+          }
+          updateSubmitBtn();
+          return;
+        }
+
+        // Sync checks passed — now do async MX check (debounced)
+        emailStatus.innerHTML = '<span class="email-checking">⏳ Domain verify ho raha hai...</span>';
+        emailStatus.classList.add("email-pending");
+        emailValid = false;
+        updateSubmitBtn();
+
+        mxCheckTimeout = setTimeout(async () => {
+          const domain = val.toLowerCase().split("@")[1];
+          const hasMX = await checkMX(domain);
+
+          // Re-check that input hasn't changed during async call
+          if (emailInput.value.trim().toLowerCase() !== val.toLowerCase()) return;
+
+          emailStatus.className = "email-status";
+          emailStatus.style.display = "block";
+
+          if (hasMX) {
+            emailValid = true;
+            emailStatus.innerHTML = "✓ Email verified";
+            emailStatus.classList.add("email-success");
+            trackEvent("email_mx_verified", { domain });
+          } else {
+            emailValid = false;
+            emailStatus.innerHTML = "Yeh email domain exist nahi karta. Real email use karo.";
+            emailStatus.classList.add("email-error");
+            trackEvent("email_mx_failed", { domain });
+          }
+          updateSubmitBtn();
+        }, 600); // 600ms debounce — waits for user to stop typing
+      });
+
+      // Also validate on blur (for paste)
+      emailInput.addEventListener("blur", function () {
+        if (this.value.trim()) this.dispatchEvent(new Event("input"));
+      });
+
+      function fixTypo(corrected) {
+        emailInput.value = corrected;
+        emailInput.dispatchEvent(new Event("input"));
+        emailInput.focus();
+        trackEvent("email_typo_fixed", { corrected_to: corrected.split("@")[1] });
+      }
+
+      function updateSubmitBtn() {
+        const nameOk = document.getElementById("gate-name").value.trim().length > 0;
+        const phoneOk = document.getElementById("gate-phone").value.trim().length > 0;
+
+        if (emailValid && turnstileVerified && nameOk && phoneOk) {
+          unlockBtn.disabled = false;
+          unlockBtn.innerHTML = '<span>🔓</span> Prompts Unlock Karo — Free';
+        } else if (emailValid && !turnstileVerified) {
+          unlockBtn.disabled = true;
+          unlockBtn.innerHTML = 'Verify you\'re human first ↑';
+        } else if (!emailValid && turnstileVerified) {
+          unlockBtn.disabled = true;
+          unlockBtn.innerHTML = 'Valid email daalo pehle';
+        } else {
+          unlockBtn.disabled = true;
+          unlockBtn.innerHTML = 'Sab fields fill karo';
+        }
+      }
+
+      // Listen to name and phone too
+      document.getElementById("gate-name").addEventListener("input", updateSubmitBtn);
+      document.getElementById("gate-phone").addEventListener("input", updateSubmitBtn);
+
+      // ===== TURNSTILE =====
+      function onTurnstileSuccess(token) {
+        turnstileVerified = true;
+        updateSubmitBtn();
+        trackEvent("turnstile_verified", { form_id: "existence_gate" });
+      }
+
+      function onTurnstileExpired() {
+        turnstileVerified = false;
+        updateSubmitBtn();
+      }
+
+      // ===== COPY PROMPT =====
+      function copyPrompt(id, btn) {
+        const text = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(text).then(() => {
+          btn.textContent = "✓ Copied!";
+          btn.classList.add("copied");
+          trackEvent("prompt_copied", { prompt_id: id, page: "existence" });
+          setTimeout(() => {
+            btn.textContent = "Copy";
+            btn.classList.remove("copied");
+          }, 2000);
+        });
+      }
+
+      // ===== SESSION CHECK =====
+      if (sessionStorage.getItem("existence_unlocked") === "true") {
+        showPrompts();
+      }
+
+      // ===== FORM SUBMIT =====
+      document.getElementById("gateForm").addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById("gate-name").value.trim();
+        const phone = document.getElementById("gate-phone").value.trim();
+        const email = document.getElementById("gate-email").value.trim();
+        const errorEl = document.getElementById("formError");
+        const btn = document.getElementById("unlockBtn");
+
+        if (!name || !phone || !email) {
+          errorEl.textContent = "Sab fields fill karo please.";
+          errorEl.classList.add("show");
+          return;
+        }
+
+        if (!emailValid) {
+          errorEl.textContent = "Pehle valid email daalo.";
+          errorEl.classList.add("show");
+          return;
+        }
+
+        if (!turnstileVerified) {
+          errorEl.textContent = "Human verification complete karo.";
+          errorEl.classList.add("show");
+          return;
+        }
+
+        errorEl.classList.remove("show");
+        btn.disabled = true;
+        btn.innerHTML = "<span>⏳</span> Submitting...";
+
+        trackEvent("existence_gate_submit", { has_name: !!name, has_phone: !!phone });
+
+        try {
+          await fetch(FORM_API, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", Accept: "application/json" },
+            body: JSON.stringify({
+              _form_name: "existence_series",
+              name,
+              phone,
+              email,
+              source: "existence_page",
+              turnstile_token: document.querySelector('[name="cf-turnstile-response"]')?.value || "",
+            }),
+          });
+          trackEvent("existence_gate_success", { visitor_name: name });
+        } catch (err) {
+          trackEvent("existence_gate_error");
+        }
+
+        // Always unlock — don't punish user if backend fails
+        sessionStorage.setItem("existence_unlocked", "true");
+        showPrompts();
+      });
+
+      function showPrompts() {
+        const gate = document.getElementById("gate-section");
+        gate.style.transition = "opacity 0.4s ease, transform 0.4s ease";
+        gate.style.opacity = "0";
+        gate.style.transform = "translateY(-10px)";
+
+        setTimeout(() => {
+          gate.style.display = "none";
+          const content = document.getElementById("prompts-content");
+          content.classList.add("unlocked");
+          content.scrollIntoView({ behavior: "smooth", block: "start" });
+          trackEvent("existence_prompts_unlocked");
+        }, 400);
+      }
+
+      // MOBILE NAV
+      document.querySelectorAll(".nav-links a").forEach((a) => {
+        a.addEventListener("click", () =>
+          document.querySelector(".nav-links").classList.remove("open")
+        );
+      });
+    </script>
+  </body>
+</html>

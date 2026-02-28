@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BGL94NLVL7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-BGL94NLVL7");
+    </script>
+
+    <title>Typography → Brand Personality | The Existence Series | oyenino</title>
+    <meta name="description" content="Same words, completely different personality. See how Typography changes everything — Bold, Elegant, Techy, Playful." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://oyenino.com/existence/typography.html" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,700;0,900;1,400;1,500&family=DM+Sans:wght@400;500;600;700&family=Bebas+Neue&family=Barlow+Condensed:wght@400;600&family=Lora:wght@400;500&family=Space+Mono:wght@400;700&family=JetBrains+Mono:wght@400;700&family=Pacifico&family=Poppins:wght@300;400;600;800&family=Montserrat:wght@300;400;700;900&display=swap" rel="stylesheet" />
+
+    <style>
+      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+      :root {
+        --bg: #050505; --bg-card: #111111; --text: #eeeae4; --text-mid: #b5b0a8;
+        --text-muted: #706c66; --accent: #00f0a0; --accent-glow: rgba(0,240,160,0.1);
+        --accent-glow-strong: rgba(0,240,160,0.2); --border: #1a1a1a; --border-hover: #2a2a2a;
+        --serif: "Playfair Display", Georgia, serif; --sans: "Outfit", system-ui, sans-serif;
+        --radius: 16px; --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+
+      html { scroll-behavior: smooth; }
+      body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+      ::selection { background: var(--accent); color: var(--bg); }
+      body::after { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; }
+
+      nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(24px) saturate(1.2); -webkit-backdrop-filter: blur(24px) saturate(1.2); background: rgba(5,5,5,0.75); border-bottom: 1px solid rgba(255,255,255,0.04); }
+      .nav-logo { font-family: var(--sans); font-size: 1.25rem; font-weight: 600; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
+      .nav-logo span { color: var(--accent); }
+      .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+      .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.85rem; font-weight: 400; transition: color var(--transition); }
+      .nav-links a:hover { color: var(--text); }
+      .nav-active { color: var(--accent) !important; font-weight: 500 !important; }
+      .nav-cta { background: var(--accent) !important; color: var(--bg) !important; padding: 0.5rem 1.5rem !important; border-radius: 100px; font-weight: 600 !important; }
+      .mobile-toggle { display: none; background: none; border: none; color: var(--text); font-size: 1.4rem; cursor: pointer; }
+
+      .page-header { max-width: 900px; margin: 0 auto; padding: 7rem 2rem 1rem; text-align: center; }
+      .page-badge { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; font-weight: 500; }
+      .page-badge .dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+      .page-header h1 { font-family: var(--serif); font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 400; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+      .page-header h1 em { font-style: italic; color: var(--accent); }
+      .page-header p { font-size: 1rem; color: var(--text-muted); max-width: 500px; margin: 0 auto; font-weight: 300; }
+
+      .pillar-nav { max-width: 700px; margin: 1.5rem auto 2.5rem; display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; padding: 0 2rem; }
+      .pillar-link { font-size: 0.8rem; font-weight: 500; color: var(--text-muted); text-decoration: none; padding: 0.5rem 1.25rem; border-radius: 100px; border: 1px solid var(--border); transition: all var(--transition); }
+      .pillar-link:hover { border-color: var(--border-hover); color: var(--text); }
+      .pillar-link.active { background: var(--accent); color: var(--bg); border-color: var(--accent); font-weight: 600; }
+
+      .content-wrap { max-width: 1100px; margin: 0 auto; padding: 0 2rem 3rem; }
+
+      /* ===== FONT CARDS ===== */
+      .comparison-label { font-family: var(--sans); font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #f59e0b; margin-bottom: 20px; padding-bottom: 8px; border-bottom: 1px solid #222; }
+
+      .font-row { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 24px; margin-bottom: 40px; }
+
+      .font-card { padding: 32px 28px; border-radius: 14px; position: relative; min-height: 280px; display: flex; flex-direction: column; justify-content: space-between; }
+      .font-card .personality { font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; padding: 5px 12px; border-radius: 4px; display: inline-block; margin-bottom: 20px; width: fit-content; }
+      .font-card .sample-heading { margin-bottom: 10px; line-height: 1.15; }
+      .font-card .sample-body { margin-bottom: 20px; line-height: 1.7; opacity: 0.7; }
+      .font-card .font-name { font-family: 'DM Sans', sans-serif; font-size: 10px; letter-spacing: 1px; opacity: 0.4; margin-top: auto; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1); }
+
+      .font-bold { background: #151515; border: 1px solid #252525; }
+      .font-bold .personality { background: #ff3333; color: #fff; }
+      .font-bold .sample-heading { font-family: 'Bebas Neue', sans-serif; font-size: 38px; color: #fff; letter-spacing: 3px; }
+      .font-bold .sample-body { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; color: #aaa; }
+
+      .font-elegant { background: #12100e; border: 1px solid #2a2520; }
+      .font-elegant .personality { background: #c9a84c; color: #0d0d0d; }
+      .font-elegant .sample-heading { font-family: 'Playfair Display', serif; font-size: 30px; font-weight: 700; color: #f0ece0; font-style: italic; }
+      .font-elegant .sample-body { font-family: 'Lora', serif; font-size: 13px; color: #a09080; }
+
+      .font-tech { background: #0a1220; border: 1px solid #152540; }
+      .font-tech .personality { background: #00d4ff; color: #0a0a0a; }
+      .font-tech .sample-heading { font-family: 'Space Mono', monospace; font-size: 24px; font-weight: 700; color: #e0f0ff; letter-spacing: -0.5px; }
+      .font-tech .sample-body { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: #6688aa; }
+
+      .font-playful { background: #1a0f20; border: 1px solid #2a1535; }
+      .font-playful .personality { background: #e84393; color: #fff; }
+      .font-playful .sample-heading { font-family: 'Pacifico', cursive; font-size: 30px; color: #f0d0e8; }
+      .font-playful .sample-body { font-family: 'Poppins', sans-serif; font-size: 13px; font-weight: 300; color: #a888bb; }
+
+      /* ===== SAME TEXT SECTION ===== */
+      .same-text-section { max-width: 1100px; margin: 0 auto; padding: 40px; background: var(--bg-card); border-radius: 16px; border: 1px solid var(--border); }
+      .same-text-label { font-family: var(--sans); font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #f59e0b; margin-bottom: 30px; text-align: center; }
+
+      .same-text-item { display: grid; grid-template-columns: 160px 1fr; align-items: center; padding: 24px 0; border-bottom: 1px solid #1a1a1a; }
+      .same-text-item:last-child { border-bottom: none; }
+      .same-text-item .label-left { font-family: 'DM Sans', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; padding: 5px 12px; border-radius: 4px; text-align: center; width: fit-content; }
+      .same-text-item .text-right { font-size: 32px; line-height: 1.3; }
+
+      .st-bold .label-left { background: #ff3333; color: #fff; }
+      .st-bold .text-right { font-family: 'Bebas Neue', sans-serif; letter-spacing: 3px; color: #fff; }
+
+      .st-elegant .label-left { background: #c9a84c; color: #0d0d0d; }
+      .st-elegant .text-right { font-family: 'Playfair Display', serif; font-style: italic; color: #f0ece0; font-weight: 700; }
+
+      .st-clean .label-left { background: #2563eb; color: #fff; }
+      .st-clean .text-right { font-family: 'Montserrat', sans-serif; font-weight: 300; letter-spacing: 2px; color: #c0d0f0; }
+
+      .st-fun .label-left { background: #e84393; color: #fff; }
+      .st-fun .text-right { font-family: 'Pacifico', cursive; color: #f0d0e8; }
+
+      .st-tech .label-left { background: #00d4ff; color: #0a0a0a; }
+      .st-tech .text-right { font-family: 'Space Mono', monospace; font-size: 26px; color: #a0d4f0; }
+
+      .annotation { text-align: center; margin-top: 40px; padding: 24px; border: 1px solid var(--border); border-radius: 12px; max-width: 1100px; margin-left: auto; margin-right: auto; background: var(--bg-card); }
+      .annotation p { font-family: var(--sans); font-size: 15px; color: var(--text-muted); line-height: 1.7; }
+      .annotation p strong { color: #f59e0b; }
+
+      .next-section { max-width: 1100px; margin: 3rem auto 0; padding: 0 0 3rem; display: flex; justify-content: space-between; align-items: center; }
+      .next-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-muted); text-decoration: none; font-size: 0.85rem; transition: color var(--transition); }
+      .next-link:hover { color: var(--accent); }
+      .next-link-primary { color: var(--accent); font-weight: 500; padding: 0.6rem 1.5rem; border: 1px solid rgba(0,240,160,0.3); border-radius: 100px; }
+      .next-link-primary:hover { background: var(--accent-glow); border-color: var(--accent); }
+
+      footer { padding: 2rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; }
+      .footer-left { font-size: 0.8rem; color: var(--text-muted); }
+      .footer-links { display: flex; gap: 1.5rem; }
+      .footer-links a { font-size: 0.8rem; color: var(--text-muted); text-decoration: none; transition: color var(--transition); }
+      .footer-links a:hover { color: var(--text); }
+
+      @media (max-width: 768px) {
+        nav { padding: 0.8rem 1.25rem; }
+        .nav-links { display: none; position: fixed; top: 56px; left: 0; right: 0; background: rgba(5,5,5,0.97); flex-direction: column; padding: 1.5rem; gap: 0.25rem; border-bottom: 1px solid var(--border); backdrop-filter: blur(24px); }
+        .nav-links.open { display: flex; }
+        .nav-links a { display: block; padding: 0.75rem 1rem; border-radius: 8px; font-size: 0.95rem; }
+        .mobile-toggle { display: block; }
+        .page-header { padding: 6.5rem 1.5rem 1rem; }
+        .content-wrap { padding: 0 1rem 3rem; }
+        .font-row { grid-template-columns: 1fr 1fr; }
+        .same-text-item { grid-template-columns: 1fr; gap: 0.5rem; }
+        .same-text-item .text-right { font-size: 24px; }
+        .next-section { flex-direction: column; gap: 1rem; text-align: center; }
+        footer { flex-direction: column; gap: 1rem; text-align: center; }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="/" class="nav-logo">himanshu<span>.</span></a>
+      <button class="mobile-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Toggle navigation">&#9776;</button>
+      <ul class="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/existence/" class="nav-active">Existence Series</a></li>
+        <li><a href="/prompts.html">🔓 Free Prompts</a></li>
+        <li><a href="/#contact" class="nav-cta">Let's Talk</a></li>
+      </ul>
+    </nav>
+
+    <div class="page-header">
+      <div class="page-badge"><span class="dot"></span> The Existence Series — Concept 3 of 3</div>
+      <h1>Same Words. Different <em>Typography.</em></h1>
+      <p>Font = Brand ki Awaaz. See how the personality changes with just the font.</p>
+    </div>
+
+    <div class="pillar-nav">
+      <a href="/existence/business-nature.html" class="pillar-link">🏪 Business Nature</a>
+      <a href="/existence/color-psychology.html" class="pillar-link">🎨 Colors</a>
+      <a href="/existence/typography.html" class="pillar-link active">🔤 Typography</a>
+    </div>
+
+    <div class="content-wrap">
+      <div class="comparison-label">Different fonts → Different personalities</div>
+      <div class="font-row">
+        <div class="font-card font-bold">
+          <div>
+            <div class="personality">💪 BOLD / POWERFUL</div>
+            <div class="sample-heading">WE DON'T<br>DO AVERAGE.</div>
+            <div class="sample-body">Built for those who push limits and demand results.</div>
+          </div>
+          <div class="font-name">Heading: Bebas Neue · Body: Barlow Condensed</div>
+        </div>
+        <div class="font-card font-elegant">
+          <div>
+            <div class="personality">✨ ELEGANT / REFINED</div>
+            <div class="sample-heading">The Art of<br>Living Well</div>
+            <div class="sample-body">Curated experiences for those who appreciate the finer things in life.</div>
+          </div>
+          <div class="font-name">Heading: Playfair Display · Body: Lora</div>
+        </div>
+        <div class="font-card font-tech">
+          <div>
+            <div class="personality">⚡ TECH / MODERN</div>
+            <div class="sample-heading">Building the<br>future.today()</div>
+            <div class="sample-body">// Scalable solutions engineered for what's next.</div>
+          </div>
+          <div class="font-name">Heading: Space Mono · Body: JetBrains Mono</div>
+        </div>
+        <div class="font-card font-playful">
+          <div>
+            <div class="personality">🎉 FRIENDLY / FUN</div>
+            <div class="sample-heading">Hey there,<br>beautiful!</div>
+            <div class="sample-body">Making every day a little brighter, a little sweeter, a little more you.</div>
+          </div>
+          <div class="font-name">Heading: Pacifico · Body: Poppins Light</div>
+        </div>
+      </div>
+
+      <div class="same-text-section">
+        <div class="same-text-label">👇 Same sentence. Five different fonts. Five different vibes.</div>
+        <div class="same-text-item st-bold">
+          <div class="label-left">POWERFUL</div>
+          <div class="text-right">WELCOME TO OUR STUDIO.</div>
+        </div>
+        <div class="same-text-item st-elegant">
+          <div class="label-left">ELEGANT</div>
+          <div class="text-right">Welcome to Our Studio.</div>
+        </div>
+        <div class="same-text-item st-clean">
+          <div class="label-left">MINIMAL</div>
+          <div class="text-right">Welcome to Our Studio.</div>
+        </div>
+        <div class="same-text-item st-fun">
+          <div class="label-left">PLAYFUL</div>
+          <div class="text-right">Welcome to Our Studio.</div>
+        </div>
+        <div class="same-text-item st-tech">
+          <div class="label-left">TECHY</div>
+          <div class="text-right">Welcome to Our Studio.</div>
+        </div>
+      </div>
+
+      <div class="annotation">
+        <p>☝️ <strong>SAME words. Completely different PERSONALITY.</strong><br>
+        Bold font = confidence. Serif = elegance. Mono = techy. Script = friendly.<br><br>
+        "Agar tumhari brand ek insaan hoti, toh <strong>kaise bolti?</strong> Wahi font choose karo."</p>
+      </div>
+
+      <div class="next-section">
+        <a href="/existence/color-psychology.html" class="next-link">← Prev: Colors</a>
+        <a href="/existence/" class="next-link next-link-primary">See Live Demos → NOIR vs Kids Studio →</a>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-left">&copy; 2026 Himanshu. Built with code &amp; clarity.</div>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/oye.nino" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.youtube.com/@oye_nino" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://github.com/hmnshushrma-codes" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </footer>
+
+    <script>
+      document.querySelectorAll(".nav-links a").forEach(a => {
+        a.addEventListener("click", () => document.querySelector(".nav-links").classList.remove("open"));
+      });
+    </script>
+  </body>
+</html>

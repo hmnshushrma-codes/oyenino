@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Little Creators — Kids Art & Craft Studio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --coral: #FF6B6B;
+    --coral-light: #FF8E8E;
+    --coral-bg: #FFF0F0;
+    --yellow: #FFD93D;
+    --yellow-deep: #F5C518;
+    --yellow-bg: #FFFBEB;
+    --blue: #6BC5F8;
+    --blue-deep: #4AB3EF;
+    --blue-bg: #EFF8FF;
+    --white: #FFFFFF;
+    --offwhite: #FAFAFA;
+    --bg-warm: #FFF9F5;
+    --text-dark: #2D2D3A;
+    --text-mid: #5A5A72;
+    --text-light: #8888A0;
+    --bubble: 'Bubblegum Sans', cursive;
+    --body: 'Nunito', sans-serif;
+    --shadow-soft: 0 4px 20px rgba(0,0,0,0.06);
+    --shadow-card: 0 8px 30px rgba(0,0,0,0.08);
+    --shadow-hover: 0 12px 40px rgba(0,0,0,0.12);
+    --radius: 24px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--text-dark);
+    font-family: var(--body);
+    font-weight: 400;
+    line-height: 1.7;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--yellow);
+    color: var(--text-dark);
+  }
+
+  /* ═══════════════════════════════════════
+     DECORATIVE ELEMENTS
+     ═══════════════════════════════════════ */
+
+  .confetti-dot {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    opacity: 0.5;
+    animation: floatSlow 6s ease-in-out infinite alternate;
+  }
+
+  @keyframes floatSlow {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-20px) rotate(15deg); }
+  }
+
+  .squiggle {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.12;
+  }
+
+  /* ═══════════════════════════════════════
+     NAVIGATION
+     ═══════════════════════════════════════ */
+
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 1rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.4s;
+  }
+
+  nav.scrolled {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+    padding: 0.7rem 3rem;
+  }
+
+  .nav-logo {
+    font-family: var(--bubble);
+    font-size: 1.65rem;
+    color: var(--coral);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: transform 0.3s;
+  }
+
+  .nav-logo:hover { transform: scale(1.04) rotate(-2deg); }
+
+  .nav-logo .logo-star {
+    display: inline-block;
+    font-size: 1.3rem;
+    animation: spin 4s linear infinite;
+  }
+
+  @keyframes spin { 100% { transform: rotate(360deg); } }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    color: var(--text-mid);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-links a:hover { color: var(--coral); }
+
+  .nav-cta-btn {
+    background: var(--coral) !important;
+    color: var(--white) !important;
+    padding: 0.6rem 1.6rem;
+    border-radius: 50px;
+    font-weight: 800 !important;
+    font-size: 0.85rem !important;
+    transition: all 0.3s !important;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+  }
+
+  .nav-cta-btn:hover {
+    background: var(--coral-light) !important;
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4) !important;
+  }
+
+  /* ═══════════════════════════════════════
+     HERO
+     ═══════════════════════════════════════ */
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg-warm);
+    padding: 6rem 2rem 4rem;
+  }
+
+  /* Big soft blobs in background */
+  .hero-blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: 0.25;
+    pointer-events: none;
+  }
+
+  .hero-blob--coral {
+    width: 500px; height: 500px;
+    background: var(--coral);
+    top: -10%; right: -5%;
+    animation: blobDrift 10s ease-in-out infinite alternate;
+  }
+
+  .hero-blob--yellow {
+    width: 400px; height: 400px;
+    background: var(--yellow);
+    bottom: -10%; left: -5%;
+    animation: blobDrift 12s ease-in-out infinite alternate-reverse;
+  }
+
+  .hero-blob--blue {
+    width: 350px; height: 350px;
+    background: var(--blue);
+    top: 20%; left: 10%;
+    animation: blobDrift 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes blobDrift {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, -25px) scale(1.08); }
+  }
+
+  /* Floating art supplies illustrations */
+  .hero-float {
+    position: absolute;
+    font-size: 2.5rem;
+    opacity: 0.6;
+    pointer-events: none;
+  }
+
+  .hero-float--1 { top: 15%; left: 8%; animation: bounce1 3s ease-in-out infinite; }
+  .hero-float--2 { top: 25%; right: 10%; animation: bounce2 3.5s ease-in-out infinite; }
+  .hero-float--3 { bottom: 20%; left: 12%; animation: bounce1 4s ease-in-out infinite 0.5s; }
+  .hero-float--4 { bottom: 15%; right: 8%; animation: bounce2 3.2s ease-in-out infinite 0.3s; }
+  .hero-float--5 { top: 60%; left: 5%; animation: bounce1 3.8s ease-in-out infinite 1s; font-size: 2rem; }
+  .hero-float--6 { top: 10%; right: 25%; animation: bounce2 4.5s ease-in-out infinite 0.8s; font-size: 2rem; }
+
+  @keyframes bounce1 {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(8deg); }
+  }
+
+  @keyframes bounce2 {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-18px) rotate(-6deg); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: var(--white);
+    color: var(--coral);
+    font-family: var(--body);
+    font-weight: 800;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    box-shadow: var(--shadow-soft);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: popIn 0.6s 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .hero-badge span { margin-right: 0.3rem; }
+
+  .hero-title {
+    font-family: var(--bubble);
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 1.1;
+    color: var(--text-dark);
+    margin-bottom: 0.2em;
+    opacity: 0;
+    animation: popIn 0.7s 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .hero-title .word-coral { color: var(--coral); }
+  .hero-title .word-yellow { color: var(--yellow-deep); }
+  .hero-title .word-blue { color: var(--blue-deep); }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+    color: var(--text-mid);
+    font-weight: 600;
+    max-width: 500px;
+    margin: 0 auto 2.5rem;
+    opacity: 0;
+    animation: popIn 0.7s 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .hero-cta-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: popIn 0.7s 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--body);
+    font-size: 1rem;
+    font-weight: 800;
+    padding: 1rem 2.2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .btn-primary {
+    background: var(--coral);
+    color: var(--white);
+    box-shadow: 0 6px 25px rgba(255, 107, 107, 0.35);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 10px 35px rgba(255, 107, 107, 0.45);
+    background: var(--coral-light);
+  }
+
+  .btn-secondary {
+    background: var(--white);
+    color: var(--text-dark);
+    box-shadow: var(--shadow-soft);
+    border: 2px solid transparent;
+  }
+
+  .btn-secondary:hover {
+    transform: translateY(-4px) scale(1.04);
+    border-color: var(--blue);
+    box-shadow: var(--shadow-card);
+  }
+
+  .hero-wave {
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    z-index: 3;
+  }
+
+  .hero-wave svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* ═══════════════════════════════════════
+     SERVICES
+     ═══════════════════════════════════════ */
+
+  .services {
+    padding: 6rem 2rem 7rem;
+    background: var(--white);
+    position: relative;
+    text-align: center;
+  }
+
+  .section-badge {
+    display: inline-block;
+    font-family: var(--body);
+    font-weight: 800;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.5rem 1.3rem;
+    border-radius: 50px;
+    margin-bottom: 1rem;
+  }
+
+  .badge-coral { background: var(--coral-bg); color: var(--coral); }
+  .badge-blue { background: var(--blue-bg); color: var(--blue-deep); }
+  .badge-yellow { background: var(--yellow-bg); color: var(--yellow-deep); }
+
+  .section-title {
+    font-family: var(--bubble);
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+  }
+
+  .section-subtitle {
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    font-weight: 600;
+    max-width: 480px;
+    margin: 0 auto 3.5rem;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    max-width: 1050px;
+    margin: 0 auto;
+  }
+
+  .service-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 2.5rem 2rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid transparent;
+    box-shadow: var(--shadow-card);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 0;
+    transform: translateY(50px);
+  }
+
+  .service-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .service-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .service-card--coral:hover { border-color: var(--coral); }
+  .service-card--yellow:hover { border-color: var(--yellow); }
+  .service-card--blue:hover { border-color: var(--blue); }
+
+  .service-card--coral .card-ribbon { background: var(--coral); }
+  .service-card--yellow .card-ribbon { background: var(--yellow); }
+  .service-card--blue .card-ribbon { background: var(--blue); }
+
+  .card-ribbon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    border-radius: var(--radius) var(--radius) 0 0;
+  }
+
+  .card-emoji {
+    width: 80px;
+    height: 80px;
+    border-radius: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.4rem;
+    margin: 0 auto 1.5rem;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .service-card:hover .card-emoji {
+    transform: scale(1.15) rotate(-5deg);
+  }
+
+  .service-card--coral .card-emoji { background: var(--coral-bg); }
+  .service-card--yellow .card-emoji { background: var(--yellow-bg); }
+  .service-card--blue .card-emoji { background: var(--blue-bg); }
+
+  .card-title {
+    font-family: var(--bubble);
+    font-size: 1.55rem;
+    color: var(--text-dark);
+    margin-bottom: 0.3rem;
+  }
+
+  .card-age {
+    font-size: 0.8rem;
+    font-weight: 700;
+    border-radius: 50px;
+    padding: 0.2rem 0.9rem;
+    display: inline-block;
+    margin-bottom: 1rem;
+  }
+
+  .service-card--coral .card-age { background: var(--coral-bg); color: var(--coral); }
+  .service-card--yellow .card-age { background: var(--yellow-bg); color: var(--yellow-deep); }
+  .service-card--blue .card-age { background: var(--blue-bg); color: var(--blue-deep); }
+
+  .card-desc {
+    font-size: 0.95rem;
+    color: var(--text-mid);
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-features {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .card-features li {
+    background: var(--offwhite);
+    padding: 0.3rem 0.85rem;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--text-mid);
+  }
+
+  .card-price {
+    font-family: var(--bubble);
+    font-size: 1.5rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .service-card--coral .card-price { color: var(--coral); }
+  .service-card--yellow .card-price { color: var(--yellow-deep); }
+  .service-card--blue .card-price { color: var(--blue-deep); }
+
+  .card-price-note {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    font-weight: 600;
+  }
+
+  /* ═══════════════════════════════════════
+     TESTIMONIAL
+     ═══════════════════════════════════════ */
+
+  .testimonial {
+    padding: 6rem 2rem;
+    background: var(--bg-warm);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .testimonial-wave-top {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    right: 0;
+  }
+
+  .testimonial-wave-top svg { display: block; width: 100%; height: auto; }
+
+  .testimonial-card {
+    max-width: 680px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: 32px;
+    padding: 3rem 3rem 2.5rem;
+    box-shadow: var(--shadow-card);
+    position: relative;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .testimonial-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .testimonial-deco {
+    position: absolute;
+    font-size: 5rem;
+    top: -0.6rem;
+    left: 2rem;
+    font-family: var(--bubble);
+    line-height: 1;
+    opacity: 0.15;
+  }
+
+  .testimonial-deco--coral { color: var(--coral); }
+
+  .testimonial-stars {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    letter-spacing: 0.15em;
+  }
+
+  .testimonial-text {
+    font-size: 1.15rem;
+    color: var(--text-dark);
+    font-weight: 600;
+    line-height: 1.85;
+    margin-bottom: 2rem;
+    font-style: italic;
+  }
+
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .testimonial-avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--coral), var(--yellow));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .testimonial-meta {
+    text-align: left;
+  }
+
+  .testimonial-name {
+    font-family: var(--bubble);
+    font-size: 1.1rem;
+    color: var(--text-dark);
+  }
+
+  .testimonial-role {
+    font-size: 0.82rem;
+    color: var(--text-light);
+    font-weight: 600;
+  }
+
+  /* ═══════════════════════════════════════
+     CTA / JOIN
+     ═══════════════════════════════════════ */
+
+  .cta {
+    padding: 6rem 2rem 7rem;
+    background: var(--white);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-box {
+    max-width: 800px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, var(--coral) 0%, #FF8E8E 50%, var(--yellow) 100%);
+    border-radius: 36px;
+    padding: 4rem 3rem;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(40px) scale(0.97);
+    transition: all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .cta-box.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* Pattern dots on CTA box */
+  .cta-pattern {
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.15) 1.5px, transparent 1.5px);
+    background-size: 20px 20px;
+    pointer-events: none;
+  }
+
+  .cta-box-float {
+    position: absolute;
+    font-size: 3rem;
+    opacity: 0.3;
+    pointer-events: none;
+  }
+
+  .cta-box-float--1 { top: 10%; left: 5%; animation: bounce1 3s ease-in-out infinite; }
+  .cta-box-float--2 { bottom: 10%; right: 5%; animation: bounce2 3.5s ease-in-out infinite; }
+  .cta-box-float--3 { top: 15%; right: 12%; animation: bounce1 4s ease-in-out infinite 0.5s; font-size: 2rem; }
+
+  .cta-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .cta-title {
+    font-family: var(--bubble);
+    font-size: clamp(2rem, 5vw, 3rem);
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    line-height: 1.15;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  }
+
+  .cta-text {
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.9);
+    font-weight: 600;
+    max-width: 450px;
+    margin: 0 auto 2rem;
+  }
+
+  .btn-white {
+    background: var(--white);
+    color: var(--coral);
+    box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+  }
+
+  .btn-white:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 10px 35px rgba(0,0,0,0.18);
+  }
+
+  .cta-info {
+    display: flex;
+    gap: 2.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.25);
+  }
+
+  .cta-info-item {
+    color: var(--white);
+    text-align: center;
+  }
+
+  .cta-info-icon {
+    font-size: 1.4rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .cta-info-label {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+
+  .cta-info-value {
+    font-family: var(--bubble);
+    font-size: 1rem;
+  }
+
+  /* ═══════════════════════════════════════
+     FOOTER
+     ═══════════════════════════════════════ */
+
+  footer {
+    padding: 2.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background: var(--offwhite);
+    border-top: 2px dashed #E8E8F0;
+  }
+
+  .footer-brand {
+    font-family: var(--bubble);
+    font-size: 1.2rem;
+    color: var(--coral);
+  }
+
+  .footer-copy {
+    font-size: 0.8rem;
+    color: var(--text-light);
+    font-weight: 600;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .footer-links a {
+    color: var(--text-light);
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--coral); }
+
+  /* ═══════════════════════════════════════
+     ANIMATIONS
+     ═══════════════════════════════════════ */
+
+  @keyframes popIn {
+    from { opacity: 0; transform: translateY(30px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(3deg); }
+    75% { transform: rotate(-3deg); }
+  }
+
+  /* ═══════════════════════════════════════
+     RESPONSIVE
+     ═══════════════════════════════════════ */
+
+  @media (max-width: 768px) {
+    nav { padding: 0.8rem 1.5rem; }
+    nav.scrolled { padding: 0.6rem 1.5rem; }
+    .nav-links { display: none; }
+    .services, .testimonial, .cta { padding: 4rem 1.2rem; }
+    .hero { padding: 5rem 1.2rem 4rem; }
+    .services-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+    .testimonial-card { padding: 2rem 1.5rem; }
+    .cta-box { padding: 3rem 1.5rem; }
+    .cta-info { gap: 1.5rem; }
+    footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+    .hero-float { font-size: 1.8rem; opacity: 0.4; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ NAVIGATION ═══ -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <span class="logo-star">✦</span> Little Creators
+  </a>
+  <ul class="nav-links">
+    <li><a href="#classes">Classes</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#join" class="nav-cta-btn">Join the Fun!</a></li>
+  </ul>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-blob hero-blob--coral"></div>
+  <div class="hero-blob hero-blob--yellow"></div>
+  <div class="hero-blob hero-blob--blue"></div>
+
+  <div class="hero-float hero-float--1">🎨</div>
+  <div class="hero-float hero-float--2">✂️</div>
+  <div class="hero-float hero-float--3">🖍️</div>
+  <div class="hero-float hero-float--4">🌈</div>
+  <div class="hero-float hero-float--5">⭐</div>
+  <div class="hero-float hero-float--6">🎭</div>
+
+  <div class="hero-content">
+    <div class="hero-badge"><span>🎉</span> Where imagination comes to play!</div>
+    <h1 class="hero-title">
+      <span class="word-coral">Create.</span>
+      <span class="word-yellow">Play.</span>
+      <span class="word-blue">Shine!</span>
+    </h1>
+    <p class="hero-subtitle">A magical art studio where kids aged 3–12 discover their inner artist through painting, crafting, and endless creative adventures.</p>
+    <div class="hero-cta-group">
+      <a href="#join" class="btn btn-primary">🎨 Book a Free Trial</a>
+      <a href="#classes" class="btn btn-secondary">Explore Classes ↓</a>
+    </div>
+  </div>
+
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path fill="#FFFFFF" d="M0,64 C180,120 360,10 540,64 C720,118 900,20 1080,64 C1260,108 1350,50 1440,64 L1440,120 L0,120 Z"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ═══ SERVICES / CLASSES ═══ -->
+<section class="services" id="classes">
+  <div class="section-badge badge-coral">Our Classes</div>
+  <h2 class="section-title">Pick Your Creative Adventure!</h2>
+  <p class="section-subtitle">Fun-packed programs designed to spark imagination and grow confidence through art.</p>
+
+  <div class="services-grid">
+    <!-- Card 1 - Messy Masters -->
+    <div class="service-card service-card--coral" data-delay="0">
+      <div class="card-ribbon"></div>
+      <div class="card-emoji">🖌️</div>
+      <h3 class="card-title">Messy Masters</h3>
+      <span class="card-age">Ages 3–5</span>
+      <p class="card-desc">Tiny hands, big messes, bigger smiles! Finger painting, clay squishing, collage fun — all about exploring textures and colors fearlessly.</p>
+      <ul class="card-features">
+        <li>🎨 Finger Painting</li>
+        <li>🏺 Clay Play</li>
+        <li>✂️ Collage</li>
+        <li>🌀 Sensory Art</li>
+      </ul>
+      <div class="card-price">$25</div>
+      <div class="card-price-note">per session · 45 mins</div>
+    </div>
+
+    <!-- Card 2 - Creative Explorers -->
+    <div class="service-card service-card--yellow" data-delay="150">
+      <div class="card-ribbon"></div>
+      <div class="card-emoji">🌟</div>
+      <h3 class="card-title">Creative Explorers</h3>
+      <span class="card-age">Ages 6–9</span>
+      <p class="card-desc">Mixed-media magic! Kids learn real techniques while making art that's uniquely theirs — watercolors, printmaking, sculpture, and more.</p>
+      <ul class="card-features">
+        <li>🖼️ Watercolors</li>
+        <li>🖨️ Printmaking</li>
+        <li>🗿 Sculpture</li>
+        <li>📐 Mixed Media</li>
+      </ul>
+      <div class="card-price">$35</div>
+      <div class="card-price-note">per session · 60 mins</div>
+    </div>
+
+    <!-- Card 3 - Young Visionaries -->
+    <div class="service-card service-card--blue" data-delay="300">
+      <div class="card-ribbon"></div>
+      <div class="card-emoji">🚀</div>
+      <h3 class="card-title">Young Visionaries</h3>
+      <span class="card-age">Ages 10–12</span>
+      <p class="card-desc">For budding artists ready to level up. Portfolio projects, design thinking, and collaborative murals that build skills and creative confidence.</p>
+      <ul class="card-features">
+        <li>✏️ Drawing</li>
+        <li>🎭 Design</li>
+        <li>🧩 Murals</li>
+        <li>📋 Portfolio</li>
+      </ul>
+      <div class="card-price">$45</div>
+      <div class="card-price-note">per session · 75 mins</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIAL ═══ -->
+<section class="testimonial" id="reviews">
+  <div class="testimonial-wave-top">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+      <path fill="#FFFFFF" d="M0,0 L0,40 C180,80 360,0 540,40 C720,80 900,0 1080,40 C1260,80 1350,20 1440,40 L1440,0 Z"/>
+    </svg>
+  </div>
+
+  <div class="section-badge badge-yellow">Happy Families</div>
+  <h2 class="section-title">Parents Love Us! 💛</h2>
+  <p class="section-subtitle">Don't just take our word for it — hear from our creative community.</p>
+
+  <div class="testimonial-card">
+    <span class="testimonial-deco testimonial-deco--coral">"</span>
+    <div class="testimonial-stars">⭐⭐⭐⭐⭐</div>
+    <p class="testimonial-text">My daughter used to say she "wasn't good at art." After three weeks at Little Creators, she's painting every single day at home and telling everyone she's an artist. The teachers here don't just teach craft — they build confidence. We are so grateful!</p>
+    <div class="testimonial-author">
+      <div class="testimonial-avatar">👩‍👧</div>
+      <div class="testimonial-meta">
+        <div class="testimonial-name">Sarah Mitchell</div>
+        <div class="testimonial-role">Mom to Lily, age 7 · Member since 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA / JOIN ═══ -->
+<section class="cta" id="join">
+  <div class="cta-box">
+    <div class="cta-pattern"></div>
+    <div class="cta-box-float cta-box-float--1">🎨</div>
+    <div class="cta-box-float cta-box-float--2">✨</div>
+    <div class="cta-box-float cta-box-float--3">🌟</div>
+
+    <div class="cta-content">
+      <h2 class="cta-title">Ready to Unleash<br>Their Inner Artist?</h2>
+      <p class="cta-text">First class is always free! Come see the magic, meet the teachers, and watch your kid light up.</p>
+      <a href="#" class="btn btn-white">🎉 Book a Free Trial Class</a>
+
+      <div class="cta-info">
+        <div class="cta-info-item">
+          <div class="cta-info-icon">📍</div>
+          <div class="cta-info-label">Location</div>
+          <div class="cta-info-value">123 Rainbow Lane</div>
+        </div>
+        <div class="cta-info-item">
+          <div class="cta-info-icon">🕐</div>
+          <div class="cta-info-label">Studio Hours</div>
+          <div class="cta-info-value">Mon–Sat, 9AM – 5PM</div>
+        </div>
+        <div class="cta-info-item">
+          <div class="cta-info-icon">📞</div>
+          <div class="cta-info-label">Call Us</div>
+          <div class="cta-info-value">(555) ART-KIDS</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-brand">✦ Little Creators</div>
+  <div class="footer-copy">&copy; 2025 Little Creators Studio. Made with 🧡 for tiny artists everywhere.</div>
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="#">Facebook</a>
+    <a href="#">TikTok</a>
+  </div>
+</footer>
+
+<script>
+  // ─── Navbar scroll
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  });
+
+  // ─── Intersection Observer for scroll-triggered animations
+  const observerOptions = { threshold: 0.12, rootMargin: '0px 0px -40px 0px' };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const delay = parseInt(entry.target.dataset.delay) || 0;
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, delay);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.service-card, .testimonial-card, .cta-box').forEach(el => {
+    observer.observe(el);
+  });
+
+  // ─── Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+</script>
+</body>
+</html>
