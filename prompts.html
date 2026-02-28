@@ -126,8 +126,10 @@
         --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       }
 
+      /* FIX 1: overflow-x hidden on html */
       html {
         scroll-behavior: smooth;
+        overflow-x: hidden;
       }
 
       body {
@@ -145,14 +147,14 @@
         color: var(--bg);
       }
 
-      /* Noise overlay */
+      /* FIX 2: z-index lowered from 9999 to 50 so nav stays clickable */
       body::after {
         content: "";
         position: fixed;
         inset: 0;
         background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
         pointer-events: none;
-        z-index: 9999;
+        z-index: 50;
       }
 
       /* NAV */
@@ -447,7 +449,7 @@
         font-weight: 300;
       }
       .teaser-list li::before {
-        content: "✓";
+        content: "\2713";
         color: var(--accent);
         font-weight: 700;
         font-size: 0.9rem;
@@ -633,7 +635,7 @@
         align-items: flex-start;
       }
       .prompt-tip::before {
-        content: "💡";
+        content: "\1F4A1";
         font-size: 0.8rem;
         margin-top: 0.05rem;
         flex-shrink: 0;
@@ -761,18 +763,53 @@
         display: block;
       }
 
+      /* FIX 3: Enhanced mobile responsive */
       @media (max-width: 600px) {
         .page-hero {
           padding: 7rem 1.5rem 3.5rem;
+          overflow: hidden;
+        }
+        .hero-glow {
+          width: 300px;
+          height: 200px;
+        }
+        .gate-wrap {
+          padding: 0 1rem;
         }
         .gate-card {
-          padding: 1.75rem;
+          padding: 1.75rem 1.25rem;
+          overflow: hidden;
+        }
+        .cf-turnstile {
+          transform: scale(0.9);
+          transform-origin: left top;
         }
         .category-header {
           flex-wrap: wrap;
         }
         .prompt-text {
-          font-size: 0.82rem;
+          font-size: 0.75rem;
+          padding: 0.75rem 1rem;
+          overflow-x: auto;
+        }
+        .prompt-card {
+          padding: 1.25rem;
+        }
+        .unlock-banner {
+          flex-direction: column;
+          text-align: center;
+          padding: 1.25rem;
+        }
+        #prompts-content {
+          padding: 0 1rem 4rem;
+        }
+        .prompts-cta {
+          padding: 2rem 1.25rem;
+        }
+        footer {
+          flex-direction: column;
+          text-align: center;
+          gap: 0.75rem;
         }
       }
     </style>
@@ -780,7 +817,7 @@
   <body>
     <nav>
       <a href="/" class="nav-logo">himanshu<span>.</span></a>
-      <a href="/" class="nav-back">← Back to Portfolio</a>
+      <a href="/" class="nav-back">&larr; Back to Portfolio</a>
     </nav>
 
     <div class="page-hero">
@@ -792,7 +829,7 @@
         log "prompt" comment karke maang rahe the — toh yahan hain, free mein.
       </p>
       <div class="social-proof">
-        🔥 <strong>1,000+</strong> people already requested these
+        &#128293; <strong>1,000+</strong> people already requested these
       </div>
     </div>
 
@@ -856,11 +893,11 @@
             Kuch toh gadbad hai — please sab fields fill karo.
           </div>
           <button type="submit" class="btn-unlock" id="unlockBtn" disabled>
-            Verify you're human first ↑
+            Verify you're human first &uarr;
           </button>
           <p class="gate-privacy">
             <span
-              >🔒 Your info safe hai. Kabhi bhi unsubscribe kar sakte ho.</span
+              >&#128274; Your info safe hai. Kabhi bhi unsubscribe kar sakte ho.</span
             >
           </p>
         </form>
@@ -870,7 +907,7 @@
     <!-- PROMPTS CONTENT — hidden until unlocked -->
     <div id="prompts-content">
       <div class="unlock-banner">
-        <div class="unlock-icon">🎉</div>
+        <div class="unlock-icon">&#127881;</div>
         <div class="unlock-text">
           <strong>Prompts unlock ho gaye!</strong>
           <span
@@ -883,7 +920,7 @@
       <!-- SECTION 1: RESUME -->
       <div class="prompt-category">
         <div class="category-header">
-          <div class="category-icon">📄</div>
+          <div class="category-icon">&#128196;</div>
           <div class="category-info">
             <div class="category-eyebrow">Section 01</div>
             <div class="category-title">Resume / CV Prompts</div>
@@ -895,67 +932,25 @@
           <div class="prompt-card">
             <div class="prompt-label">Prompt 01</div>
             <h4>Professional Resume Writer</h4>
-            <div class="prompt-text" id="p1">
-              Act as an expert resume writer with 10+ years of experience. I
-              will give you my work experience, skills, and the job description
-              I'm applying for. Your job is to rewrite my resume in a way that:
-              1. Uses strong action verbs (Led, Built, Delivered, Scaled) 2.
-              Quantifies achievements wherever possible (%, numbers, impact) 3.
-              Is ATS-friendly with keywords from the job description 4. Is
-              honest but positioned for maximum impact My Background: [paste
-              your experience here] Target Job: [paste job description here]
-              Format the output as a clean, ready-to-use resume.
-            </div>
-            <button class="copy-btn" onclick="copyPrompt('p1', this)">
-              Copy
-            </button>
-            <div class="prompt-tip">
-              Job description ke keywords daalna mat bhulo — ATS systems ke liye
-              zaruri hai.
-            </div>
+            <div class="prompt-text" id="p1">Act as an expert resume writer with 10+ years of experience. I will give you my work experience, skills, and the job description I'm applying for. Your job is to rewrite my resume in a way that: 1. Uses strong action verbs (Led, Built, Delivered, Scaled) 2. Quantifies achievements wherever possible (%, numbers, impact) 3. Is ATS-friendly with keywords from the job description 4. Is honest but positioned for maximum impact My Background: [paste your experience here] Target Job: [paste job description here] Format the output as a clean, ready-to-use resume.</div>
+            <button class="copy-btn" onclick="copyPrompt('p1', this)">Copy</button>
+            <div class="prompt-tip">Job description ke keywords daalna mat bhulo — ATS systems ke liye zaruri hai.</div>
           </div>
 
           <div class="prompt-card">
             <div class="prompt-label">Prompt 02</div>
             <h4>Resume Bullet Points Rewriter</h4>
-            <div class="prompt-text" id="p2">
-              I have weak resume bullet points that need to be made more
-              impactful. For each bullet point I give you, rewrite it using the
-              formula: [Strong Action Verb] + [What you did] + [Result/Impact
-              with numbers] If I haven't given numbers, make realistic
-              assumptions and clearly mark them as "estimated." My current
-              bullet points: - [paste your bullets here] Give me 2-3
-              alternatives for each bullet so I can choose the best one.
-            </div>
-            <button class="copy-btn" onclick="copyPrompt('p2', this)">
-              Copy
-            </button>
-            <div class="prompt-tip">
-              Weak bullets sabse common mistake hain fresher resumes mein. Yeh
-              prompt game changer hai.
-            </div>
+            <div class="prompt-text" id="p2">I have weak resume bullet points that need to be made more impactful. For each bullet point I give you, rewrite it using the formula: [Strong Action Verb] + [What you did] + [Result/Impact with numbers] If I haven't given numbers, make realistic assumptions and clearly mark them as "estimated." My current bullet points: - [paste your bullets here] Give me 2-3 alternatives for each bullet so I can choose the best one.</div>
+            <button class="copy-btn" onclick="copyPrompt('p2', this)">Copy</button>
+            <div class="prompt-tip">Weak bullets sabse common mistake hain fresher resumes mein. Yeh prompt game changer hai.</div>
           </div>
 
           <div class="prompt-card">
             <div class="prompt-label">Prompt 03</div>
             <h4>Fresher Resume (No Experience)</h4>
-            <div class="prompt-text" id="p3">
-              I'm a fresher with no professional work experience. Help me build
-              a strong resume using: - My education: [degree, college, year,
-              CGPA/percentage] - Projects I built: [describe 2-3 projects] -
-              Skills I know: [list your technical/soft skills] - Internships (if
-              any): [describe or write "none"] - Achievements: [hackathons,
-              competitions, certifications] Create a 1-page resume that
-              positions me as a high-potential candidate. Focus on projects,
-              skills, and learning ability. Make it honest but compelling.
-            </div>
-            <button class="copy-btn" onclick="copyPrompt('p3', this)">
-              Copy
-            </button>
-            <div class="prompt-tip">
-              Fresher ho toh projects > experience. Projects section ko best
-              banana hai.
-            </div>
+            <div class="prompt-text" id="p3">I'm a fresher with no professional work experience. Help me build a strong resume using: - My education: [degree, college, year, CGPA/percentage] - Projects I built: [describe 2-3 projects] - Skills I know: [list your technical/soft skills] - Internships (if any): [describe or write "none"] - Achievements: [hackathons, competitions, certifications] Create a 1-page resume that positions me as a high-potential candidate. Focus on projects, skills, and learning ability. Make it honest but compelling.</div>
+            <button class="copy-btn" onclick="copyPrompt('p3', this)">Copy</button>
+            <div class="prompt-tip">Fresher ho toh projects > experience. Projects section ko best banana hai.</div>
           </div>
         </div>
       </div>
@@ -965,7 +960,7 @@
       <!-- SECTION 2: PERSONAL PORTFOLIO -->
       <div class="prompt-category">
         <div class="category-header">
-          <div class="category-icon">🌐</div>
+          <div class="category-icon">&#127760;</div>
           <div class="category-info">
             <div class="category-eyebrow">Section 02</div>
             <div class="category-title">Personal Portfolio Website</div>
@@ -977,71 +972,25 @@
           <div class="prompt-card">
             <div class="prompt-label">Prompt 04</div>
             <h4>Complete Portfolio Website (HTML/CSS/JS)</h4>
-            <div class="prompt-text" id="p4">
-              Build me a complete, single-file personal portfolio website in
-              pure HTML, CSS, and JavaScript. No frameworks. Requirements: About
-              Me: [your name, role, 2-3 line bio] Skills: [list your skills]
-              Projects: [list 2-3 projects with name, description, tech used,
-              and link] Contact: [your email, GitHub, LinkedIn] Design
-              requirements: - Dark theme with a single accent color - Smooth
-              scroll animations - Mobile responsive - Professional but personal
-              — not a template look - Fast loading, no external dependencies
-              except Google Fonts Output: Complete, ready-to-deploy HTML file.
-            </div>
-            <button class="copy-btn" onclick="copyPrompt('p4', this)">
-              Copy
-            </button>
-            <div class="prompt-tip">
-              Yeh prompt ek working website deta hai jo tum GitHub Pages pe
-              deploy kar sakte ho — FREE mein!
-            </div>
+            <div class="prompt-text" id="p4">Build me a complete, single-file personal portfolio website in pure HTML, CSS, and JavaScript. No frameworks. Requirements: About Me: [your name, role, 2-3 line bio] Skills: [list your skills] Projects: [list 2-3 projects with name, description, tech used, and link] Contact: [your email, GitHub, LinkedIn] Design requirements: - Dark theme with a single accent color - Smooth scroll animations - Mobile responsive - Professional but personal — not a template look - Fast loading, no external dependencies except Google Fonts Output: Complete, ready-to-deploy HTML file.</div>
+            <button class="copy-btn" onclick="copyPrompt('p4', this)">Copy</button>
+            <div class="prompt-tip">Yeh prompt ek working website deta hai jo tum GitHub Pages pe deploy kar sakte ho — FREE mein!</div>
           </div>
 
           <div class="prompt-card">
             <div class="prompt-label">Prompt 05</div>
             <h4>Portfolio Hero Section Copy</h4>
-            <div class="prompt-text" id="p5">
-              Write compelling hero section copy for my personal portfolio
-              website. I want to immediately grab the attention of recruiters
-              and potential clients. My details: - Name: [your name] - Role:
-              [e.g., Frontend Developer, UI Designer, Data Analyst] - Years of
-              experience: [X years / Fresher] - Speciality: [what makes you
-              different] - Target audience: [who will visit — recruiters,
-              clients, startups?] Write: 1. A punchy headline (max 10 words) 2.
-              A subheadline that explains what I do + who I help (max 25 words)
-              3. 2 CTA button texts 4. A 2-line "About" teaser Give me 3
-              variations — confident, creative, and minimal.
-            </div>
-            <button class="copy-btn" onclick="copyPrompt('p5', this)">
-              Copy
-            </button>
-            <div class="prompt-tip">
-              First impression = hero section. Yahaan se recruit hoga ya nahi
-              decide hota hai.
-            </div>
+            <div class="prompt-text" id="p5">Write compelling hero section copy for my personal portfolio website. I want to immediately grab the attention of recruiters and potential clients. My details: - Name: [your name] - Role: [e.g., Frontend Developer, UI Designer, Data Analyst] - Years of experience: [X years / Fresher] - Speciality: [what makes you different] - Target audience: [who will visit — recruiters, clients, startups?] Write: 1. A punchy headline (max 10 words) 2. A subheadline that explains what I do + who I help (max 25 words) 3. 2 CTA button texts 4. A 2-line "About" teaser Give me 3 variations — confident, creative, and minimal.</div>
+            <button class="copy-btn" onclick="copyPrompt('p5', this)">Copy</button>
+            <div class="prompt-tip">First impression = hero section. Yahaan se recruit hoga ya nahi decide hota hai.</div>
           </div>
 
           <div class="prompt-card">
             <div class="prompt-label">Prompt 06</div>
             <h4>Project Description Writer</h4>
-            <div class="prompt-text" id="p6">
-              I need to write impressive project descriptions for my portfolio.
-              For each project I describe, write a portfolio-ready description
-              that: - Starts with what problem it solves (not what it is) -
-              Mentions the tech stack naturally - Highlights your specific
-              contribution - Ends with impact or outcome Format per project: -
-              Title: [project name] - Problem line (1 sentence) - What I built
-              (2-3 sentences) - Tech used: [comma-separated] - Outcome/Result:
-              [what happened after] My projects: [Project 1]: [describe it]
-              [Project 2]: [describe it]
-            </div>
-            <button class="copy-btn" onclick="copyPrompt('p6', this)">
-              Copy
-            </button>
-            <div class="prompt-tip">
-              Recruiters 6 seconds dete hain portfolio ko. Problem-first
-              descriptions unhe rok ke rakhte hain.
-            </div>
+            <div class="prompt-text" id="p6">I need to write impressive project descriptions for my portfolio. For each project I describe, write a portfolio-ready description that: - Starts with what problem it solves (not what it is) - Mentions the tech stack naturally - Highlights your specific contribution - Ends with impact or outcome Format per project: - Title: [project name] - Problem line (1 sentence) - What I built (2-3 sentences) - Tech used: [comma-separated] - Outcome/Result: [what happened after] My projects: [Project 1]: [describe it] [Project 2]: [describe it]</div>
+            <button class="copy-btn" onclick="copyPrompt('p6', this)">Copy</button>
+            <div class="prompt-tip">Recruiters 6 seconds dete hain portfolio ko. Problem-first descriptions unhe rok ke rakhte hain.</div>
           </div>
         </div>
       </div>
@@ -1051,7 +1000,7 @@
       <!-- SECTION 3: BUSINESS LANDING PAGE -->
       <div class="prompt-category">
         <div class="category-header">
-          <div class="category-icon">🏢</div>
+          <div class="category-icon">&#127970;</div>
           <div class="category-info">
             <div class="category-eyebrow">Section 03</div>
             <div class="category-title">Business Landing Page</div>
@@ -1063,73 +1012,25 @@
           <div class="prompt-card">
             <div class="prompt-label">Prompt 07</div>
             <h4>Landing Page Copy (Full)</h4>
-            <div class="prompt-text" id="p7">
-              Write complete landing page copy for my business. Use proven
-              conversion copywriting frameworks (AIDA, PAS). My Business: - What
-              I sell: [product/service] - Target customer: [who they are, their
-              pain point] - Main benefit: [biggest outcome customer gets] -
-              Price range: [approximate] - Competitors: [2-3 competitors if
-              known] - My USP: [what makes me different] Write all sections: 1.
-              Headline + Subheadline 2. Problem section (agitate the pain) 3.
-              Solution section (introduce your offer) 4. 3 Key Benefits (with
-              icons suggested) 5. How It Works (3 steps) 6. Social Proof
-              placeholder text 7. FAQ (5 questions) 8. CTA section Tone:
-              Confident, clear, no fluff.
-            </div>
-            <button class="copy-btn" onclick="copyPrompt('p7', this)">
-              Copy
-            </button>
-            <div class="prompt-tip">
-              Is copy ko le ke kisi bhi website builder mein paste karo. Instant
-              professional landing page.
-            </div>
+            <div class="prompt-text" id="p7">Write complete landing page copy for my business. Use proven conversion copywriting frameworks (AIDA, PAS). My Business: - What I sell: [product/service] - Target customer: [who they are, their pain point] - Main benefit: [biggest outcome customer gets] - Price range: [approximate] - Competitors: [2-3 competitors if known] - My USP: [what makes me different] Write all sections: 1. Headline + Subheadline 2. Problem section (agitate the pain) 3. Solution section (introduce your offer) 4. 3 Key Benefits (with icons suggested) 5. How It Works (3 steps) 6. Social Proof placeholder text 7. FAQ (5 questions) 8. CTA section Tone: Confident, clear, no fluff.</div>
+            <button class="copy-btn" onclick="copyPrompt('p7', this)">Copy</button>
+            <div class="prompt-tip">Is copy ko le ke kisi bhi website builder mein paste karo. Instant professional landing page.</div>
           </div>
 
           <div class="prompt-card">
             <div class="prompt-label">Prompt 08</div>
             <h4>Landing Page HTML Builder</h4>
-            <div class="prompt-text" id="p8">
-              Build me a high-converting business landing page as a single HTML
-              file. Business Details: - Business Name: [name] - What we do: [1
-              sentence] - Target customer: [describe them] - Main CTA: [Book a
-              Call / Buy Now / Sign Up Free / etc.] - Color scheme preference:
-              [or say "choose for me"] Requirements: - Above-the-fold hero with
-              strong headline - 3 benefit cards - How it works section (3 steps)
-              - 1 testimonial block - Contact form or CTA button - Mobile-first,
-              responsive - Clean, modern, professional design - No external
-              dependencies except Google Fonts Deliver: Complete,
-              deployment-ready HTML file.
-            </div>
-            <button class="copy-btn" onclick="copyPrompt('p8', this)">
-              Copy
-            </button>
-            <div class="prompt-tip">
-              Ek website 5-10 min mein. Iska baad bolo ki AI useful nahi hai 😄
-            </div>
+            <div class="prompt-text" id="p8">Build me a high-converting business landing page as a single HTML file. Business Details: - Business Name: [name] - What we do: [1 sentence] - Target customer: [describe them] - Main CTA: [Book a Call / Buy Now / Sign Up Free / etc.] - Color scheme preference: [or say "choose for me"] Requirements: - Above-the-fold hero with strong headline - 3 benefit cards - How it works section (3 steps) - 1 testimonial block - Contact form or CTA button - Mobile-first, responsive - Clean, modern, professional design - No external dependencies except Google Fonts Deliver: Complete, deployment-ready HTML file.</div>
+            <button class="copy-btn" onclick="copyPrompt('p8', this)">Copy</button>
+            <div class="prompt-tip">Ek website 5-10 min mein. Iska baad bolo ki AI useful nahi hai &#128516;</div>
           </div>
 
           <div class="prompt-card">
             <div class="prompt-label">Prompt 09</div>
             <h4>WhatsApp / Instagram Bio + Link in Bio Page</h4>
-            <div class="prompt-text" id="p9">
-              Help me create a high-converting "link in bio" page for my
-              Instagram and a compelling bio. My Info: - Name/Brand: [your name
-              or brand] - What I do: [1 sentence] - Who I help: [your target
-              audience] - My main offers or content: [list 3-5 things you want
-              people to click] - Instagram handle: [@yourusername] Create: 1.
-              Instagram Bio (150 chars max) — hooks people in 3 seconds 2. A
-              simple HTML link-in-bio page with: - Your name + tagline at top -
-              5 clickable link buttons (I'll give you URLs) - Social icons at
-              bottom - Clean mobile design - Dark theme Make it feel personal,
-              not corporate.
-            </div>
-            <button class="copy-btn" onclick="copyPrompt('p9', this)">
-              Copy
-            </button>
-            <div class="prompt-tip">
-              Link in bio page apne domain pe host karo — Linktree se better
-              dikhta hai aur professional lagta hai.
-            </div>
+            <div class="prompt-text" id="p9">Help me create a high-converting "link in bio" page for my Instagram and a compelling bio. My Info: - Name/Brand: [your name or brand] - What I do: [1 sentence] - Who I help: [your target audience] - My main offers or content: [list 3-5 things you want people to click] - Instagram handle: [@yourusername] Create: 1. Instagram Bio (150 chars max) — hooks people in 3 seconds 2. A simple HTML link-in-bio page with: - Your name + tagline at top - 5 clickable link buttons (I'll give you URLs) - Social icons at bottom - Clean mobile design - Dark theme Make it feel personal, not corporate.</div>
+            <button class="copy-btn" onclick="copyPrompt('p9', this)">Copy</button>
+            <div class="prompt-tip">Link in bio page apne domain pe host karo — Linktree se better dikhta hai aur professional lagta hai.</div>
           </div>
         </div>
       </div>
@@ -1141,7 +1042,7 @@
           Agar yeh prompts kaam aaye, toh imagine karo kya ho sakta hai jab hum
           directly kaam karein.
         </p>
-        <a href="/" class="btn-primary">Book a Free Call →</a>
+        <a href="/" class="btn-primary">Book a Free Call &rarr;</a>
       </div>
     </div>
 
@@ -1150,34 +1051,25 @@
         &copy; 2026 Himanshu. Built with code &amp; clarity.
       </div>
       <div class="footer-links">
-        <a href="https://youtube.com/@oye_nino" target="_blank" rel="noopener"
-          >YouTube</a
-        >
-        <a
-          href="https://www.instagram.com/oye.nino"
-          target="_blank"
-          rel="noopener"
-          >Instagram</a
-        >
+        <a href="https://youtube.com/@oye_nino" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.instagram.com/oye.nino" target="_blank" rel="noopener">Instagram</a>
         <a href="/">Portfolio</a>
       </div>
     </footer>
 
     <script>
-      // ✅ CHANGED: Form API endpoint (replaces Formspree)
       const FORM_API = "https://forms.oyenino.com";
 
       function trackEvent(eventName, params = {}) {
         if (typeof gtag === "function") gtag("event", eventName, params);
       }
 
-      // TURNSTILE STATE
       let turnstileVerified = false;
 
       function onTurnstileSuccess(token) {
         turnstileVerified = true;
         const btn = document.getElementById("unlockBtn");
-        btn.innerHTML = "<span>🔓</span> Prompts Unlock Karo — Free";
+        btn.innerHTML = "<span>\uD83D\uDD13</span> Prompts Unlock Karo \u2014 Free";
         btn.disabled = false;
         trackEvent("turnstile_verified", { form_id: "prompts_gate" });
       }
@@ -1185,15 +1077,14 @@
       function onTurnstileExpired() {
         turnstileVerified = false;
         const btn = document.getElementById("unlockBtn");
-        btn.innerHTML = "Verify you're human first ↑";
+        btn.innerHTML = "Verify you're human first \u2191";
         btn.disabled = true;
       }
 
-      // Copy prompt to clipboard
       function copyPrompt(id, btn) {
         const text = document.getElementById(id).innerText;
         navigator.clipboard.writeText(text).then(() => {
-          btn.textContent = "✓ Copied!";
+          btn.textContent = "\u2713 Copied!";
           btn.classList.add("copied");
           trackEvent("prompt_copied", { prompt_id: id });
           setTimeout(() => {
@@ -1203,12 +1094,10 @@
         });
       }
 
-      // Check if already unlocked (session)
       if (sessionStorage.getItem("prompts_unlocked") === "true") {
         showPrompts();
       }
 
-      // Gate form submission
       document
         .getElementById("gateForm")
         .addEventListener("submit", async function (e) {
@@ -1221,22 +1110,20 @@
           const btn = document.getElementById("unlockBtn");
 
           if (!name || !phone || !email) {
-            errorEl.textContent =
-              "Kuch toh gadbad hai — please sab fields fill karo.";
+            errorEl.textContent = "Kuch toh gadbad hai \u2014 please sab fields fill karo.";
             errorEl.classList.add("show");
             return;
           }
 
           if (!turnstileVerified) {
-            errorEl.textContent =
-              "Please complete the human verification above.";
+            errorEl.textContent = "Please complete the human verification above.";
             errorEl.classList.add("show");
             return;
           }
 
           errorEl.classList.remove("show");
           btn.disabled = true;
-          btn.innerHTML = "<span>⏳</span> Submitting...";
+          btn.innerHTML = "<span>\u23F3</span> Submitting...";
 
           trackEvent("prompt_gate_submit", {
             has_name: !!name,
@@ -1244,7 +1131,6 @@
           });
 
           try {
-            // ✅ CHANGED: Sends to forms.oyenino.com with _form_name
             const res = await fetch(FORM_API, {
               method: "POST",
               headers: {
@@ -1268,7 +1154,6 @@
             showPrompts();
           } catch (err) {
             trackEvent("prompt_gate_error");
-            // Still unlock prompts even if backend fails — don't punish the user
             sessionStorage.setItem("prompts_unlocked", "true");
             showPrompts();
           }

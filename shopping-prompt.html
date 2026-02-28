@@ -75,10 +75,15 @@
         --radius: 16px;
         --transition: 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
       }
-      html { scroll-behavior: smooth; }
+
+      /* FIX 1: overflow-x hidden on html */
+      html { scroll-behavior: smooth; overflow-x: hidden; }
+
       body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; min-height: 100vh; }
       ::selection { background: var(--accent); color: var(--bg); }
-      body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; }
+
+      /* FIX 2: z-index lowered from 9999 to 50 */
+      body::after { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E"); pointer-events: none; z-index: 50; }
 
       nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px); background: rgba(5,5,5,0.85); border-bottom: 1px solid rgba(255,255,255,0.04); }
       .nav-logo { font-family: var(--sans); font-size: 1.25rem; font-weight: 600; color: var(--text); text-decoration: none; letter-spacing: -0.02em; }
@@ -108,7 +113,7 @@
 
       .teaser-list { list-style: none; margin-bottom: 1.75rem; display: flex; flex-direction: column; gap: 0.6rem; }
       .teaser-list li { display: flex; align-items: center; gap: 0.75rem; font-size: 0.88rem; color: var(--text-mid); font-weight: 300; }
-      .teaser-list li::before { content: '✓'; color: var(--accent); font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+      .teaser-list li::before { content: '\2713'; color: var(--accent); font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
 
       .form-group { margin-bottom: 1rem; }
       .form-group label { display: block; font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.45rem; font-weight: 500; }
@@ -153,7 +158,7 @@
       .copy-btn.copied { background: var(--accent-glow); border-color: var(--accent); color: var(--accent); }
 
       .prompt-tip { margin-top: 0.85rem; font-size: 0.8rem; color: var(--text-muted); font-weight: 300; display: flex; gap: 0.5rem; align-items: flex-start; }
-      .prompt-tip::before { content: '💡'; font-size: 0.8rem; margin-top: 0.05rem; flex-shrink: 0; }
+      .prompt-tip::before { content: '\1F4A1'; font-size: 0.8rem; margin-top: 0.05rem; flex-shrink: 0; }
 
       /* HOW TO USE STEPS */
       .how-to-use { background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem 2.25rem; margin: 2.5rem 0; }
@@ -180,15 +185,61 @@
       .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.8rem; transition: color var(--transition); }
       .footer-links a:hover { color: var(--accent); }
 
-      @media (max-width: 600px) {
-        .page-hero { padding: 7rem 1.5rem 3.5rem; }
-        .gate-card { padding: 1.75rem; }
-        .prompt-text { font-size: 0.8rem; padding: 1rem; }
-        .how-to-use { padding: 1.5rem; }
-        .prompts-cta { padding: 2rem 1.5rem; }
-        .cta-buttons { flex-direction: column; align-items: center; }
-      }
       .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+      /* FIX 3: Enhanced mobile responsive */
+      @media (max-width: 600px) {
+        .page-hero {
+          padding: 7rem 1.5rem 3.5rem;
+          overflow: hidden;
+        }
+        .hero-glow {
+          width: 300px;
+          height: 200px;
+        }
+        .gate-wrap {
+          padding: 0 1rem;
+        }
+        .gate-card {
+          padding: 1.75rem 1.25rem;
+          overflow: hidden;
+        }
+        .cf-turnstile {
+          transform: scale(0.9);
+          transform-origin: left top;
+        }
+        .prompt-text {
+          font-size: 0.75rem;
+          padding: 1rem;
+          overflow-x: auto;
+        }
+        .prompt-card {
+          padding: 1.25rem;
+        }
+        .unlock-banner {
+          flex-direction: column;
+          text-align: center;
+          padding: 1.25rem;
+        }
+        #prompt-content {
+          padding: 0 1rem 4rem;
+        }
+        .how-to-use {
+          padding: 1.5rem 1.25rem;
+        }
+        .prompts-cta {
+          padding: 2rem 1.25rem;
+        }
+        .cta-buttons {
+          flex-direction: column;
+          align-items: center;
+        }
+        footer {
+          flex-direction: column;
+          text-align: center;
+          gap: 0.75rem;
+        }
+      }
     </style>
   </head>
   <body>
@@ -201,9 +252,9 @@
     <div class="page-hero">
       <div class="hero-glow"></div>
       <div class="page-badge"><span class="pulse"></span> Free Prompt — The Existence Series</div>
-      <h1>Blinkit jaisi website.<br>10 min. <em>₹0.</em></h1>
+      <h1>Blinkit jaisi website.<br>10 min. <em>&#8377;0.</em></h1>
       <p>Kitna kar sakte ho zero investment mein? Yeh woh prompt hai jisse maine reel mein shopping website banayi. 4,000+ log maang rahe the — lo, free hai.</p>
-      <div class="social-proof">🔥 <strong>4,000+</strong> people commented asking for this prompt</div>
+      <div class="social-proof">&#128293; <strong>4,000+</strong> people commented asking for this prompt</div>
     </div>
 
     <!-- GATE: Form before prompt -->
@@ -244,7 +295,7 @@
 
           <div class="error-msg" id="formError"></div>
           <button type="submit" class="btn-unlock" id="unlockBtn" disabled>Verify you're human first &uarr;</button>
-          <p class="gate-privacy"><span>🔒 Your info safe hai. Kabhi bhi unsubscribe kar sakte ho.</span></p>
+          <p class="gate-privacy"><span>&#128274; Your info safe hai. Kabhi bhi unsubscribe kar sakte ho.</span></p>
         </form>
       </div>
     </div>
@@ -253,7 +304,7 @@
     <div id="prompt-content">
 
       <div class="unlock-banner">
-        <div class="unlock-icon">🎉</div>
+        <div class="unlock-icon">&#127881;</div>
         <div class="unlock-text">
           <strong>Prompt unlock ho gaya!</strong>
           <span>Copy karo, ChatGPT mein paste karo, aur 10 minute mein tumhari shopping website taiyaar. Maine personally test kiya hai.</span>
@@ -263,7 +314,7 @@
       <!-- THE PROMPT -->
       <div class="prompt-category">
         <div class="category-header">
-          <div class="category-icon">🛒</div>
+          <div class="category-icon">&#128722;</div>
           <div class="category-info">
             <div class="category-eyebrow">The Existence Series — Part 4</div>
             <div class="category-title">Shopping Website Prompt</div>
@@ -271,7 +322,7 @@
         </div>
 
         <div class="prompt-card">
-          <div class="prompt-label">🔥 The Full Prompt</div>
+          <div class="prompt-label">&#128293; The Full Prompt</div>
           <h4>Complete Shopping Website with Cart &amp; Email Orders</h4>
           <div class="prompt-text" id="main-prompt">Build me a complete, single-file shopping website in pure HTML, CSS, and JavaScript. No frameworks. No backend. No payment gateway.
 
@@ -288,14 +339,14 @@ This is for a small local business that wants to take orders online with zero in
 === PRODUCTS (REPLACE WITH YOUR OWN) ===
 Add 8-12 products with these details for each:
 - Product Name
-- Price (in ₹)
+- Price (in &#8377;)
 - Category
 - Image URL (hosted on imgbb.com — upload your images there and paste the direct link)
 - Short description (1 line)
 
 Example:
-1. Aashirvaad Atta (5kg) | ₹280 | Groceries | https://i.ibb.co/xxxxx/atta.jpg | "Premium whole wheat flour"
-2. Amul Butter (500g) | ₹280 | Dairy | https://i.ibb.co/xxxxx/butter.jpg | "Fresh salted butter"
+1. Aashirvaad Atta (5kg) | &#8377;280 | Groceries | https://i.ibb.co/xxxxx/atta.jpg | "Premium whole wheat flour"
+2. Amul Butter (500g) | &#8377;280 | Dairy | https://i.ibb.co/xxxxx/butter.jpg | "Fresh salted butter"
 [Add your products here...]
 
 === WEBSITE REQUIREMENTS ===
@@ -393,7 +444,7 @@ Output: Complete, deployment-ready single HTML file.</div>
 
       <!-- WHY NOT GITHUB FOR IMAGES -->
       <div class="prompt-card" style="margin-top: 2rem;">
-        <div class="prompt-label">⚠️ Important</div>
+        <div class="prompt-label">&#9888;&#65039; Important</div>
         <h4>GitHub pe images kyu nahi daalni chahiye?</h4>
         <div class="prompt-tip" style="margin-top: 0;">
           GitHub code ke liye hai, storage ke liye nahi. Images daaloge toh repo size badh jaayega, git clone slow hoga, deploy slow hoga, aur GitHub ki bandwidth limit hit hogi. imgbb free hai, fast hai, aur CDN ki tarah kaam karta hai — images wahan host karo, link yahan use karo.
@@ -433,7 +484,7 @@ Output: Complete, deployment-ready single HTML file.</div>
       function onTurnstileSuccess(token) {
         turnstileVerified = true;
         const btn = document.getElementById('unlockBtn');
-        btn.innerHTML = '<span>🔓</span> Prompt Unlock Karo — Free';
+        btn.innerHTML = '<span>\uD83D\uDD13</span> Prompt Unlock Karo \u2014 Free';
         btn.disabled = false;
         trackEvent('turnstile_verified', { form_id: 'shopping_prompt_gate' });
       }
@@ -441,26 +492,24 @@ Output: Complete, deployment-ready single HTML file.</div>
       function onTurnstileExpired() {
         turnstileVerified = false;
         const btn = document.getElementById('unlockBtn');
-        btn.innerHTML = "Verify you're human first &uarr;";
+        btn.innerHTML = "Verify you're human first \u2191";
         btn.disabled = true;
       }
 
       function copyPrompt(id, btn) {
         const text = document.getElementById(id).innerText;
         navigator.clipboard.writeText(text).then(() => {
-          btn.textContent = '✓ Copied!';
+          btn.textContent = '\u2713 Copied!';
           btn.classList.add('copied');
           trackEvent('prompt_copied', { prompt_id: id, page: 'shopping_prompt' });
           setTimeout(() => { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
         });
       }
 
-      // Check if already unlocked
       if (sessionStorage.getItem('shopping_prompt_unlocked') === 'true') {
         showPrompt();
       }
 
-      // Gate form
       document.getElementById('gateForm').addEventListener('submit', async function(e) {
         e.preventDefault();
 
@@ -471,7 +520,7 @@ Output: Complete, deployment-ready single HTML file.</div>
         const btn = document.getElementById('unlockBtn');
 
         if (!name || !phone || !email) {
-          errorEl.textContent = 'Sab fields fill karo — naam, phone, email.';
+          errorEl.textContent = 'Sab fields fill karo \u2014 naam, phone, email.';
           errorEl.classList.add('show');
           return;
         }
@@ -484,7 +533,7 @@ Output: Complete, deployment-ready single HTML file.</div>
 
         errorEl.classList.remove('show');
         btn.disabled = true;
-        btn.innerHTML = '<span>⏳</span> Submitting...';
+        btn.innerHTML = '<span>\u23F3</span> Submitting...';
 
         trackEvent('shopping_prompt_gate_submit', { has_name: !!name, has_phone: !!phone });
 
@@ -507,7 +556,6 @@ Output: Complete, deployment-ready single HTML file.</div>
           trackEvent('shopping_prompt_gate_error');
         }
 
-        // Always unlock — don't punish user if API fails
         sessionStorage.setItem('shopping_prompt_unlocked', 'true');
         showPrompt();
       });
