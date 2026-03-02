@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chai Sutta — Apni Tapri</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Bebas+Neue&family=Nunito:wght@400;600;700&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --brown: #3B1F0B;
+    --brown-light: #4e2a0e;
+    --orange: #D4731A;
+    --orange-light: #e8861f;
+    --cream: #FFF5E1;
+    --cream-dim: #e8d9c0;
+    --text-muted: #c9a97a;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--brown);
+    color: var(--cream);
+    font-family: 'Nunito', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* NOISE TEXTURE overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 999;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(59,31,11,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 2px solid rgba(212,115,26,0.3);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--orange);
+    letter-spacing: 2px;
+    text-decoration: none;
+  }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--cream-dim);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--orange); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg-circles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+  }
+  .circle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,115,26,0.15) 0%, transparent 70%);
+  }
+  .c1 { width: 600px; height: 600px; top: -150px; right: -100px; }
+  .c2 { width: 400px; height: 400px; bottom: -100px; left: -80px; }
+
+  .hero-eyebrow {
+    font-size: 0.9rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 18vw, 13rem);
+    line-height: 0.9;
+    color: var(--cream);
+    letter-spacing: -2px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+
+  .hero-title span { color: var(--orange); }
+
+  .hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.4rem);
+    color: var(--text-muted);
+    margin: 1.5rem 0 2.5rem;
+    max-width: 500px;
+    font-weight: 600;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+
+  .steam {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.3s forwards;
+  }
+
+  .steam-line {
+    width: 3px;
+    height: 40px;
+    background: linear-gradient(to top, var(--orange), transparent);
+    border-radius: 2px;
+    animation: steamRise 2s ease-in-out infinite;
+  }
+  .steam-line:nth-child(2) { animation-delay: 0.3s; height: 55px; }
+  .steam-line:nth-child(3) { animation-delay: 0.6s; height: 35px; }
+
+  @keyframes steamRise {
+    0%, 100% { transform: translateY(0) scaleX(1); opacity: 0.8; }
+    50% { transform: translateY(-15px) scaleX(1.3); opacity: 0.3; }
+  }
+
+  .hero-cta {
+    display: inline-block;
+    background: var(--orange);
+    color: var(--brown);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    padding: 0.9rem 2.5rem;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.2s;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+  .hero-cta:hover { background: var(--orange-light); transform: translateY(-3px) scale(1.04); }
+
+  .hero-tagline {
+    margin-top: 3rem;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,245,225,0.3);
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+  }
+
+  /* DIVIDER */
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .divider-line { flex: 1; height: 1px; background: rgba(212,115,26,0.3); }
+  .divider-icon { color: var(--orange); font-size: 1.2rem; }
+
+  /* SECTION COMMONS */
+  section { padding: 6rem 2rem; }
+  .section-label {
+    font-size: 0.8rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 0.5rem;
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 1;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* MENU */
+  #menu { background: #2a1508; }
+  .menu-header { text-align: center; margin-bottom: 3rem; }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .menu-card {
+    background: var(--brown);
+    border: 1px solid rgba(212,115,26,0.2);
+    border-radius: 8px;
+    padding: 1.8rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  .menu-card.visible { opacity: 1; transform: translateY(0); transition: opacity 0.5s, transform 0.5s; }
+  .menu-card:hover { transform: translateY(-5px); border-color: var(--orange); }
+  .menu-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--orange);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+  .menu-card:hover::before { transform: scaleX(1); }
+
+  .menu-emoji { font-size: 2.5rem; margin-bottom: 0.8rem; display: block; }
+  .menu-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 1px;
+    color: var(--cream);
+  }
+  .menu-desc {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin: 0.5rem 0 1rem;
+    line-height: 1.5;
+  }
+  .menu-price {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    color: var(--orange);
+  }
+  .menu-badge {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    background: var(--orange);
+    color: var(--brown);
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 3px;
+  }
+
+  /* TESTIMONIAL */
+  #testimonial {
+    background: var(--brown);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  #testimonial::before {
+    content: '"';
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 25rem;
+    color: rgba(212,115,26,0.05);
+    position: absolute;
+    top: -4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 1;
+    pointer-events: none;
+  }
+  .testimonial-text {
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 700;
+    max-width: 750px;
+    margin: 0 auto 2rem;
+    line-height: 1.5;
+    color: var(--cream);
+    position: relative;
+  }
+  .testimonial-author {
+    color: var(--orange);
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+  }
+  .testimonial-location { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.3rem; }
+
+  /* ABOUT */
+  #about {
+    background: #2a1508;
+    position: relative;
+  }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .about-visual {
+    position: relative;
+    height: 400px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--brown);
+    border: 2px solid rgba(212,115,26,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .about-visual-inner {
+    font-size: 8rem;
+    animation: float 4s ease-in-out infinite;
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+  }
+  .about-visual-bg {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(212,115,26,0.12), transparent 70%);
+  }
+  .about-text .section-title { margin-bottom: 1.5rem; }
+  .about-text p {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+  }
+  .about-text p strong { color: var(--cream); }
+  .about-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3rem;
+    color: var(--orange);
+    line-height: 1;
+  }
+  .stat-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+  /* CONTACT */
+  #contact { background: var(--brown); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .contact-info h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2rem;
+    color: var(--cream);
+    margin-bottom: 1.5rem;
+  }
+  .contact-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .contact-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+  .contact-detail-text { color: var(--text-muted); line-height: 1.6; }
+  .contact-detail-text strong { color: var(--cream); display: block; margin-bottom: 0.2rem; }
+
+  form { display: flex; flex-direction: column; gap: 1rem; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  input, textarea, select {
+    background: rgba(255,245,225,0.06);
+    border: 1px solid rgba(212,115,26,0.25);
+    color: var(--cream);
+    padding: 0.9rem 1.1rem;
+    border-radius: 4px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+    width: 100%;
+  }
+  input:focus, textarea:focus {
+    border-color: var(--orange);
+    background: rgba(212,115,26,0.08);
+  }
+  input::placeholder, textarea::placeholder { color: rgba(201,169,122,0.5); }
+  textarea { resize: vertical; min-height: 120px; }
+  .submit-btn {
+    background: var(--orange);
+    color: var(--brown);
+    border: none;
+    padding: 1rem 2rem;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+    align-self: flex-start;
+  }
+  .submit-btn:hover { background: var(--orange-light); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: #1a0d04;
+    border-top: 2px solid rgba(212,115,26,0.2);
+    padding: 3rem 2rem;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: var(--orange);
+    letter-spacing: 2px;
+  }
+  .footer-tagline { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.2rem; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--orange); }
+  .footer-copy { color: rgba(201,169,122,0.4); font-size: 0.8rem; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.6s, transform 0.6s;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* MOBILE */
+  /* HAMBURGER */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+    background: none;
+    border: none;
+    z-index: 1001;
+  }
+  .hamburger span {
+    display: block;
+    width: 26px;
+    height: 2px;
+    background: var(--cream);
+    border-radius: 2px;
+    transition: transform 0.3s, opacity 0.3s;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  @media (max-width: 768px) {
+    .hamburger { display: flex; }
+    .nav-links {
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0; right: -100%;
+      width: 70%;
+      max-width: 280px;
+      height: 100vh;
+      background: #1a0d04;
+      border-left: 2px solid rgba(212,115,26,0.3);
+      padding: 5rem 2rem 2rem;
+      gap: 2rem;
+      transition: right 0.35s cubic-bezier(0.4,0,0.2,1);
+      z-index: 1000;
+    }
+    .nav-links.open { right: 0; }
+    .nav-links a { font-size: 1.1rem; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .about-visual { height: 250px; }
+    .form-row { grid-template-columns: 1fr; }
+    .about-stats { flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#hero">☕ Chai Sutta</a>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#menu" class="nav-close">Menu</a></li>
+    <li><a href="#about" class="nav-close">About</a></li>
+    <li><a href="#contact" class="nav-close">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-circles">
+    <div class="circle c1"></div>
+    <div class="circle c2"></div>
+  </div>
+  <p class="hero-eyebrow">🔥 Asli wali tapri</p>
+  <div class="steam">
+    <div class="steam-line"></div>
+    <div class="steam-line"></div>
+    <div class="steam-line"></div>
+  </div>
+  <h1 class="hero-title">CHAI<br><span>SUTTA</span></h1>
+  <p class="hero-subtitle">Kadak chai. Seedha dil se. Koi nautanki nahi.</p>
+  <a href="#menu" class="hero-cta">Dekho Menu →</a>
+  <p class="hero-tagline">Est. 2018 · Connaught Place, Delhi</p>
+</section>
+
+<div class="divider"><div class="divider-line"></div><div class="divider-icon">☕</div><div class="divider-line"></div></div>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="container">
+    <div class="menu-header reveal">
+      <p class="section-label">Hamare Khas Items</p>
+      <h2 class="section-title">Aaj Ka Menu</h2>
+      <p style="color: var(--text-muted); max-width: 450px; margin: 0 auto;">
+        Sab kuch ghar jaisi recipe se. Nahi milega itna sasta aur swadisht kahin aur.
+      </p>
+    </div>
+    <div class="menu-grid">
+
+      <div class="menu-card">
+        <div class="menu-badge">Bestseller</div>
+        <span class="menu-emoji">🍵</span>
+        <div class="menu-name">Kadak Masala Chai</div>
+        <p class="menu-desc">Doodh, adrak, elaichi, tulsi — sab kuch ek kulhad mein. Pehli chusski mein hi dil khush ho jaata hai.</p>
+        <div class="menu-price">₹15</div>
+      </div>
+
+      <div class="menu-card">
+        <span class="menu-emoji">🫖</span>
+        <div class="menu-name">Kesar Elaichi Chai</div>
+        <p class="menu-desc">Kashmiri kesar ke rang aur elaichi ki mehak ke saath bani special chai. Royalty at tapri price.</p>
+        <div class="menu-price">₹25</div>
+      </div>
+
+      <div class="menu-card">
+        <div class="menu-badge">New</div>
+        <span class="menu-emoji">🥛</span>
+        <div class="menu-name">Doodh Patti</div>
+        <p class="menu-desc">Pure milk mein paka ke banayi chai — bina paani ke, sirf doodh. Thick, creamy, addictive.</p>
+        <div class="menu-price">₹20</div>
+      </div>
+
+      <div class="menu-card">
+        <span class="menu-emoji">🍞</span>
+        <div class="menu-name">Bun Makkhan</div>
+        <p class="menu-desc">Taza bun pe motaa makkhan aur thodi cheeni — chai ke saath yeh combo toh sona hai bhai.</p>
+        <div class="menu-price">₹10</div>
+      </div>
+
+      <div class="menu-card">
+        <span class="menu-emoji">🌿</span>
+        <div class="menu-name">Tulsi Adrak Chai</div>
+        <p class="menu-desc">Baarishon ke mausam ki chaabi. Tulsi + adrak + kaali mirch. Gale ke liye, dil ke liye.</p>
+        <div class="menu-price">₹18</div>
+      </div>
+
+      <div class="menu-card">
+        <div class="menu-badge">Combo</div>
+        <span class="menu-emoji">🍪</span>
+        <div class="menu-name">Chai + Osmania Biscuit</div>
+        <p class="menu-desc">Ek cutting chai aur uske saath 4 Osmania biscuit. Hyderabadi style. Dip karo aur enjoy karo.</p>
+        <div class="menu-price">₹30</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section id="testimonial">
+  <div class="container">
+    <div class="reveal">
+      <p class="section-label" style="text-align:center;">Log Kya Kehte Hain</p>
+      <p class="testimonial-text">
+        "Yaar, ghar wali chai yaad aa jaati hai. Pehle ek baar aaya, ab roz aata hoon. Yeh chai meri subah ka reason hai."
+      </p>
+      <p class="testimonial-author">— Ramesh Bhaiya</p>
+      <p class="testimonial-location">Regular Customer, Lajpat Nagar</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="about-visual-bg"></div>
+        <div class="about-visual-inner">☕</div>
+      </div>
+      <div class="about-text reveal">
+        <p class="section-label">Kaun Hain Hum</p>
+        <h2 class="section-title">Dilli Ki<br>Asli Tapri</h2>
+        <p>
+          <strong>2018 mein ek chota sa sapna tha</strong> — ek aise jagah banana jahan log chain se baith ke chai pee sakein. Koi AC nahi, koi Wi-Fi nahi, sirf <strong>asli chai aur asli baat</strong>.
+        </p>
+        <p>
+          Hum believe karte hain ki ek acchi chai mein dum hota hai — woh dum jo subah ko theek karta hai, doston ko ek karta hai, aur zindagi ko thoda aasaan banata hai.
+        </p>
+        <p>
+          Hamare <strong>ustaad Pappu ji</strong> pichle 30 saal se chai bana rahe hain. Recipe unki ammi ki hai. Pyaar unka khud ka hai.
+        </p>
+        <div class="about-stats">
+          <div>
+            <div class="stat-num">200+</div>
+            <div class="stat-label">Cups Roz</div>
+          </div>
+          <div>
+            <div class="stat-num">6yr</div>
+            <div class="stat-label">Chalu Hai</div>
+          </div>
+          <div>
+            <div class="stat-num">∞</div>
+            <div class="stat-label">Pyaar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div style="text-align:center; margin-bottom: 3rem;" class="reveal">
+      <p class="section-label">Milne Aao</p>
+      <h2 class="section-title">Baat Karo</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <h3>Hamare Baare Mein Poochho</h3>
+        <div class="contact-detail">
+          <span class="contact-icon">📍</span>
+          <div class="contact-detail-text">
+            <strong>Hamari Jagah</strong>
+            Near Janpath Metro Gate 2,<br>Connaught Place, New Delhi – 110001
+          </div>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-icon">🕕</span>
+          <div class="contact-detail-text">
+            <strong>Khulne Ka Time</strong>
+            Roz Subah 6 baje se Raat 11 baje tak<br>Sunday bhi khule hain, kyunki chai roz chahiye.
+          </div>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-icon">📞</span>
+          <div class="contact-detail-text">
+            <strong>Call Karo</strong>
+            +91 98765 43210
+          </div>
+        </div>
+        <div class="contact-detail">
+          <span class="contact-icon">📸</span>
+          <div class="contact-detail-text">
+            <strong>Instagram</strong>
+            @chaisutta.official
+          </div>
+        </div>
+      </div>
+
+      <form class="reveal" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <input type="text" placeholder="Tumhara Naam" required>
+          <input type="tel" placeholder="Phone Number">
+        </div>
+        <input type="email" placeholder="Email (agar ho toh)" >
+        <textarea placeholder="Kuch kehna hai? Feedback, complaint, ya bas hi — sab suno hum..."></textarea>
+        <button type="submit" class="submit-btn">Bhejo Message ☕</button>
+        <p id="form-msg" style="color: var(--orange); font-weight: 700; display: none; margin-top: 0.5rem;">
+          ✅ Shukriya! Hum jaldi reply karenge.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">☕ Chai Sutta</div>
+      <div class="footer-tagline">Kadak. Asli. Dil Se.</div>
+    </div>
+    <div class="footer-links">
+      <a href="#hero">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <p class="footer-copy">© 2024 Chai Sutta. Banaya pyaar se. 🧡</p>
+  </div>
+</footer>
+
+<script>
+  // Hamburger menu
+  const hamburger = document.getElementById('hamburger');
+  const navLinks = document.getElementById('nav-links');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navLinks.classList.toggle('open');
+  });
+
+  document.querySelectorAll('.nav-close').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      navLinks.classList.remove('open');
+    });
+  });
+
+  // Close on outside click
+  document.addEventListener('click', (e) => {
+    if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+      hamburger.classList.remove('open');
+      navLinks.classList.remove('open');
+    }
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        // For menu cards, stagger them
+        if (entry.target.classList.contains('menu-card')) {
+          const cards = document.querySelectorAll('.menu-card');
+          cards.forEach((card, i) => {
+            setTimeout(() => card.classList.add('visible'), i * 100);
+          });
+        }
+      }
+    });
+  }, { threshold: 0.15 });
+
+  document.querySelectorAll('.reveal, .menu-card').forEach(el => observer.observe(el));
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const msg = document.getElementById('form-msg');
+    msg.style.display = 'block';
+    e.target.reset();
+    setTimeout(() => msg.style.display = 'none', 4000);
+  }
+</script>
+</body>
+</html>

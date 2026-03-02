@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chai Sutta</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: #333;
+      background: #fff;
+    }
+
+    nav {
+      background: #6b3a1f;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav .logo { color: white; font-size: 22px; font-weight: bold; }
+    nav ul { list-style: none; display: flex; gap: 20px; }
+    nav ul a { color: white; text-decoration: none; font-size: 14px; }
+
+    /* HERO */
+    .hero {
+      background: #f5e6d3;
+      text-align: center;
+      padding: 80px 20px;
+    }
+    .hero h1 { font-size: 42px; color: #6b3a1f; margin-bottom: 15px; }
+    .hero p { font-size: 16px; color: #666; margin-bottom: 25px; }
+    .hero button {
+      background: #6b3a1f;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    /* MENU */
+    .menu { padding: 60px 30px; background: #fff; }
+    .menu h2 { text-align: center; font-size: 30px; margin-bottom: 30px; color: #333; }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .menu-item {
+      border: 1px solid #ddd;
+      padding: 20px;
+      text-align: center;
+    }
+    .menu-item h3 { font-size: 18px; margin-bottom: 8px; }
+    .menu-item p { font-size: 13px; color: #777; margin-bottom: 10px; }
+    .menu-item .price { font-size: 16px; font-weight: bold; color: #6b3a1f; }
+
+    /* TESTIMONIAL */
+    .testimonial {
+      background: #f9f9f9;
+      padding: 60px 30px;
+      text-align: center;
+    }
+    .testimonial h2 { font-size: 26px; margin-bottom: 20px; }
+    .testimonial blockquote {
+      font-size: 16px;
+      color: #555;
+      max-width: 600px;
+      margin: 0 auto 15px;
+      font-style: italic;
+    }
+    .testimonial span { font-size: 14px; color: #999; }
+
+    /* ABOUT */
+    .about {
+      padding: 60px 30px;
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .about h2 { font-size: 28px; margin-bottom: 15px; }
+    .about p { font-size: 15px; color: #666; line-height: 1.7; }
+
+    /* CONTACT */
+    .contact { background: #f5e6d3; padding: 60px 30px; }
+    .contact h2 { text-align: center; font-size: 28px; margin-bottom: 25px; }
+    .contact form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .contact input, .contact textarea {
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      font-family: Arial, sans-serif;
+    }
+    .contact textarea { height: 100px; resize: none; }
+    .contact button {
+      background: #6b3a1f;
+      color: white;
+      padding: 12px;
+      border: none;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #6b3a1f;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      .menu-grid { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">Chai Sutta</div>
+  <ul>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>Welcome to Chai Sutta</h1>
+  <p>Your favourite chai place in the city. Hot, fresh and delicious.</p>
+  <button>View Our Menu</button>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <h2>Our Menu</h2>
+  <div class="menu-grid">
+    <div class="menu-item">
+      <h3>Masala Chai</h3>
+      <p>Classic spiced tea with ginger and cardamom.</p>
+      <div class="price">₹15</div>
+    </div>
+    <div class="menu-item">
+      <h3>Kesar Chai</h3>
+      <p>Saffron and cardamom infused premium tea.</p>
+      <div class="price">₹25</div>
+    </div>
+    <div class="menu-item">
+      <h3>Doodh Patti</h3>
+      <p>Strong milk tea brewed the traditional way.</p>
+      <div class="price">₹20</div>
+    </div>
+    <div class="menu-item">
+      <h3>Tulsi Adrak Chai</h3>
+      <p>Basil and ginger tea for health and taste.</p>
+      <div class="price">₹18</div>
+    </div>
+    <div class="menu-item">
+      <h3>Bun Makkhan</h3>
+      <p>Soft bun with butter. Best with chai.</p>
+      <div class="price">₹10</div>
+    </div>
+    <div class="menu-item">
+      <h3>Chai + Biscuit</h3>
+      <p>Cutting chai with Osmania biscuits.</p>
+      <div class="price">₹30</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<section class="testimonial">
+  <h2>What People Say</h2>
+  <blockquote>"Best chai in the area. I come here every morning without fail. Very affordable and tasty."</blockquote>
+  <span>— Ramesh, Regular Customer</span>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <h2>About Us</h2>
+  <p>Chai Sutta was started in 2018 with a simple goal — to serve great chai at an affordable price. We believe chai is more than just a drink. It brings people together. Our recipes are traditional and our ingredients are fresh. Come visit us anytime.</p>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <h2>Contact Us</h2>
+  <form onsubmit="event.preventDefault(); alert('Message sent!')">
+    <input type="text" placeholder="Your Name" required />
+    <input type="email" placeholder="Your Email" />
+    <textarea placeholder="Your Message"></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2024 Chai Sutta. All rights reserved. | Connaught Place, New Delhi</p>
+</footer>
+
+</body>
+</html>
