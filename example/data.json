@@ -1,5 +1,14 @@
 {
   "menuItems": [
+     {
+      "id": 0,
+      "name": "chai sutta apecial Kadak Masala Chai",
+      "description": "Doodh, adrak, elaichi, tulsi — sab kuch ek kulhad mein. Pehli chusski mein hi dil khush ho jaata hai.",
+      "price": 125,
+      "emoji": "🍵",
+      "badge": "Bestseller",
+      "featured": true
+    }, 
     {
       "id": 1,
       "name": "Kadak Masala Chai",
