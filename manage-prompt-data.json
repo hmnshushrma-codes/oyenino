@@ -1,0 +1,39 @@
+{
+  "prompt": {
+    "eyebrow": "The Existence Series",
+    "title": "Product Management Prompt",
+    "label": "🔥 The Full Prompt",
+    "heading": "Website with Manageable Product List",
+    "text": "Build me a complete website for [YOUR BUSINESS NAME — e.g., \"Chai Sutta\" tea stall / \"Sharma Store\" / any shop].\n\nThis must be TWO separate files:\n1. index.html — the website\n2. products.json — the product data\n\n=== PRODUCTS.JSON STRUCTURE ===\nA simple list where each product has:\n- \"id\": unique number (1, 2, 3...)\n- \"name\": product name\n- \"description\": 1-line description\n- \"price\": number (in ₹)\n- \"image\": image URL (hosted on imgbb.com — upload your product photos there, paste direct link)\n- \"emoji\": one emoji representing the item (used as fallback if no image)\n- \"badge\": optional text like \"Bestseller\", \"New\", \"Combo\" — or \"\" for no badge\n- \"visible\": true or false (if false, product does NOT show on website but stays in the file)\n\nStart with these products (REPLACE WITH YOUR OWN):\n[List your products here with name, price, description, image URL]\n\n=== INDEX.HTML REQUIREMENTS ===\nThe website must FETCH products.json and dynamically render all products where \"visible\" is true.\nNO products should be hardcoded in the HTML.\n\nDesign direction:\n- [YOUR STYLE — e.g., \"Dark brown theme, chai tapri vibe\" / \"Clean white, modern shop\" / \"Colorful, playful\"]\n- Mobile-first, responsive\n- Product grid with cards showing image/emoji, name, description, price, and badge\n- Smooth hover animations on cards\n- Include: Hero section, Product grid, About section, Contact section, Footer\n\nTechnical:\n- Products loaded via: fetch('products.json')\n- Filter: only show products where visible === true\n- Single HTML file + separate products.json\n- No frameworks, no backend\n\n=== THE WHOLE POINT ===\nA non-developer can manage products by editing products.json:\n- CHANGE price/name → edit the value, save, refresh\n- ADD product → copy any product block, paste below, change values\n- DELETE product → remove the block from the list\n- HIDE product → change \"visible\": true to \"visible\": false (stays in file, doesn't show on website)\n- UNHIDE product → change \"visible\": false back to true\n\nOutput: Two files — index.html and products.json",
+    "tip": "Brackets [ ] mein apna content daalo — business name, products, style. Jitna specific likhoge utni better website milegi."
+  },
+  "cheatSheet": {
+    "title": "⚡ Quick Cheat Sheet",
+    "rows": [
+      { "action": "Price badlo", "how": "<code>\"price\": 15</code> → <code>\"price\": 25</code>. Save. Refresh." },
+      { "action": "Naam badlo", "how": "<code>\"name\": \"Masala Chai\"</code> → <code>\"name\": \"Special Chai\"</code>. Save. Refresh." },
+      { "action": "Image badlo", "how": "imgbb.com pe upload karo, link <code>\"image\"</code> mein paste karo. Save. Refresh." },
+      { "action": "Product add karo", "how": "Ek block copy → paste → values badlo. Save. Refresh. New product!" },
+      { "action": "Product hide karo", "how": "<code>\"visible\": true</code> → <code>\"visible\": false</code>. Product gayab — file mein safe." },
+      { "action": "Wapas laao", "how": "<code>false</code> → <code>true</code>. Product wapas!" },
+      { "action": "Delete karo", "how": "Poora block select → delete → save. Gone." }
+    ]
+  },
+  "howToUse": {
+    "title": "Kaise use karna hai? 4 steps.",
+    "steps": [
+      { "text": "<strong>Prompt copy karo</strong> — Claude ya ChatGPT mein paste karo. Brackets mein apna content daalo." },
+      { "text": "<strong>Do files milegi</strong> — index.html (website) + products.json (list). Dono ek folder mein save karo." },
+      { "text": "<strong>Deploy karo</strong> — GitHub Pages ya Vercel pe upload. Website live." },
+      { "text": "<strong>Products manage karo</strong> — sirf products.json edit karo. Website update." }
+    ]
+  },
+  "cta": {
+    "title": "Aur prompts chahiye?",
+    "subtitle": "Shopping website, portfolio, resume — sab free.",
+    "buttons": [
+      { "text": "Shopping Website Prompt →", "href": "/shopping-prompt.html", "style": "primary" },
+      { "text": "9 More Free Prompts →", "href": "/prompts.html", "style": "ghost" }
+    ]
+  }
+}
