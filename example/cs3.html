@@ -5,23 +5,29 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Chai Sutta — Apni Tapri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Bebas+Neue&family=Nunito:wght@400;600;700&display=swap');
   *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-  :root {
-    --brown: #3B1F0B; --brown-light: #4e2a0e; --orange: #D4731A;
-    --orange-light: #e8861f; --cream: #FFF5E1; --cream-dim: #e8d9c0; --text-muted: #c9a97a;
-  }
-  html { scroll-behavior: smooth; }
-  body { background: var(--brown); color: var(--cream); font-family: 'Nunito', sans-serif; overflow-x: hidden; }
-  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 1000; opacity: 0.4; }
+
+/* Global link reset — fixes blue links on iOS Safari */
+a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+:root {
+–brown: #3B1F0B; –brown-light: #4e2a0e; –orange: #D4731A;
+–orange-light: #e8861f; –cream: #FFF5E1; –cream-dim: #e8d9c0; –text-muted: #c9a97a;
+}
+html { scroll-behavior: smooth; }
+body { background: var(–brown); color: var(–cream); font-family: ‘Nunito’, sans-serif; overflow-x: hidden; }
+body::before { content: ‘’; position: fixed; inset: 0; background-image: url(“data:image/svg+xml,%3Csvg viewBox=‘0 0 200 200’ xmlns=‘http://www.w3.org/2000/svg’%3E%3Cfilter id=‘n’%3E%3CfeTurbulence type=‘fractalNoise’ baseFrequency=‘0.9’ numOctaves=‘4’ stitchTiles=‘stitch’/%3E%3C/filter%3E%3Crect width=‘100%25’ height=‘100%25’ filter=‘url(%23n)’ opacity=‘0.04’/%3E%3C/svg%3E”); pointer-events: none; z-index: 1000; opacity: 0.4; }
 
 /* NAV */
 nav { position: fixed; top: 0; left: 0; right: 0; z-index: 999; display: flex; justify-content: space-between; align-items: center; padding: 1rem 2rem; background: rgba(59,31,11,0.92); backdrop-filter: blur(8px); border-bottom: 2px solid rgba(212,115,26,0.3); }
-.nav-logo { font-family: ‘Bebas Neue’, sans-serif; font-size: 2rem; color: var(–orange); letter-spacing: 2px; text-decoration: none; }
+.nav-logo { font-family: ‘Bebas Neue’, sans-serif; font-size: 2rem; color: var(–orange) !important; letter-spacing: 2px; text-decoration: none !important; }
 .nav-links { display: flex; gap: 2rem; list-style: none; }
-.nav-links a { color: var(–cream-dim); text-decoration: none; font-weight: 700; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s; }
-.nav-links a:hover { color: var(–orange); }
+.nav-links a { color: var(–cream-dim) !important; text-decoration: none !important; font-weight: 700; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s; }
+.nav-links a:hover { color: var(–orange) !important; }
+.nav-links a:visited { color: var(–cream-dim) !important; }
 
 /* HERO */
 #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 6rem 2rem 4rem; position: relative; overflow: hidden; }
@@ -38,8 +44,8 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 999; display: flex; j
 .steam-line:nth-child(2) { animation-delay: 0.3s; height: 55px; }
 .steam-line:nth-child(3) { animation-delay: 0.6s; height: 35px; }
 @keyframes steamRise { 0%, 100% { transform: translateY(0) scaleX(1); opacity: 0.8; } 50% { transform: translateY(-15px) scaleX(1.3); opacity: 0.3; } }
-.hero-cta { display: inline-block; background: var(–orange); color: var(–brown); font-family: ‘Bebas Neue’, sans-serif; font-size: 1.3rem; letter-spacing: 2px; padding: 0.9rem 2.5rem; border-radius: 4px; text-decoration: none; transition: transform 0.2s, background 0.2s; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
-.hero-cta:hover { background: var(–orange-light); transform: translateY(-3px) scale(1.04); }
+.hero-cta { display: inline-block; background: var(–orange) !important; color: var(–brown) !important; font-family: ‘Bebas Neue’, sans-serif; font-size: 1.3rem; letter-spacing: 2px; padding: 0.9rem 2.5rem; border-radius: 4px; text-decoration: none !important; -webkit-appearance: none; transition: transform 0.2s, background 0.2s; opacity: 0; animation: fadeUp 0.8s 0.8s forwards; }
+.hero-cta:hover, .hero-cta:visited, .hero-cta:active { background: var(–orange-light) !important; color: var(–brown) !important; transform: translateY(-3px) scale(1.04); }
 .hero-tagline { margin-top: 3rem; font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,245,225,0.3); opacity: 0; animation: fadeUp 0.8s 1s forwards; }
 
 /* DIVIDER */
@@ -128,8 +134,9 @@ footer { background: #1a0d04; border-top: 2px solid rgba(212,115,26,0.2); paddin
 .footer-logo { font-family: ‘Bebas Neue’, sans-serif; font-size: 2.5rem; color: var(–orange); letter-spacing: 2px; }
 .footer-tagline { color: var(–text-muted); font-size: 0.85rem; margin-top: 0.2rem; }
 .footer-links { display: flex; gap: 1.5rem; }
-.footer-links a { color: var(–text-muted); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
-.footer-links a:hover { color: var(–orange); }
+.footer-links a { color: var(–text-muted) !important; text-decoration: none !important; font-size: 0.85rem; transition: color 0.2s; }
+.footer-links a:hover { color: var(–orange) !important; }
+.footer-links a:visited { color: var(–text-muted) !important; }
 .footer-copy { color: rgba(201,169,122,0.4); font-size: 0.8rem; }
 
 /* ANIMATIONS */
