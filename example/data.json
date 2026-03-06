@@ -1,0 +1,58 @@
+{
+  "menuItems": [
+    {
+      "id": 1,
+      "name": "Kadak Masala Chai",
+      "description": "Doodh, adrak, elaichi, tulsi — sab kuch ek kulhad mein. Pehli chusski mein hi dil khush ho jaata hai.",
+      "price": 25,
+      "emoji": "🍵",
+      "badge": "Bestseller",
+      "featured": true
+    },
+    {
+      "id": 2,
+      "name": "Kesar Elaichi Chai",
+      "description": "Kashmiri kesar ke rang aur elaichi ki mehak ke saath bani special chai. Royalty at tapri price.",
+      "price": 30,
+      "emoji": "🫖",
+      "badge": null,
+      "featured": true
+    },
+    {
+      "id": 3,
+      "name": "Doodh Patti",
+      "description": "Pure milk mein paka ke banayi chai — bina paani ke, sirf doodh. Thick, creamy, addictive.",
+      "price": 20,
+      "emoji": "🥛",
+      "badge": "New",
+      "featured": false
+    },
+    {
+      "id": 4,
+      "name": "Bun Makkhan",
+      "description": "Taza bun pe motaa makkhan aur thodi cheeni — chai ke saath yeh combo toh sona hai bhai.",
+      "price": 10,
+      "emoji": "🍞",
+      "badge": null,
+      "featured": false
+    },
+    {
+      "id": 5,
+      "name": "Tulsi Adrak Chai",
+      "description": "Baarishon ke mausam ki chaabi. Tulsi + adrak + kaali mirch. Gale ke liye, dil ke liye.",
+      "price": 15,
+      "emoji": "🌿",
+      "badge": null,
+      "featured": true
+    },
+    {
+      "id": 6,
+      "name": "Chai + Osmania Biscuit",
+      "description": "Ek cutting chai aur uske saath 4 Osmania biscuit. Hyderabadi style. Dip karo aur enjoy karo.",
+      "price": 30,
+      "emoji": "🍪",
+      "badge": "Combo",
+      "featured": false
+    }
+  ]
+}
