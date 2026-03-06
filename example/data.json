@@ -4,7 +4,7 @@
       "id": 1,
       "name": "Kadak Masala Chai",
       "description": "Doodh, adrak, elaichi, tulsi — sab kuch ek kulhad mein. Pehli chusski mein hi dil khush ho jaata hai.",
-      "price": 25,
+      "price": 125,
       "emoji": "🍵",
       "badge": "Bestseller",
       "featured": true
@@ -13,7 +13,7 @@
       "id": 2,
       "name": "Kesar Elaichi Chai",
       "description": "Kashmiri kesar ke rang aur elaichi ki mehak ke saath bani special chai. Royalty at tapri price.",
-      "price": 30,
+      "price": 22,
       "emoji": "🫖",
       "badge": null,
       "featured": true
