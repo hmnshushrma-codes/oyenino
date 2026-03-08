@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>AI Instagram Coach Bot — Free Prompt | Oye Nino</title>
+<meta name="description" content="Build your own AI-powered Instagram growth bot on Telegram. Free prompt — just add your niche, clone, and run. By Himanshu at Oye Nino."/>
+<meta name="keywords" content="AI bot, instagram growth, telegram bot, free prompt, AI instagram coach, content creator tools, chatgpt prompt, claude ai, instagram tips, growth hacks"/>
+<meta property="og:title" content="AI Instagram Coach Bot — Free Prompt"/>
+<meta property="og:description" content="Build your own AI Instagram growth bot. Free. Open source. 2 min setup."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://oyenino.com/insta-bot-prompt.html"/>
+<link rel="canonical" href="https://oyenino.com/insta-bot-prompt.html"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#050505;--bg-card:#111;--bg-card-hover:#161616;--text:#eeeae4;--text-mid:#b5b0a8;--text-muted:#706c66;--accent:#00f0a0;--accent-dim:#00c583;--accent-glow:rgba(0,240,160,.1);--accent-glow-strong:rgba(0,240,160,.2);--border:#1a1a1a;--border-hover:#2a2a2a;--serif:'Playfair Display',Georgia,serif;--sans:'Outfit',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--radius:16px}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+::selection{background:var(--accent);color:var(--bg)}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:50}
+
+/* NAV */
+nav{padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.04);backdrop-filter:blur(20px);position:sticky;top:0;z-index:100;background:rgba(5,5,5,.85)}
+.nav-logo{font-family:var(--sans);font-size:1.2rem;font-weight:600;color:var(--text);text-decoration:none}
+.nav-logo span{color:var(--accent)}
+.nav-back{color:var(--text-muted);text-decoration:none;font-size:.85rem;transition:color .3s}
+.nav-back:hover{color:var(--accent)}
+
+/* HERO */
+.hero{max-width:800px;margin:0 auto;padding:5rem 2rem 3rem;text-align:center;position:relative}
+.hero-glow{position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 60%);border-radius:50%;pointer-events:none;filter:blur(100px);opacity:.3;animation:breathe 8s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:.2;transform:translateX(-50%) scale(1)}50%{opacity:.5;transform:translateX(-50%) scale(1.1)}}
+.badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:1.5rem;opacity:0;animation:fadeUp .6s ease forwards .3s}
+.pulse{width:7px;height:7px;background:var(--accent);border-radius:50%;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 var(--accent-glow-strong)}50%{box-shadow:0 0 0 8px transparent}}
+.hero h1{font-family:var(--serif);font-size:clamp(2.2rem,5.5vw,4rem);font-weight:400;line-height:1.12;letter-spacing:-.03em;margin-bottom:1.25rem;opacity:0;animation:fadeUp .7s ease forwards .5s}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-sub{font-size:1.05rem;color:var(--text-mid);line-height:1.75;font-weight:300;max-width:560px;margin:0 auto 2rem;opacity:0;animation:fadeUp .7s ease forwards .7s}
+.hero-stats{display:flex;justify-content:center;gap:2.5rem;opacity:0;animation:fadeUp .6s ease forwards .9s;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-num{font-size:1.75rem;font-weight:700;color:var(--text)}
+.stat-num span{color:var(--accent)}
+.stat-label{font-size:.75rem;color:var(--text-muted);margin-top:.15rem}
+
+/* FEATURES */
+.features{max-width:900px;margin:0 auto;padding:0 2rem 4rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:var(--radius);overflow:hidden;opacity:0;animation:fadeUp .7s ease forwards 1.1s}
+.feature{background:var(--bg-card);padding:2rem 1.5rem;text-align:center;transition:background .3s}
+.feature:hover{background:var(--bg-card-hover)}
+.feature-icon{font-size:1.5rem;margin-bottom:.75rem}
+.feature h3{font-size:.95rem;font-weight:600;margin-bottom:.4rem}
+.feature p{font-size:.8rem;color:var(--text-muted);line-height:1.5;font-weight:300}
+
+/* GATE SECTION */
+.gate-section{max-width:600px;margin:0 auto;padding:0 2rem 4rem}
+.gate-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:3rem 2.5rem;position:relative;overflow:hidden}
+.gate-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent 70%)}
+.gate-card h2{font-family:var(--serif);font-size:1.75rem;font-weight:400;margin-bottom:.5rem;text-align:center}
+.gate-card .gate-sub{color:var(--text-muted);font-size:.9rem;text-align:center;margin-bottom:2rem;font-weight:300}
+.form-group{margin-bottom:1rem}
+.form-group label{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-bottom:.4rem;font-weight:500}
+.form-group input{width:100%;padding:.85rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--sans);font-size:.9rem;outline:none;transition:border-color .3s,box-shadow .3s}
+.form-group input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+.form-group input::placeholder{color:#444}
+.gate-btn{width:100%;padding:1rem;background:var(--accent);color:var(--bg);border:none;border-radius:100px;font-family:var(--sans);font-size:1rem;font-weight:600;cursor:pointer;transition:transform .2s,box-shadow .3s;margin-top:.5rem;position:relative;overflow:hidden}
+.gate-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px var(--accent-glow-strong)}
+.gate-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transform:translateX(-100%);transition:transform .6s}
+.gate-btn:hover::after{transform:translateX(100%)}
+.gate-note{text-align:center;color:var(--text-muted);font-size:.75rem;margin-top:1rem;font-weight:300}
+.gate-error{color:#ff6b6b;font-size:.8rem;text-align:center;margin-top:.75rem;display:none}
+
+/* PROMPT SECTION (hidden initially) */
+.prompt-section{max-width:800px;margin:0 auto;padding:0 2rem 5rem;display:none}
+.prompt-section.visible{display:block;animation:fadeUp .6s ease}
+.prompt-header{text-align:center;margin-bottom:2rem}
+.prompt-header h2{font-family:var(--serif);font-size:2rem;font-weight:400;margin-bottom:.5rem}
+.prompt-header p{color:var(--text-muted);font-size:.9rem;font-weight:300}
+.prompt-steps{display:flex;gap:1rem;margin-bottom:2rem;flex-wrap:wrap}
+.step{flex:1;min-width:150px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.25rem;text-align:center}
+.step-num{font-size:.7rem;color:var(--accent);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.35rem}
+.step-text{font-size:.85rem;color:var(--text-mid);font-weight:300;line-height:1.5}
+.prompt-box{background:#080808;border:1px solid var(--border);border-radius:14px;overflow:hidden;position:relative}
+.prompt-bar{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:#0d0d0d;border-bottom:1px solid rgba(255,255,255,.04)}
+.prompt-bar-left{display:flex;align-items:center;gap:8px}
+.prompt-dot{width:12px;height:12px;border-radius:50%}
+.prompt-dot.r{background:#ff5f57}.prompt-dot.y{background:#febc2e}.prompt-dot.g{background:#28c840}
+.prompt-bar-title{font-family:var(--mono);font-size:.72rem;color:var(--text-muted)}
+.copy-btn{background:rgba(0,240,160,.1);border:1px solid rgba(0,240,160,.3);color:var(--accent);font-family:var(--sans);font-size:.75rem;font-weight:600;padding:.35rem 1rem;border-radius:100px;cursor:pointer;transition:all .2s}
+.copy-btn:hover{background:rgba(0,240,160,.2)}
+.copy-btn.copied{background:var(--accent);color:var(--bg)}
+.prompt-body{padding:1.5rem;font-family:var(--mono);font-size:.78rem;line-height:1.9;color:var(--text-mid);white-space:pre-wrap;max-height:500px;overflow-y:auto}
+.prompt-body::-webkit-scrollbar{width:4px}
+.prompt-body::-webkit-scrollbar-track{background:transparent}
+.prompt-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+
+/* AI OPTIONS */
+.ai-options{margin-top:2rem}
+.ai-options h3{font-size:1rem;font-weight:600;margin-bottom:1rem;text-align:center}
+.ai-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem}
+.ai-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:1.25rem 1rem;text-align:center;transition:all .3s;cursor:default}
+.ai-card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.ai-card-name{font-weight:600;font-size:.9rem;margin-bottom:.2rem}
+.ai-card-cost{font-size:.75rem;color:var(--accent);font-weight:500}
+.ai-card-quality{font-size:.7rem;color:var(--text-muted);margin-top:.2rem}
+
+/* GITHUB CTA */
+.github-cta{max-width:800px;margin:0 auto;padding:0 2rem 4rem;display:none}
+.github-cta.visible{display:block;animation:fadeUp .6s ease}
+.github-inner{background:linear-gradient(135deg,var(--bg-card) 0%,rgba(0,240,160,.04) 100%);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem;text-align:center;position:relative;overflow:hidden}
+.github-inner h3{font-family:var(--serif);font-size:1.5rem;font-weight:400;margin-bottom:.5rem}
+.github-inner p{color:var(--text-muted);font-size:.9rem;font-weight:300;margin-bottom:1.5rem}
+.github-btn{display:inline-flex;align-items:center;gap:.5rem;background:var(--accent);color:var(--bg);padding:.85rem 2rem;border-radius:100px;text-decoration:none;font-weight:600;font-size:.95rem;transition:transform .2s,box-shadow .3s}
+.github-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px var(--accent-glow-strong)}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center}
+footer p{color:var(--text-muted);font-size:.8rem;font-weight:300}
+footer a{color:var(--accent);text-decoration:none}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:768px){
+  .features{grid-template-columns:1fr}
+  .ai-grid{grid-template-columns:repeat(2,1fr)}
+  .prompt-steps{flex-direction:column}
+  .hero-stats{gap:1.5rem}
+  .gate-card{padding:2rem 1.5rem}
+}
+@media(max-width:480px){
+  .ai-grid{grid-template-columns:1fr 1fr}
+  .hero h1{font-size:2rem}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">himanshu<span>.</span></a>
+  <a href="/" class="nav-back">← Back to Home</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="badge"><span class="pulse"></span> Free Resource</div>
+  <h1>Your own AI<br><em>Instagram Coach.</em></h1>
+  <p class="hero-sub">A Telegram bot that knows your niche, writes your captions, plans your week, and tells you what's trending. Built with one prompt. Running in 2 minutes.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">1<span>file</span></div><div class="stat-label">Single index.js</div></div>
+    <div class="stat"><div class="stat-num">0<span>₹</span></div><div class="stat-label">Completely Free</div></div>
+    <div class="stat"><div class="stat-num">2<span>min</span></div><div class="stat-label">Setup Time</div></div>
+    <div class="stat"><div class="stat-num">10<span>+</span></div><div class="stat-label">Commands</div></div>
+  </div>
+</section>
+
+<div class="features">
+  <div class="feature"><div class="feature-icon">📈</div><h3>Trending Ideas</h3><p>Daily trends specific to your niche. Not generic — actual ideas you can film today.</p></div>
+  <div class="feature"><div class="feature-icon">✍️</div><h3>Viral Captions</h3><p>3 styles per request. In your language — Hindi, Hinglish, English, whatever.</p></div>
+  <div class="feature"><div class="feature-icon">#️⃣</div><h3>Smart Hashtags</h3><p>30 hashtags — high volume, medium, and niche. Copy-paste ready.</p></div>
+  <div class="feature"><div class="feature-icon">🎣</div><h3>Reel Hooks</h3><p>10 scroll-stopping hooks with text overlay and visual suggestions.</p></div>
+  <div class="feature"><div class="feature-icon">📅</div><h3>Content Calendar</h3><p>Full 7-day plan with ideas, hooks, posting times, and hashtags.</p></div>
+  <div class="feature"><div class="feature-icon">📊</div><h3>Weekly Report</h3><p>Niche analysis, audience insights, creator breakdown, action items.</p></div>
+</div>
+
+<!-- EMAIL GATE -->
+<div class="gate-section" id="gateSection">
+  <div class="gate-card">
+    <h2>Get the prompt. Free.</h2>
+    <p class="gate-sub">Enter your email and Instagram niche — I'll unlock the prompt and send you future updates.</p>
+    <form id="gateForm" onsubmit="return handleGate(event)">
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="gateName" placeholder="Himanshu" required/>
+      </div>
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" id="gateEmail" placeholder="you@gmail.com" required/>
+      </div>
+      <div class="form-group">
+        <label>Your Instagram Niche</label>
+        <input type="text" id="gateNiche" placeholder="fitness, cooking, tech, fashion..." required/>
+      </div>
+      <button type="submit" class="gate-btn" id="gateBtn">Unlock the Prompt →</button>
+      <p class="gate-note">No spam. Unsubscribe anytime. I'll also send Part 2 when it's ready.</p>
+      <div class="gate-error" id="gateError"></div>
+    </form>
+  </div>
+</div>
+
+<!-- PROMPT (hidden until gate is passed) -->
+<div class="prompt-section" id="promptSection">
+  <div class="prompt-header">
+    <h2>Here's your prompt 🧞</h2>
+    <p>Copy this. Paste into ChatGPT, Claude, or Gemini. Get your bot.</p>
+  </div>
+
+  <div class="prompt-steps">
+    <div class="step"><div class="step-num">Step 1</div><div class="step-text">Copy the prompt below</div></div>
+    <div class="step"><div class="step-num">Step 2</div><div class="step-text">Paste into any AI chat</div></div>
+    <div class="step"><div class="step-num">Step 3</div><div class="step-text">Save the generated files</div></div>
+    <div class="step"><div class="step-num">Step 4</div><div class="step-text">npm install && npm start</div></div>
+  </div>
+
+  <div class="prompt-box">
+    <div class="prompt-bar">
+      <div class="prompt-bar-left">
+        <div class="prompt-dot r"></div><div class="prompt-dot y"></div><div class="prompt-dot g"></div>
+        <span class="prompt-bar-title">prompt.txt</span>
+      </div>
+      <button class="copy-btn" id="copyBtn" onclick="copyPrompt()">Copy Prompt</button>
+    </div>
+    <div class="prompt-body" id="promptBody">I want you to create a complete Telegram bot in a single Node.js file that acts as a personalized Instagram growth assistant.
+
+REQUIREMENTS:
+- Use Telegram Bot API with long polling (getUpdates, NOT webhooks)
+- Use [CHOOSE: OpenAI / Anthropic Claude / Google Gemini] API for AI responses
+- Read TELEGRAM_BOT_TOKEN and API key from .env file using dotenv package
+- When user sends /start, ask 4 questions one by one:
+  1. What's your Instagram niche?
+  2. Which creators do you admire? (comma separated handles)
+  3. Who's your target audience?
+  4. What language do you create content in?
+- Save user profiles to profiles.json (persists across restarts)
+- Support multiple users with separate profiles
+- After setup, personalize ALL responses to user's niche, audience, creators, and language
+- Add a fun animated console startup with loading bars, typewriter text, and witty messages
+
+COMMANDS:
+- /start — interactive onboarding (4 questions)
+- /trends — 8 trending content ideas for their niche
+- /hashtags [topic] — 30 hashtags (10 high volume, 10 medium, 10 niche)
+- /caption [idea] — 3 caption styles (short, story, long) in their language
+- /hook [topic] — 10 scroll-stopping reel hooks in their language
+- /calendar — 7-day content plan with ideas, hooks, times, hashtags
+- /besttimes — best posting times for their niche
+- /tips — 10 growth hacks for their niche
+- /report — weekly strategy report (niche analysis, creator analysis, 5 action items)
+- /setup — redo onboarding
+- /profile — show saved profile
+- Any free text — answer Instagram growth questions
+
+TECHNICAL:
+- Single file: index.js
+- Only dependency: dotenv
+- Node.js 18+ (built-in fetch)
+- Split messages over 4000 chars
+- Show typing indicator while AI responds
+- If Markdown fails, retry plain text
+- Validate API keys on startup with helpful error messages
+
+Generate: index.js, .env.example (with clear comments), package.json, .gitignore, and README.md with setup steps + deployment guide for Railway, Render, and VPS with PM2.</div>
+  </div>
+
+  <div class="ai-options">
+    <h3>Which AI should you use?</h3>
+    <div class="ai-grid">
+      <div class="ai-card"><div class="ai-card-name">Claude</div><div class="ai-card-cost">~₹0.25/msg</div><div class="ai-card-quality">⭐⭐⭐⭐⭐ Best</div></div>
+      <div class="ai-card"><div class="ai-card-name">GPT-4o mini</div><div class="ai-card-cost">~₹0.08/msg</div><div class="ai-card-quality">⭐⭐⭐⭐ Great</div></div>
+      <div class="ai-card"><div class="ai-card-name">Gemini</div><div class="ai-card-cost">Free tier</div><div class="ai-card-quality">⭐⭐⭐ Good</div></div>
+      <div class="ai-card"><div class="ai-card-name">Groq</div><div class="ai-card-cost">Free tier</div><div class="ai-card-quality">⭐⭐⭐ Fastest</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- GITHUB CTA -->
+<div class="github-cta" id="githubCta">
+  <div class="github-inner">
+    <h3>Want the ready-made bot instead?</h3>
+    <p>Skip the prompt — clone the repo and run in 2 minutes.</p>
+    <a href="https://github.com/YOUR_USERNAME/insta-trend-bot" class="github-btn" target="_blank">&lt;/&gt; Clone from GitHub →</a>
+  </div>
+</div>
+
+<footer>
+  <p>Built by <a href="/">himanshu</a> — <a href="https://instagram.com/oye.nino" target="_blank">@oye.nino</a></p>
+</footer>
+
+<script>
+function handleGate(e) {
+  e.preventDefault();
+  var name = document.getElementById('gateName').value.trim();
+  var email = document.getElementById('gateEmail').value.trim();
+  var niche = document.getElementById('gateNiche').value.trim();
+  var errEl = document.getElementById('gateError');
+  var btn = document.getElementById('gateBtn');
+
+  if (!name || !email || !niche) {
+    errEl.textContent = 'Sab fill karo bhai 😅';
+    errEl.style.display = 'block';
+    return false;
+  }
+
+  if (!email.includes('@') || !email.includes('.')) {
+    errEl.textContent = 'Email toh sahi daal do 📧';
+    errEl.style.display = 'block';
+    return false;
+  }
+
+  errEl.style.display = 'none';
+  btn.textContent = 'Unlocking... 🧞';
+  btn.disabled = true;
+
+  // Send to Formspree or your backend
+  fetch('https://formspree.io/f/YOUR_FORM_ID', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: name,
+      email: email,
+      niche: niche,
+      source: 'insta-bot-prompt',
+      _subject: 'New Insta Bot Prompt Request — ' + niche
+    })
+  }).then(function() {
+    showPrompt();
+  }).catch(function() {
+    // Show prompt anyway even if form submission fails
+    showPrompt();
+  });
+
+  return false;
+}
+
+function showPrompt() {
+  document.getElementById('gateSection').style.display = 'none';
+  document.getElementById('promptSection').classList.add('visible');
+  document.getElementById('githubCta').classList.add('visible');
+  // Scroll to prompt
+  setTimeout(function() {
+    document.getElementById('promptSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 200);
+}
+
+function copyPrompt() {
+  var text = document.getElementById('promptBody').textContent;
+  navigator.clipboard.writeText(text).then(function() {
+    var btn = document.getElementById('copyBtn');
+    btn.textContent = 'Copied! ✅';
+    btn.classList.add('copied');
+    setTimeout(function() {
+      btn.textContent = 'Copy Prompt';
+      btn.classList.remove('copied');
+    }, 2500);
+  });
+}
+
+// Check if already unlocked (simple localStorage flag)
+if (localStorage.getItem('insta_prompt_unlocked') === 'yes') {
+  showPrompt();
+} else {
+  // Save unlock state after gate
+  var origShow = showPrompt;
+  showPrompt = function() {
+    localStorage.setItem('insta_prompt_unlocked', 'yes');
+    origShow();
+  };
+}
+</script>
+
+</body>
+</html>
