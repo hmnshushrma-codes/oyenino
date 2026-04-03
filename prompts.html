@@ -302,155 +302,6 @@
         }
       }
 
-      /* GATE */
-      .gate-wrap {
-        max-width: 520px;
-        margin: 0 auto 5rem;
-        padding: 0 2rem;
-        animation: fadeUp 0.6s ease forwards 0.4s;
-        opacity: 0;
-      }
-      .gate-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: var(--radius);
-        padding: 2.5rem;
-        position: relative;
-        overflow: hidden;
-      }
-      .gate-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: linear-gradient(90deg, var(--accent), transparent 60%);
-      }
-      .gate-title {
-        font-family: var(--serif);
-        font-size: 1.5rem;
-        font-weight: 400;
-        margin-bottom: 0.4rem;
-        color: var(--text);
-      }
-      .gate-subtitle {
-        font-size: 0.88rem;
-        color: var(--text-muted);
-        margin-bottom: 1.75rem;
-        font-weight: 300;
-      }
-      .gate-subtitle strong {
-        color: var(--text-mid);
-        font-weight: 500;
-      }
-
-      .form-group {
-        margin-bottom: 1rem;
-      }
-      .form-group label {
-        display: block;
-        font-size: 0.72rem;
-        color: var(--text-muted);
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        margin-bottom: 0.45rem;
-        font-weight: 500;
-      }
-      .form-group input {
-        width: 100%;
-        padding: 0.8rem 1rem;
-        background: var(--bg);
-        border: 1px solid var(--border);
-        border-radius: 10px;
-        color: var(--text);
-        font-family: var(--sans);
-        font-size: 0.9rem;
-        font-weight: 300;
-        transition:
-          border-color var(--transition),
-          box-shadow var(--transition);
-        outline: none;
-      }
-      .form-group input:focus {
-        border-color: var(--accent);
-        box-shadow: 0 0 0 3px var(--accent-glow);
-      }
-      .form-group input::placeholder {
-        color: #444;
-      }
-
-      .btn-unlock {
-        width: 100%;
-        padding: 1rem;
-        background: var(--accent);
-        color: var(--bg);
-        border: none;
-        border-radius: 100px;
-        font-family: var(--sans);
-        font-size: 0.95rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition:
-          transform 0.2s,
-          box-shadow 0.3s;
-        margin-top: 0.5rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-      }
-      .btn-unlock:hover:not(:disabled) {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 32px var(--accent-glow-strong);
-      }
-      .btn-unlock:disabled {
-        opacity: 0.6;
-        cursor: not-allowed;
-        transform: none;
-        box-shadow: none;
-      }
-      .gate-privacy {
-        text-align: center;
-        font-size: 0.75rem;
-        color: var(--text-muted);
-        margin-top: 1rem;
-        font-weight: 300;
-      }
-
-      .teaser-list {
-        list-style: none;
-        margin-bottom: 1.75rem;
-        display: flex;
-        flex-direction: column;
-        gap: 0.6rem;
-      }
-      .teaser-list li {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        font-size: 0.88rem;
-        color: var(--text-mid);
-        font-weight: 300;
-      }
-      .teaser-list li::before {
-        content: "\2713";
-        color: var(--accent);
-        font-weight: 700;
-        font-size: 0.9rem;
-        flex-shrink: 0;
-      }
-
-      .error-msg {
-        color: #ff6b6b;
-        font-size: 0.8rem;
-        margin-top: 0.5rem;
-        display: none;
-      }
-      .error-msg.show {
-        display: block;
-      }
-
       /* PROMPTS */
       #prompts-content {
         display: none;
@@ -754,17 +605,6 @@
           width: 300px;
           height: 200px;
         }
-        .gate-wrap {
-          padding: 0 1rem;
-        }
-        .gate-card {
-          padding: 1.75rem 1.25rem;
-          overflow: hidden;
-        }
-        .cf-turnstile {
-          transform: scale(0.9);
-          transform-origin: left top;
-        }
         .category-header {
           flex-wrap: wrap;
         }
@@ -814,80 +654,8 @@
       </div>
     </div>
 
-    <!-- GATE: Form shown before prompts -->
-    <div class="gate-wrap" id="gate-section">
-      <div class="gate-card">
-        <div class="gate-title">Prompts unlock karo — free hai</div>
-        <div class="gate-subtitle">
-          Apna naam aur email daalo, prompts turant milenge.
-          <strong>No spam, promise.</strong>
-        </div>
-
-        <ul class="teaser-list">
-          <li>Resume / CV banane ke liye prompts</li>
-          <li>Personal portfolio website ke liye prompts</li>
-          <li>Business landing page ke liye prompts</li>
-          <li>Har prompt copy-paste ready hai</li>
-        </ul>
-
-        <form id="gateForm" novalidate>
-          <div class="form-group">
-            <label for="gate-name">Tumhara Naam *</label>
-            <input
-              type="text"
-              id="gate-name"
-              name="name"
-              placeholder="Rahul Sharma"
-              required
-              autocomplete="name"
-            />
-          </div>
-          <div class="form-group">
-            <label for="gate-phone">Phone Number *</label>
-            <input
-              type="tel"
-              id="gate-phone"
-              name="phone"
-              placeholder="+91 98765 43210"
-              required
-              autocomplete="tel"
-            />
-            <div class="field-status" id="phoneStatus"></div>
-          </div>
-          <div class="form-group">
-            <label for="gate-email">Email Address *</label>
-            <input
-              type="email"
-              id="gate-email"
-              name="email"
-              placeholder="rahul@gmail.com"
-              required
-              autocomplete="email"
-            />
-            <div class="field-status" id="emailStatus"></div>
-          </div>
-          <div
-            class="cf-turnstile"
-            data-sitekey="0x4AAAAAACgSvRvZpT5d_Ab5"
-            data-theme="dark"
-            data-callback="onTurnstileSuccess"
-            data-expired-callback="onTurnstileExpired"
-            style="margin-bottom: 1rem; display: flex; justify-content: center"
-          ></div>
-
-          <div class="error-msg" id="formError"></div>
-          <button type="submit" class="btn-unlock" id="unlockBtn" disabled>
-            Sab fields fill karo
-          </button>
-          <p class="gate-privacy">
-            <span
-              >&#128274; Your info safe hai. Kabhi bhi unsubscribe kar sakte
-              ho.</span
-            >
-          </p>
-        </form>
-      </div>
-    </div>
+    <!-- GATE: Rendered by form-utils.js createGate -->
+    <div id="gate-section"></div>
 
     <!-- PROMPTS CONTENT — hidden until unlocked -->
     <div id="prompts-content">
@@ -1189,50 +957,26 @@
     <!-- ===== SCRIPTS ===== -->
     <script src="/form-utils.js"></script>
     <script>
-      if (sessionStorage.getItem("prompts_unlocked") === "true") showPrompts();
-
-      new OyeNinoForm({
-        formId: "gateForm",
-        emailId: "gate-email",
-        phoneId: "gate-phone",
-        nameId: "gate-name",
-        btnId: "unlockBtn",
-        statusId: "emailStatus",
-        phoneStatusId: "phoneStatus",
-        errorId: "formError",
+      OyeNinoForm.createGate("#gate-section", {
         formName: "prompts_gate",
         source: "prompts_page",
-        requiredFields: ["name", "email", "phone"],
-        btnTexts: {
-          ready: "<span>\uD83D\uDD13</span> Prompts Unlock Karo — Free",
-          turnstile: "Verify you're human first \u2191",
-          email: "Valid email daalo pehle",
-          phone: "Valid phone number daalo",
-          fields: "Sab fields fill karo",
-          submitting: "<span>\u23F3</span> Submitting...",
-        },
-        onSuccess: function () {
-          sessionStorage.setItem("prompts_unlocked", "true");
-          showPrompts();
-        },
+        title: "Prompts unlock karo \u2014 free hai",
+        subtitle: 'Apna naam aur email daalo, prompts turant milenge. <strong>No spam, promise.</strong>',
+        teasers: [
+          "Resume / CV banane ke liye prompts",
+          "Personal portfolio website ke liye prompts",
+          "Business landing page ke liye prompts",
+          "Har prompt copy-paste ready hai"
+        ],
+        fields: ["name", "phone", "email"],
+        storageKey: "prompts_unlocked",
+        storage: "sessionStorage",
+        contentId: "prompts-content",
+        btnText: "\uD83D\uDD13 Prompts Unlock Karo \u2014 Free"
       });
 
       function copyPrompt(id, btn) {
         oyeCopyPrompt(id, btn);
-      }
-
-      function showPrompts() {
-        var gate = document.getElementById("gate-section");
-        gate.style.transition = "opacity 0.4s ease, transform 0.4s ease";
-        gate.style.opacity = "0";
-        gate.style.transform = "translateY(-10px)";
-        setTimeout(function () {
-          gate.style.display = "none";
-          var content = document.getElementById("prompts-content");
-          content.classList.add("unlocked");
-          content.scrollIntoView({ behavior: "smooth", block: "start" });
-          oyeTrackEvent("prompts_unlocked");
-        }, 400);
       }
     </script>
   </body>

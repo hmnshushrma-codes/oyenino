@@ -597,6 +597,313 @@
   }
 
   // ===========================
+  // CREATE GATE (reusable form-gate for prompt pages)
+  // ===========================
+
+  var COUNTRY_CODES = [
+    {v:"+91",f:"\uD83C\uDDEE\uD83C\uDDF3 +91"},{v:"+1",f:"\uD83C\uDDFA\uD83C\uDDF8 +1"},{v:"+44",f:"\uD83C\uDDEC\uD83C\uDDE7 +44"},
+    {v:"+971",f:"\uD83C\uDDE6\uD83C\uDDEA +971"},{v:"+61",f:"\uD83C\uDDE6\uD83C\uDDFA +61"},{v:"+49",f:"\uD83C\uDDE9\uD83C\uDDEA +49"},
+    {v:"+33",f:"\uD83C\uDDEB\uD83C\uDDF7 +33"},{v:"+81",f:"\uD83C\uDDEF\uD83C\uDDF5 +81"},{v:"+65",f:"\uD83C\uDDF8\uD83C\uDDEC +65"},
+    {v:"+966",f:"\uD83C\uDDF8\uD83C\uDDE6 +966"},{v:"+974",f:"\uD83C\uDDF6\uD83C\uDDE6 +974"},{v:"+968",f:"\uD83C\uDDF4\uD83C\uDDF2 +968"},
+    {v:"+977",f:"\uD83C\uDDF3\uD83C\uDDF5 +977"},{v:"+880",f:"\uD83C\uDDE7\uD83C\uDDE9 +880"},{v:"+94",f:"\uD83C\uDDF1\uD83C\uDDF0 +94"},
+    {v:"+60",f:"\uD83C\uDDF2\uD83C\uDDFE +60"},{v:"+86",f:"\uD83C\uDDE8\uD83C\uDDF3 +86"},{v:"+82",f:"\uD83C\uDDF0\uD83C\uDDF7 +82"},
+    {v:"+234",f:"\uD83C\uDDF3\uD83C\uDDEC +234"},{v:"+254",f:"\uD83C\uDDF0\uD83C\uDDEA +254"},{v:"+27",f:"\uD83C\uDDFF\uD83C\uDDE6 +27"},
+    {v:"+55",f:"\uD83C\uDDE7\uD83C\uDDF7 +55"},{v:"+52",f:"\uD83C\uDDF2\uD83C\uDDFD +52"},{v:"+92",f:"\uD83C\uDDF5\uD83C\uDDF0 +92"},
+    {v:"+62",f:"\uD83C\uDDEE\uD83C\uDDE9 +62"},{v:"+66",f:"\uD83C\uDDF9\uD83C\uDDED +66"},{v:"+84",f:"\uD83C\uDDFB\uD83C\uDDF3 +84"},
+    {v:"+63",f:"\uD83C\uDDF5\uD83C\uDDED +63"},{v:"+7",f:"\uD83C\uDDF7\uD83C\uDDFA +7"},{v:"+39",f:"\uD83C\uDDEE\uD83C\uDDF9 +39"},
+    {v:"+34",f:"\uD83C\uDDEA\uD83C\uDDF8 +34"},{v:"+31",f:"\uD83C\uDDF3\uD83C\uDDF1 +31"},{v:"+46",f:"\uD83C\uDDF8\uD83C\uDDEA +46"},
+    {v:"+41",f:"\uD83C\uDDE8\uD83C\uDDED +41"},{v:"+48",f:"\uD83C\uDDF5\uD83C\uDDF1 +48"}
+  ];
+
+  function injectGateCSS() {
+    if (document.getElementById("oye-gate-css")) return;
+    var s = document.createElement("style");
+    s.id = "oye-gate-css";
+    s.textContent =
+      ".oye-gate-wrap{max-width:600px;margin:0 auto;padding:0 2rem 4rem}" +
+      ".oye-gate-card{background:var(--bg-card,#111);border:1px solid var(--border,#1a1a1a);border-radius:var(--radius,16px);padding:3rem 2.5rem;position:relative;overflow:hidden}" +
+      ".oye-gate-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent,#00f0a0),#f59e0b 60%,transparent 90%)}" +
+      ".oye-gate-title{font-family:var(--serif,'Playfair Display',Georgia,serif);font-size:1.75rem;font-weight:400;margin-bottom:.5rem;text-align:center}" +
+      ".oye-gate-sub{color:var(--text-muted,#706c66);font-size:.9rem;text-align:center;margin-bottom:2rem;font-weight:300}" +
+      ".oye-gate-teaser{list-style:none;padding:0;margin:0 0 1.5rem}" +
+      ".oye-gate-teaser li{font-size:.85rem;color:var(--text-mid,#b5b0a8);line-height:1.75;font-weight:300;padding-left:1.2rem;position:relative}" +
+      ".oye-gate-teaser li::before{content:'\u2192';color:var(--accent,#00f0a0);position:absolute;left:0;font-weight:600}" +
+      ".oye-gate .form-group{margin-bottom:1.2rem}" +
+      ".oye-gate .form-group label{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted,#706c66);margin-bottom:.4rem;font-weight:500}" +
+      ".oye-gate .form-group input,.oye-gate .form-group select{width:100%;padding:.85rem 1rem;background:var(--bg,#050505);border:1px solid var(--border,#1a1a1a);border-radius:10px;color:var(--text,#eeeae4);font-family:var(--sans,'Outfit',system-ui,sans-serif);font-size:.9rem;outline:none;transition:border-color .35s,box-shadow .35s}" +
+      ".oye-gate .form-group input:focus,.oye-gate .form-group select:focus{border-color:var(--accent,#00f0a0);box-shadow:0 0 0 3px rgba(0,240,160,.1)}" +
+      ".oye-gate .form-group input::placeholder{color:#444}" +
+      ".oye-gate .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}" +
+      ".oye-gate .phone-row{display:flex;gap:.5rem}" +
+      ".oye-gate .phone-row select{width:110px;flex-shrink:0;font-size:.8rem;padding:.85rem .5rem;background:var(--bg,#050505);border:1px solid var(--border,#1a1a1a);border-radius:10px;color:var(--text,#eeeae4);cursor:pointer}" +
+      ".oye-gate .phone-row select option{background:var(--bg,#050505);color:var(--text,#eeeae4)}" +
+      ".oye-gate .phone-row input{flex:1}" +
+      ".oye-gate-btn{width:100%;padding:1rem;background:var(--accent,#00f0a0);color:var(--bg,#050505);border:none;border-radius:100px;font-family:var(--sans,'Outfit',system-ui,sans-serif);font-size:1rem;font-weight:600;cursor:pointer;transition:transform .2s,box-shadow .3s;margin-top:.5rem;position:relative;overflow:hidden}" +
+      ".oye-gate-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,240,160,.2)}" +
+      ".oye-gate-btn:disabled{opacity:.5;cursor:not-allowed}" +
+      ".oye-gate-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transform:translateX(-100%);transition:transform .6s}" +
+      ".oye-gate-btn:hover:not(:disabled)::after{transform:translateX(100%)}" +
+      ".oye-gate-note{text-align:center;color:var(--text-muted,#706c66);font-size:.75rem;margin-top:1rem;font-weight:300}" +
+      ".oye-gate-success{text-align:center;padding:2.5rem 1.5rem;display:none}" +
+      ".oye-gate-success .checkmark{width:56px;height:56px;border-radius:50%;background:rgba(0,240,160,.1);border:2px solid var(--accent,#00f0a0);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:1.5rem;color:var(--accent,#00f0a0)}" +
+      ".oye-gate-success h3{font-family:var(--serif,'Playfair Display',Georgia,serif);font-size:1.5rem;margin-bottom:.5rem}" +
+      ".oye-gate-success p{color:var(--text-muted,#706c66);font-weight:300;font-size:.9rem}" +
+      "@media(max-width:768px){.oye-gate-card{padding:2rem 1.5rem}.oye-gate .form-row{grid-template-columns:1fr}}";
+    document.head.appendChild(s);
+  }
+
+  /**
+   * OyeNinoForm.createGate — renders a complete form-gate and wires up validation + unlock.
+   *
+   * @param {string} selector  CSS selector for the container element (e.g. '#gate')
+   * @param {Object} opts
+   *   formName      {string}   Form name for backend + analytics
+   *   title         {string}   Gate card heading
+   *   subtitle      {string}   Gate card subheading
+   *   teasers       {string[]} Bullet points shown above the form (optional)
+   *   fields        {string[]} Base fields: 'name','email','phone' (default: ['name','email','phone'])
+   *   countryCode   {boolean}  Show country code dropdown for phone (default: false)
+   *   extraFields   {Array}    Additional fields: [{id,name,label,placeholder,type}]
+   *   layout        {string}   'stacked' (default) or 'grid' (two-column form-row)
+   *   storageKey    {string}   Key for remembering unlock state
+   *   storage       {string}   'sessionStorage' (default) or 'localStorage'
+   *   contentId     {string}   ID of the element to show after unlock
+   *   contentClass  {string}   Class to add to content element on unlock (default: 'unlocked')
+   *   btnText       {string}   Button text when ready (default: unlock emoji + text)
+   *   successIcon   {string}   Emoji for success checkmark (default: none, hides gate immediately)
+   *   successTitle  {string}   Success heading
+   *   successMsg    {string}   Success subtext
+   *   onUnlock      {function} Extra callback after unlock
+   *   source        {string}   Source identifier for analytics
+   */
+  OyeNinoForm.createGate = function (selector, opts) {
+    var container = document.querySelector(selector);
+    if (!container) return;
+
+    injectGateCSS();
+
+    opts = opts || {};
+    var formName = opts.formName || "prompt_gate";
+    var fields = opts.fields || ["name", "email", "phone"];
+    var extraFields = opts.extraFields || [];
+    var layout = opts.layout || "stacked";
+    var storageKey = opts.storageKey || formName + "_unlocked";
+    var storageType = opts.storage === "localStorage" ? localStorage : sessionStorage;
+    var contentId = opts.contentId || "prompt-content";
+    var contentClass = opts.contentClass || "unlocked";
+    var showCountryCode = opts.countryCode || false;
+    var successIcon = opts.successIcon || null;
+    var successTitle = opts.successTitle || "Unlocked!";
+    var successMsg = opts.successMsg || "Neeche scroll karo \u2014 sab tumhara hai.";
+    var btnReady = opts.btnText || "\uD83D\uDD13 Prompt Unlock Karo \u2014 Free";
+
+    // Unique IDs to avoid collisions
+    var uid = "og-" + formName.replace(/[^a-z0-9]/gi, "");
+    var ids = {
+      form: uid + "-form",
+      name: uid + "-name",
+      email: uid + "-email",
+      phone: uid + "-phone",
+      emailSt: uid + "-emailSt",
+      phoneSt: uid + "-phoneSt",
+      btn: uid + "-btn",
+      err: uid + "-err",
+      cc: uid + "-cc",
+      success: uid + "-success"
+    };
+
+    // Build form fields HTML
+    var fieldsHTML = "";
+
+    function fieldGroup(id, name, label, placeholder, type) {
+      type = type || "text";
+      var ac = name === "email" ? ' autocomplete="email"' : name === "phone" ? ' autocomplete="tel"' : name === "name" ? ' autocomplete="name"' : "";
+      var statusDiv = name === "email" ? '<div class="field-status" id="' + ids.emailSt + '"></div>' :
+                      name === "phone" ? '<div class="field-status" id="' + ids.phoneSt + '"></div>' : "";
+      var inputType = name === "email" ? "email" : name === "phone" ? "tel" : type;
+
+      // Phone with country code
+      if (name === "phone" && showCountryCode) {
+        var ccOpts = "";
+        COUNTRY_CODES.forEach(function (c) { ccOpts += '<option value="' + c.v + '">' + c.f + "</option>"; });
+        return '<div class="form-group"><label for="' + id + '">' + label + '</label>' +
+          '<div class="phone-row"><select id="' + ids.cc + '" name="country_code">' + ccOpts + '</select>' +
+          '<input type="tel" id="' + id + '" name="' + name + '" placeholder="' + placeholder + '" required' + ac + '/></div>' +
+          statusDiv + '</div>';
+      }
+
+      return '<div class="form-group"><label for="' + id + '">' + label + '</label>' +
+        '<input type="' + inputType + '" id="' + id + '" name="' + name + '" placeholder="' + placeholder + '" required' + ac + '/>' +
+        statusDiv + '</div>';
+    }
+
+    // Default field configs
+    var defaultFields = {
+      name: { label: "Tumhara Naam *", placeholder: "Rahul Sharma" },
+      email: { label: "Email Address *", placeholder: "rahul@gmail.com" },
+      phone: { label: "Phone Number *", placeholder: showCountryCode ? "98765 43210" : "+91 98765 43210" }
+    };
+
+    // Collect all fields in order
+    var allFields = [];
+    fields.forEach(function (f) {
+      var cfg = defaultFields[f];
+      if (cfg) allFields.push({ id: ids[f], name: f, label: cfg.label, placeholder: cfg.placeholder });
+    });
+    extraFields.forEach(function (ef) {
+      allFields.push({ id: uid + "-" + ef.id, name: ef.name || ef.id, label: ef.label, placeholder: ef.placeholder || "", type: ef.type || "text" });
+    });
+
+    if (layout === "grid") {
+      // Render in pairs using form-row
+      for (var i = 0; i < allFields.length; i += 2) {
+        var a = allFields[i];
+        var b = allFields[i + 1];
+        if (b) {
+          fieldsHTML += '<div class="form-row">' +
+            fieldGroup(a.id, a.name, a.label, a.placeholder, a.type) +
+            fieldGroup(b.id, b.name, b.label, b.placeholder, b.type) +
+            '</div>';
+        } else {
+          fieldsHTML += fieldGroup(a.id, a.name, a.label, a.placeholder, a.type);
+        }
+      }
+    } else {
+      allFields.forEach(function (f) {
+        fieldsHTML += fieldGroup(f.id, f.name, f.label, f.placeholder, f.type);
+      });
+    }
+
+    // Teasers
+    var teaserHTML = "";
+    if (opts.teasers && opts.teasers.length) {
+      teaserHTML = '<ul class="oye-gate-teaser">';
+      opts.teasers.forEach(function (t) { teaserHTML += "<li>" + t + "</li>"; });
+      teaserHTML += "</ul>";
+    }
+
+    // Success block
+    var successHTML = "";
+    if (successIcon) {
+      successHTML = '<div class="oye-gate-success" id="' + ids.success + '">' +
+        '<div class="checkmark">' + successIcon + '</div>' +
+        '<h3>' + successTitle + '</h3><p>' + successMsg + '</p></div>';
+    }
+
+    // Assemble gate HTML
+    container.className = (container.className ? container.className + " " : "") + "oye-gate-wrap oye-gate";
+    container.innerHTML =
+      '<div class="oye-gate-card">' +
+        '<div class="oye-gate-title">' + (opts.title || "Prompt unlock karo \u2014 free hai") + '</div>' +
+        '<div class="oye-gate-sub">' + (opts.subtitle || 'Apna naam aur email daalo, prompt turant milega. <strong>No spam, promise.</strong>') + '</div>' +
+        teaserHTML +
+        '<form id="' + ids.form + '" novalidate>' +
+          '<input type="hidden" name="_form_name" value="' + formName + '"/>' +
+          fieldsHTML +
+          '<div class="cf-turnstile" data-sitekey="0x4AAAAAACgSvRvZpT5d_Ab5" data-theme="dark" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired" style="margin-bottom:1rem;display:flex;justify-content:center"></div>' +
+          '<div class="error-msg" id="' + ids.err + '"></div>' +
+          '<button type="submit" class="oye-gate-btn" id="' + ids.btn + '" disabled>Sab fields fill karo</button>' +
+          '<p class="oye-gate-note">\uD83D\uDD12 Your info safe hai. Kabhi bhi unsubscribe kar sakte ho.</p>' +
+        '</form>' +
+        successHTML +
+      '</div>';
+
+    // Country code prepend on submit
+    if (showCountryCode) {
+      var form = document.getElementById(ids.form);
+      form.addEventListener("submit", function () {
+        var ccEl = document.getElementById(ids.cc);
+        var phEl = document.getElementById(ids.phone);
+        if (ccEl && phEl) {
+          var ph = phEl.value.trim();
+          if (ph && !ph.startsWith("+")) phEl.value = ccEl.value + ph.replace(/^0/, "");
+        }
+      });
+    }
+
+    // Unlock function
+    function doUnlock() {
+      storageType.setItem(storageKey, "true");
+      trackEvent(formName + "_unlocked");
+
+      container.style.transition = "opacity .4s ease, transform .4s ease";
+      container.style.opacity = "0";
+      container.style.transform = "translateY(-10px)";
+      setTimeout(function () {
+        container.style.display = "none";
+        var content = document.getElementById(contentId);
+        if (content) {
+          content.classList.add(contentClass);
+          content.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+        if (opts.onUnlock) opts.onUnlock();
+      }, 400);
+    }
+
+    // Check if already unlocked
+    if (storageType.getItem(storageKey) === "true") {
+      container.style.display = "none";
+      var content = document.getElementById(contentId);
+      if (content) content.classList.add(contentClass);
+      if (opts.onUnlock) opts.onUnlock();
+      return;
+    }
+
+    // Render Turnstile if script is loaded
+    if (typeof turnstile !== "undefined") {
+      turnstile.render(container.querySelector(".cf-turnstile"));
+    }
+
+    // Build requiredFields list
+    var reqFields = fields.slice();
+    extraFields.forEach(function (ef) { reqFields.push(ef.name || ef.id); });
+
+    // Init OyeNinoForm
+    try {
+      new OyeNinoForm({
+        formId: ids.form,
+        emailId: ids.email,
+        phoneId: fields.indexOf("phone") !== -1 ? ids.phone : null,
+        nameId: fields.indexOf("name") !== -1 ? ids.name : null,
+        btnId: ids.btn,
+        statusId: ids.emailSt,
+        phoneStatusId: fields.indexOf("phone") !== -1 ? ids.phoneSt : null,
+        errorId: ids.err,
+        formName: formName,
+        source: opts.source || window.location.pathname,
+        requiredFields: reqFields,
+        btnTexts: {
+          ready: btnReady,
+          turnstile: "Verify you're human first \u2191",
+          email: "Valid email daalo pehle",
+          phone: "Valid phone number daalo",
+          fields: "Sab fields fill karo",
+          submitting: "\u23F3 Submitting..."
+        },
+        onSuccess: function () {
+          if (successIcon) {
+            document.getElementById(ids.form).style.display = "none";
+            document.getElementById(ids.success).style.display = "block";
+            setTimeout(doUnlock, 1500);
+          } else {
+            doUnlock();
+          }
+        }
+      });
+    } catch (err) {
+      // Fallback: just unlock on submit
+      console.warn("OyeNinoForm.createGate fallback:", err);
+      var btn = document.getElementById(ids.btn);
+      btn.disabled = false;
+      btn.innerHTML = btnReady;
+      document.getElementById(ids.form).addEventListener("submit", function (e) {
+        e.preventDefault();
+        doUnlock();
+      });
+    }
+  };
+
+  // ===========================
   // EXPORTS
   // ===========================
 

@@ -57,36 +57,6 @@ nav{padding:1rem 2rem;display:flex;justify-content:space-between;align-items:cen
 .feature h3{font-size:.95rem;font-weight:600;margin-bottom:.4rem}
 .feature p{font-size:.8rem;color:var(--text-muted);line-height:1.5;font-weight:300}
 
-/* GATE */
-.gate-section{max-width:600px;margin:0 auto;padding:0 2rem 4rem}
-.gate-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:3rem 2.5rem;position:relative;overflow:hidden}
-.gate-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-warm) 60%,transparent 90%)}
-.gate-card h2{font-family:var(--serif);font-size:1.75rem;font-weight:400;margin-bottom:.5rem;text-align:center}
-.gate-card .gate-sub{color:var(--text-muted);font-size:.9rem;text-align:center;margin-bottom:2rem;font-weight:300}
-
-.form-group{margin-bottom:1.2rem}
-.form-group label{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-bottom:.4rem;font-weight:500}
-.form-group input,.form-group select{width:100%;padding:.85rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--sans);font-size:.9rem;outline:none;transition:border-color var(--transition),box-shadow var(--transition)}
-.form-group input:focus,.form-group select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
-.form-group input::placeholder{color:#444}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.phone-row{display:flex;gap:.5rem}
-.phone-row select{width:110px;flex-shrink:0;font-size:.8rem;padding:.85rem .5rem;background:var(--bg);border:1px solid var(--border);border-radius:10px;color:var(--text);cursor:pointer}
-.phone-row select option{background:var(--bg);color:var(--text)}
-.phone-row input{flex:1}
-
-.gate-btn{width:100%;padding:1rem;background:var(--accent);color:var(--bg);border:none;border-radius:100px;font-family:var(--sans);font-size:1rem;font-weight:600;cursor:pointer;transition:transform .2s,box-shadow .3s;margin-top:.5rem;position:relative;overflow:hidden}
-.gate-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 32px var(--accent-glow-strong)}
-.gate-btn:disabled{opacity:.5;cursor:not-allowed}
-.gate-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transform:translateX(-100%);transition:transform .6s}
-.gate-btn:hover:not(:disabled)::after{transform:translateX(100%)}
-.gate-note{text-align:center;color:var(--text-muted);font-size:.75rem;margin-top:1rem;font-weight:300}
-.error-msg{color:#ff6b6b;font-size:.8rem;margin-bottom:.5rem;display:none}.error-msg.show{display:block}
-.form-success{text-align:center;padding:2.5rem 1.5rem;display:none}
-.form-success .checkmark{width:56px;height:56px;border-radius:50%;background:var(--accent-glow);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:1.5rem;color:var(--accent)}
-.form-success h3{font-family:var(--serif);font-size:1.5rem;margin-bottom:.5rem}
-.form-success p{color:var(--text-muted);font-weight:300;font-size:.9rem}
-
 /* PROMPT SECTION */
 .prompt-section{max-width:840px;margin:0 auto;padding:0 2rem 5rem;display:none}
 .prompt-section.visible{display:block;animation:fadeUp .6s ease}
@@ -151,7 +121,7 @@ footer p{color:var(--text-muted);font-size:.8rem;font-weight:300}
 footer a{color:var(--accent);text-decoration:none}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:768px){.features{grid-template-columns:1fr}.examples-grid{grid-template-columns:repeat(2,1fr)}.prompt-steps{flex-direction:column}.hero-stats{gap:1.5rem}.gate-card{padding:2rem 1.5rem}.form-row{grid-template-columns:1fr}}
+@media(max-width:768px){.features{grid-template-columns:1fr}.examples-grid{grid-template-columns:repeat(2,1fr)}.prompt-steps{flex-direction:column}.hero-stats{gap:1.5rem}}
 @media(max-width:480px){.examples-grid{grid-template-columns:1fr 1fr}.hero h1{font-size:2rem}}
 </style>
 </head>
@@ -201,42 +171,8 @@ footer a{color:var(--accent);text-decoration:none}
   <div class="feature"><div class="feature-icon">📱</div><h3>Works Everywhere</h3><p>Desktop, mobile, tablet. Responsive out of the box.</p></div>
 </div>
 
-<!-- GATE -->
-<div class="gate-section" id="gateSection">
-  <div class="gate-card">
-    <h2>Get the full prompt + code.</h2>
-    <p class="gate-sub">Enter your details — prompt turant unlock hoga. Free. No spam.</p>
-    <form id="gateForm" method="POST" novalidate>
-      <input type="hidden" name="_form_name" value="ai_agent_prompt"/>
-      <div class="form-row">
-        <div class="form-group"><label for="gate-name">Your Name *</label><input type="text" id="gate-name" name="name" placeholder="Himanshu" required/></div>
-        <div class="form-group"><label for="gate-email">Email *</label><input type="email" id="gate-email" name="email" placeholder="you@gmail.com" required/><div class="field-status" id="emailStatus"></div></div>
-      </div>
-      <div class="form-row">
-        <div class="form-group"><label for="gate-phone">Phone *</label>
-          <div class="phone-row">
-            <select id="countryCode" name="country_code">
-              <option value="+91">🇮🇳 +91</option><option value="+1">🇺🇸 +1</option><option value="+44">🇬🇧 +44</option>
-              <option value="+971">🇦🇪 +971</option><option value="+61">🇦🇺 +61</option><option value="+49">🇩🇪 +49</option>
-              <option value="+33">🇫🇷 +33</option><option value="+81">🇯🇵 +81</option><option value="+65">🇸🇬 +65</option>
-              <option value="+966">🇸🇦 +966</option><option value="+977">🇳🇵 +977</option><option value="+880">🇧🇩 +880</option>
-              <option value="+92">🇵🇰 +92</option><option value="+62">🇮🇩 +62</option><option value="+55">🇧🇷 +55</option>
-              <option value="+52">🇲🇽 +52</option><option value="+27">🇿🇦 +27</option><option value="+234">🇳🇬 +234</option>
-            </select>
-            <input type="tel" id="gate-phone" name="phone" placeholder="98765 43210" required/>
-          </div>
-          <div class="field-status" id="phoneStatus"></div>
-        </div>
-        <div class="form-group"><label for="gate-usecase">What agent will you build? *</label><input type="text" id="gate-usecase" name="usecase" placeholder="e.g. price comparison, health advisor..." required/></div>
-      </div>
-      <div class="cf-turnstile" data-sitekey="0x4AAAAAACgSvRvZpT5d_Ab5" data-theme="dark" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired" style="margin-bottom:1rem;display:flex;justify-content:center"></div>
-      <div class="error-msg" id="formError"></div>
-      <button type="submit" class="gate-btn" id="gateBtn" disabled>Fill required fields first</button>
-      <p class="gate-note">&#128274; No spam. Unsubscribe anytime.</p>
-    </form>
-    <div class="form-success" id="formSuccess"><div class="checkmark">🤖</div><h3>Unlocked!</h3><p>Neeche scroll karo — sab tumhara hai.</p></div>
-  </div>
-</div>
+<!-- GATE: Rendered by form-utils.js createGate -->
+<div id="gateSection"></div>
 
 <!-- PROMPT SECTION -->
 <div class="prompt-section" id="promptSection">
@@ -476,43 +412,27 @@ fetch("https://ipapi.co/json/").then(function(r){return r.json()}).then(function
   if(d&&d.country_code){var c=CC_MAP[d.country_code];if(c){var s=document.getElementById("countryCode");for(var i=0;i<s.options.length;i++){if(s.options[i].value===c){s.selectedIndex=i;break;}}}}
 }).catch(function(){});
 
-function showPrompt(){
-  document.getElementById("gateSection").style.display="none";
-  document.getElementById("promptSection").classList.add("visible");
-  document.getElementById("bottomCta").classList.add("visible");
-  localStorage.setItem("ai_agent_prompt_unlocked","yes");
-  setTimeout(function(){document.getElementById("promptSection").scrollIntoView({behavior:"smooth",block:"start"});},300);
-}
-
-if(localStorage.getItem("ai_agent_prompt_unlocked")==="yes"){showPrompt();}
-
-var gateForm=document.getElementById("gateForm");
-gateForm.addEventListener("submit",function(){
-  var cc=document.getElementById("countryCode").value;
-  var ph=document.getElementById("gate-phone").value.trim();
-  if(ph&&!ph.startsWith("+")){document.getElementById("gate-phone").value=cc+ph.replace(/^0/,"");}
-});
-
-try{
-  if(typeof OyeNinoForm!=="undefined"){
-    new OyeNinoForm({
-      formId:"gateForm",emailId:"gate-email",phoneId:"gate-phone",nameId:"gate-name",
-      btnId:"gateBtn",statusId:"emailStatus",phoneStatusId:"phoneStatus",errorId:"formError",
-      formName:"ai_agent_prompt",source:"ai-agent-prompt-page",
-      requiredFields:["name","email","phone","usecase"],
-      btnTexts:{ready:"🤖 Unlock Prompt + Code →",turnstile:"Verify you're human first ↑",email:"Valid email daalo pehle",phone:"Valid phone number daalo",fields:"Fill required fields first",submitting:"🤖 Unlocking..."},
-      onSuccess:function(){document.getElementById("gateForm").style.display="none";document.getElementById("formSuccess").style.display="block";setTimeout(showPrompt,1500);}
-    });
-  }else{
-    var b=document.getElementById("gateBtn");b.disabled=false;b.innerHTML="🤖 Unlock Prompt + Code →";
-    window.onTurnstileSuccess=function(){};window.onTurnstileExpired=function(){};
-    gateForm.addEventListener("submit",function(e){e.preventDefault();showPrompt();});
+OyeNinoForm.createGate("#gateSection", {
+  formName: "ai_agent_prompt",
+  source: "ai-agent-prompt-page",
+  title: "Get the full prompt + code.",
+  subtitle: "Enter your details \u2014 prompt turant unlock hoga. Free. No spam.",
+  fields: ["name", "email", "phone"],
+  countryCode: true,
+  layout: "grid",
+  extraFields: [{id:"usecase", name:"usecase", label:"What agent will you build? *", placeholder:"e.g. price comparison, health advisor..."}],
+  storageKey: "ai_agent_prompt_unlocked",
+  storage: "localStorage",
+  contentId: "promptSection",
+  contentClass: "visible",
+  btnText: "\uD83E\uDD16 Unlock Prompt + Code \u2192",
+  successIcon: "\uD83E\uDD16",
+  successTitle: "Unlocked!",
+  successMsg: "Neeche scroll karo \u2014 sab tumhara hai.",
+  onUnlock: function() {
+    document.getElementById("bottomCta").classList.add("visible");
   }
-}catch(err){
-  console.warn("form-utils fallback:",err);
-  var b=document.getElementById("gateBtn");b.disabled=false;b.innerHTML="🤖 Unlock Prompt + Code →";
-  gateForm.addEventListener("submit",function(e){e.preventDefault();showPrompt();});
-}
+});
 </script>
 </body>
 </html>
