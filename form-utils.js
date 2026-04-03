@@ -440,7 +440,7 @@
     });
   };
 
-  // ---- FORM SUBMIT ----
+  // ---- FORM SUBMIT (FIXED: proper error handling for backend 422/403) ----
   OyeNinoForm.prototype._initSubmit = function () {
     var self = this;
 
@@ -485,10 +485,66 @@
         headers: { "Content-Type": "application/json", "Accept": "application/json" },
         body: JSON.stringify(payload)
       })
-        .then(function () { trackEvent(self.cfg.formName + "_success", { visitor_name: payload.name || "" }); })
-        .catch(function () { trackEvent(self.cfg.formName + "_error"); })
+        .then(function (res) {
+          // Parse JSON body regardless of status code
+          return res.json().then(function (body) {
+            return { ok: res.ok, status: res.status, body: body };
+          }).catch(function () {
+            // If JSON parsing fails, treat as success if status was ok
+            return { ok: res.ok, status: res.status, body: null };
+          });
+        })
+        .then(function (result) {
+          if (result.ok) {
+            // ===== REAL SUCCESS =====
+            trackEvent(self.cfg.formName + "_success", { visitor_name: payload.name || "" });
+            if (self.cfg.onSuccess) self.cfg.onSuccess(payload);
+          } else {
+            // ===== SERVER REJECTED =====
+            var errMsg = "Something went wrong. Please try again.";
+            var errBody = result.body;
+
+            if (errBody && errBody.error) {
+              // Map backend errors to user-friendly Hindi-English messages
+              if (result.status === 422) {
+                // Email validation failed on server
+                errMsg = errBody.detail || "Yeh email valid nahi hai. Apna real email use karo.";
+                // Mark email as invalid so button stays disabled
+                self.emailValid = false;
+                self._stat(self.emailStatus, "⚠ " + errMsg, "email-error");
+                // Focus the email field so user knows what to fix
+                self.emailInput.focus();
+                trackEvent("email_server_rejected", {
+                  email_domain: payload.email ? payload.email.split("@")[1] : "",
+                  reason: errBody.detail || errBody.error
+                });
+              } else if (result.status === 403) {
+                errMsg = errBody.detail || "Bot verification failed. Page refresh karo aur try karo.";
+                // Reset turnstile state
+                self.turnstileVerified = false;
+                if (typeof turnstile !== "undefined") turnstile.reset();
+                trackEvent("turnstile_server_rejected", { reason: errBody.detail || errBody.error });
+              } else if (result.status === 429) {
+                errMsg = "Bohot zyada requests bhej di! Thoda wait karo aur try karo.";
+                trackEvent("rate_limited", { form: self.cfg.formName });
+              } else {
+                errMsg = errBody.detail || errBody.error || errMsg;
+              }
+            }
+
+            self._err(errMsg);
+            trackEvent(self.cfg.formName + "_error", { status: result.status, error: errMsg });
+          }
+        })
+        .catch(function (networkErr) {
+          // ===== NETWORK ERROR (no internet, DNS fail, etc.) =====
+          self._err("Network error. Internet connection check karo aur try karo.");
+          trackEvent(self.cfg.formName + "_network_error", { error: networkErr.message || "unknown" });
+        })
         .finally(function () {
-          if (self.cfg.onSuccess) self.cfg.onSuccess(payload);
+          // Always re-enable button so user can retry
+          self.btn.disabled = false;
+          self._updateBtn();
         });
     });
   };
