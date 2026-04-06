@@ -351,35 +351,32 @@
         .nav-center {
           display: none;
         }
-
         nav {
           padding: 0 1rem;
           height: 64px;
         }
-
         .nav-logo {
           font-size: 1.05rem;
           flex-shrink: 0;
         }
-
         .nav-right {
           gap: 0.65rem;
         }
-
         .nav-cta {
           padding: 0.72rem 1.1rem;
           font-size: 0.8rem;
           line-height: 1;
         }
-
         .mobile-toggle {
           display: flex;
           padding: 0.35rem;
         }
-
         .ham-line {
           width: 20px;
           height: 2px;
+        }
+        .form-row {
+          grid-template-columns: 1fr !important;
         }
       }
 
@@ -674,9 +671,11 @@
       .phone-row {
         display: flex;
         gap: 0.5rem;
+        width: 100%;
       }
       .phone-row select {
-        width: 100px;
+        width: 90px;
+        min-width: 90px;
         flex-shrink: 0;
         font-size: 0.78rem;
         padding: 0.8rem 0.4rem;
@@ -693,6 +692,7 @@
       .phone-row input {
         flex: 1;
         min-width: 0;
+        width: 0;
       }
       .gate-btn {
         width: 100%;
@@ -1164,37 +1164,30 @@
       }
 
       /* ===== RESPONSIVE ===== */
-
       @media (max-width: 768px) {
         body {
           overflow-x: hidden;
         }
-
         nav {
           padding: 0 0.9rem;
           height: 62px;
         }
-
         .nav-logo {
           font-size: 1rem;
         }
-
         .nav-cta {
           padding: 0.68rem 1rem;
           font-size: 0.78rem;
           border-radius: 999px;
         }
-
         .hero {
           padding: 2.4rem 1rem 1.75rem;
         }
-
         .hero-glow {
           width: 320px;
           height: 320px;
           filter: blur(70px);
         }
-
         .badge {
           font-size: 0.64rem;
           letter-spacing: 0.11em;
@@ -1203,48 +1196,39 @@
           justify-content: center;
           flex-wrap: wrap;
         }
-
         .hero h1 {
           font-size: clamp(1.9rem, 8vw, 2.5rem);
           line-height: 1.16;
           margin-bottom: 1rem;
         }
-
         .hero-sub {
           font-size: 0.95rem;
           line-height: 1.8;
           max-width: 100%;
           margin-bottom: 1.6rem;
         }
-
         .hero-stats {
           grid-template-columns: repeat(2, minmax(0, 1fr));
           max-width: 320px;
           gap: 1rem 0.75rem;
         }
-
         .stat-num {
           font-size: 1.55rem;
         }
-
         .stat-label {
           font-size: 0.68rem;
         }
-
         .checks {
           padding: 0 1rem 2.25rem;
         }
-
         .checks h3 {
           font-size: 0.72rem;
           margin-bottom: 1rem;
         }
-
         .checks-grid {
           grid-template-columns: 1fr 1fr;
           gap: 0.75rem;
         }
-
         .check-card {
           padding: 1rem 0.8rem;
           min-height: 165px;
@@ -1252,44 +1236,50 @@
           flex-direction: column;
           justify-content: center;
         }
-
         .check-card .c-title {
           font-size: 0.84rem;
           line-height: 1.3;
         }
-
         .check-card .c-desc {
           font-size: 0.72rem;
           line-height: 1.45;
         }
-
         .features {
           grid-template-columns: 1fr;
           padding: 0 1rem 2.75rem;
         }
-
         .feature {
           padding: 1.35rem 1rem;
         }
-
         .gate-section,
         .prompt-section,
         .bottom-cta {
           padding-left: 1rem;
           padding-right: 1rem;
         }
-
-        .gate-card,
+        .gate-card {
+          padding: 2rem 1.25rem;
+        }
+        .gate-card h2 {
+          font-size: 1.4rem;
+        }
         .cta-inner,
         .info-card {
           border-radius: 16px;
         }
-
         .prompt-body,
         .demo-order,
         .demo-result,
         .format-box {
           font-size: 0.7rem;
+        }
+        .phone-row select {
+          width: 88px;
+          min-width: 88px;
+        }
+        .cta-btns {
+          flex-direction: column;
+          align-items: center;
         }
       }
 
@@ -1297,54 +1287,46 @@
         nav {
           padding: 0 0.8rem;
         }
-
         .nav-right {
           gap: 0.5rem;
         }
-
         .nav-cta {
           padding: 0.62rem 0.9rem;
           font-size: 0.74rem;
         }
-
         .hero {
           padding-top: 2rem;
         }
-
         .hero h1 {
           font-size: 1.78rem;
         }
-
         .hero-sub {
           font-size: 0.9rem;
         }
-
         .hero-stats {
           max-width: 290px;
         }
-
         .stat-num {
           font-size: 1.45rem;
         }
-
         .checks-grid {
           grid-template-columns: 1fr;
         }
-
         .check-card {
           min-height: auto;
           padding: 1rem;
         }
-
         .mob-panel {
           width: 100%;
           max-width: 100%;
           right: -100%;
           padding: 1.5rem 1rem;
         }
-
         .mob-panel.open {
           right: 0;
+        }
+        .gate-card {
+          padding: 1.75rem 1rem;
         }
       }
 
@@ -1677,9 +1659,8 @@
                   <option value="+55">🇧🇷 +55</option>
                   <option value="+52">🇲🇽 +52</option>
                   <option value="+27">🇿🇦 +27</option>
-                  <option value="+234">🇳🇬 +234</option>
-                </select>
-                <input
+                  <option value="+234">🇳🇬 +234</option></select
+                ><input
                   type="tel"
                   id="gate-phone"
                   name="phone"
