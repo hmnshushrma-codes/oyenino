@@ -1,0 +1,2054 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-BGL94NLVL7"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-BGL94NLVL7");
+    </script>
+    <script
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+      async
+      defer
+    ></script>
+    <title>AI Fraud Detection Agent — Free Prompt | Oye Nino</title>
+    <meta
+      name="description"
+      content="Detect fake orders instantly with AI. Free fraud detection prompt for Indian e-commerce and small businesses. Zero cost. Zero coding. By Himanshu (@oye.nino)."
+    />
+    <meta
+      name="keywords"
+      content="AI fraud detection, fake order detection, e-commerce fraud, order verification, AI agent, free AI prompt, Indian business, oye nino, fraud prevention, suspicious order checker"
+    />
+    <meta
+      property="og:title"
+      content="AI Fraud Detection Agent — Free Prompt"
+    />
+    <meta
+      property="og:description"
+      content="Fake orders detect karo AI se. Free prompt, zero cost. Apne business ke liye fraud detection agent banao."
+    />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://oyenino.com/fraud-detection-prompt.html"
+    />
+    <link
+      rel="canonical"
+      href="https://oyenino.com/fraud-detection-prompt.html"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      :root {
+        --bg: #050505;
+        --bg-card: #111;
+        --bg-card-hover: #161616;
+        --text: #eeeae4;
+        --text-mid: #b5b0a8;
+        --text-muted: #706c66;
+        --accent: #ff4d4d;
+        --accent-dim: #d93636;
+        --accent-glow: rgba(255, 77, 77, 0.1);
+        --accent-glow-strong: rgba(255, 77, 77, 0.2);
+        --accent-safe: #00f0a0;
+        --accent-safe-glow: rgba(0, 240, 160, 0.1);
+        --accent-warm: #f59e0b;
+        --accent-warm-glow: rgba(245, 158, 11, 0.1);
+        --border: #1a1a1a;
+        --border-hover: #2a2a2a;
+        --serif: "Playfair Display", Georgia, serif;
+        --sans: "Outfit", system-ui, sans-serif;
+        --mono: "JetBrains Mono", monospace;
+        --radius: 16px;
+        --transition: 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: var(--sans);
+        background: var(--bg);
+        color: var(--text);
+        -webkit-font-smoothing: antialiased;
+        overflow-x: hidden;
+        min-height: 100vh;
+      }
+      ::selection {
+        background: var(--accent);
+        color: #fff;
+      }
+      body::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+        pointer-events: none;
+        z-index: 50;
+      }
+
+      /* ===== NAV ===== */
+      nav {
+        padding: 0 2rem;
+        height: 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        backdrop-filter: blur(20px);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(5, 5, 5, 0.85);
+      }
+      .nav-logo {
+        font-family: var(--sans);
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--text);
+        text-decoration: none;
+      }
+      .nav-logo span {
+        color: var(--accent);
+      }
+      .nav-center {
+        display: flex;
+        list-style: none;
+        gap: 0.25rem;
+        align-items: center;
+      }
+      .nav-center a,
+      .dd-trigger {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 400;
+        padding: 0.5rem 0.75rem;
+        border-radius: 8px;
+        transition:
+          color 0.2s,
+          background 0.2s;
+        cursor: pointer;
+      }
+      .nav-center a:hover,
+      .dd-trigger:hover {
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .nav-right {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+      .nav-cta {
+        background: var(--accent);
+        color: #fff;
+        padding: 0.5rem 1.25rem;
+        border-radius: 100px;
+        text-decoration: none;
+        font-size: 0.85rem;
+        font-weight: 600;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+        white-space: nowrap;
+      }
+      .nav-cta:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 16px var(--accent-glow-strong);
+      }
+      .nav-dropdown {
+        position: relative;
+      }
+      .dd-arrow {
+        font-size: 0.65rem;
+        transition: transform 0.2s;
+      }
+      .dd-menu {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 50%;
+        transform: translateX(-50%) translateY(8px);
+        background: #0d0d0d;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 0.5rem;
+        min-width: 260px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.25s;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+      }
+      .nav-dropdown:hover .dd-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+      }
+      .nav-dropdown:hover .dd-arrow {
+        transform: rotate(180deg);
+      }
+      .dd-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.6rem 0.75rem;
+        border-radius: 10px;
+        text-decoration: none;
+        color: var(--text-mid);
+        transition: all 0.2s;
+      }
+      .dd-item:hover {
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+      }
+      .dd-emoji {
+        font-size: 1.1rem;
+        width: 28px;
+        text-align: center;
+        flex-shrink: 0;
+      }
+      .dd-info {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+      }
+      .dd-name {
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: var(--text);
+      }
+      .dd-desc {
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        font-weight: 300;
+      }
+      .dd-divider {
+        height: 1px;
+        background: var(--border);
+        margin: 0.35rem 0.75rem;
+      }
+      .mobile-toggle {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0.5rem;
+        flex-direction: column;
+        gap: 5px;
+      }
+      .ham-line {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--text);
+        border-radius: 2px;
+        transition: all 0.3s;
+      }
+      .mob-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        z-index: 200;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+      }
+      .mob-overlay.open {
+        opacity: 1;
+        visibility: visible;
+      }
+      .mob-panel {
+        position: fixed;
+        top: 0;
+        right: -320px;
+        width: 300px;
+        max-width: 85vw;
+        height: 100vh;
+        background: #0a0a0a;
+        border-left: 1px solid var(--border);
+        z-index: 201;
+        padding: 2rem 1.5rem;
+        overflow-y: auto;
+        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+      .mob-panel.open {
+        right: 0;
+      }
+      .mp-section {
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+      }
+      .mp-label {
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--text-muted);
+        font-weight: 500;
+        padding: 0.5rem 0.75rem 0.25rem;
+      }
+      .mp-link {
+        color: var(--text-mid);
+        text-decoration: none;
+        font-size: 0.9rem;
+        padding: 0.6rem 0.75rem;
+        border-radius: 8px;
+        transition: all 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .mp-link:hover {
+        background: rgba(255, 255, 255, 0.04);
+        color: var(--text);
+      }
+      .mp-emoji {
+        font-size: 1rem;
+      }
+      .mp-divider {
+        height: 1px;
+        background: var(--border);
+        margin: 0.5rem 0;
+      }
+      .mp-cta {
+        display: block;
+        background: var(--accent);
+        color: #fff;
+        text-align: center;
+        padding: 0.85rem;
+        border-radius: 100px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        margin-top: auto;
+        transition: transform 0.2s;
+      }
+
+      @media (max-width: 900px) {
+        .nav-center {
+          display: none;
+        }
+
+        nav {
+          padding: 0 1rem;
+          height: 64px;
+        }
+
+        .nav-logo {
+          font-size: 1.05rem;
+          flex-shrink: 0;
+        }
+
+        .nav-right {
+          gap: 0.65rem;
+        }
+
+        .nav-cta {
+          padding: 0.72rem 1.1rem;
+          font-size: 0.8rem;
+          line-height: 1;
+        }
+
+        .mobile-toggle {
+          display: flex;
+          padding: 0.35rem;
+        }
+
+        .ham-line {
+          width: 20px;
+          height: 2px;
+        }
+      }
+
+      /* ===== HERO ===== */
+      .hero {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 4rem 1.5rem 2.5rem;
+        text-align: center;
+        position: relative;
+      }
+      .hero-glow {
+        position: absolute;
+        top: -20%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(
+          circle,
+          var(--accent-glow) 0%,
+          transparent 60%
+        );
+        border-radius: 50%;
+        pointer-events: none;
+        filter: blur(100px);
+        opacity: 0.3;
+        animation: breathe 8s ease-in-out infinite;
+      }
+      @keyframes breathe {
+        0%,
+        100% {
+          opacity: 0.2;
+          transform: translateX(-50%) scale(1);
+        }
+        50% {
+          opacity: 0.5;
+          transform: translateX(-50%) scale(1.1);
+        }
+      }
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.7rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 500;
+        margin-bottom: 1.25rem;
+        opacity: 0;
+        animation: fadeUp 0.6s ease forwards 0.3s;
+      }
+      .pulse {
+        width: 7px;
+        height: 7px;
+        background: var(--accent);
+        border-radius: 50%;
+        animation: pulseDot 2s ease-in-out infinite;
+      }
+      @keyframes pulseDot {
+        0%,
+        100% {
+          box-shadow: 0 0 0 0 var(--accent-glow-strong);
+        }
+        50% {
+          box-shadow: 0 0 0 8px transparent;
+        }
+      }
+      .hero h1 {
+        font-family: var(--serif);
+        font-size: clamp(2rem, 5vw, 3.8rem);
+        font-weight: 400;
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+        margin-bottom: 1.25rem;
+        opacity: 0;
+        animation: fadeUp 0.7s ease forwards 0.5s;
+      }
+      .hero h1 em {
+        font-style: italic;
+        color: var(--accent);
+      }
+      .hero-sub {
+        font-size: 1rem;
+        color: var(--text-mid);
+        line-height: 1.75;
+        font-weight: 300;
+        max-width: 520px;
+        margin: 0 auto 2rem;
+        opacity: 0;
+        animation: fadeUp 0.7s ease forwards 0.7s;
+      }
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1rem;
+        opacity: 0;
+        animation: fadeUp 0.6s ease forwards 0.9s;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      .stat {
+        text-align: center;
+      }
+      .stat-num {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--text);
+        white-space: nowrap;
+      }
+      .stat-num span {
+        color: var(--accent);
+      }
+      .stat-label {
+        font-size: 0.7rem;
+        color: var(--text-muted);
+        margin-top: 0.15rem;
+      }
+
+      /* ===== CHECKS ===== */
+      .checks {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 1.5rem 3rem;
+        opacity: 0;
+        animation: fadeUp 0.7s ease forwards 1s;
+      }
+      .checks h3 {
+        text-align: center;
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        font-weight: 500;
+        margin-bottom: 1.25rem;
+      }
+      .checks-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.75rem;
+      }
+      .check-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 1.25rem 1rem;
+        text-align: center;
+        transition: all 0.3s;
+      }
+      .check-card:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+      }
+      .check-card .c-icon {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .check-card .c-title {
+        font-weight: 600;
+        font-size: 0.85rem;
+        margin-bottom: 0.25rem;
+      }
+      .check-card .c-desc {
+        font-size: 0.72rem;
+        color: var(--text-muted);
+        line-height: 1.4;
+        font-weight: 300;
+      }
+
+      /* ===== FEATURES ===== */
+      .features {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 1.5rem 3.5rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        opacity: 0;
+        animation: fadeUp 0.7s ease forwards 1.1s;
+      }
+      .feature {
+        background: var(--bg-card);
+        padding: 1.75rem 1.25rem;
+        text-align: center;
+        transition: background 0.3s;
+      }
+      .feature:hover {
+        background: var(--bg-card-hover);
+      }
+      .feature-icon {
+        font-size: 1.5rem;
+        margin-bottom: 0.6rem;
+      }
+      .feature h3 {
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 0.35rem;
+      }
+      .feature p {
+        font-size: 0.78rem;
+        color: var(--text-muted);
+        line-height: 1.5;
+        font-weight: 300;
+      }
+
+      /* ===== GATE ===== */
+      .gate-section {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 0 1.5rem 4rem;
+      }
+      .gate-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 2.5rem 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .gate-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          var(--accent),
+          var(--accent-warm) 60%,
+          transparent 90%
+        );
+      }
+      .gate-card h2 {
+        font-family: var(--serif);
+        font-size: 1.6rem;
+        font-weight: 400;
+        margin-bottom: 0.5rem;
+        text-align: center;
+      }
+      .gate-card .gate-sub {
+        color: var(--text-muted);
+        font-size: 0.88rem;
+        text-align: center;
+        margin-bottom: 1.75rem;
+        font-weight: 300;
+      }
+      .form-group {
+        margin-bottom: 1.1rem;
+      }
+      .form-group label {
+        display: block;
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--text-muted);
+        margin-bottom: 0.4rem;
+        font-weight: 500;
+      }
+      .form-group input,
+      .form-group select {
+        width: 100%;
+        padding: 0.8rem 0.9rem;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        color: var(--text);
+        font-family: var(--sans);
+        font-size: 0.88rem;
+        outline: none;
+        transition:
+          border-color var(--transition),
+          box-shadow var(--transition);
+      }
+      .form-group input:focus,
+      .form-group select:focus {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 3px var(--accent-glow);
+      }
+      .form-group input::placeholder {
+        color: #444;
+      }
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .phone-row {
+        display: flex;
+        gap: 0.5rem;
+      }
+      .phone-row select {
+        width: 100px;
+        flex-shrink: 0;
+        font-size: 0.78rem;
+        padding: 0.8rem 0.4rem;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        color: var(--text);
+        cursor: pointer;
+      }
+      .phone-row select option {
+        background: var(--bg);
+        color: var(--text);
+      }
+      .phone-row input {
+        flex: 1;
+        min-width: 0;
+      }
+      .gate-btn {
+        width: 100%;
+        padding: 0.9rem;
+        background: var(--accent);
+        color: #fff;
+        border: none;
+        border-radius: 100px;
+        font-family: var(--sans);
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+          transform 0.2s,
+          box-shadow 0.3s;
+        margin-top: 0.5rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .gate-btn:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px var(--accent-glow-strong);
+      }
+      .gate-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      .gate-btn::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.15),
+          transparent
+        );
+        transform: translateX(-100%);
+        transition: transform 0.6s;
+      }
+      .gate-btn:hover:not(:disabled)::after {
+        transform: translateX(100%);
+      }
+      .gate-note {
+        text-align: center;
+        color: var(--text-muted);
+        font-size: 0.72rem;
+        margin-top: 0.75rem;
+        font-weight: 300;
+      }
+      .error-msg {
+        color: #ff6b6b;
+        font-size: 0.8rem;
+        margin-bottom: 0.5rem;
+        display: none;
+      }
+      .error-msg.show {
+        display: block;
+      }
+      .form-success {
+        text-align: center;
+        padding: 2rem 1.25rem;
+        display: none;
+      }
+      .form-success .checkmark {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: var(--accent-glow);
+        border: 2px solid var(--accent);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 1rem;
+        font-size: 1.4rem;
+        color: var(--accent);
+      }
+      .form-success h3 {
+        font-family: var(--serif);
+        font-size: 1.4rem;
+        margin-bottom: 0.4rem;
+      }
+      .form-success p {
+        color: var(--text-muted);
+        font-weight: 300;
+        font-size: 0.88rem;
+      }
+
+      /* ===== PROMPT SECTION ===== */
+      .prompt-section {
+        max-width: 840px;
+        margin: 0 auto;
+        padding: 0 1.5rem 4rem;
+        display: none;
+      }
+      .prompt-section.visible {
+        display: block;
+        animation: fadeUp 0.6s ease;
+      }
+      .prompt-header {
+        text-align: center;
+        margin-bottom: 2rem;
+      }
+      .prompt-header h2 {
+        font-family: var(--serif);
+        font-size: 1.8rem;
+        font-weight: 400;
+        margin-bottom: 0.5rem;
+      }
+      .prompt-header p {
+        color: var(--text-muted);
+        font-size: 0.88rem;
+        font-weight: 300;
+      }
+      .prompt-box {
+        background: #080808;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        overflow: hidden;
+        margin-bottom: 2rem;
+      }
+      .prompt-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 14px;
+        background: #0d0d0d;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      }
+      .prompt-bar-left {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      .prompt-dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+      .prompt-dot.r {
+        background: #ff5f57;
+      }
+      .prompt-dot.y {
+        background: #febc2e;
+      }
+      .prompt-dot.g {
+        background: #28c840;
+      }
+      .prompt-bar-title {
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        color: var(--text-muted);
+      }
+      .copy-btn {
+        background: rgba(255, 77, 77, 0.1);
+        border: 1px solid rgba(255, 77, 77, 0.3);
+        color: var(--accent);
+        font-family: var(--sans);
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 0.3rem 0.85rem;
+        border-radius: 100px;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .copy-btn:hover {
+        background: rgba(255, 77, 77, 0.2);
+      }
+      .copy-btn.copied {
+        background: var(--accent);
+        color: #fff;
+      }
+      .prompt-body {
+        padding: 1.25rem;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        line-height: 1.85;
+        color: var(--text-mid);
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        max-height: 550px;
+        overflow-y: auto;
+      }
+      .prompt-body::-webkit-scrollbar {
+        width: 4px;
+      }
+      .prompt-body::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .prompt-body::-webkit-scrollbar-thumb {
+        background: var(--border);
+        border-radius: 4px;
+      }
+      .section-label {
+        font-size: 0.68rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 600;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .info-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 1.5rem;
+        margin-bottom: 1.25rem;
+      }
+      .info-card h4 {
+        font-size: 0.95rem;
+        font-weight: 600;
+        margin-bottom: 0.65rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .info-card p,
+      .info-card li {
+        font-size: 0.82rem;
+        color: var(--text-muted);
+        line-height: 1.7;
+        font-weight: 300;
+      }
+      .info-card ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+      .info-card ul li::before {
+        content: "→";
+        color: var(--accent);
+        margin-right: 0.5rem;
+        font-weight: 600;
+      }
+      .info-card .highlight {
+        color: var(--accent);
+        font-weight: 500;
+      }
+
+      /* DEMO */
+      .demo-box {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        overflow: hidden;
+        margin-bottom: 1.25rem;
+      }
+      .demo-header {
+        padding: 0.85rem 1.25rem;
+        background: rgba(255, 77, 77, 0.03);
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .demo-header .demo-tag {
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--accent);
+        font-weight: 600;
+        background: var(--accent-glow);
+        padding: 0.2rem 0.5rem;
+        border-radius: 100px;
+      }
+      .demo-header .demo-tag.safe-tag {
+        color: var(--accent-safe);
+        background: var(--accent-safe-glow);
+      }
+      .demo-header span:last-child {
+        font-size: 0.82rem;
+        color: var(--text-mid);
+        font-weight: 300;
+      }
+      .demo-content {
+        padding: 1.25rem;
+      }
+      .demo-order {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 1rem;
+        margin-bottom: 0.85rem;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        line-height: 1.8;
+        color: var(--text-mid);
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+      .demo-result {
+        background: rgba(255, 77, 77, 0.03);
+        border: 1px solid rgba(255, 77, 77, 0.15);
+        border-radius: 10px;
+        padding: 1rem;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        line-height: 1.8;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+      .demo-result.safe-result {
+        background: rgba(0, 240, 160, 0.03);
+        border-color: rgba(0, 240, 160, 0.15);
+      }
+      .status-flag {
+        color: var(--accent);
+        font-weight: 600;
+        font-size: 0.85rem;
+      }
+      .status-safe {
+        color: var(--accent-safe);
+        font-weight: 600;
+        font-size: 0.85rem;
+      }
+      .format-box {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 1rem;
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        line-height: 1.8;
+        color: var(--text-mid);
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+      }
+
+      /* ===== CTA ===== */
+      .bottom-cta {
+        max-width: 840px;
+        margin: 0 auto;
+        padding: 0 1.5rem 4rem;
+        display: none;
+      }
+      .bottom-cta.visible {
+        display: block;
+        animation: fadeUp 0.6s ease;
+      }
+      .cta-inner {
+        background: linear-gradient(
+          135deg,
+          var(--bg-card) 0%,
+          rgba(255, 77, 77, 0.04) 100%
+        );
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-inner::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle at 30% 50%,
+          var(--accent-glow) 0%,
+          transparent 50%
+        );
+        pointer-events: none;
+        animation: rotateSlow 15s linear infinite;
+      }
+      @keyframes rotateSlow {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .cta-inner h3 {
+        font-family: var(--serif);
+        font-size: 1.4rem;
+        font-weight: 400;
+        margin-bottom: 0.5rem;
+        position: relative;
+      }
+      .cta-inner p {
+        color: var(--text-muted);
+        font-size: 0.88rem;
+        font-weight: 300;
+        margin-bottom: 1.25rem;
+        position: relative;
+      }
+      .cta-btns {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        position: relative;
+      }
+      .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: var(--accent);
+        color: #fff;
+        padding: 0.75rem 1.75rem;
+        border-radius: 100px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition:
+          transform 0.2s,
+          box-shadow 0.3s;
+      }
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 32px var(--accent-glow-strong);
+      }
+      .btn-ghost {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: transparent;
+        color: var(--text-mid);
+        padding: 0.75rem 1.75rem;
+        border-radius: 100px;
+        text-decoration: none;
+        font-weight: 400;
+        font-size: 0.9rem;
+        border: 1px solid var(--border);
+        transition: all 0.3s;
+      }
+      .btn-ghost:hover {
+        border-color: var(--border-hover);
+        color: var(--text);
+      }
+
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 1.5rem;
+        text-align: center;
+      }
+      footer p {
+        color: var(--text-muted);
+        font-size: 0.78rem;
+        font-weight: 300;
+      }
+      footer a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(25px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ===== RESPONSIVE ===== */
+
+      @media (max-width: 768px) {
+        body {
+          overflow-x: hidden;
+        }
+
+        nav {
+          padding: 0 0.9rem;
+          height: 62px;
+        }
+
+        .nav-logo {
+          font-size: 1rem;
+        }
+
+        .nav-cta {
+          padding: 0.68rem 1rem;
+          font-size: 0.78rem;
+          border-radius: 999px;
+        }
+
+        .hero {
+          padding: 2.4rem 1rem 1.75rem;
+        }
+
+        .hero-glow {
+          width: 320px;
+          height: 320px;
+          filter: blur(70px);
+        }
+
+        .badge {
+          font-size: 0.64rem;
+          letter-spacing: 0.11em;
+          margin-bottom: 1rem;
+          text-align: center;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+
+        .hero h1 {
+          font-size: clamp(1.9rem, 8vw, 2.5rem);
+          line-height: 1.16;
+          margin-bottom: 1rem;
+        }
+
+        .hero-sub {
+          font-size: 0.95rem;
+          line-height: 1.8;
+          max-width: 100%;
+          margin-bottom: 1.6rem;
+        }
+
+        .hero-stats {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          max-width: 320px;
+          gap: 1rem 0.75rem;
+        }
+
+        .stat-num {
+          font-size: 1.55rem;
+        }
+
+        .stat-label {
+          font-size: 0.68rem;
+        }
+
+        .checks {
+          padding: 0 1rem 2.25rem;
+        }
+
+        .checks h3 {
+          font-size: 0.72rem;
+          margin-bottom: 1rem;
+        }
+
+        .checks-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 0.75rem;
+        }
+
+        .check-card {
+          padding: 1rem 0.8rem;
+          min-height: 165px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        .check-card .c-title {
+          font-size: 0.84rem;
+          line-height: 1.3;
+        }
+
+        .check-card .c-desc {
+          font-size: 0.72rem;
+          line-height: 1.45;
+        }
+
+        .features {
+          grid-template-columns: 1fr;
+          padding: 0 1rem 2.75rem;
+        }
+
+        .feature {
+          padding: 1.35rem 1rem;
+        }
+
+        .gate-section,
+        .prompt-section,
+        .bottom-cta {
+          padding-left: 1rem;
+          padding-right: 1rem;
+        }
+
+        .gate-card,
+        .cta-inner,
+        .info-card {
+          border-radius: 16px;
+        }
+
+        .prompt-body,
+        .demo-order,
+        .demo-result,
+        .format-box {
+          font-size: 0.7rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        nav {
+          padding: 0 0.8rem;
+        }
+
+        .nav-right {
+          gap: 0.5rem;
+        }
+
+        .nav-cta {
+          padding: 0.62rem 0.9rem;
+          font-size: 0.74rem;
+        }
+
+        .hero {
+          padding-top: 2rem;
+        }
+
+        .hero h1 {
+          font-size: 1.78rem;
+        }
+
+        .hero-sub {
+          font-size: 0.9rem;
+        }
+
+        .hero-stats {
+          max-width: 290px;
+        }
+
+        .stat-num {
+          font-size: 1.45rem;
+        }
+
+        .checks-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .check-card {
+          min-height: auto;
+          padding: 1rem;
+        }
+
+        .mob-panel {
+          width: 100%;
+          max-width: 100%;
+          right: -100%;
+          padding: 1.5rem 1rem;
+        }
+
+        .mob-panel.open {
+          right: 0;
+        }
+      }
+
+      @media (max-width: 380px) {
+        .hero h1 {
+          font-size: 1.7rem;
+        }
+        .hero-stats {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 0.5rem;
+        }
+        .checks-grid {
+          grid-template-columns: 1fr 1fr;
+          gap: 0.5rem;
+        }
+        .gate-card {
+          padding: 1.5rem 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===== NAV ===== -->
+    <nav>
+      <a href="/" class="nav-logo">himanshu<span>.</span></a>
+      <ul class="nav-center">
+        <li><a href="/#services" data-ga="nav_services">Services</a></li>
+        <li><a href="/#process" data-ga="nav_process">Process</a></li>
+        <li><a href="/#stack" data-ga="nav_stack">Stack</a></li>
+        <li class="nav-dropdown" id="navDropdown">
+          <div class="dd-trigger" id="ddTrigger">
+            Free Resources <span class="dd-arrow">▾</span>
+          </div>
+          <div class="dd-menu">
+            <a href="/existence/" class="dd-item" data-ga="nav_existence"
+              ><span class="dd-emoji">🎨</span
+              ><span class="dd-info"
+                ><span class="dd-name">Existence Series</span
+                ><span class="dd-desc">Design demos — live</span></span
+              ></a
+            >
+            <a href="/prompts.html" class="dd-item" data-ga="nav_prompts"
+              ><span class="dd-emoji">🔓</span
+              ><span class="dd-info"
+                ><span class="dd-name">Free Prompts</span
+                ><span class="dd-desc"
+                  >Resume, portfolio, landing page</span
+                ></span
+              ></a
+            >
+            <a
+              href="/shopping-prompt.html"
+              class="dd-item"
+              data-ga="nav_shopping"
+              ><span class="dd-emoji">🛒</span
+              ><span class="dd-info"
+                ><span class="dd-name">Shopping Prompt</span
+                ><span class="dd-desc">Blinkit-style site in 10 min</span></span
+              ></a
+            >
+            <div class="dd-divider"></div>
+            <a href="/manage-prompt.html" class="dd-item" data-ga="nav_manage"
+              ><span class="dd-emoji">🔧</span
+              ><span class="dd-info"
+                ><span class="dd-name">Manage Products</span
+                ><span class="dd-desc">Add, edit, hide — bina code</span></span
+              ></a
+            >
+            <div class="dd-divider"></div>
+            <a
+              href="/insta-bot-prompt.html"
+              class="dd-item"
+              data-ga="nav_bot_prompt"
+              ><span class="dd-emoji">🤖</span
+              ><span class="dd-info"
+                ><span class="dd-name">Build Your Agent</span
+                ><span class="dd-desc"
+                  >AI Instagram Coach — Free Prompt</span
+                ></span
+              ></a
+            >
+            <div class="dd-divider"></div>
+            <a href="/ai-agent-prompt.html" class="dd-item" data-ga="nav_agent"
+              ><span class="dd-emoji">⚡</span
+              ><span class="dd-info"
+                ><span class="dd-name">Build AI Agent</span
+                ><span class="dd-desc">Full prompt + code — FREE</span></span
+              ></a
+            >
+            <div class="dd-divider"></div>
+            <a href="/freestore-prompt.html" class="dd-item"
+              ><span class="dd-emoji">🛍️</span
+              ><span class="dd-info"
+                ><span class="dd-name">Free Store Prompt</span
+                ><span class="dd-desc">Full shopping site — FREE</span></span
+              ></a
+            >
+            <div class="dd-divider"></div>
+            <a
+              href="/fraud-detection-prompt.html"
+              class="dd-item"
+              style="background: rgba(255, 77, 77, 0.05)"
+              ><span class="dd-emoji">🚨</span
+              ><span class="dd-info"
+                ><span class="dd-name">Fraud Detection</span
+                ><span class="dd-desc">Catch fake orders with AI</span></span
+              ></a
+            >
+          </div>
+        </li>
+      </ul>
+      <div class="nav-right">
+        <a href="/#contact" class="nav-cta" data-ga="nav_cta">Let's Talk</a>
+        <button class="mobile-toggle" id="mobToggle" aria-label="Menu">
+          <span class="ham-line"></span><span class="ham-line"></span
+          ><span class="ham-line"></span>
+        </button>
+      </div>
+    </nav>
+    <div class="mob-overlay" id="mobOverlay"></div>
+    <div class="mob-panel" id="mobPanel">
+      <div class="mp-section">
+        <div class="mp-label">Navigate</div>
+        <a href="/#services" class="mp-link mob-close">Services</a>
+        <a href="/#process" class="mp-link mob-close">Process</a>
+        <a href="/#stack" class="mp-link mob-close">Stack</a>
+        <a href="/#contact" class="mp-link mob-close">Contact</a>
+      </div>
+      <div class="mp-divider"></div>
+      <div class="mp-section">
+        <div class="mp-label">Free Resources</div>
+        <a href="/existence/" class="mp-link"
+          ><span class="mp-emoji">🎨</span> Existence Series</a
+        >
+        <a href="/prompts.html" class="mp-link"
+          ><span class="mp-emoji">🔓</span> Free Prompts</a
+        >
+        <a href="/shopping-prompt.html" class="mp-link"
+          ><span class="mp-emoji">🛒</span> Shopping Prompt</a
+        >
+        <a href="/manage-prompt.html" class="mp-link"
+          ><span class="mp-emoji">🔧</span> Manage Products</a
+        >
+        <a href="/ai-agent-prompt.html" class="mp-link"
+          ><span class="mp-emoji">⚡</span> Build AI Agent</a
+        >
+        <a href="/freestore-prompt.html" class="mp-link"
+          ><span class="mp-emoji">🛍️</span> Free Store Prompt</a
+        >
+        <a
+          href="/fraud-detection-prompt.html"
+          class="mp-link"
+          style="color: var(--accent)"
+          ><span class="mp-emoji">🚨</span> Fraud Detection</a
+        >
+      </div>
+      <a href="/#contact" class="mp-cta mob-close">Let's Talk →</a>
+    </div>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <div class="hero-glow"></div>
+      <div class="badge">
+        <span class="pulse"></span> Free AI Fraud Detection Prompt
+      </div>
+      <h1>Catch <em>fake orders</em><br />before they cost you.</h1>
+      <p class="hero-sub">
+        Har order ko AI se scan karo. Fake email, suspicious quantity, wrong
+        pincode — sab pakdo ek prompt se. Free. Instant. Made for Indian
+        businesses.
+      </p>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">6<span> checks</span></div>
+          <div class="stat-label">Per Order</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">0<span>&#8377;</span></div>
+          <div class="stat-label">Total Cost</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">2<span>sec</span></div>
+          <div class="stat-label">Detection Time</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">&#8734;</div>
+          <div class="stat-label">Orders Scanned</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CHECKS ===== -->
+    <div class="checks">
+      <h3>Ye prompt kya kya check karta hai?</h3>
+      <div class="checks-grid">
+        <div class="check-card">
+          <div class="c-icon">📦</div>
+          <div class="c-title">Quantity Check</div>
+          <div class="c-desc">
+            Bulk orders, duplicate items, suspicious quantities flagged
+          </div>
+        </div>
+        <div class="check-card">
+          <div class="c-icon">📧</div>
+          <div class="c-title">Email Verify</div>
+          <div class="c-desc">
+            Random emails, misspelled domains, fake patterns detected
+          </div>
+        </div>
+        <div class="check-card">
+          <div class="c-icon">📱</div>
+          <div class="c-title">Contact Details</div>
+          <div class="c-desc">
+            Invalid phone, fake names, test entries caught
+          </div>
+        </div>
+        <div class="check-card">
+          <div class="c-icon">💰</div>
+          <div class="c-title">Order Value</div>
+          <div class="c-desc">
+            High-value first orders, bulk premium items flagged
+          </div>
+        </div>
+        <div class="check-card">
+          <div class="c-icon">📍</div>
+          <div class="c-title">Address Verify</div>
+          <div class="c-desc">
+            Incomplete addresses, pincode-city mismatch detected
+          </div>
+        </div>
+        <div class="check-card">
+          <div class="c-icon">🔍</div>
+          <div class="c-title">Pattern Detection</div>
+          <div class="c-desc">
+            Repeat orders, unusual hours, suspicious delivery notes
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== FEATURES ===== -->
+    <div class="features">
+      <div class="feature">
+        <div class="feature-icon">🚨</div>
+        <h3>Instant Verdict</h3>
+        <p>SAFE ya FLAGGED — 2 second mein pata.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🇮🇳</div>
+        <h3>Made for India</h3>
+        <p>Indian pricing, pincodes, phone formats. Apne market ke liye.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">🤖</div>
+        <h3>Works with Any AI</h3>
+        <p>ChatGPT, Claude, Gemini — kahi bhi paste karo.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">📊</div>
+        <h3>Risk Levels</h3>
+        <p>Low, Medium, High — har order ka risk score.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">💬</div>
+        <h3>Clear Reasons</h3>
+        <p>Kyun flag hua — specific explanation har baar.</p>
+      </div>
+      <div class="feature">
+        <div class="feature-icon">✅</div>
+        <h3>Action Steps</h3>
+        <p>Approve, verify, ya reject — clear recommendation.</p>
+      </div>
+    </div>
+
+    <!-- ===== GATE ===== -->
+    <div class="gate-section" id="gateSection">
+      <div class="gate-card">
+        <h2>Get the fraud detection prompt.</h2>
+        <p class="gate-sub">
+          Details daalo — prompt turant unlock hoga. Free. No spam.
+        </p>
+        <form id="gateForm" method="POST" novalidate>
+          <input
+            type="hidden"
+            name="_form_name"
+            value="fraud_detection_prompt"
+          />
+          <div class="form-row">
+            <div class="form-group">
+              <label for="gate-name">Your Name *</label
+              ><input
+                type="text"
+                id="gate-name"
+                name="name"
+                placeholder="Himanshu"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="gate-email">Email *</label
+              ><input
+                type="email"
+                id="gate-email"
+                name="email"
+                placeholder="you@gmail.com"
+                required
+              />
+              <div class="field-status" id="emailStatus"></div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="gate-phone">Phone *</label>
+              <div class="phone-row">
+                <select id="countryCode" name="country_code">
+                  <option value="+91">🇮🇳 +91</option>
+                  <option value="+1">🇺🇸 +1</option>
+                  <option value="+44">🇬🇧 +44</option>
+                  <option value="+971">🇦🇪 +971</option>
+                  <option value="+61">🇦🇺 +61</option>
+                  <option value="+49">🇩🇪 +49</option>
+                  <option value="+33">🇫🇷 +33</option>
+                  <option value="+81">🇯🇵 +81</option>
+                  <option value="+65">🇸🇬 +65</option>
+                  <option value="+966">🇸🇦 +966</option>
+                  <option value="+977">🇳🇵 +977</option>
+                  <option value="+880">🇧🇩 +880</option>
+                  <option value="+92">🇵🇰 +92</option>
+                  <option value="+62">🇮🇩 +62</option>
+                  <option value="+55">🇧🇷 +55</option>
+                  <option value="+52">🇲🇽 +52</option>
+                  <option value="+27">🇿🇦 +27</option>
+                  <option value="+234">🇳🇬 +234</option>
+                </select>
+                <input
+                  type="tel"
+                  id="gate-phone"
+                  name="phone"
+                  placeholder="98765 43210"
+                  required
+                />
+              </div>
+              <div class="field-status" id="phoneStatus"></div>
+            </div>
+            <div class="form-group">
+              <label for="gate-business">Your Business Type *</label
+              ><input
+                type="text"
+                id="gate-business"
+                name="business_type"
+                placeholder="e.g. clothing store, electronics..."
+                required
+              />
+            </div>
+          </div>
+          <div
+            class="cf-turnstile"
+            data-sitekey="0x4AAAAAACgSvRvZpT5d_Ab5"
+            data-theme="dark"
+            data-callback="onTurnstileSuccess"
+            data-expired-callback="onTurnstileExpired"
+            style="margin-bottom: 1rem; display: flex; justify-content: center"
+          ></div>
+          <div class="error-msg" id="formError"></div>
+          <button type="submit" class="gate-btn" id="gateBtn" disabled>
+            Fill required fields first
+          </button>
+          <p class="gate-note">&#128274; No spam. Unsubscribe anytime.</p>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <div class="checkmark">🛡️</div>
+          <h3>Unlocked!</h3>
+          <p>Neeche scroll karo — prompt tumhara hai.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PROMPT SECTION ===== -->
+    <div class="prompt-section" id="promptSection">
+      <div class="prompt-header">
+        <h2>Your Fraud Detection Prompt 🛡️</h2>
+        <p>
+          Copy karo, ChatGPT / Claude / Gemini mein paste karo, orders check
+          karo.
+        </p>
+      </div>
+
+      <div class="section-label">🚨 The Fraud Detection Prompt</div>
+      <div class="prompt-box">
+        <div class="prompt-bar">
+          <div class="prompt-bar-left">
+            <div class="prompt-dot r"></div>
+            <div class="prompt-dot y"></div>
+            <div class="prompt-dot g"></div>
+            <span class="prompt-bar-title">fraud-detection-prompt.txt</span>
+          </div>
+          <button class="copy-btn" onclick="oyeCopyPrompt('prompt1', this)">
+            Copy
+          </button>
+        </div>
+        <div class="prompt-body" id="prompt1">
+          You are an AI-powered fraud detection agent for Indian e-commerce and
+          small businesses. Your job is to analyze incoming orders and determine
+          whether they are legitimate or suspicious. When I give you an order,
+          analyze it across these parameters: 1. QUANTITY CHECK * Flag if any
+          single item quantity exceeds 10 units * Flag if total items in one
+          order exceeds 20 * Flag if the same item appears multiple times in one
+          order 2. EMAIL VERIFICATION * Flag if email looks randomly generated
+          (e.g. xhd73kq@gmail.com) * Flag if email domain is unusual or
+          misspelled (e.g. gmial.com, yaho.com) * Flag if email has excessive
+          numbers or special characters 3. CONTACT DETAILS * Flag if phone
+          number is less than 10 digits * Flag if phone number starts with 0 or
+          1 * Flag if name contains only 1 word with no last name * Flag if name
+          looks like a test entry (e.g. "test", "asdf", "abc") 4. ORDER VALUE *
+          Flag if order total exceeds ₹10,000 for a first-time customer * Flag
+          if high-value items are ordered in bulk together 5. DELIVERY ADDRESS
+          (if provided) * Flag if address is too short or incomplete * Flag if
+          pincode doesn't match the city mentioned 6. PATTERN DETECTION * Flag
+          if multiple orders from same email/phone in short time * Flag if order
+          is placed at unusual hours (2am–5am) * Flag if delivery notes contain
+          suspicious instructions RESPONSE FORMAT — always respond in exactly
+          this format: STATUS: ✅ SAFE or 🚨 FLAGGED RISK LEVEL: Low / Medium /
+          High REASON: [Clear explanation of why this order is safe or
+          suspicious. Be specific — mention which field triggered the flag.]
+          RECOMMENDATION: [What the store owner should do — approve, call the
+          customer to verify, or reject.] IMPORTANT RULES: * Always be decisive.
+          Never say "maybe" or "could be". * If even one parameter is
+          suspicious, flag the order. * Keep your response under 6 lines. *
+          Speak like you are advising a small Indian business owner. * If order
+          is safe, still mention 1 thing to watch out for. Ready. Send me the
+          first order details.
+        </div>
+      </div>
+
+      <!-- HOW TO USE -->
+      <div class="info-card">
+        <h4>📝 Kaise use kare?</h4>
+        <ul>
+          <li>
+            <span class="highlight">Step 1:</span> Upar ka prompt copy karo
+          </li>
+          <li>
+            <span class="highlight">Step 2:</span> ChatGPT / Claude / Gemini
+            mein paste karo
+          </li>
+          <li>
+            <span class="highlight">Step 3:</span> Apne order ki details bhejo —
+            name, email, phone, items, address
+          </li>
+          <li>
+            <span class="highlight">Step 4:</span> AI batayega — SAFE hai ya
+            FLAGGED. Kya karna chahiye.
+          </li>
+          <li>
+            <span class="highlight">Tip:</span> Har naya order ek naye message
+            mein bhejo — AI track karega patterns
+          </li>
+        </ul>
+      </div>
+
+      <!-- DEMO EXAMPLES -->
+      <div class="section-label" style="margin-top: 2rem">
+        🧪 Demo — Aise dikhega result
+      </div>
+
+      <div class="demo-box">
+        <div class="demo-header">
+          <span class="demo-tag">Example 1</span><span>Suspicious Order</span>
+        </div>
+        <div class="demo-content">
+          <div class="demo-order">
+            Order #1042 Name: Raj Email: xk83mz@gmial.com Phone: 8234567 Items:
+            iPhone 15 Pro Max × 8, AirPods Pro × 12 Total: ₹9,84,000 Address:
+            "Delhi" Time: 3:17 AM
+          </div>
+          <div class="demo-result">
+            <span class="status-flag">STATUS: 🚨 FLAGGED</span> RISK LEVEL: High
+            REASON: Multiple red flags — email is randomly generated with
+            misspelled domain (gmial.com), phone is only 7 digits, single name
+            with no last name, bulk high-value electronics (₹9.8L), incomplete
+            address (just "Delhi"), and ordered at 3:17 AM. RECOMMENDATION:
+            Reject this order immediately. This has every sign of a fraud
+            attempt. Do not ship.
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-box">
+        <div class="demo-header">
+          <span class="demo-tag safe-tag">Example 2</span
+          ><span>Legitimate Order</span>
+        </div>
+        <div class="demo-content">
+          <div class="demo-order">
+            Order #1043 Name: Priya Sharma Email: priya.sharma92@gmail.com
+            Phone: 9876543210 Items: Kurta Set × 2, Dupatta × 1 Total: ₹2,450
+            Address: "B-42, Sector 15, Noida, UP — 201301" Time: 11:30 AM
+          </div>
+          <div class="demo-result safe-result">
+            <span class="status-safe">STATUS: ✅ SAFE</span> RISK LEVEL: Low
+            REASON: All checks pass — genuine email pattern, valid 10-digit
+            phone, full name, reasonable quantity and value, complete address
+            with matching pincode (201301 = Noida), normal business hours.
+            RECOMMENDATION: Approve this order. One thing to watch — if this is
+            a first-time customer, consider sending an order confirmation SMS to
+            the phone number.
+          </div>
+        </div>
+      </div>
+
+      <!-- ORDER FORMAT -->
+      <div class="info-card" style="margin-top: 1.5rem">
+        <h4>📋 Order kaise bhejein AI ko?</h4>
+        <p style="margin-bottom: 0.75rem">
+          Ye format use karo — copy paste karo aur apni details daalo:
+        </p>
+        <div class="format-box">
+          Order #[NUMBER] Name: [Customer Name] Email: [Customer Email] Phone:
+          [Customer Phone] Items: [Item × Qty, Item × Qty] Total: ₹[Amount]
+          Address: "[Full Address with Pincode]" Time: [Order Time] First-time
+          customer: Yes/No
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== BOTTOM CTA ===== -->
+    <div class="bottom-cta" id="bottomCta">
+      <div class="cta-inner">
+        <h3>Aur free prompts chahiye?</h3>
+        <p>
+          AI agent builder, shopping website, portfolio — 9 aur prompts hain.
+        </p>
+        <div class="cta-btns">
+          <a href="/prompts.html" class="btn-primary"
+            >Get More Prompts &rarr;</a
+          >
+          <a href="/#contact" class="btn-ghost">Book a Free Call &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>
+        Built by <a href="/">himanshu</a> —
+        <a href="https://instagram.com/oye.nino" target="_blank">@oye.nino</a>
+      </p>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="/form-utils.js"></script>
+    <script>
+      /* Mobile nav */
+      (function () {
+        var tog = document.getElementById("mobToggle"),
+          pan = document.getElementById("mobPanel"),
+          ov = document.getElementById("mobOverlay");
+        function openM() {
+          pan.classList.add("open");
+          ov.classList.add("open");
+          document.body.style.overflow = "hidden";
+        }
+        function closeM() {
+          pan.classList.remove("open");
+          ov.classList.remove("open");
+          document.body.style.overflow = "";
+        }
+        tog.addEventListener("click", function () {
+          pan.classList.contains("open") ? closeM() : openM();
+        });
+        ov.addEventListener("click", closeM);
+        document.querySelectorAll(".mob-close").forEach(function (el) {
+          el.addEventListener("click", closeM);
+        });
+      })();
+
+      /* Country code auto-detect */
+      var CC_MAP = {
+        IN: "+91",
+        US: "+1",
+        GB: "+44",
+        AE: "+971",
+        AU: "+61",
+        DE: "+49",
+        FR: "+33",
+        JP: "+81",
+        SG: "+65",
+        SA: "+966",
+        NP: "+977",
+        BD: "+880",
+        PK: "+92",
+        ID: "+62",
+        BR: "+55",
+        MX: "+52",
+        ZA: "+27",
+        NG: "+234",
+      };
+      fetch("https://ipapi.co/json/")
+        .then(function (r) {
+          return r.json();
+        })
+        .then(function (d) {
+          if (d && d.country_code) {
+            var c = CC_MAP[d.country_code];
+            if (c) {
+              var s = document.getElementById("countryCode");
+              for (var i = 0; i < s.options.length; i++) {
+                if (s.options[i].value === c) {
+                  s.selectedIndex = i;
+                  break;
+                }
+              }
+            }
+          }
+        })
+        .catch(function () {});
+
+      /* Copy prompt */
+      function oyeCopyPrompt(id, btn) {
+        var t = document.getElementById(id).innerText;
+        navigator.clipboard.writeText(t).then(function () {
+          btn.classList.add("copied");
+          btn.textContent = "Copied!";
+          setTimeout(function () {
+            btn.classList.remove("copied");
+            btn.textContent = "Copy";
+          }, 2000);
+        });
+      }
+
+      /* Gate logic */
+      function showPrompt() {
+        document.getElementById("gateSection").style.display = "none";
+        document.getElementById("promptSection").classList.add("visible");
+        document.getElementById("bottomCta").classList.add("visible");
+        localStorage.setItem("fraud_detection_prompt_unlocked", "yes");
+        setTimeout(function () {
+          document
+            .getElementById("promptSection")
+            .scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 300);
+      }
+      if (localStorage.getItem("fraud_detection_prompt_unlocked") === "yes") {
+        showPrompt();
+      }
+
+      var gateForm = document.getElementById("gateForm");
+      gateForm.addEventListener("submit", function () {
+        var cc = document.getElementById("countryCode").value;
+        var ph = document.getElementById("gate-phone").value.trim();
+        if (ph && !ph.startsWith("+")) {
+          document.getElementById("gate-phone").value =
+            cc + ph.replace(/^0/, "");
+        }
+      });
+
+      try {
+        if (typeof OyeNinoForm !== "undefined") {
+          new OyeNinoForm({
+            formId: "gateForm",
+            emailId: "gate-email",
+            phoneId: "gate-phone",
+            nameId: "gate-name",
+            btnId: "gateBtn",
+            statusId: "emailStatus",
+            phoneStatusId: "phoneStatus",
+            errorId: "formError",
+            formName: "fraud_detection_prompt",
+            source: "fraud-detection-prompt-page",
+            requiredFields: ["name", "email", "phone", "business_type"],
+            btnTexts: {
+              ready: "🛡️ Unlock Fraud Detection Prompt →",
+              turnstile: "Verify you're human first ↑",
+              email: "Valid email daalo pehle",
+              phone: "Valid phone number daalo",
+              fields: "Fill required fields first",
+              submitting: "🛡️ Unlocking...",
+            },
+            onSuccess: function () {
+              document.getElementById("gateForm").style.display = "none";
+              document.getElementById("formSuccess").style.display = "block";
+              setTimeout(showPrompt, 1500);
+            },
+          });
+        } else {
+          var b = document.getElementById("gateBtn");
+          b.disabled = false;
+          b.innerHTML = "🛡️ Unlock Fraud Detection Prompt →";
+          window.onTurnstileSuccess = function () {};
+          window.onTurnstileExpired = function () {};
+          gateForm.addEventListener("submit", function (e) {
+            e.preventDefault();
+            showPrompt();
+          });
+        }
+      } catch (err) {
+        console.warn("form-utils fallback:", err);
+        var b = document.getElementById("gateBtn");
+        b.disabled = false;
+        b.innerHTML = "🛡️ Unlock Fraud Detection Prompt →";
+        gateForm.addEventListener("submit", function (e) {
+          e.preventDefault();
+          showPrompt();
+        });
+      }
+    </script>
+  </body>
+</html>
