@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BGL94NLVL7"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-BGL94NLVL7");
+    </script>
+
+    <!-- CLOUDFLARE TURNSTILE -->
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+    <title>Veyra — AI Lead Assistant for Indian Small Businesses | OyeNino</title>
+    <meta name="description" content="Veyra is an AI-powered lead recording assistant. Chat in Hinglish, auto-sync to Google Sheets, get follow-up reminders. Built for Indian small businesses." />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://oyenino.com/veyra/" />
+
+    <!-- OG -->
+    <meta property="og:title" content="Veyra — AI Lead Assistant" />
+    <meta property="og:description" content="Record leads by chatting with AI. Auto-sync to Google Sheets. Follow-up reminders on Calendar. Built for Indian small businesses." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://oyenino.com/veyra/" />
+    <meta property="og:image" content="https://oyenino.com/og-image.jpg" />
+
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+    <style>
+      *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+      :root {
+        --bg: #0A0A0F;
+        --bg-card: #12121A;
+        --bg-card-hover: #1A1A26;
+        --text: #E8E6F0;
+        --text-mid: #A8A4B8;
+        --text-muted: #6B6780;
+        --accent: #6C5CE7;
+        --accent-light: #A78BFA;
+        --accent-glow: rgba(108, 92, 231, 0.15);
+        --accent-glow-strong: rgba(108, 92, 231, 0.25);
+        --green: #00D68F;
+        --green-glow: rgba(0, 214, 143, 0.12);
+        --orange: #FFA94D;
+        --red: #FF6B6B;
+        --border: #1E1E2E;
+        --border-hover: #2E2E42;
+        --sans: "Outfit", system-ui, sans-serif;
+        --mono: "JetBrains Mono", monospace;
+      }
+      html { scroll-behavior: smooth; }
+      body { font-family: var(--sans); background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+      ::selection { background: var(--accent); color: #fff; }
+
+      /* Layout */
+      .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+      section { padding: 60px 0; }
+
+      /* Hero */
+      .hero { padding: 100px 0 60px; text-align: center; position: relative; overflow: hidden; }
+      .hero::before { content: ""; position: absolute; top: -50%; left: 50%; transform: translateX(-50%); width: 600px; height: 600px; background: radial-gradient(circle, var(--accent-glow-strong) 0%, transparent 70%); pointer-events: none; }
+      .hero-badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 20px; background: var(--accent-glow); border: 1px solid rgba(108, 92, 231, 0.2); font-size: 0.78rem; font-weight: 600; color: var(--accent-light); margin-bottom: 24px; }
+      .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 16px; letter-spacing: -1px; }
+      .hero h1 span { background: linear-gradient(135deg, var(--accent), var(--accent-light)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+      .hero p { font-size: 1.1rem; color: var(--text-mid); max-width: 520px; margin: 0 auto 32px; }
+
+      /* Features */
+      .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin: 40px 0; }
+      .feature-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 24px; transition: all 0.3s; }
+      .feature-card:hover { border-color: var(--border-hover); background: var(--bg-card-hover); transform: translateY(-2px); }
+      .feature-icon { font-size: 1.6rem; margin-bottom: 10px; }
+      .feature-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+      .feature-card p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
+
+      /* Verticals */
+      .verticals { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 24px 0; }
+      .vertical-tag { padding: 6px 14px; border-radius: 8px; background: var(--bg-card); border: 1px solid var(--border); font-size: 0.78rem; color: var(--text-mid); font-weight: 500; transition: all 0.2s; }
+      .vertical-tag:hover { border-color: var(--accent); color: var(--accent-light); }
+
+      /* Pricing */
+      .pricing { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 32px 0; }
+      @media (max-width: 560px) { .pricing { grid-template-columns: 1fr; } }
+      .plan { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; position: relative; }
+      .plan.pro { border-color: var(--accent); background: linear-gradient(180deg, rgba(108,92,231,0.08) 0%, var(--bg-card) 100%); }
+      .plan-badge { position: absolute; top: -10px; right: 16px; background: var(--accent); color: #fff; font-size: 0.65rem; font-weight: 700; padding: 3px 10px; border-radius: 6px; text-transform: uppercase; }
+      .plan h3 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+      .plan .price { font-size: 1.8rem; font-weight: 800; margin: 8px 0 16px; }
+      .plan .price span { font-size: 0.85rem; font-weight: 400; color: var(--text-muted); }
+      .plan ul { list-style: none; }
+      .plan ul li { font-size: 0.82rem; padding: 5px 0; color: var(--text-mid); display: flex; align-items: center; gap: 8px; }
+      .plan ul li .check { color: var(--green); font-weight: 700; }
+      .plan ul li .cross { color: var(--text-muted); opacity: 0.4; }
+
+      /* Gate form */
+      .gate-section { margin: 40px 0; }
+      .gate-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 32px 28px; }
+      .gate-box h2 { font-size: 1.3rem; font-weight: 700; margin-bottom: 6px; }
+      .gate-box .sub { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 24px; }
+      .form-group { margin-bottom: 16px; }
+      .form-group label { display: block; font-size: 0.78rem; font-weight: 600; color: var(--text-mid); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+      .form-group input, .form-group select { width: 100%; padding: 12px 16px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 0.9rem; transition: border-color 0.2s; outline: none; }
+      .form-group input:focus, .form-group select:focus { border-color: var(--accent); }
+      .form-group input::placeholder { color: var(--text-muted); }
+
+      .btn-unlock { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 14px; border: none; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-light)); color: #fff; font-family: var(--sans); font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.2s; margin-top: 8px; }
+      .btn-unlock:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 8px 24px var(--accent-glow-strong); }
+      .btn-unlock:disabled { opacity: 0.5; cursor: not-allowed; background: var(--text-muted); }
+
+      .error-msg { color: var(--red); font-size: 0.8rem; margin-bottom: 12px; display: none; }
+      .error-msg.show { display: block; }
+
+      /* How it works */
+      .steps { display: flex; flex-direction: column; gap: 20px; margin: 32px 0; }
+      .step { display: flex; gap: 16px; align-items: flex-start; }
+      .step-num { width: 36px; height: 36px; border-radius: 10px; background: var(--accent-glow); color: var(--accent-light); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
+      .step-content h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 2px; }
+      .step-content p { font-size: 0.82rem; color: var(--text-muted); }
+
+      /* Footer */
+      .footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; }
+      .footer a { color: var(--accent-light); text-decoration: none; }
+      .footer p { font-size: 0.78rem; color: var(--text-muted); }
+
+      /* Success state */
+      .success-box { text-align: center; padding: 40px 20px; }
+      .success-box h2 { font-size: 1.5rem; margin-bottom: 12px; }
+      .success-box p { color: var(--text-mid); margin-bottom: 24px; }
+      .btn-go { display: inline-flex; align-items: center; gap: 10px; padding: 16px 32px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--accent-light)); color: #fff; font-family: var(--sans); font-size: 1.05rem; font-weight: 700; text-decoration: none; transition: all 0.2s; }
+      .btn-go:hover { transform: translateY(-2px); box-shadow: 0 8px 24px var(--accent-glow-strong); }
+
+      /* Animations */
+      @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+      .fade-up { animation: fadeUp 0.6s ease forwards; }
+      .fade-up-d1 { animation-delay: 0.1s; opacity: 0; }
+      .fade-up-d2 { animation-delay: 0.2s; opacity: 0; }
+      .fade-up-d3 { animation-delay: 0.3s; opacity: 0; }
+    </style>
+  </head>
+  <body>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-badge fade-up">By OyeNino</div>
+        <h1 class="fade-up fade-up-d1">Record Leads by <span>Chatting with AI</span></h1>
+        <p class="fade-up fade-up-d2">Veyra is your AI lead assistant. Just talk to it in Hinglish, Hindi, or English — it saves everything to your Google Sheet with automatic follow-up reminders.</p>
+      </div>
+    </section>
+
+    <div class="container">
+
+      <!-- HOW IT WORKS -->
+      <section>
+        <h2 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 8px;">How it works</h2>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">3 steps. No learning curve.</p>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <div class="step-content">
+              <h3>Chat about your lead</h3>
+              <p>"Met Rahul from Instagram, interested in 2BHK, follow up tomorrow 3pm"</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <div class="step-content">
+              <h3>AI extracts everything</h3>
+              <p>Name, contact, source, notes, follow-up date, status (Hot/Warm/Cold) — all automatic</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <div class="step-content">
+              <h3>Synced to Sheets + Calendar</h3>
+              <p>Lead goes to your Google Sheet. Follow-up event created in Calendar. Daily email reminder.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURES -->
+      <section>
+        <h2 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 20px;">Features</h2>
+        <div class="features">
+          <div class="feature-card">
+            <div class="feature-icon">💬</div>
+            <h3>Chat in Hinglish</h3>
+            <p>Talk naturally — "kal meeting hai Rahul se". AI samajh leta hai.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Google Sheets Sync</h3>
+            <p>Every lead auto-saved to your Google Sheet with unique Lead ID.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📅</div>
+            <h3>Calendar Reminders</h3>
+            <p>Follow-up events auto-created. Daily email so you never miss a call.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📈</div>
+            <h3>Reports & Charts</h3>
+            <p>AI generates lead reports via email. Auto-charts in your Google Sheet. (Pro)</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">💬</div>
+            <h3>WhatsApp Pitch</h3>
+            <p>AI writes sales pitch and sends it directly via WhatsApp. One tap. (Pro)</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h3>Smart Status</h3>
+            <p>AI suggests Hot, Warm, or Cold based on lead details with reasoning.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- VERTICALS -->
+      <section>
+        <h2 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 8px;">Built for every profession</h2>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">AI adapts its vocabulary to your industry</p>
+        <div class="verticals">
+          <span class="vertical-tag">Sales / BD</span>
+          <span class="vertical-tag">Real Estate</span>
+          <span class="vertical-tag">Insurance</span>
+          <span class="vertical-tag">Freelancers</span>
+          <span class="vertical-tag">Recruiters / HR</span>
+          <span class="vertical-tag">Marketing</span>
+          <span class="vertical-tag">Event Organizers</span>
+          <span class="vertical-tag">Small Business</span>
+          <span class="vertical-tag">Community Managers</span>
+          <span class="vertical-tag">Journalists</span>
+          <span class="vertical-tag">Personal Networking</span>
+        </div>
+      </section>
+
+      <!-- PRICING -->
+      <section>
+        <h2 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 20px;">Pricing</h2>
+        <div class="pricing">
+          <div class="plan">
+            <h3>Free</h3>
+            <div class="price">&#8377;0<span>/month</span></div>
+            <ul>
+              <li><span class="check">&#10003;</span> 75 leads/month</li>
+              <li><span class="check">&#10003;</span> 30 AI messages/day</li>
+              <li><span class="check">&#10003;</span> Google Sheets sync</li>
+              <li><span class="check">&#10003;</span> Calendar reminders</li>
+              <li><span class="check">&#10003;</span> Daily email reminders</li>
+              <li><span class="cross">&#10007;</span> AI pitch generation</li>
+              <li><span class="cross">&#10007;</span> Reports & charts</li>
+              <li><span class="cross">&#10007;</span> WhatsApp send</li>
+            </ul>
+          </div>
+          <div class="plan pro">
+            <div class="plan-badge">Popular</div>
+            <h3>Pro</h3>
+            <div class="price">&#8377;299<span>/month</span></div>
+            <ul>
+              <li><span class="check">&#10003;</span> 1,200 leads/month</li>
+              <li><span class="check">&#10003;</span> 200 AI messages/day</li>
+              <li><span class="check">&#10003;</span> Google Sheets sync</li>
+              <li><span class="check">&#10003;</span> Calendar reminders</li>
+              <li><span class="check">&#10003;</span> Daily email reminders</li>
+              <li><span class="check">&#10003;</span> AI pitch generation</li>
+              <li><span class="check">&#10003;</span> Reports & charts</li>
+              <li><span class="check">&#10003;</span> WhatsApp one-tap send</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- GATE FORM -->
+      <section class="gate-section" id="gate-section">
+        <div class="gate-box">
+          <h2>Get Access to Veyra</h2>
+          <p class="sub">Fill in your details to unlock Veyra. You'll be redirected to the app instantly.</p>
+
+          <div class="error-msg" id="formError"></div>
+
+          <form id="gateForm" novalidate>
+            <div class="form-group">
+              <label for="gate-name">Your Name *</label>
+              <input type="text" id="gate-name" name="name" placeholder="Rahul Sharma" required autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label for="gate-phone">Phone Number *</label>
+              <input type="tel" id="gate-phone" name="phone" placeholder="+91 98765 43210" required autocomplete="tel" />
+              <div class="field-status" id="phoneStatus"></div>
+            </div>
+            <div class="form-group">
+              <label for="gate-email">Email Address *</label>
+              <input type="email" id="gate-email" name="email" placeholder="rahul@gmail.com" required autocomplete="email" />
+              <div class="field-status" id="emailStatus"></div>
+            </div>
+            <div class="form-group">
+              <label for="gate-vertical">Your Profession</label>
+              <select id="gate-vertical" name="vertical" style="appearance: none;">
+                <option value="">Select your profession</option>
+                <option value="sales">Sales / BD</option>
+                <option value="real_estate">Real Estate</option>
+                <option value="insurance">Insurance</option>
+                <option value="freelancer">Freelancer</option>
+                <option value="recruiter">Recruiter / HR</option>
+                <option value="marketing">Marketing</option>
+                <option value="event">Event Organizer</option>
+                <option value="smb">Small Business Owner</option>
+                <option value="community">Community Manager</option>
+                <option value="journalist">Journalist</option>
+                <option value="personal">Personal Networking</option>
+              </select>
+            </div>
+
+            <!-- CLOUDFLARE TURNSTILE -->
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAACgSvRvZpT5d_Ab5" data-theme="dark" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired" style="margin: 16px 0;"></div>
+
+            <button type="submit" class="btn-unlock" id="unlockBtn" disabled>
+              Fill all fields
+            </button>
+          </form>
+        </div>
+      </section>
+
+      <!-- SUCCESS (hidden by default) -->
+      <section id="success-section" style="display: none;">
+        <div class="success-box">
+          <div style="font-size: 3rem; margin-bottom: 16px;">🎉</div>
+          <h2>You're in!</h2>
+          <p>Redirecting you to Veyra in <span id="countdown">3</span> seconds...</p>
+          <a href="https://theveyra.app" class="btn-go" id="goBtn">
+            Open Veyra Now →
+          </a>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container">
+        <p>Built by <a href="https://oyenino.com">Himanshu Sharma</a> at OyeNino</p>
+        <p style="margin-top: 8px;"><a href="https://theveyra.app/privacy">Privacy</a> &middot; <a href="https://theveyra.app/terms">Terms</a> &middot; <a href="https://instagram.com/oye.nino">@oye.nino</a></p>
+      </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="/form-utils.js"></script>
+    <script>
+      // If already unlocked, show success
+      if (sessionStorage.getItem("veyra_unlocked") === "true") {
+        showSuccess();
+      }
+
+      new OyeNinoForm({
+        formId: "gateForm",
+        emailId: "gate-email",
+        phoneId: "gate-phone",
+        nameId: "gate-name",
+        btnId: "unlockBtn",
+        statusId: "emailStatus",
+        phoneStatusId: "phoneStatus",
+        errorId: "formError",
+        formName: "veyra_access",
+        source: "veyra_landing",
+        requiredFields: ["name", "email", "phone"],
+        btnTexts: {
+          ready: "🚀 Get Access to Veyra — Free",
+          turnstile: "Verify you're human first ↑",
+          email: "Valid email daalo pehle",
+          phone: "Valid phone number daalo",
+          fields: "Fill all fields",
+          submitting: "⏳ Submitting...",
+        },
+        onSuccess: function (payload) {
+          sessionStorage.setItem("veyra_unlocked", "true");
+          if (typeof gtag === "function") {
+            gtag("event", "veyra_access_granted", {
+              visitor_name: payload.name || "",
+              vertical: payload.vertical || "",
+            });
+          }
+          showSuccess();
+        },
+      });
+
+      function showSuccess() {
+        document.getElementById("gate-section").style.display = "none";
+        document.getElementById("success-section").style.display = "block";
+
+        // Auto-redirect countdown
+        var count = 3;
+        var el = document.getElementById("countdown");
+        var timer = setInterval(function () {
+          count--;
+          if (el) el.textContent = count;
+          if (count <= 0) {
+            clearInterval(timer);
+            window.location.href = "https://theveyra.app";
+          }
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>
