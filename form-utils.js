@@ -129,7 +129,7 @@
   }
 
   // ===========================
-  // PHONE VALIDATION (INDIAN)
+  // PHONE VALIDATION (INDIAN + INTERNATIONAL)
   // ===========================
 
   function validatePhone(phone) {
@@ -138,26 +138,37 @@
 
     var cleaned = phone.replace(/[\s\-\(\)\.]/g, "");
 
-    var patterns = [
+    // Indian patterns (strict)
+    var indianPatterns = [
       /^\+91[6-9]\d{9}$/,
       /^91[6-9]\d{9}$/,
       /^0[6-9]\d{9}$/,
       /^[6-9]\d{9}$/
     ];
 
-    if (patterns.some(function (p) { return p.test(cleaned); }))
+    if (indianPatterns.some(function (p) { return p.test(cleaned); }))
       return { valid: true, msg: "\u2713 Phone number valid hai", type: "success" };
 
+    // International: starts with + and country code, 7-15 digits total (ITU-T E.164)
+    if (/^\+[1-9]\d{6,14}$/.test(cleaned))
+      return { valid: true, msg: "\u2713 Phone number looks good", type: "success" };
+
+    // Fallback checks for partial/invalid input
     if (/^\+?\d{5,}$/.test(cleaned)) {
-      if (cleaned.length < 10) return { valid: false, msg: "Phone number chhota hai \u2014 10 digits hone chahiye", type: "error" };
-      if (cleaned.length > 13) return { valid: false, msg: "Phone number zyada lamba hai", type: "error" };
-      var first = cleaned.replace(/^\+?91/, "").charAt(0);
-      if (first && "012345".indexOf(first) !== -1)
-        return { valid: false, msg: "Indian mobile numbers 6, 7, 8 ya 9 se start hote hain", type: "error" };
-      return { valid: false, msg: "Sahi phone number daalo (+91 XXXXX XXXXX)", type: "error" };
+      if (cleaned.length < 7) return { valid: false, msg: "Phone number too short \u2014 include country code (e.g. +1, +91, +44)", type: "error" };
+      if (cleaned.length > 16) return { valid: false, msg: "Phone number too long", type: "error" };
+      // Indian number without + prefix but wrong starting digit
+      if (/^91/.test(cleaned)) {
+        var first = cleaned.slice(2).charAt(0);
+        if (first && "012345".indexOf(first) !== -1)
+          return { valid: false, msg: "Indian mobile numbers start with 6, 7, 8 or 9", type: "error" };
+      }
+      if (!/^\+/.test(cleaned))
+        return { valid: false, msg: "Add country code (e.g. +91, +1, +44)", type: "error" };
+      return { valid: false, msg: "Check your phone number format", type: "error" };
     }
 
-    return { valid: false, msg: "Yeh phone number sahi nahi lag raha", type: "error" };
+    return { valid: false, msg: "Enter a valid phone number with country code", type: "error" };
   }
 
   function formatPhoneDisplay(phone) {
