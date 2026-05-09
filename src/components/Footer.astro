@@ -1,0 +1,40 @@
+---
+export interface Props {
+  extraLinks?: { href: string; text: string; external?: boolean }[];
+}
+
+const { extraLinks = [] } = Astro.props;
+
+const defaultLinks = [
+  { href: 'https://youtube.com/@oye_nino', text: 'YouTube', external: true },
+  { href: 'https://www.instagram.com/oye.nino', text: 'Instagram', external: true },
+  { href: '/prompts.html', text: 'Free Prompts' },
+  { href: '/', text: 'Portfolio' }
+];
+
+const allLinks = [...defaultLinks, ...extraLinks];
+---
+
+<footer>
+  <div class="footer-left">&copy; 2026 Himanshu. Built with code &amp; clarity.</div>
+  <div class="footer-links">
+    {allLinks.map(link => (
+      <a
+        href={link.href}
+        {...(link.external ? { target: '_blank', rel: 'noopener' } : {})}
+      >{link.text}</a>
+    ))}
+  </div>
+</footer>
+
+<style>
+  footer{border-top:1px solid var(--border);padding:2rem;max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+  .footer-left{color:var(--text-muted);font-size:0.8rem;font-weight:300}
+  .footer-links{display:flex;gap:1.5rem}
+  .footer-links a{color:var(--text-muted);text-decoration:none;font-size:0.8rem;transition:color var(--transition)}
+  .footer-links a:hover{color:var(--accent)}
+
+  @media(max-width:600px){
+    footer{flex-direction:column;text-align:center;gap:0.75rem}
+  }
+</style>

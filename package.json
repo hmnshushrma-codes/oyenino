@@ -1,0 +1,17 @@
+{
+  "name": "oyenino",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com-personal:hmnshushrma-codes/oyenino.git"
+  },
+  "dependencies": {
+    "astro": "^6.2.1"
+  }
+}

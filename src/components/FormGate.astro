@@ -1,0 +1,79 @@
+---
+export interface Props {
+  formName: string;
+  source?: string;
+  requiredFields?: string[];
+  btnReady?: string;
+  btnTurnstile?: string;
+  btnEmail?: string;
+  btnPhone?: string;
+  btnFields?: string;
+  btnSubmitting?: string;
+}
+
+const {
+  formName,
+  source,
+  requiredFields = ['name', 'email'],
+  btnReady = '<span>&#128275;</span> Unlock &mdash; Free',
+  btnTurnstile = 'Verify you\'re human first &uarr;',
+  btnEmail = 'Valid email daalo pehle',
+  btnPhone = 'Valid phone number daalo',
+  btnFields = 'Sab fields fill karo',
+  btnSubmitting = '<span>&#8987;</span> Submitting...'
+} = Astro.props;
+
+const hasPhone = requiredFields.includes('phone');
+const resolvedSource = source || Astro.url.pathname;
+---
+
+<slot />
+
+<div class="cf-turnstile" data-sitekey="0x4AAAAAACgSvRvZpT5d_Ab5" data-theme="dark" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired" style="margin-bottom:1rem;display:flex;justify-content:center"></div>
+<div class="error-msg" id="formError"></div>
+<button type="submit" class="btn-unlock" id="unlockBtn" disabled set:html={btnFields}></button>
+<p class="gate-privacy"><span>&#128274; Your info safe hai. Kabhi bhi unsubscribe kar sakte ho.</span></p>
+
+<script is:inline src="/form-utils.js"></script>
+<script is:inline
+  data-form-name={formName}
+  data-source={resolvedSource}
+  data-required={requiredFields.join(',')}
+  data-btn-ready={btnReady}
+  data-btn-turnstile={btnTurnstile}
+  data-btn-email={btnEmail}
+  data-btn-phone={btnPhone}
+  data-btn-fields={btnFields}
+  data-btn-submitting={btnSubmitting}
+>
+  (function() {
+    var script = document.currentScript;
+    var cfg = {
+      formId: "gateForm",
+      emailId: "gate-email",
+      nameId: "gate-name",
+      btnId: "unlockBtn",
+      statusId: "emailStatus",
+      errorId: "formError",
+      formName: script.getAttribute("data-form-name"),
+      source: script.getAttribute("data-source"),
+      requiredFields: script.getAttribute("data-required").split(","),
+      btnTexts: {
+        ready: script.getAttribute("data-btn-ready"),
+        turnstile: script.getAttribute("data-btn-turnstile"),
+        email: script.getAttribute("data-btn-email"),
+        phone: script.getAttribute("data-btn-phone"),
+        fields: script.getAttribute("data-btn-fields"),
+        submitting: script.getAttribute("data-btn-submitting")
+      }
+    };
+    var phoneEl = document.getElementById("gate-phone");
+    if (phoneEl) {
+      cfg.phoneId = "gate-phone";
+      cfg.phoneStatusId = "phoneStatus";
+    }
+    // Dispatch custom event so page can attach onSuccess
+    var evt = new CustomEvent("formgate:init", { detail: cfg });
+    document.dispatchEvent(evt);
+  })();
+</script>

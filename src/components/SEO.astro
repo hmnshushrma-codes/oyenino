@@ -1,0 +1,52 @@
+---
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  keywords?: string;
+  robots?: string;
+  ogType?: string;
+  twitterTitle?: string;
+  twitterDesc?: string;
+  structuredData?: object;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage = 'https://oyenino.com/og-image.jpg',
+  keywords,
+  robots = 'index, follow',
+  ogType = 'website',
+  twitterTitle,
+  twitterDesc,
+  structuredData
+} = Astro.props;
+
+const resolvedCanonical = canonical || Astro.url.href;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+{keywords && <meta name="keywords" content={keywords} />}
+<meta name="author" content="Himanshu (@oye.nino)" />
+<meta name="robots" content={robots} />
+<link rel="canonical" href={resolvedCanonical} />
+
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={ogType} />
+<meta property="og:url" content={resolvedCanonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:locale" content="en_US" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={twitterTitle || title} />
+<meta name="twitter:description" content={twitterDesc || description} />
+<meta name="twitter:image" content={ogImage} />
+
+{structuredData && (
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+)}

@@ -1,0 +1,35 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+  extraHead?: string;
+}
+
+const { title, description = '' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BGL94NLVL7" is:inline></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-BGL94NLVL7");
+    </script>
+
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <meta name="author" content="Himanshu (@oye.nino)" />
+
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

@@ -1,0 +1,86 @@
+BUILD YOUR PRODUCT — STEP-BY-STEP ROADMAP
+by Himanshu (@oye.nino)
+==================================================
+
+PHASE 1 — IDEA & PLANNING
+------------------------------
+Decide:
+  - Who is it for? Define your target user clearly
+  - What is the one core feature? Not five, just one
+  - Web or mobile? Pick one to start
+  - Free or paid? Decide the model upfront
+Tools:
+  - Figma — wireframe your screens (free tier)
+  - Notion — write your spec and track tasks
+  - Claude / ChatGPT — validate your idea, get feedback
+
+PHASE 2 — PICK YOUR STACK
+------------------------------
+Web:
+  - React + Vite — fast dev, great ecosystem
+  - Tailwind CSS — utility-first, ship faster
+  - Vercel Serverless Functions — backend without servers
+  - Neon Postgres — serverless database, generous free tier
+Mobile:
+  - React Native + Expo — one codebase, both platforms
+  - Or PWA — web app that works like a native app, no app store needed
+
+PHASE 3 — BUILD MVP
+------------------------------
+Must-haves:
+  - Auth — Google login (easiest, users trust it)
+  - One core flow — the main thing your product does, end to end
+  - Data save — user actions persist across sessions
+  - Basic UI — clean, functional, doesn't need to be beautiful yet
+  - Error handling — don't let users hit broken screens
+Skip for now:
+  - Admin dashboard
+  - Email notifications
+  - Dark mode
+  - Animations and micro-interactions
+
+PHASE 4 — DEPLOY
+------------------------------
+Frontend:
+  - Vercel — free, auto-deploys from GitHub
+  - Cloudflare Pages — free, fast global CDN
+  - Netlify — free, good for static sites
+Backend:
+  - Vercel Serverless Functions
+  - Cloudflare Workers — 100K req/day free
+  - Railway — easy full-stack deploys
+  - AWS App Runner — containers made simple
+Database:
+  - Neon — serverless Postgres, free tier
+  - Supabase — Postgres + auth + storage, free tier
+  - Cloudflare D1 — SQLite at the edge, 5GB free
+  - PlanetScale — MySQL, generous free tier
+
+PHASE 5 — DOMAIN & ESSENTIALS
+------------------------------
+Domain:
+  - Cloudflare Registrar — cheapest, no markup pricing
+  - GoDaddy — popular, frequent sales
+  - Namecheap — affordable, good UI
+Must-add:
+  - GA4 — know who's using your product and how
+  - Sentry — catch errors before your users report them
+  - Privacy Policy — legally required, use a generator
+  - Razorpay / Stripe — if you're charging, set up payments
+
+PHASE 6 — AI INTEGRATION (OPTIONAL)
+------------------------------
+APIs:
+  - Claude Haiku — fast, cheap, great for chat
+  - Claude Sonnet — complex reasoning, analysis
+  - GPT-4o — multimodal, strong general-purpose
+  - Gemini Flash — fast, good free tier
+Rules:
+  - Never expose API keys in frontend code
+  - Proxy all AI calls through your backend
+  - Cache responses where possible to save cost
+  - Rate limit per user to prevent abuse
+
+==================================================
+See this roadmap in action: https://theveyra.app/
+More free prompts: https://oyenino.com/prompts.html

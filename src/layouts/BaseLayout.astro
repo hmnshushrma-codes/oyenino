@@ -1,0 +1,75 @@
+---
+import SEO from '../components/SEO.astro';
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  keywords?: string;
+  robots?: string;
+  twitterTitle?: string;
+  twitterDesc?: string;
+  structuredData?: object;
+  needsTurnstile?: boolean;
+  extraFonts?: string;
+}
+
+const {
+  title,
+  description,
+  canonical,
+  ogImage,
+  keywords,
+  robots,
+  twitterTitle,
+  twitterDesc,
+  structuredData,
+  needsTurnstile = false,
+  extraFonts
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BGL94NLVL7" is:inline></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag("js", new Date());
+      gtag("config", "G-BGL94NLVL7");
+    </script>
+
+    {needsTurnstile && (
+      <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer is:inline></script>
+    )}
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href={`https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Outfit:wght@300;400;500;600;700${extraFonts ? '&' + extraFonts : ''}&display=swap`} rel="stylesheet" />
+
+    <SEO
+      title={title}
+      description={description}
+      canonical={canonical}
+      ogImage={ogImage}
+      keywords={keywords}
+      robots={robots}
+      twitterTitle={twitterTitle}
+      twitterDesc={twitterDesc}
+      structuredData={structuredData}
+    />
+
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

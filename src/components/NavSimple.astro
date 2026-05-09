@@ -1,0 +1,21 @@
+---
+export interface Props {
+  backText?: string;
+  backHref?: string;
+}
+
+const { backText = 'Back to Portfolio', backHref = '/' } = Astro.props;
+---
+
+<nav>
+  <a href="/" class="nav-logo">nino<span>.</span></a>
+  <a href={backHref} class="nav-back">&larr; {backText}</a>
+</nav>
+
+<style>
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);background:rgba(5,5,5,0.85);border-bottom:1px solid rgba(255,255,255,0.04)}
+  .nav-logo{font-family:var(--sans);font-size:1.25rem;font-weight:600;color:var(--text);text-decoration:none;letter-spacing:-0.02em}
+  .nav-logo span{color:var(--accent)}
+  .nav-back{color:var(--text-muted);text-decoration:none;font-size:0.85rem;display:flex;align-items:center;gap:0.4rem;transition:color var(--transition)}
+  .nav-back:hover{color:var(--accent)}
+</style>
