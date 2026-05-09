@@ -108,7 +108,7 @@ nav{padding:1rem 2rem;display:flex;justify-content:space-between;align-items:cen
 .form-group input:focus,.form-group select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
 .form-group input::placeholder{color:#444}
 .form-group select{cursor:pointer}.form-group select option{background:var(--bg);color:var(--text)}
-.phone-row{display:flex;gap:.5rem}.phone-row select{width:110px;flex-shrink:0;font-size:.8rem;padding:.85rem .5rem}.phone-row input{flex:1}
+.phone-row{display:flex;gap:.5rem}.phone-row select{width:90px;flex-shrink:0;font-size:.8rem;padding:.85rem .4rem}.phone-row input{flex:1;min-width:0}
 .field-status{font-size:.75rem;margin-top:.3rem;min-height:1rem}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
 .gate-btn{width:100%;padding:1rem;background:var(--accent);color:var(--bg);border:none;border-radius:100px;font-family:var(--sans);font-size:1rem;font-weight:600;cursor:pointer;transition:transform .2s,box-shadow .3s;margin-top:.5rem;position:relative;overflow:hidden}
@@ -349,7 +349,7 @@ footer p{color:var(--text-muted);font-size:.8rem;font-weight:300}footer a{color:
               <option value="+27">&#x1F1FF;&#x1F1E6; +27</option>
               <option value="+234">&#x1F1F3;&#x1F1EC; +234</option>
             </select>
-            <input type="tel" id="gate-phone" name="phone" placeholder="98765 43210" required/>
+            <input type="tel" id="gate-phone" name="phone" placeholder="9876543210" required/>
           </div>
           <div class="field-status" id="phoneStatus"></div>
         </div>

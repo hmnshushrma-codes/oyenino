@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /node_modules/
+Disallow: /dist/
+Disallow: /.astro/
 
 Sitemap: https://oyenino.com/sitemap.xml
