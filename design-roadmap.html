@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BGL94NLVL7"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-BGL94NLVL7");</script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+<title>Paper to Production — Build a Full E-Commerce Website from a Rough Wireframe | Oye Nino</title>
+<meta name="description" content="Turn your rough paper wireframe into a live e-commerce website with AI. Step-by-step roadmap: Google Stitch prototype, frontend, backend, Razorpay payments. Free guide by Himanshu (@oye.nino)."/>
+<meta name="keywords" content="website design roadmap, paper wireframe to website, Google Stitch, AI website builder, e-commerce website tutorial, Razorpay integration, build website from scratch, NariVibes, AI prototype to production, oye nino, Himanshu"/>
+<meta property="og:title" content="Paper to Production — Build a Full E-Commerce Website from a Wireframe"/>
+<meta property="og:description" content="Rough wireframe on paper? Turn it into a fully functional e-commerce website with AI, Razorpay payments, and everything. Free roadmap."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://oyenino.com/design-roadmap.html"/>
+<meta property="og:image" content="https://oyenino.com/og-image.jpg"/>
+<meta property="og:locale" content="en_IN"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Paper to Production — Full E-Commerce Website Roadmap"/>
+<meta name="twitter:description" content="Rough wireframe se full website. AI se. Step-by-step. Free."/>
+<link rel="canonical" href="https://oyenino.com/design-roadmap.html"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"HowTo","name":"Build an E-Commerce Website from a Paper Wireframe","description":"Step-by-step roadmap to turn a rough paper wireframe into a live e-commerce site with payments.","author":{"@type":"Person","name":"Himanshu","sameAs":["https://www.instagram.com/oye.nino"]},"step":[{"@type":"HowToStep","name":"Sketch Your Wireframe","text":"Draw your website layout on paper — pages, navigation, key screens."},{"@type":"HowToStep","name":"AI Prototype","text":"Upload your sketch to Google Stitch or any AI tool to get a working prototype."},{"@type":"HowToStep","name":"Build Frontend","text":"Use the prototype with AI (Claude/ChatGPT) to create polished HTML/CSS/JS."},{"@type":"HowToStep","name":"Build Backend","text":"Set up a backend with APIs, database, and business logic."},{"@type":"HowToStep","name":"Integrate Razorpay","text":"Add Razorpay payment gateway for checkout and order management."},{"@type":"HowToStep","name":"Deploy & Go Live","text":"Deploy frontend and backend, connect a custom domain, go live."}]}
+</script>
+
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#050505;--bg-card:#111;--bg-card-hover:#161616;--text:#eeeae4;--text-mid:#b5b0a8;--text-muted:#706c66;--accent:#00f0a0;--accent-dim:#00c583;--accent-glow:rgba(0,240,160,.1);--accent-glow-strong:rgba(0,240,160,.2);--accent-warm:#f59e0b;--accent-warm-glow:rgba(245,158,11,.1);--border:#1a1a1a;--border-hover:#2a2a2a;--serif:'Playfair Display',Georgia,serif;--sans:'Outfit',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--radius:16px;--transition:.35s cubic-bezier(.25,.46,.45,.94)}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:hidden;min-height:100vh}
+::selection{background:var(--accent);color:var(--bg)}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:50}
+
+nav{padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.04);backdrop-filter:blur(20px);position:sticky;top:0;z-index:100;background:rgba(5,5,5,.85)}
+.nav-logo{font-family:var(--sans);font-size:1.2rem;font-weight:600;color:var(--text);text-decoration:none}.nav-logo span{color:var(--accent)}
+.nav-back{color:var(--text-muted);text-decoration:none;font-size:.85rem;transition:color .3s}.nav-back:hover{color:var(--accent)}
+
+.hero{max-width:800px;margin:0 auto;padding:5rem 2rem 3rem;text-align:center;position:relative}
+.hero-glow{position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 60%);border-radius:50%;pointer-events:none;filter:blur(100px);opacity:.3;animation:breathe 8s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:.2;transform:translateX(-50%) scale(1)}50%{opacity:.5;transform:translateX(-50%) scale(1.1)}}
+.badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:1.5rem;opacity:0;animation:fadeUp .6s ease forwards .3s}
+.pulse{width:7px;height:7px;background:var(--accent);border-radius:50%;animation:pulseDot 2s ease-in-out infinite}
+@keyframes pulseDot{0%,100%{box-shadow:0 0 0 0 var(--accent-glow-strong)}50%{box-shadow:0 0 0 8px transparent}}
+.hero h1{font-family:var(--serif);font-size:clamp(2.2rem,5.5vw,4rem);font-weight:400;line-height:1.12;letter-spacing:-.03em;margin-bottom:1.25rem;opacity:0;animation:fadeUp .7s ease forwards .5s}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero-sub{font-size:1.05rem;color:var(--text-mid);line-height:1.75;font-weight:300;max-width:580px;margin:0 auto 1rem;opacity:0;animation:fadeUp .7s ease forwards .7s}
+.hero-context{font-size:.85rem;color:var(--text-muted);line-height:1.6;font-weight:300;max-width:520px;margin:0 auto 2rem;opacity:0;animation:fadeUp .7s ease forwards .8s;font-style:italic}
+.hero-stats{display:flex;justify-content:center;gap:2.5rem;opacity:0;animation:fadeUp .6s ease forwards .9s;flex-wrap:wrap}
+.stat{text-align:center}.stat-num{font-size:1.75rem;font-weight:700;color:var(--text)}.stat-num span{color:var(--accent)}.stat-label{font-size:.75rem;color:var(--text-muted);margin-top:.15rem}
+
+/* ROADMAP TIMELINE */
+.roadmap{max-width:800px;margin:0 auto;padding:0 2rem 4rem;opacity:0;animation:fadeUp .7s ease forwards 1s}
+.roadmap-title{text-align:center;font-family:var(--serif);font-size:1.75rem;margin-bottom:.5rem;font-weight:400}
+.roadmap-sub{text-align:center;color:var(--text-muted);font-size:.9rem;margin-bottom:2.5rem;font-weight:300}
+.timeline{position:relative;padding-left:3rem}
+.timeline::before{content:'';position:absolute;left:15px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--accent),var(--accent-warm),var(--accent))}
+.tl-item{position:relative;margin-bottom:2rem;padding:.01rem 0}
+.tl-dot{position:absolute;left:-3rem;top:.15rem;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;z-index:2}
+.tl-dot.step1{background:var(--accent-glow-strong);border:2px solid var(--accent);color:var(--accent)}
+.tl-dot.step2{background:rgba(99,102,241,.15);border:2px solid #6366f1;color:#6366f1}
+.tl-dot.step3{background:rgba(236,72,153,.15);border:2px solid #ec4899;color:#ec4899}
+.tl-dot.step4{background:rgba(245,158,11,.15);border:2px solid var(--accent-warm);color:var(--accent-warm)}
+.tl-dot.step5{background:rgba(59,130,246,.15);border:2px solid #3b82f6;color:#3b82f6}
+.tl-dot.step6{background:rgba(16,185,129,.15);border:2px solid #10b981;color:#10b981}
+.tl-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.5rem;transition:all .3s}
+.tl-card:hover{border-color:var(--border-hover);transform:translateX(4px)}
+.tl-card h3{font-size:1.05rem;font-weight:600;margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem}
+.tl-card h3 .step-badge{font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.2rem .6rem;border-radius:100px;font-weight:700}
+.step1 .step-badge{background:var(--accent-glow);color:var(--accent)}
+.step2 .step-badge{background:rgba(99,102,241,.1);color:#6366f1}
+.step3 .step-badge{background:rgba(236,72,153,.1);color:#ec4899}
+.step4 .step-badge{background:rgba(245,158,11,.1);color:var(--accent-warm)}
+.step5 .step-badge{background:rgba(59,130,246,.1);color:#3b82f6}
+.step6 .step-badge{background:rgba(16,185,129,.1);color:#10b981}
+.tl-card p{font-size:.85rem;color:var(--text-mid);line-height:1.7;font-weight:300;margin-bottom:.75rem}
+.tl-tools{display:flex;gap:.5rem;flex-wrap:wrap}
+.tool-chip{background:var(--bg);border:1px solid var(--border);border-radius:100px;padding:.25rem .7rem;font-size:.7rem;color:var(--text-muted);display:flex;align-items:center;gap:.35rem}
+.tool-chip .free{color:var(--accent);font-weight:600}
+.tl-tips{margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--border)}
+.tl-tips li{font-size:.78rem;color:var(--text-muted);line-height:1.6;font-weight:300;list-style:none;padding-left:1.2rem;position:relative;margin-bottom:.3rem}
+.tl-tips li::before{content:"\2192";position:absolute;left:0;color:var(--accent);font-weight:600}
+
+/* REAL EXAMPLE */
+.example-section{max-width:800px;margin:0 auto;padding:0 2rem 4rem}
+.example-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;position:relative;overflow:hidden}
+.example-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),#6366f1,var(--accent-warm))}
+.example-card h3{font-family:var(--serif);font-size:1.35rem;font-weight:400;margin-bottom:.5rem;text-align:center}
+.example-sub{color:var(--text-muted);font-size:.85rem;text-align:center;margin-bottom:1.5rem;font-weight:300}
+.example-flow{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;text-align:center}
+.flow-step{background:var(--bg);border:1px solid var(--border);border-radius:12px;padding:1rem .75rem}
+.flow-icon{font-size:1.5rem;margin-bottom:.4rem}
+.flow-label{font-size:.72rem;color:var(--text-muted);font-weight:300;line-height:1.4}
+.flow-arrow{display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1.2rem;font-weight:700}
+
+/* GATE */
+.gate-section{max-width:600px;margin:0 auto;padding:0 2rem 4rem}
+.gate-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:3rem 2.5rem;position:relative;overflow:hidden}
+.gate-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent-warm) 60%,transparent 90%)}
+.gate-card h2{font-family:var(--serif);font-size:1.75rem;font-weight:400;margin-bottom:.5rem;text-align:center}
+.gate-sub{color:var(--text-muted);font-size:.9rem;text-align:center;margin-bottom:2rem;font-weight:300}
+.form-group{margin-bottom:1.2rem}
+.form-group label{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-bottom:.4rem;font-weight:500}
+.form-group input,.form-group select{width:100%;padding:.85rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--sans);font-size:.9rem;outline:none;transition:border-color var(--transition),box-shadow var(--transition)}
+.form-group input:focus,.form-group select:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+.form-group input::placeholder{color:#444}
+.form-group select{cursor:pointer}.form-group select option{background:var(--bg);color:var(--text)}
+.phone-row{display:flex;gap:.5rem}.phone-row select{width:110px;flex-shrink:0;font-size:.8rem;padding:.85rem .5rem}.phone-row input{flex:1}
+.field-status{font-size:.75rem;margin-top:.3rem;min-height:1rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.gate-btn{width:100%;padding:1rem;background:var(--accent);color:var(--bg);border:none;border-radius:100px;font-family:var(--sans);font-size:1rem;font-weight:600;cursor:pointer;transition:transform .2s,box-shadow .3s;margin-top:.5rem;position:relative;overflow:hidden}
+.gate-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 32px var(--accent-glow-strong)}
+.gate-btn:disabled{opacity:.5;cursor:not-allowed}
+.gate-btn::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transform:translateX(-100%);transition:transform .6s}
+.gate-btn:hover:not(:disabled)::after{transform:translateX(100%)}
+.gate-note{text-align:center;color:var(--text-muted);font-size:.75rem;margin-top:1rem;font-weight:300}
+.error-msg{color:#ff6b6b;font-size:.8rem;margin-bottom:.5rem;display:none}.error-msg.show{display:block}
+.form-success{text-align:center;padding:2.5rem 1.5rem;display:none}
+.form-success .checkmark{width:56px;height:56px;border-radius:50%;background:var(--accent-glow);border:2px solid var(--accent);display:flex;align-items:center;justify-content:center;margin:0 auto 1.25rem;font-size:1.5rem;color:var(--accent)}
+.form-success h3{font-family:var(--serif);font-size:1.5rem;margin-bottom:.5rem}
+.form-success p{color:var(--text-muted);font-weight:300;font-size:.9rem}
+
+/* CONTENT SECTION (unlocked) */
+.content-section{max-width:840px;margin:0 auto;padding:0 2rem 5rem;display:none}
+.content-section.visible{display:block;animation:fadeUp .6s ease}
+.content-header{text-align:center;margin-bottom:2.5rem}
+.content-header h2{font-family:var(--serif);font-size:2rem;font-weight:400;margin-bottom:.5rem}
+.content-header p{color:var(--text-muted);font-size:.9rem;font-weight:300}
+
+.section-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.5rem}
+.info-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.75rem;margin-bottom:1.25rem}
+.info-card h4{font-size:1rem;font-weight:600;margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+.info-card p,.info-card li{font-size:.85rem;color:var(--text-muted);line-height:1.75;font-weight:300}
+.info-card ul{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.info-card ul li::before{content:"\2192";color:var(--accent);margin-right:.5rem;font-weight:600}
+.hl{color:var(--accent);font-weight:500}
+
+.detail-step{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:2rem;margin-bottom:1.5rem;position:relative;overflow:hidden}
+.detail-step::before{content:'';position:absolute;top:0;left:0;bottom:0;width:3px}
+.detail-step.s1::before{background:var(--accent)}
+.detail-step.s2::before{background:#6366f1}
+.detail-step.s3::before{background:#ec4899}
+.detail-step.s4::before{background:var(--accent-warm)}
+.detail-step.s5::before{background:#3b82f6}
+.detail-step.s6::before{background:#10b981}
+.detail-step .step-num{font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;margin-bottom:.5rem}
+.detail-step.s1 .step-num{color:var(--accent)}
+.detail-step.s2 .step-num{color:#6366f1}
+.detail-step.s3 .step-num{color:#ec4899}
+.detail-step.s4 .step-num{color:var(--accent-warm)}
+.detail-step.s5 .step-num{color:#3b82f6}
+.detail-step.s6 .step-num{color:#10b981}
+.detail-step h3{font-size:1.1rem;font-weight:600;margin-bottom:.75rem}
+.detail-step p{font-size:.85rem;color:var(--text-mid);line-height:1.75;font-weight:300;margin-bottom:.75rem}
+.detail-step .sub-steps{list-style:none;display:flex;flex-direction:column;gap:.5rem;margin-bottom:.75rem}
+.detail-step .sub-steps li{font-size:.82rem;color:var(--text-muted);line-height:1.6;font-weight:300;padding-left:1.5rem;position:relative}
+.detail-step .sub-steps li::before{content:attr(data-num);position:absolute;left:0;font-weight:700;font-size:.7rem;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;top:2px}
+.detail-step.s1 .sub-steps li::before{color:var(--accent);background:var(--accent-glow)}
+.detail-step.s2 .sub-steps li::before{color:#6366f1;background:rgba(99,102,241,.1)}
+.detail-step.s3 .sub-steps li::before{color:#ec4899;background:rgba(236,72,153,.1)}
+.detail-step.s4 .sub-steps li::before{color:var(--accent-warm);background:var(--accent-warm-glow)}
+.detail-step.s5 .sub-steps li::before{color:#3b82f6;background:rgba(59,130,246,.1)}
+.detail-step.s6 .sub-steps li::before{color:#10b981;background:rgba(16,185,129,.1)}
+.detail-step .tool-strip{display:flex;gap:.5rem;flex-wrap:wrap}
+
+.tech-strip{display:flex;gap:.6rem;flex-wrap:wrap;margin:2rem 0}
+.tech-chip{background:var(--bg-card);border:1px solid var(--border);border-radius:100px;padding:.45rem .9rem;font-size:.75rem;color:var(--text-mid);display:flex;align-items:center;gap:.4rem}
+.tech-chip .price{color:var(--accent);font-weight:600}
+
+/* BOTTOM CTA */
+.bottom-cta{max-width:840px;margin:0 auto;padding:0 2rem 4rem;display:none}
+.bottom-cta.visible{display:block;animation:fadeUp .6s ease}
+.cta-inner{background:linear-gradient(135deg,var(--bg-card) 0%,rgba(0,240,160,.04) 100%);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem;text-align:center;position:relative;overflow:hidden}
+.cta-inner::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 50%,var(--accent-glow) 0%,transparent 50%);pointer-events:none;animation:rotateSlow 15s linear infinite}
+@keyframes rotateSlow{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.cta-inner h3{font-family:var(--serif);font-size:1.5rem;font-weight:400;margin-bottom:.5rem;position:relative}
+.cta-inner p{color:var(--text-muted);font-size:.9rem;font-weight:300;margin-bottom:1.5rem;position:relative}
+.cta-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;position:relative}
+.btn-primary{display:inline-flex;align-items:center;gap:.5rem;background:var(--accent);color:var(--bg);padding:.85rem 2rem;border-radius:100px;text-decoration:none;font-weight:600;font-size:.95rem;transition:transform .2s,box-shadow .3s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px var(--accent-glow-strong)}
+.btn-ghost{display:inline-flex;align-items:center;gap:.5rem;background:transparent;color:var(--text-mid);padding:.85rem 2rem;border-radius:100px;text-decoration:none;font-weight:400;font-size:.95rem;border:1px solid var(--border);transition:all .3s}
+.btn-ghost:hover{border-color:var(--border-hover);color:var(--text)}
+
+footer{border-top:1px solid var(--border);padding:2rem;text-align:center}
+footer p{color:var(--text-muted);font-size:.8rem;font-weight:300}footer a{color:var(--accent);text-decoration:none}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:768px){.example-flow{grid-template-columns:repeat(2,1fr)}.flow-arrow{display:none}.gate-card{padding:2rem 1.5rem}.form-row{grid-template-columns:1fr}.hero h1{font-size:2rem}.hero-stats{gap:1.5rem}}
+@media(max-width:480px){.example-flow{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">nino<span>.</span></a>
+  <a href="/" class="nav-back">&larr; Back to Home</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="badge"><span class="pulse"></span> Full Roadmap + Real Example</div>
+  <h1>Paper sketch se<br><em>live website.</em></h1>
+  <p class="hero-sub">Maine rough wireframe paper pe banaya, Google Stitch se prototype nikala, aur usse ek full e-commerce website banayi — with payments. Ye same roadmap hai.</p>
+  <p class="hero-context">"I drew it on paper. AI built it. I shipped it." — This is how NariVibes was made.</p>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-num">6<span> steps</span></div><div class="stat-label">Paper to Production</div></div>
+    <div class="stat"><div class="stat-num">1<span> day</span></div><div class="stat-label">MVP Ready</div></div>
+    <div class="stat"><div class="stat-num">0<span>&#8377;</span></div><div class="stat-label">Upfront Cost</div></div>
+  </div>
+</section>
+
+<!-- ROADMAP PREVIEW -->
+<section class="roadmap">
+  <h2 class="roadmap-title">The 6-Step Roadmap</h2>
+  <p class="roadmap-sub">From a rough paper sketch to a live, payment-ready e-commerce website</p>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-dot step1">1</div>
+      <div class="tl-card step1">
+        <h3><span class="step-badge">Step 1</span> Sketch Your Wireframe on Paper</h3>
+        <p>Draw your website layout on paper. Keep it rough — pages, navigation, product layout, cart flow, checkout. Don't overthink it. A pen and notebook is all you need.</p>
+        <div class="tl-tools">
+          <div class="tool-chip">Pen + Paper <span class="free">FREE</span></div>
+          <div class="tool-chip">Napkin sketch works too</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot step2">2</div>
+      <div class="tl-card step2">
+        <h3><span class="step-badge">Step 2</span> Convert to Prototype with AI</h3>
+        <p>Take a photo of your sketch. Upload it to Google Stitch, Vercel v0, Bolt, or any AI tool that converts wireframes into working code. You'll get a clickable prototype in minutes.</p>
+        <div class="tl-tools">
+          <div class="tool-chip">Google Stitch <span class="free">FREE</span></div>
+          <div class="tool-chip">Vercel v0</div>
+          <div class="tool-chip">Bolt.new</div>
+          <div class="tool-chip">Lovable</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot step3">3</div>
+      <div class="tl-card step3">
+        <h3><span class="step-badge">Step 3</span> Build the Frontend</h3>
+        <p>Take the prototype output, feed it to Claude or ChatGPT. Ask it to polish the design, make it responsive, add animations, and structure it properly. This is your production frontend.</p>
+        <div class="tl-tools">
+          <div class="tool-chip">Claude / ChatGPT</div>
+          <div class="tool-chip">HTML + CSS + JS</div>
+          <div class="tool-chip">Tailwind CSS</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot step4">4</div>
+      <div class="tl-card step4">
+        <h3><span class="step-badge">Step 4</span> Set Up the Backend</h3>
+        <p>Build your backend for product management, orders, OTP auth, and admin panel. Use Cloudflare Workers, Node.js, or any backend framework. Connect a database for products and orders.</p>
+        <div class="tl-tools">
+          <div class="tool-chip">Cloudflare Workers <span class="free">FREE</span></div>
+          <div class="tool-chip">D1 / Turso DB <span class="free">FREE</span></div>
+          <div class="tool-chip">Node.js</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot step5">5</div>
+      <div class="tl-card step5">
+        <h3><span class="step-badge">Step 5</span> Integrate Razorpay Payments</h3>
+        <p>Add Razorpay for accepting payments. Create orders on the backend, handle payment verification, update order status. UPI, cards, net banking — everything works out of the box.</p>
+        <div class="tl-tools">
+          <div class="tool-chip">Razorpay <span class="free">2% fee</span></div>
+          <div class="tool-chip">UPI + Cards + Net Banking</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot step6">6</div>
+      <div class="tl-card step6">
+        <h3><span class="step-badge">Step 6</span> Deploy & Go Live</h3>
+        <p>Deploy frontend on Cloudflare Pages or Netlify. Deploy backend on Cloudflare Workers. Connect your custom domain. Share the link. You're live.</p>
+        <div class="tl-tools">
+          <div class="tool-chip">Cloudflare Pages <span class="free">FREE</span></div>
+          <div class="tool-chip">Custom Domain</div>
+          <div class="tool-chip">SSL included</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REAL EXAMPLE -->
+<section class="example-section">
+  <div class="example-card">
+    <h3>This is how NariVibes was built</h3>
+    <p class="example-sub">Real example — paper sketch to a live fashion e-commerce store with Razorpay checkout</p>
+    <div class="example-flow">
+      <div class="flow-step"><div class="flow-icon">&#9997;&#65039;</div><div class="flow-label">Drew wireframes on paper</div></div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-step"><div class="flow-icon">&#129302;</div><div class="flow-label">Google Stitch prototype</div></div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-step"><div class="flow-icon">&#128187;</div><div class="flow-label">Claude built the frontend + backend</div></div>
+      <div class="flow-arrow">&rarr;</div>
+      <div class="flow-step"><div class="flow-icon">&#128640;</div><div class="flow-label">Live with Razorpay payments</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GATE -->
+<div class="gate-section" id="gateSection">
+  <div class="gate-card">
+    <h2>Get the full detailed guide.</h2>
+    <p class="gate-sub">Step-by-step breakdown with tools, tips, and exact workflow. Free. No spam.</p>
+    <form id="gateForm" method="POST" novalidate>
+      <input type="hidden" name="_form_name" value="design_roadmap_narivibe"/>
+      <input type="hidden" name="prompt_id" value="design_roadmap_narivibe_2026"/>
+      <div class="form-row">
+        <div class="form-group"><label for="gate-name">Your Name *</label><input type="text" id="gate-name" name="name" placeholder="Priya Sharma" required/></div>
+        <div class="form-group"><label for="gate-email">Email *</label><input type="email" id="gate-email" name="email" placeholder="you@gmail.com" required/><div class="field-status" id="emailStatus"></div></div>
+      </div>
+      <div class="form-row">
+        <div class="form-group"><label for="gate-phone">WhatsApp Number *</label>
+          <div class="phone-row">
+            <select id="countryCode" name="country_code">
+              <option value="+91">&#x1F1EE;&#x1F1F3; +91</option>
+              <option value="+1">&#x1F1FA;&#x1F1F8; +1</option>
+              <option value="+44">&#x1F1EC;&#x1F1E7; +44</option>
+              <option value="+971">&#x1F1E6;&#x1F1EA; +971</option>
+              <option value="+61">&#x1F1E6;&#x1F1FA; +61</option>
+              <option value="+49">&#x1F1E9;&#x1F1EA; +49</option>
+              <option value="+33">&#x1F1EB;&#x1F1F7; +33</option>
+              <option value="+81">&#x1F1EF;&#x1F1F5; +81</option>
+              <option value="+65">&#x1F1F8;&#x1F1EC; +65</option>
+              <option value="+966">&#x1F1F8;&#x1F1E6; +966</option>
+              <option value="+977">&#x1F1F3;&#x1F1F5; +977</option>
+              <option value="+880">&#x1F1E7;&#x1F1E9; +880</option>
+              <option value="+92">&#x1F1F5;&#x1F1F0; +92</option>
+              <option value="+62">&#x1F1EE;&#x1F1E9; +62</option>
+              <option value="+55">&#x1F1E7;&#x1F1F7; +55</option>
+              <option value="+52">&#x1F1F2;&#x1F1FD; +52</option>
+              <option value="+27">&#x1F1FF;&#x1F1E6; +27</option>
+              <option value="+234">&#x1F1F3;&#x1F1EC; +234</option>
+            </select>
+            <input type="tel" id="gate-phone" name="phone" placeholder="98765 43210" required/>
+          </div>
+          <div class="field-status" id="phoneStatus"></div>
+        </div>
+        <div class="form-group"><label for="gate-business">What are you building? *</label><input type="text" id="gate-business" name="business" placeholder="e.g. fashion store, food delivery..." required/></div>
+      </div>
+      <div class="form-group"><label for="gate-insta">Instagram handle (optional)</label><input type="text" id="gate-insta" name="instagram" placeholder="@yourbrand"/></div>
+      <div class="cf-turnstile" data-sitekey="0x4AAAAAACgSvRvZpT5d_Ab5" data-theme="dark" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired" style="margin-bottom:1rem;display:flex;justify-content:center"></div>
+      <div class="error-msg" id="formError"></div>
+      <button type="submit" class="gate-btn" id="gateBtn" disabled>Fill required fields first</button>
+      <p class="gate-note">&#128274; No spam. Sirf detailed guide milegi.</p>
+    </form>
+    <div class="form-success" id="formSuccess"><div class="checkmark">&#128640;</div><h3>Unlocked!</h3><p>Neeche scroll karo — full guide tumhari hai.</p></div>
+  </div>
+</div>
+
+<!-- DETAILED CONTENT (unlocked after form) -->
+<div class="content-section" id="contentSection">
+  <div class="content-header">
+    <h2>The Complete Guide &#128214;</h2>
+    <p>Follow each step. By the end, you'll have a fully functional, payment-ready e-commerce website.</p>
+  </div>
+
+  <!-- STEP 1 DETAIL -->
+  <div class="detail-step s1">
+    <div class="step-num">Step 1 of 6</div>
+    <h3>&#9997;&#65039; Sketch Your Wireframe on Paper</h3>
+    <p>Grab a pen and paper. Draw out every screen your website needs. Don't worry about making it pretty — rough is perfect. The AI will handle the design.</p>
+    <ul class="sub-steps">
+      <li data-num="a">Draw the <span class="hl">Home page</span> — hero banner, product grid, navigation, footer</li>
+      <li data-num="b">Draw the <span class="hl">Product page</span> — image gallery, price, size selector, add to cart</li>
+      <li data-num="c">Draw the <span class="hl">Cart page</span> — items list, quantities, total, checkout button</li>
+      <li data-num="d">Draw the <span class="hl">Checkout page</span> — address form, payment section, order summary</li>
+      <li data-num="e">Draw the <span class="hl">Collections/Category</span> page — filters, sorted products</li>
+      <li data-num="f">Optionally sketch <span class="hl">About</span>, <span class="hl">Contact</span>, <span class="hl">Order tracking</span> pages</li>
+    </ul>
+    <p>Take clear photos of each sketch. Good lighting, straight angle. These photos become your AI input.</p>
+    <div class="tool-strip">
+      <div class="tool-chip">Pen + Paper <span class="free">FREE</span></div>
+      <div class="tool-chip">Phone Camera <span class="free">FREE</span></div>
+    </div>
+  </div>
+
+  <!-- STEP 2 DETAIL -->
+  <div class="detail-step s2">
+    <div class="step-num">Step 2 of 6</div>
+    <h3>&#129302; Convert Sketches to Prototype with AI</h3>
+    <p>Upload your paper sketches to an AI tool that converts wireframes into working code. You'll get a clickable prototype with real HTML/CSS.</p>
+    <ul class="sub-steps">
+      <li data-num="a">Go to <span class="hl">Google Stitch</span> (stitch.withgoogle.com) — upload your sketch photos</li>
+      <li data-num="b">Or use <span class="hl">Vercel v0</span> (v0.dev) — describe + upload your wireframe</li>
+      <li data-num="c">Or use <span class="hl">Bolt.new</span>, <span class="hl">Lovable</span>, or <span class="hl">Replit</span> — all accept image inputs</li>
+      <li data-num="d">Review the output — it won't be perfect, but it gives you a <span class="hl">solid starting structure</span></li>
+      <li data-num="e">Export/copy the generated code — you'll refine this in the next step</li>
+    </ul>
+    <p>The prototype is your foundation. It captures your layout intent. Now we make it production-grade.</p>
+    <div class="tool-strip">
+      <div class="tool-chip">Google Stitch <span class="free">FREE</span></div>
+      <div class="tool-chip">v0.dev <span class="free">FREE tier</span></div>
+      <div class="tool-chip">Bolt.new <span class="free">FREE tier</span></div>
+    </div>
+  </div>
+
+  <!-- STEP 3 DETAIL -->
+  <div class="detail-step s3">
+    <div class="step-num">Step 3 of 6</div>
+    <h3>&#127912; Build the Production Frontend</h3>
+    <p>Take the prototype code and feed it to Claude or ChatGPT. This is where the magic happens — AI turns your rough prototype into a polished, responsive, production-ready frontend.</p>
+    <ul class="sub-steps">
+      <li data-num="a">Paste the prototype code into <span class="hl">Claude</span> or <span class="hl">ChatGPT</span></li>
+      <li data-num="b">Ask it to: <span class="hl">"Polish this into a production e-commerce frontend with Tailwind CSS, smooth animations, mobile responsive, professional design"</span></li>
+      <li data-num="c">Specify your <span class="hl">brand colors, fonts, style</span> — "luxury minimal like Dior" or "warm earthy like ethnic wear"</li>
+      <li data-num="d">Add features: <span class="hl">product filtering, size selection, image zoom, cart with localStorage, search</span></li>
+      <li data-num="e">Make sure it's <span class="hl">mobile-first</span> — 80%+ of your traffic will be from phones (especially from Instagram)</li>
+      <li data-num="f">Test on phone, tablet, desktop. Fix any responsive issues with AI</li>
+    </ul>
+    <div class="tl-tips">
+      <li>Pro tip: Give AI a reference website. "Make it look like this: [URL]" works surprisingly well</li>
+      <li>Pro tip: Use Claude Code (CLI) for iterating directly on your files — fastest workflow</li>
+    </div>
+    <div class="tool-strip">
+      <div class="tool-chip">Claude / ChatGPT</div>
+      <div class="tool-chip">HTML + Tailwind CSS</div>
+      <div class="tool-chip">JavaScript</div>
+    </div>
+  </div>
+
+  <!-- STEP 4 DETAIL -->
+  <div class="detail-step s4">
+    <div class="step-num">Step 4 of 6</div>
+    <h3>&#9881;&#65039; Set Up the Backend</h3>
+    <p>Your frontend needs a backend for product data, orders, user auth, and admin management. Here's how to structure it.</p>
+    <ul class="sub-steps">
+      <li data-num="a">Choose your stack: <span class="hl">Cloudflare Workers + D1</span> (free, serverless) or <span class="hl">Node.js + PostgreSQL</span></li>
+      <li data-num="b">Create API endpoints: <span class="hl">/api/products</span>, <span class="hl">/api/cart</span>, <span class="hl">/api/orders</span>, <span class="hl">/api/auth</span></li>
+      <li data-num="c">Set up <span class="hl">OTP-based authentication</span> — no passwords, just phone/email OTP (use MSG91 or similar)</li>
+      <li data-num="d">Build an <span class="hl">Admin panel</span> — add/edit products, view orders, manage inventory</li>
+      <li data-num="e">Set up <span class="hl">email notifications</span> — order confirmation, shipping updates (use Resend or Mailgun, both free tier)</li>
+      <li data-num="f">Add <span class="hl">order tracking</span> — let customers check their order status</li>
+    </ul>
+    <div class="tl-tips">
+      <li>Use MVC architecture — separate routes, controllers, and models for clean code</li>
+      <li>AI can build your entire backend too. Give it your API spec and database schema</li>
+    </div>
+    <div class="tool-strip">
+      <div class="tool-chip">Cloudflare Workers <span class="free">FREE</span></div>
+      <div class="tool-chip">D1 Database <span class="free">FREE</span></div>
+      <div class="tool-chip">Resend Email <span class="free">FREE</span></div>
+    </div>
+  </div>
+
+  <!-- STEP 5 DETAIL -->
+  <div class="detail-step s5">
+    <div class="step-num">Step 5 of 6</div>
+    <h3>&#128179; Integrate Razorpay Payments</h3>
+    <p>Razorpay is the easiest way to accept payments in India. UPI, cards, net banking, wallets — everything works. Here's the integration flow.</p>
+    <ul class="sub-steps">
+      <li data-num="a">Create a <span class="hl">Razorpay account</span> at razorpay.com — KYC takes 1-2 days</li>
+      <li data-num="b">Get your <span class="hl">API Key ID</span> and <span class="hl">Key Secret</span> from the Razorpay Dashboard</li>
+      <li data-num="c">Backend: Create an order using <span class="hl">Razorpay Orders API</span> — <code>POST /v1/orders</code> with amount and currency</li>
+      <li data-num="d">Frontend: Load <span class="hl">Razorpay Checkout.js</span> — open the payment modal with the order ID</li>
+      <li data-num="e">Backend: <span class="hl">Verify payment signature</span> — compare <code>razorpay_signature</code> with HMAC SHA256 of order_id + payment_id</li>
+      <li data-num="f">On success: <span class="hl">Update order status</span> in your database, send confirmation email, show success page</li>
+      <li data-num="g">Set up <span class="hl">Razorpay webhooks</span> for payment.captured, payment.failed events as backup</li>
+    </ul>
+    <div class="tl-tips">
+      <li>Start with Razorpay Test Mode — use test API keys to simulate payments without real money</li>
+      <li>Always verify payments on the backend. Never trust frontend-only payment confirmation</li>
+      <li>Razorpay charges ~2% per transaction. No monthly fees. No setup cost</li>
+    </div>
+    <div class="tool-strip">
+      <div class="tool-chip">Razorpay <span class="free">~2% per txn</span></div>
+      <div class="tool-chip">UPI + Cards + Wallets</div>
+      <div class="tool-chip">Test Mode available</div>
+    </div>
+  </div>
+
+  <!-- STEP 6 DETAIL -->
+  <div class="detail-step s6">
+    <div class="step-num">Step 6 of 6</div>
+    <h3>&#128640; Deploy & Go Live</h3>
+    <p>Everything's built. Time to deploy and share with the world.</p>
+    <ul class="sub-steps">
+      <li data-num="a">Deploy <span class="hl">frontend</span> on Cloudflare Pages — <code>npx wrangler pages deploy .</code></li>
+      <li data-num="b">Deploy <span class="hl">backend</span> on Cloudflare Workers — <code>npx wrangler deploy</code></li>
+      <li data-num="c">Buy a <span class="hl">custom domain</span> (optional but recommended) — connect it on Cloudflare</li>
+      <li data-num="d"><span class="hl">SSL certificate</span> is automatic and free on Cloudflare</li>
+      <li data-num="e">Test the full flow: browse products &rarr; add to cart &rarr; checkout &rarr; pay &rarr; order confirmation</li>
+      <li data-num="f">Add your website link to your <span class="hl">Instagram bio</span> — start driving traffic</li>
+      <li data-num="g">Set up <span class="hl">Google Analytics</span> to track visitors and conversions</li>
+    </ul>
+    <div class="tool-strip">
+      <div class="tool-chip">Cloudflare Pages <span class="free">FREE</span></div>
+      <div class="tool-chip">Custom Domain <span class="free">~&#8377;800/yr</span></div>
+      <div class="tool-chip">SSL <span class="free">FREE</span></div>
+      <div class="tool-chip">Google Analytics <span class="free">FREE</span></div>
+    </div>
+  </div>
+
+  <!-- TOTAL COST -->
+  <div class="section-label">&#128176; Total Cost Breakdown</div>
+  <div class="tech-strip">
+    <div class="tech-chip">AI Tools (Claude/ChatGPT/Stitch) <span class="price">FREE</span></div>
+    <div class="tech-chip">Hosting (Cloudflare) <span class="price">FREE</span></div>
+    <div class="tech-chip">Database (D1) <span class="price">FREE</span></div>
+    <div class="tech-chip">Email (Resend) <span class="price">FREE</span></div>
+    <div class="tech-chip">Payments (Razorpay) <span class="price">2%/txn</span></div>
+    <div class="tech-chip">Domain <span class="price">~&#8377;800/yr</span></div>
+  </div>
+
+  <div class="info-card">
+    <h4>&#128161; Key Takeaways</h4>
+    <ul>
+      <li>You don't need to know coding — AI does the heavy lifting, you just need to know <span class="hl">what you want</span></li>
+      <li>Start with a <span class="hl">paper sketch</span>. It's the fastest way to think through your product</li>
+      <li>Use <span class="hl">AI tools as your developer</span> — describe what you want, iterate on the output</li>
+      <li>Ship fast, iterate later. <span class="hl">Perfect is the enemy of done</span></li>
+      <li>Your Instagram audience is your first customer base. <span class="hl">Link in bio = instant traffic</span></li>
+    </ul>
+  </div>
+</div>
+
+<!-- BOTTOM CTA -->
+<div class="bottom-cta" id="bottomCta">
+  <div class="cta-inner">
+    <h3>Want me to build it for you?</h3>
+    <p>Don't want to DIY? I build production-ready e-commerce websites. Or check out more free prompts.</p>
+    <div class="cta-btns">
+      <a href="/#contact" class="btn-primary">Book a Free Call &rarr;</a>
+      <a href="/prompts.html" class="btn-ghost">More Free Prompts &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<footer><p>Built by <a href="/">himanshu</a> &mdash; <a href="https://instagram.com/oye.nino" target="_blank">@oye.nino</a></p></footer>
+
+<script>
+var STORAGE_KEY = 'design_roadmap_unlocked';
+
+function showContent() {
+  document.getElementById('gateSection').style.display = 'none';
+  document.getElementById('contentSection').classList.add('visible');
+  document.getElementById('bottomCta').classList.add('visible');
+  localStorage.setItem(STORAGE_KEY, 'yes');
+  setTimeout(function() {
+    document.getElementById('contentSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 300);
+  if (typeof gtag === 'function') gtag('event', 'design_roadmap_unlocked');
+}
+
+if (localStorage.getItem(STORAGE_KEY) === 'yes') { showContent(); }
+
+// Country code auto-detect
+var CC_MAP={"IN":"+91","US":"+1","GB":"+44","AE":"+971","AU":"+61","DE":"+49","FR":"+33","JP":"+81","SG":"+65","SA":"+966","NP":"+977","BD":"+880","PK":"+92","ID":"+62","BR":"+55","MX":"+52","ZA":"+27","NG":"+234"};
+fetch("https://ipapi.co/json/").then(function(r){return r.json()}).then(function(d){
+  if(d&&d.country_code){var c=CC_MAP[d.country_code];if(c){var s=document.getElementById("countryCode");for(var i=0;i<s.options.length;i++){if(s.options[i].value===c){s.selectedIndex=i;break;}}}}
+}).catch(function(){});
+
+// Combine country code + phone before submit
+var gateForm=document.getElementById("gateForm");
+gateForm.addEventListener("submit",function(){
+  var cc=document.getElementById("countryCode").value;
+  var ph=document.getElementById("gate-phone").value.trim();
+  if(ph&&!ph.startsWith("+")){
+    document.getElementById("gate-phone").value=cc+ph.replace(/^0/,"");
+  }
+});
+</script>
+<script src="/form-utils.js"></script>
+<script>
+try{
+  if(typeof OyeNinoForm!=="undefined"){
+    new OyeNinoForm({
+      formId:"gateForm",
+      emailId:"gate-email",
+      phoneId:"gate-phone",
+      nameId:"gate-name",
+      btnId:"gateBtn",
+      statusId:"emailStatus",
+      phoneStatusId:"phoneStatus",
+      errorId:"formError",
+      formName:"design_roadmap_narivibe",
+      source:"design-roadmap-insta",
+      requiredFields:["name","email","phone","business"],
+      btnTexts:{
+        ready:"\uD83D\uDCCB Unlock Full Guide \u2192",
+        turnstile:"Verify you're human first \u2191",
+        email:"Valid email daalo pehle",
+        phone:"Valid phone number daalo",
+        fields:"Fill required fields first",
+        submitting:"\uD83D\uDD13 Unlocking..."
+      },
+      onSuccess:function(){
+        document.getElementById("gateForm").style.display="none";
+        document.getElementById("formSuccess").style.display="block";
+        setTimeout(showContent,1500);
+      }
+    });
+  }else{
+    var b=document.getElementById("gateBtn");b.disabled=false;b.innerHTML="\uD83D\uDCCB Unlock Full Guide \u2192";
+    window.onTurnstileSuccess=function(){};window.onTurnstileExpired=function(){};
+    gateForm.addEventListener("submit",function(e){e.preventDefault();showContent();});
+  }
+}catch(err){
+  console.warn("form-utils fallback:",err);
+  var b=document.getElementById("gateBtn");b.disabled=false;b.innerHTML="\uD83D\uDCCB Unlock Full Guide \u2192";
+  gateForm.addEventListener("submit",function(e){e.preventDefault();showContent();});
+}
+</script>
+</body>
+</html>
