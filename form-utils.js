@@ -129,7 +129,7 @@
   }
 
   // ===========================
-  // PHONE VALIDATION (INDIAN + INTERNATIONAL)
+  // PHONE VALIDATION (INDIAN + ALL INTERNATIONAL — E.164 compliant)
   // ===========================
 
   function validatePhone(phone) {
@@ -137,6 +137,9 @@
     if (!phone) return { valid: false, msg: "", type: "" };
 
     var cleaned = phone.replace(/[\s\-\(\)\.]/g, "");
+
+    // Convert 00 international prefix to + (common in Europe, Middle East, etc.)
+    if (/^00[1-9]/.test(cleaned)) cleaned = "+" + cleaned.slice(2);
 
     // Indian patterns (strict)
     var indianPatterns = [
@@ -150,21 +153,18 @@
       return { valid: true, msg: "\u2713 Phone number valid hai", type: "success" };
 
     // International: starts with + and country code, 7-15 digits total (ITU-T E.164)
-    if (/^\+[1-9]\d{6,14}$/.test(cleaned))
+    if (/^\+[1-9]\d{5,14}$/.test(cleaned))
+      return { valid: true, msg: "\u2713 Phone number looks good", type: "success" };
+
+    // Accept plain digits with 7-15 length as valid international (without + prefix)
+    if (/^[1-9]\d{6,14}$/.test(cleaned))
       return { valid: true, msg: "\u2713 Phone number looks good", type: "success" };
 
     // Fallback checks for partial/invalid input
-    if (/^\+?\d{5,}$/.test(cleaned)) {
-      if (cleaned.length < 7) return { valid: false, msg: "Phone number too short \u2014 include country code (e.g. +1, +91, +44)", type: "error" };
-      if (cleaned.length > 16) return { valid: false, msg: "Phone number too long", type: "error" };
-      // Indian number without + prefix but wrong starting digit
-      if (/^91/.test(cleaned)) {
-        var first = cleaned.slice(2).charAt(0);
-        if (first && "012345".indexOf(first) !== -1)
-          return { valid: false, msg: "Indian mobile numbers start with 6, 7, 8 or 9", type: "error" };
-      }
-      if (!/^\+/.test(cleaned))
-        return { valid: false, msg: "Add country code (e.g. +91, +1, +44)", type: "error" };
+    if (/^\+?\d{3,}$/.test(cleaned)) {
+      var digitCount = cleaned.replace(/\+/, "").length;
+      if (digitCount < 6) return { valid: false, msg: "Phone number too short \u2014 include country code (e.g. +1, +91, +44)", type: "error" };
+      if (digitCount > 15) return { valid: false, msg: "Phone number too long", type: "error" };
       return { valid: false, msg: "Check your phone number format", type: "error" };
     }
 
@@ -173,13 +173,22 @@
 
   function formatPhoneDisplay(phone) {
     var cleaned = phone.replace(/[\s\-\(\)\.]/g, "");
+
+    // Convert 00 prefix to +
+    if (/^00[1-9]/.test(cleaned)) cleaned = "+" + cleaned.slice(2);
+
+    // Indian number formatting
     var digits;
     if (cleaned.startsWith("+91")) digits = cleaned.slice(3);
     else if (cleaned.startsWith("91") && cleaned.length === 12) digits = cleaned.slice(2);
-    else if (cleaned.startsWith("0")) digits = cleaned.slice(1);
-    else digits = cleaned;
-    if (digits.length === 10) return "+91 " + digits.slice(0, 5) + " " + digits.slice(5);
-    return phone;
+    else if (cleaned.startsWith("0") && !cleaned.startsWith("00")) digits = cleaned.slice(1);
+    else digits = null;
+    if (digits && digits.length === 10 && /^[6-9]/.test(digits))
+      return "+91 " + digits.slice(0, 5) + " " + digits.slice(5);
+
+    // International: ensure + prefix for display
+    if (/^[1-9]\d{6,14}$/.test(cleaned)) return "+" + cleaned;
+    return cleaned.startsWith("+") ? cleaned : phone;
   }
 
   // ===========================

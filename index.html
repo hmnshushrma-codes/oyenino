@@ -100,6 +100,11 @@
         "url": "https://oyenino.com"
       }
     </script>
+    <!-- Skip intro animation on repeat visits within same session -->
+    <script>
+      if (sessionStorage.getItem("intro_seen"))
+        document.documentElement.classList.add("skip-intro");
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -885,6 +890,21 @@
           transform-origin: bottom;
         }
       }
+      /* Skip intro: show everything instantly on repeat visits */
+      .skip-intro .grid-overlay {
+        display: none !important;
+      }
+      .skip-intro .hero-badge,
+      .skip-intro .hero-title,
+      .skip-intro .hero-sub,
+      .skip-intro .hero-actions,
+      .skip-intro .terminal,
+      .skip-intro .scroll-hint {
+        opacity: 1 !important;
+        animation: none !important;
+        transform: none !important;
+      }
+
       .prompts-banner {
         max-width: 1100px;
         margin: 0 auto;
@@ -2651,6 +2671,13 @@
       (function () {
         var ov = document.getElementById("gridOverlay");
         if (!ov) return;
+
+        // Skip animation if already seen this session
+        if (sessionStorage.getItem("intro_seen")) {
+          ov.remove();
+          return;
+        }
+
         var mob = window.innerWidth < 768,
           C = mob ? 6 : 10,
           R = mob ? 8 : 7;
@@ -2692,6 +2719,7 @@
         setTimeout(
           function () {
             ov.remove();
+            sessionStorage.setItem("intro_seen", "true");
           },
           B + sorted.length * G + 1200,
         );
