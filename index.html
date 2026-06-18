@@ -4,23 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-BGL94NLVL7"
-    ></script>
+    <!-- GA + Turnstile deferred to after page load -->
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
+      function gtag() { dataLayer.push(arguments); }
       gtag("js", new Date());
       gtag("config", "G-BGL94NLVL7");
+      window.addEventListener("load", function() {
+        var ga = document.createElement("script");
+        ga.src = "https://www.googletagmanager.com/gtag/js?id=G-BGL94NLVL7";
+        ga.async = true;
+        document.head.appendChild(ga);
+        var ts = document.createElement("script");
+        ts.src = "https://challenges.cloudflare.com/turnstile/v0/api.js";
+        ts.async = true;
+        ts.defer = true;
+        document.head.appendChild(ts);
+      });
     </script>
-    <script
-      src="https://challenges.cloudflare.com/turnstile/v0/api.js"
-      async
-      defer
-    ></script>
     <title>
       Himanshu | Freelance Frontend Developer — React, Next.js, AI | Hire Me
     </title>
@@ -112,9 +113,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" /></noscript>
     <style>
       *,
       *::before,
@@ -130,7 +134,7 @@
         --bg-card-hover: #161616;
         --text: #eeeae4;
         --text-mid: #b5b0a8;
-        --text-muted: #706c66;
+        --text-muted: #8a8580;
         --accent: #00f0a0;
         --accent-dim: #00c583;
         --accent-glow: rgba(0, 240, 160, 0.1);
@@ -159,14 +163,7 @@
         background: var(--accent);
         color: var(--bg);
       }
-      body::after {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-        pointer-events: none;
-        z-index: 50;
-      }
+      /* noise overlay deferred to avoid blocking paint */
       .grid-overlay {
         position: fixed;
         inset: 0;
@@ -182,6 +179,8 @@
         transform-origin: center;
         position: relative;
         overflow: hidden;
+        will-change: transform, opacity;
+        contain: layout style;
       }
       .grid-tile.revealed {
         opacity: 0;
@@ -573,6 +572,8 @@
         filter: blur(120px);
         animation: breathe 8s ease-in-out infinite;
         opacity: 0.4;
+        will-change: transform, opacity;
+        contain: strict;
       }
       .hero-glow-2 {
         position: absolute;
@@ -619,17 +620,20 @@
         background: var(--accent);
         border-radius: 50%;
         animation: pulse 2s ease-in-out infinite;
+        will-change: transform, opacity;
+        position: relative;
+      }
+      .pulse::after {
+        content: "";
+        position: absolute;
+        inset: -4px;
+        border-radius: 50%;
+        background: var(--accent-glow-strong);
+        z-index: -1;
       }
       @keyframes pulse {
-        0%,
-        100% {
-          opacity: 1;
-          box-shadow: 0 0 0 0 var(--accent-glow-strong);
-        }
-        50% {
-          opacity: 0.6;
-          box-shadow: 0 0 0 8px transparent;
-        }
+        0%, 100% { opacity: 1; transform: scale(1); }
+        50% { opacity: 0.6; transform: scale(1.8); }
       }
       .hero-title {
         font-family: var(--serif);
@@ -1979,7 +1983,7 @@
         </li>
       </ul>
       <div class="nav-right">
-        <a href="#contact" class="nav-cta" data-ga="nav_cta">Let's Talk</a>
+        <a href="#contact" class="nav-cta" data-ga="nav_cta" aria-label="Contact — Let's Talk">Let's Talk</a>
         <button class="mobile-toggle" id="mobToggle" aria-label="Menu">
           <span class="ham-line"></span><span class="ham-line"></span
           ><span class="ham-line"></span>
@@ -2042,6 +2046,7 @@
       <a href="#contact" class="mp-cta mob-close">Let's Talk →</a>
     </div>
 
+    <main>
     <header class="hero">
       <div class="hero-glow"></div>
       <div class="hero-glow-2"></div>
@@ -2257,11 +2262,11 @@
         <p class="section-eyebrow reveal" style="justify-content: center">
           <span></span>Why Me
         </p>
-        <div class="value-heading reveal">
+        <h2 class="value-heading reveal">
           You don't need another developer.<br />You need someone who
           <strong>understands your problem</strong> and builds the
           <strong>right solution</strong> — not the complicated one.
-        </div>
+        </h2>
         <div class="value-cards reveal stagger-parent">
           <div class="value-card stagger-child">
             <span class="vc-icon">⚙</span>
@@ -2630,6 +2635,7 @@
       </div>
     </section>
 
+    </main>
     <footer>
       <div class="footer-left">
         © 2026 Himanshu. Built with code &amp; clarity.
@@ -2687,13 +2693,15 @@
           R = mob ? 8 : 7;
         ov.style.gridTemplateColumns = "repeat(" + C + ",1fr)";
         ov.style.gridTemplateRows = "repeat(" + R + ",1fr)";
+        var frag = document.createDocumentFragment();
         var tiles = [];
         for (var i = 0; i < C * R; i++) {
           var t = document.createElement("div");
           t.className = "grid-tile";
-          ov.appendChild(t);
+          frag.appendChild(t);
           tiles.push(t);
         }
+        ov.appendChild(frag);
         var cx = Math.floor(C / 2),
           cy = Math.floor(R / 2);
         var sorted = tiles
