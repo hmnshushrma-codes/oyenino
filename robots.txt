@@ -3,5 +3,12 @@ Allow: /
 Disallow: /node_modules/
 Disallow: /dist/
 Disallow: /.astro/
+Disallow: /example/
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
 
 Sitemap: https://oyenino.com/sitemap.xml

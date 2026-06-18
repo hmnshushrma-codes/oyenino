@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Main Pages -->
   <url>
     <loc>https://oyenino.com/</loc>
     <lastmod>2026-06-18</lastmod>
@@ -13,6 +14,14 @@
     <priority>0.9</priority>
   </url>
   <url>
+    <loc>https://oyenino.com/veyra/</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Prompt Pages -->
+  <url>
     <loc>https://oyenino.com/website-prompts.html</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
@@ -22,40 +31,16 @@
     <loc>https://oyenino.com/shopping-prompt.html</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://oyenino.com/dukaanai.html</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
-  </url>
-  <url>
-    <loc>https://oyenino.com/veyra/</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <priority>0.8</priority>
   </url>
   <url>
     <loc>https://oyenino.com/ai-agent-prompt.html</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://oyenino.com/roadmap.html</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://oyenino.com/design-roadmap.html</loc>
-    <lastmod>2026-06-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://oyenino.com/job-hunter-prompt.html</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -73,17 +58,39 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://oyenino.com/freestore-prompt.html</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://oyenino.com/fraud-detection-prompt.html</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://oyenino.com/freestore-prompt.html</loc>
+    <loc>https://oyenino.com/job-hunter-prompt.html</loc>
     <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
+  <!-- Guides & Roadmaps -->
+  <url>
+    <loc>https://oyenino.com/roadmap.html</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://oyenino.com/design-roadmap.html</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Existence Series -->
   <url>
     <loc>https://oyenino.com/existence/</loc>
     <lastmod>2026-06-18</lastmod>
@@ -119,23 +126,5 @@
     <lastmod>2026-04-11</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
-  </url>
-  <url>
-    <loc>https://oyenino.com/example/cs1.html</loc>
-    <lastmod>2026-04-11</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://oyenino.com/example/cs2.html</loc>
-    <lastmod>2026-04-11</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://oyenino.com/example/cs3.html</loc>
-    <lastmod>2026-04-11</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
   </url>
 </urlset>
