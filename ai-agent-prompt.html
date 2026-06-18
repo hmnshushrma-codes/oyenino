@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BGL94NLVL7"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-BGL94NLVL7");</script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 <title>Build Your Own AI Agent — Free Prompt + Code | Oye Nino</title>
-<meta name="description" content="Build any AI agent in 30 minutes. Free prompt with placeholders — customize for YOUR business. Zero cost. Zero coding. By Himanshu (@oye.nino)."/>
+<meta name="description" content="Build any AI agent in 30 minutes with this free prompt. Customize for your business — customer support, lead gen, data analysis. Zero cost, zero coding. By Himanshu."/>
 <meta name="keywords" content="AI agent, build AI agent, free AI agent prompt, AI for business, Gemini API, Cloudflare Workers, AI automation, no code AI, free AI tools, oye nino, AI agent tutorial, custom AI agent"/>
 <meta property="og:title" content="Build Your Own AI Agent — Free Prompt + Code"/>
 <meta property="og:description" content="AI agent banao — apne business ke liye. Free prompt, zero cost, 30 minutes. Customize karo, deploy karo."/>
@@ -24,7 +25,11 @@ html{scroll-behavior:smooth}body{font-family:var(--sans);background:var(--bg);co
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:50}
 
 /* NAV */
-nav{padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.04);backdrop-filter:blur(20px);position:sticky;top:0;z-index:100;background:rgba(5,5,5,.85)}.nav-logo{font-family:var(--sans);font-size:1.2rem;font-weight:600;color:var(--text);text-decoration:none}.nav-logo span{color:var(--accent)}.nav-back{color:var(--text-muted);text-decoration:none;font-size:.85rem;transition:color .3s}.nav-back:hover{color:var(--accent)}
+nav{padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.04);backdrop-filter:blur(20px);position:sticky;top:0;z-index:100;background:rgba(5,5,5,.85)}.nav-logo{font-family:var(--sans);font-size:1.2rem;font-weight:600;color:var(--text);text-decoration:none}.nav-logo span{color:var(--accent)}.nav-links{display:flex;align-items:center;gap:1.5rem}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.85rem;transition:color var(--transition)}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{background:var(--accent);color:var(--bg) !important;padding:0.5rem 1.25rem;border-radius:100px;font-weight:600;font-size:0.82rem !important}
+.nav-cta:hover{color:var(--bg) !important}
 
 /* HERO */
 .hero{max-width:800px;margin:0 auto;padding:5rem 2rem 3rem;text-align:center;position:relative}
@@ -151,7 +156,7 @@ footer p{color:var(--text-muted);font-size:.8rem;font-weight:300}
 footer a{color:var(--accent);text-decoration:none}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:768px){.features{grid-template-columns:1fr}.examples-grid{grid-template-columns:repeat(2,1fr)}.prompt-steps{flex-direction:column}.hero-stats{gap:1.5rem}.gate-card{padding:2rem 1.5rem}.form-row{grid-template-columns:1fr}}
+@media(max-width:768px){.nav-links{gap:0.75rem}.nav-links a{font-size:0.75rem}.nav-cta{padding:0.4rem 0.9rem}.features{grid-template-columns:1fr}.examples-grid{grid-template-columns:repeat(2,1fr)}.prompt-steps{flex-direction:column}.hero-stats{gap:1.5rem}.gate-card{padding:2rem 1.5rem}.form-row{grid-template-columns:1fr}}
 @media(max-width:480px){.examples-grid{grid-template-columns:1fr 1fr}.hero h1{font-size:2rem}}
 </style>
 </head>
@@ -159,7 +164,12 @@ footer a{color:var(--accent);text-decoration:none}
 
 <nav>
   <a href="/" class="nav-logo">nino<span>.</span></a>
-  <a href="/" class="nav-back">&larr; Back to Home</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/prompts.html">Free Prompts</a>
+    <a href="/existence/">Existence</a>
+    <a href="/#contact" class="nav-cta">Let's Talk</a>
+  </div>
 </nav>
 
 <!-- HERO -->

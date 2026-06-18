@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BGL94NLVL7"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-BGL94NLVL7");</script>
     <title>Free AI Prompt — Manage Website Products Without Code | Himanshu (@oye.nino)</title>
@@ -30,8 +31,31 @@
       nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(24px);background:rgba(5,5,5,0.85);border-bottom:1px solid rgba(255,255,255,0.04)}
       .nav-logo{font-size:1.25rem;font-weight:600;color:var(--text);text-decoration:none;letter-spacing:-0.02em}
       .nav-logo span{color:var(--accent)}
-      .nav-back{color:var(--text-muted);text-decoration:none;font-size:.85rem;transition:color var(--transition)}
-      .nav-back:hover{color:var(--accent)}
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+      .nav-links a {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: 0.85rem;
+        transition: color var(--transition);
+      }
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+      .nav-cta {
+        background: var(--accent);
+        color: var(--bg) !important;
+        padding: 0.5rem 1.25rem;
+        border-radius: 100px;
+        font-weight: 600;
+        font-size: 0.82rem !important;
+      }
+      .nav-cta:hover {
+        color: var(--bg) !important;
+      }
       .page-hero{padding:9rem 2rem 4rem;max-width:900px;margin:0 auto;text-align:center;position:relative;min-height:90vh;display:flex;flex-direction:column;justify-content:center}
       .hero-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:500px;background:radial-gradient(ellipse,var(--accent-glow) 0%,transparent 60%);pointer-events:none;filter:blur(100px);animation:breathe 6s ease-in-out infinite}
       @keyframes breathe{0%,100%{opacity:.3;transform:translateX(-50%) scale(1)}50%{opacity:.6;transform:translateX(-50%) scale(1.08)}}
@@ -148,6 +172,9 @@
       .reveal{opacity:0;transform:translateY(30px);transition:opacity .6s,transform .6s}
       .reveal.visible{opacity:1;transform:translateY(0)}
       @media(max-width:768px){
+        .nav-links { gap: 0.75rem; }
+        .nav-links a { font-size: 0.75rem; }
+        .nav-cta { padding: 0.4rem 0.9rem; }
         .page-hero{padding:7rem 1.5rem 3rem;min-height:auto}.hero-glow{width:300px;height:250px}.magnetic-title{font-size:clamp(2rem,8vw,3rem)}.float-card{display:none}.cursor-glow{display:none}.gate-wrap{padding:0 1rem}.gate-card{padding:1.75rem 1.25rem}.cf-turnstile{transform:scale(.9);transform-origin:left top}.prompt-text{font-size:.72rem;padding:1rem}.prompt-card{padding:1.25rem}.unlock-banner{flex-direction:column;text-align:center;padding:1.25rem}#prompt-content{padding:0 1rem 4rem}.how-to-use,.cheat-sheet{padding:1.5rem 1.25rem}.cheat-row{flex-direction:column;gap:.3rem}.cheat-row:hover{transform:none}.prompts-cta{padding:2rem 1.25rem}.cta-buttons{flex-direction:column;align-items:center}footer{flex-direction:column;text-align:center}
       }
     </style>
@@ -156,7 +183,12 @@
     <div class="cursor-glow" id="cursorGlow"></div>
     <nav>
       <a href="/" class="nav-logo">nino<span>.</span></a>
-      <a href="/" class="nav-back">&larr; Back to Portfolio</a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/prompts.html">Free Prompts</a>
+        <a href="/existence/">Existence</a>
+        <a href="/#contact" class="nav-cta">Let's Talk</a>
+      </div>
     </nav>
     <div class="page-hero">
       <div class="hero-glow"></div>

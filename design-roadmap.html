@@ -3,11 +3,12 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-BGL94NLVL7"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-BGL94NLVL7");</script>
 <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
-<title>Paper to Production — Build a Full E-Commerce Website from a Rough Wireframe | Oye Nino</title>
-<meta name="description" content="Turn your rough paper wireframe into a live e-commerce website with AI. Step-by-step roadmap: Google Stitch prototype, frontend, backend, Razorpay payments. Free guide by Himanshu (@oye.nino)."/>
+<title>Paper to Production — Build an E-Commerce Website from Wireframe | Oye Nino</title>
+<meta name="description" content="Turn a rough paper wireframe into a live e-commerce website. Step-by-step guide: prototype with Google Stitch, build frontend, connect backend, add Razorpay payments. Free."/>
 <meta name="keywords" content="website design roadmap, paper wireframe to website, Google Stitch, AI website builder, e-commerce website tutorial, Razorpay integration, build website from scratch, NariVibes, AI prototype to production, oye nino, Himanshu"/>
 <meta property="og:title" content="Paper to Production — Build a Full E-Commerce Website from a Wireframe"/>
 <meta property="og:description" content="Rough wireframe on paper? Turn it into a fully functional e-commerce website with AI, Razorpay payments, and everything. Free roadmap."/>
@@ -37,7 +38,11 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 
 nav{padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(255,255,255,.04);backdrop-filter:blur(20px);position:sticky;top:0;z-index:100;background:rgba(5,5,5,.85)}
 .nav-logo{font-family:var(--sans);font-size:1.2rem;font-weight:600;color:var(--text);text-decoration:none}.nav-logo span{color:var(--accent)}
-.nav-back{color:var(--text-muted);text-decoration:none;font-size:.85rem;transition:color .3s}.nav-back:hover{color:var(--accent)}
+.nav-links{display:flex;align-items:center;gap:1.5rem}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.85rem;transition:color var(--transition)}
+.nav-links a:hover{color:var(--accent)}
+.nav-cta{background:var(--accent);color:var(--bg) !important;padding:0.5rem 1.25rem;border-radius:100px;font-weight:600;font-size:0.82rem !important}
+.nav-cta:hover{color:var(--bg) !important}
 
 .hero{max-width:800px;margin:0 auto;padding:5rem 2rem 3rem;text-align:center;position:relative}
 .hero-glow{position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,var(--accent-glow) 0%,transparent 60%);border-radius:50%;pointer-events:none;filter:blur(100px);opacity:.3;animation:breathe 8s ease-in-out infinite}
@@ -188,7 +193,7 @@ footer{border-top:1px solid var(--border);padding:2rem;text-align:center}
 footer p{color:var(--text-muted);font-size:.8rem;font-weight:300}footer a{color:var(--accent);text-decoration:none}
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
-@media(max-width:768px){.example-flow{grid-template-columns:repeat(2,1fr)}.flow-arrow{display:none}.gate-card{padding:2rem 1.5rem}.form-row{grid-template-columns:1fr}.hero h1{font-size:2rem}.hero-stats{gap:1.5rem}}
+@media(max-width:768px){.nav-links{gap:0.75rem}.nav-links a{font-size:0.75rem}.nav-cta{padding:0.4rem 0.9rem}.example-flow{grid-template-columns:repeat(2,1fr)}.flow-arrow{display:none}.gate-card{padding:2rem 1.5rem}.form-row{grid-template-columns:1fr}.hero h1{font-size:2rem}.hero-stats{gap:1.5rem}}
 @media(max-width:480px){.example-flow{grid-template-columns:1fr}}
 </style>
 </head>
@@ -196,7 +201,12 @@ footer p{color:var(--text-muted);font-size:.8rem;font-weight:300}footer a{color:
 
 <nav>
   <a href="/" class="nav-logo">nino<span>.</span></a>
-  <a href="/" class="nav-back">&larr; Back to Home</a>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/prompts.html">Free Prompts</a>
+    <a href="/existence/">Existence</a>
+    <a href="/#contact" class="nav-cta">Let's Talk</a>
+  </div>
 </nav>
 
 <section class="hero">

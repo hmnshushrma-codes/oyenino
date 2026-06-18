@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=G-BGL94NLVL7"
@@ -109,8 +110,7 @@
 
       /* ===== NAV ===== */
       nav {
-        padding: 0 2rem;
-        height: 60px;
+        padding: 1rem 2rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -131,253 +131,30 @@
       .nav-logo span {
         color: var(--accent);
       }
-      .nav-center {
+      .nav-links {
         display: flex;
-        list-style: none;
-        gap: 0.25rem;
         align-items: center;
+        gap: 1.5rem;
       }
-      .nav-center a,
-      .dd-trigger {
+      .nav-links a {
         color: var(--text-muted);
         text-decoration: none;
         font-size: 0.85rem;
-        font-weight: 400;
-        padding: 0.5rem 0.75rem;
-        border-radius: 8px;
-        transition:
-          color 0.2s,
-          background 0.2s;
-        cursor: pointer;
+        transition: color var(--transition);
       }
-      .nav-center a:hover,
-      .dd-trigger:hover {
-        color: var(--text);
-        background: rgba(255, 255, 255, 0.04);
-      }
-      .nav-right {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
+      .nav-links a:hover {
+        color: var(--accent);
       }
       .nav-cta {
         background: var(--accent);
-        color: #fff;
+        color: var(--bg) !important;
         padding: 0.5rem 1.25rem;
         border-radius: 100px;
-        text-decoration: none;
-        font-size: 0.85rem;
         font-weight: 600;
-        transition:
-          transform 0.2s,
-          box-shadow 0.2s;
-        white-space: nowrap;
+        font-size: 0.82rem !important;
       }
       .nav-cta:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 4px 16px var(--accent-glow-strong);
-      }
-      .nav-dropdown {
-        position: relative;
-      }
-      .dd-arrow {
-        font-size: 0.65rem;
-        transition: transform 0.2s;
-      }
-      .dd-menu {
-        position: absolute;
-        top: calc(100% + 8px);
-        left: 50%;
-        transform: translateX(-50%) translateY(8px);
-        background: #0d0d0d;
-        border: 1px solid var(--border);
-        border-radius: 14px;
-        padding: 0.5rem;
-        min-width: 260px;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.25s;
-        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
-      }
-      .nav-dropdown:hover .dd-menu {
-        opacity: 1;
-        visibility: visible;
-        transform: translateX(-50%) translateY(0);
-      }
-      .nav-dropdown:hover .dd-arrow {
-        transform: rotate(180deg);
-      }
-      .dd-item {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 0.6rem 0.75rem;
-        border-radius: 10px;
-        text-decoration: none;
-        color: var(--text-mid);
-        transition: all 0.2s;
-      }
-      .dd-item:hover {
-        background: rgba(255, 255, 255, 0.04);
-        color: var(--text);
-      }
-      .dd-emoji {
-        font-size: 1.1rem;
-        width: 28px;
-        text-align: center;
-        flex-shrink: 0;
-      }
-      .dd-info {
-        display: flex;
-        flex-direction: column;
-        gap: 1px;
-      }
-      .dd-name {
-        font-size: 0.82rem;
-        font-weight: 500;
-        color: var(--text);
-      }
-      .dd-desc {
-        font-size: 0.7rem;
-        color: var(--text-muted);
-        font-weight: 300;
-      }
-      .dd-divider {
-        height: 1px;
-        background: var(--border);
-        margin: 0.35rem 0.75rem;
-      }
-      .mobile-toggle {
-        display: none;
-        background: none;
-        border: none;
-        cursor: pointer;
-        padding: 0.5rem;
-        flex-direction: column;
-        gap: 5px;
-      }
-      .ham-line {
-        display: block;
-        width: 22px;
-        height: 2px;
-        background: var(--text);
-        border-radius: 2px;
-        transition: all 0.3s;
-      }
-      .mob-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.6);
-        z-index: 200;
-        opacity: 0;
-        visibility: hidden;
-        transition: all 0.3s;
-      }
-      .mob-overlay.open {
-        opacity: 1;
-        visibility: visible;
-      }
-      .mob-panel {
-        position: fixed;
-        top: 0;
-        right: -320px;
-        width: 300px;
-        max-width: 85vw;
-        height: 100vh;
-        background: #0a0a0a;
-        border-left: 1px solid var(--border);
-        z-index: 201;
-        padding: 2rem 1.5rem;
-        overflow-y: auto;
-        transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-      }
-      .mob-panel.open {
-        right: 0;
-      }
-      .mp-section {
-        display: flex;
-        flex-direction: column;
-        gap: 0.15rem;
-      }
-      .mp-label {
-        font-size: 0.65rem;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--text-muted);
-        font-weight: 500;
-        padding: 0.5rem 0.75rem 0.25rem;
-      }
-      .mp-link {
-        color: var(--text-mid);
-        text-decoration: none;
-        font-size: 0.9rem;
-        padding: 0.6rem 0.75rem;
-        border-radius: 8px;
-        transition: all 0.2s;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
-      .mp-link:hover {
-        background: rgba(255, 255, 255, 0.04);
-        color: var(--text);
-      }
-      .mp-emoji {
-        font-size: 1rem;
-      }
-      .mp-divider {
-        height: 1px;
-        background: var(--border);
-        margin: 0.5rem 0;
-      }
-      .mp-cta {
-        display: block;
-        background: var(--accent);
-        color: #fff;
-        text-align: center;
-        padding: 0.85rem;
-        border-radius: 100px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 0.95rem;
-        margin-top: auto;
-        transition: transform 0.2s;
-      }
-
-      @media (max-width: 900px) {
-        .nav-center {
-          display: none;
-        }
-        nav {
-          padding: 0 1rem;
-          height: 64px;
-        }
-        .nav-logo {
-          font-size: 1.05rem;
-          flex-shrink: 0;
-        }
-        .nav-right {
-          gap: 0.65rem;
-        }
-        .nav-cta {
-          padding: 0.72rem 1.1rem;
-          font-size: 0.8rem;
-          line-height: 1;
-        }
-        .mobile-toggle {
-          display: flex;
-          padding: 0.35rem;
-        }
-        .ham-line {
-          width: 20px;
-          height: 2px;
-        }
-        .form-row {
-          grid-template-columns: 1fr !important;
-        }
+        color: var(--bg) !important;
       }
 
       /* ===== HERO ===== */
@@ -1168,18 +945,9 @@
         body {
           overflow-x: hidden;
         }
-        nav {
-          padding: 0 0.9rem;
-          height: 62px;
-        }
-        .nav-logo {
-          font-size: 1rem;
-        }
-        .nav-cta {
-          padding: 0.68rem 1rem;
-          font-size: 0.78rem;
-          border-radius: 999px;
-        }
+        .nav-links { gap: 0.75rem; }
+        .nav-links a { font-size: 0.75rem; }
+        .nav-cta { padding: 0.4rem 0.9rem; }
         .hero {
           padding: 2.4rem 1rem 1.75rem;
         }
@@ -1287,13 +1055,6 @@
         nav {
           padding: 0 0.8rem;
         }
-        .nav-right {
-          gap: 0.5rem;
-        }
-        .nav-cta {
-          padding: 0.62rem 0.9rem;
-          font-size: 0.74rem;
-        }
         .hero {
           padding-top: 2rem;
         }
@@ -1315,15 +1076,6 @@
         .check-card {
           min-height: auto;
           padding: 1rem;
-        }
-        .mob-panel {
-          width: 100%;
-          max-width: 100%;
-          right: -100%;
-          padding: 1.5rem 1rem;
-        }
-        .mob-panel.open {
-          right: 0;
         }
         .gate-card {
           padding: 1.75rem 1rem;
@@ -1351,140 +1103,14 @@
   <body>
     <!-- ===== NAV ===== -->
     <nav>
-      <a href="/" class="nav-logo">himanshu<span>.</span></a>
-      <ul class="nav-center">
-        <li><a href="/#services" data-ga="nav_services">Services</a></li>
-        <li><a href="/#process" data-ga="nav_process">Process</a></li>
-        <li><a href="/#stack" data-ga="nav_stack">Stack</a></li>
-        <li class="nav-dropdown" id="navDropdown">
-          <div class="dd-trigger" id="ddTrigger">
-            Free Resources <span class="dd-arrow">▾</span>
-          </div>
-          <div class="dd-menu">
-            <a href="/existence/" class="dd-item" data-ga="nav_existence"
-              ><span class="dd-emoji">🎨</span
-              ><span class="dd-info"
-                ><span class="dd-name">Existence Series</span
-                ><span class="dd-desc">Design demos — live</span></span
-              ></a
-            >
-            <a href="/prompts.html" class="dd-item" data-ga="nav_prompts"
-              ><span class="dd-emoji">🔓</span
-              ><span class="dd-info"
-                ><span class="dd-name">Free Prompts</span
-                ><span class="dd-desc"
-                  >Resume, portfolio, landing page</span
-                ></span
-              ></a
-            >
-            <a
-              href="/shopping-prompt.html"
-              class="dd-item"
-              data-ga="nav_shopping"
-              ><span class="dd-emoji">🛒</span
-              ><span class="dd-info"
-                ><span class="dd-name">Shopping Prompt</span
-                ><span class="dd-desc">Blinkit-style site in 10 min</span></span
-              ></a
-            >
-            <div class="dd-divider"></div>
-            <a href="/manage-prompt.html" class="dd-item" data-ga="nav_manage"
-              ><span class="dd-emoji">🔧</span
-              ><span class="dd-info"
-                ><span class="dd-name">Manage Products</span
-                ><span class="dd-desc">Add, edit, hide — bina code</span></span
-              ></a
-            >
-            <div class="dd-divider"></div>
-            <a
-              href="/insta-bot-prompt.html"
-              class="dd-item"
-              data-ga="nav_bot_prompt"
-              ><span class="dd-emoji">🤖</span
-              ><span class="dd-info"
-                ><span class="dd-name">Build Your Agent</span
-                ><span class="dd-desc"
-                  >AI Instagram Coach — Free Prompt</span
-                ></span
-              ></a
-            >
-            <div class="dd-divider"></div>
-            <a href="/ai-agent-prompt.html" class="dd-item" data-ga="nav_agent"
-              ><span class="dd-emoji">⚡</span
-              ><span class="dd-info"
-                ><span class="dd-name">Build AI Agent</span
-                ><span class="dd-desc">Full prompt + code — FREE</span></span
-              ></a
-            >
-            <div class="dd-divider"></div>
-            <a href="/freestore-prompt.html" class="dd-item"
-              ><span class="dd-emoji">🛍️</span
-              ><span class="dd-info"
-                ><span class="dd-name">Free Store Prompt</span
-                ><span class="dd-desc">Full shopping site — FREE</span></span
-              ></a
-            >
-            <div class="dd-divider"></div>
-            <a
-              href="/fraud-detection-prompt.html"
-              class="dd-item"
-              style="background: rgba(255, 77, 77, 0.05)"
-              ><span class="dd-emoji">🚨</span
-              ><span class="dd-info"
-                ><span class="dd-name">Fraud Detection</span
-                ><span class="dd-desc">Catch fake orders with AI</span></span
-              ></a
-            >
-          </div>
-        </li>
-      </ul>
-      <div class="nav-right">
-        <a href="/#contact" class="nav-cta" data-ga="nav_cta">Let's Talk</a>
-        <button class="mobile-toggle" id="mobToggle" aria-label="Menu">
-          <span class="ham-line"></span><span class="ham-line"></span
-          ><span class="ham-line"></span>
-        </button>
+      <a href="/" class="nav-logo">nino<span>.</span></a>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/prompts.html">Free Prompts</a>
+        <a href="/existence/">Existence</a>
+        <a href="/#contact" class="nav-cta">Let's Talk</a>
       </div>
     </nav>
-    <div class="mob-overlay" id="mobOverlay"></div>
-    <div class="mob-panel" id="mobPanel">
-      <div class="mp-section">
-        <div class="mp-label">Navigate</div>
-        <a href="/#services" class="mp-link mob-close">Services</a>
-        <a href="/#process" class="mp-link mob-close">Process</a>
-        <a href="/#stack" class="mp-link mob-close">Stack</a>
-        <a href="/#contact" class="mp-link mob-close">Contact</a>
-      </div>
-      <div class="mp-divider"></div>
-      <div class="mp-section">
-        <div class="mp-label">Free Resources</div>
-        <a href="/existence/" class="mp-link"
-          ><span class="mp-emoji">🎨</span> Existence Series</a
-        >
-        <a href="/prompts.html" class="mp-link"
-          ><span class="mp-emoji">🔓</span> Free Prompts</a
-        >
-        <a href="/shopping-prompt.html" class="mp-link"
-          ><span class="mp-emoji">🛒</span> Shopping Prompt</a
-        >
-        <a href="/manage-prompt.html" class="mp-link"
-          ><span class="mp-emoji">🔧</span> Manage Products</a
-        >
-        <a href="/ai-agent-prompt.html" class="mp-link"
-          ><span class="mp-emoji">⚡</span> Build AI Agent</a
-        >
-        <a href="/freestore-prompt.html" class="mp-link"
-          ><span class="mp-emoji">🛍️</span> Free Store Prompt</a
-        >
-        <a
-          href="/fraud-detection-prompt.html"
-          class="mp-link"
-          style="color: var(--accent)"
-          ><span class="mp-emoji">🚨</span> Fraud Detection</a
-        >
-      </div>
-      <a href="/#contact" class="mp-cta mob-close">Let's Talk →</a>
-    </div>
 
     <!-- ===== HERO ===== -->
     <section class="hero">
@@ -1877,30 +1503,6 @@
     <!-- ===== SCRIPTS ===== -->
     <script src="/form-utils.js"></script>
     <script>
-      /* Mobile nav */
-      (function () {
-        var tog = document.getElementById("mobToggle"),
-          pan = document.getElementById("mobPanel"),
-          ov = document.getElementById("mobOverlay");
-        function openM() {
-          pan.classList.add("open");
-          ov.classList.add("open");
-          document.body.style.overflow = "hidden";
-        }
-        function closeM() {
-          pan.classList.remove("open");
-          ov.classList.remove("open");
-          document.body.style.overflow = "";
-        }
-        tog.addEventListener("click", function () {
-          pan.classList.contains("open") ? closeM() : openM();
-        });
-        ov.addEventListener("click", closeM);
-        document.querySelectorAll(".mob-close").forEach(function (el) {
-          el.addEventListener("click", closeM);
-        });
-      })();
-
       /* Country code auto-detect */
       var CC_MAP = {
         IN: "+91",
