@@ -912,9 +912,7 @@
         animation: none !important;
         transform: none !important;
       }
-    </style>
-    <!-- Below-fold CSS deferred for faster FCP -->
-    <style media="print" id="deferredCSS">
+
       .prompts-banner {
         max-width: 1100px;
         margin: 0 auto;
@@ -1838,12 +1836,6 @@
         }
       }
     </style>
-    <script>
-      // Activate deferred CSS after first paint
-      requestAnimationFrame(function(){requestAnimationFrame(function(){
-        var d=document.getElementById("deferredCSS");if(d)d.media="all";
-      })});
-    </script>
   </head>
   <body>
     <div class="grid-overlay" id="gridOverlay"></div>
