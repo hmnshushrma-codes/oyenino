@@ -912,7 +912,9 @@
         animation: none !important;
         transform: none !important;
       }
-
+    </style>
+    <!-- Below-fold CSS deferred for faster FCP -->
+    <style media="print" id="deferredCSS">
       .prompts-banner {
         max-width: 1100px;
         margin: 0 auto;
@@ -1836,6 +1838,12 @@
         }
       }
     </style>
+    <script>
+      // Activate deferred CSS after first paint
+      requestAnimationFrame(function(){requestAnimationFrame(function(){
+        var d=document.getElementById("deferredCSS");if(d)d.media="all";
+      })});
+    </script>
   </head>
   <body>
     <div class="grid-overlay" id="gridOverlay"></div>
@@ -2682,15 +2690,15 @@
         var ov = document.getElementById("gridOverlay");
         if (!ov) return;
 
-        // Skip animation if already seen this session
-        if (sessionStorage.getItem("intro_seen")) {
+        // Skip animation if already seen or on mobile (faster FCP)
+        if (sessionStorage.getItem("intro_seen") || window.innerWidth < 768) {
           ov.remove();
+          sessionStorage.setItem("intro_seen", "true");
+          document.documentElement.classList.add("skip-intro");
           return;
         }
 
-        var mob = window.innerWidth < 768,
-          C = mob ? 6 : 10,
-          R = mob ? 8 : 7;
+        var C = 10, R = 7;
         ov.style.gridTemplateColumns = "repeat(" + C + ",1fr)";
         ov.style.gridTemplateRows = "repeat(" + R + ",1fr)";
         var frag = document.createDocumentFragment();
@@ -2736,6 +2744,8 @@
           B + sorted.length * G + 1200,
         );
       })();
+      // Defer non-critical JS to after first paint
+      (window.requestIdleCallback || function(cb){setTimeout(cb,1)})(function() {
       document.querySelectorAll(".t-line").forEach(function (l) {
         setTimeout(
           function () {
@@ -2922,6 +2932,7 @@
             trackEvent("time_on_page", { seconds: timeCount });
           if (timeCount >= 300) clearInterval(timeTimer);
         }, 15000);
+      }); // end requestIdleCallback
     </script>
     <script src="/form-utils.js"></script>
     <script>
