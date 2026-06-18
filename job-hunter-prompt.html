@@ -110,23 +110,28 @@
 
       /* ===== NAV ===== */
       nav {
-        padding: 1rem 2rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 0.85rem 2rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
+        backdrop-filter: blur(24px) saturate(1.2);
+        -webkit-backdrop-filter: blur(24px) saturate(1.2);
+        background: rgba(5, 5, 5, 0.8);
         border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-        backdrop-filter: blur(20px);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-        background: rgba(5, 5, 5, 0.85);
       }
       .nav-logo {
         font-family: var(--sans);
-        font-size: 1.2rem;
+        font-size: 1.25rem;
         font-weight: 600;
         color: var(--text);
         text-decoration: none;
+        letter-spacing: -0.02em;
+        flex-shrink: 0;
       }
       .nav-logo span {
         color: var(--accent);
@@ -134,28 +139,76 @@
       .nav-links {
         display: flex;
         align-items: center;
-        gap: 1.5rem;
+        gap: 2rem;
       }
       .nav-links a {
         color: var(--text-muted);
         text-decoration: none;
         font-size: 0.85rem;
+        font-weight: 400;
+        letter-spacing: 0.02em;
         transition: color var(--transition);
+        position: relative;
       }
-      .nav-links a:hover {
-        color: var(--accent);
+      .nav-links a:not(.nav-cta)::after {
+        content: "";
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        width: 0;
+        height: 1px;
+        background: var(--accent);
+        transition: width var(--transition);
+      }
+      .nav-links a:not(.nav-cta):hover {
+        color: var(--text);
+      }
+      .nav-links a:not(.nav-cta):hover::after {
+        width: 100%;
       }
       .nav-cta {
         background: var(--accent);
         color: var(--bg) !important;
-        padding: 0.5rem 1.25rem;
+        padding: 0.5rem 1.5rem;
         border-radius: 100px;
         font-weight: 600;
-        font-size: 0.82rem !important;
+        font-size: 0.85rem;
+        transition: transform 0.2s, box-shadow 0.3s;
+        white-space: nowrap;
       }
       .nav-cta:hover {
         color: var(--bg) !important;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 24px var(--accent-glow-strong);
       }
+      .mobile-toggle {
+        display: none;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        z-index: 101;
+        width: 32px;
+        height: 32px;
+        position: relative;
+        flex-shrink: 0;
+      }
+      .ham-line {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: var(--text);
+        border-radius: 2px;
+        transition: transform 0.3s, opacity 0.3s;
+        position: absolute;
+        left: 5px;
+      }
+      .ham-line:nth-child(1) { top: 8px; }
+      .ham-line:nth-child(2) { top: 15px; }
+      .ham-line:nth-child(3) { top: 22px; }
+      .mobile-toggle.open .ham-line:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .mobile-toggle.open .ham-line:nth-child(2) { opacity: 0; }
+      .mobile-toggle.open .ham-line:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
       /* ===== HERO ===== */
       .hero {
@@ -1003,9 +1056,46 @@
         body {
           overflow-x: hidden;
         }
-        .nav-links { gap: 0.75rem; }
-        .nav-links a { font-size: 0.75rem; }
-        .nav-cta { padding: 0.4rem 0.9rem; }
+        .nav-links {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 280px;
+          max-width: 85vw;
+          height: 100vh;
+          height: 100dvh;
+          background: #0a0a0a;
+          border-left: 1px solid var(--border);
+          padding: 5rem 2rem 2rem;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0;
+          z-index: 99;
+          transition: right 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-links.open {
+          right: 0;
+        }
+        .nav-links a {
+          padding: 0.85rem 0;
+          font-size: 1rem;
+          border-bottom: 1px solid var(--border);
+          width: 100%;
+        }
+        .nav-links a:not(.nav-cta)::after {
+          display: none;
+        }
+        .nav-cta {
+          margin-top: 1rem;
+          text-align: center;
+          display: block;
+          width: 100%;
+          padding: 0.85rem;
+          border-bottom: none;
+        }
+        .mobile-toggle {
+          display: block;
+        }
         .hero {
           padding: 2.4rem 1rem 1.75rem;
         }
@@ -1094,9 +1184,6 @@
       }
 
       @media (max-width: 480px) {
-        nav {
-          padding: 0 0.8rem;
-        }
         .hero {
           padding-top: 2rem;
         }
@@ -1140,13 +1227,16 @@
   <body>
     <!-- ===== NAV ===== -->
     <nav>
-      <a href="/" class="nav-logo">nino<span>.</span></a>
-      <div class="nav-links">
+      <a href="/" class="nav-logo">himanshu<span>.</span></a>
+      <div class="nav-links" id="navLinks">
         <a href="/">Home</a>
         <a href="/prompts.html">Free Prompts</a>
         <a href="/existence/">Existence</a>
         <a href="/#contact" class="nav-cta">Let's Talk</a>
       </div>
+      <button class="mobile-toggle" id="mobToggle" aria-label="Menu">
+        <span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span>
+      </button>
     </nav>
 
     <!-- ===== HERO ===== -->
@@ -2058,5 +2148,25 @@ Give me all config files I need to set this up.</div>
         });
       }
     </script>
+<script>
+  (function() {
+    var toggle = document.getElementById("mobToggle");
+    var links = document.getElementById("navLinks");
+    if (toggle && links) {
+      toggle.addEventListener("click", function() {
+        toggle.classList.toggle("open");
+        links.classList.toggle("open");
+        document.body.style.overflow = links.classList.contains("open") ? "hidden" : "";
+      });
+      links.querySelectorAll("a").forEach(function(a) {
+        a.addEventListener("click", function() {
+          toggle.classList.remove("open");
+          links.classList.remove("open");
+          document.body.style.overflow = "";
+        });
+      });
+    }
+  })();
+</script>
   </body>
 </html>
