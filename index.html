@@ -105,11 +105,6 @@
         "url": "https://oyenino.com"
       }
     </script>
-    <!-- Skip intro animation on repeat visits within same session -->
-    <script>
-      if (sessionStorage.getItem("intro_seen"))
-        document.documentElement.classList.add("skip-intro");
-    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -162,40 +157,6 @@
       ::selection {
         background: var(--accent);
         color: var(--bg);
-      }
-      /* noise overlay deferred to avoid blocking paint */
-      .grid-overlay {
-        position: fixed;
-        inset: 0;
-        z-index: 200;
-        display: grid;
-      }
-      .grid-tile {
-        background: var(--bg);
-        border: 0.5px solid rgba(0, 240, 160, 0.02);
-        transition:
-          transform 0.7s cubic-bezier(0.23, 1, 0.32, 1),
-          opacity 0.7s cubic-bezier(0.23, 1, 0.32, 1);
-        transform-origin: center;
-        position: relative;
-        overflow: hidden;
-        will-change: transform, opacity;
-        contain: layout style;
-      }
-      .grid-tile.revealed {
-        opacity: 0;
-        transform: scale(0.7) rotateX(20deg);
-      }
-      .grid-tile::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: var(--accent);
-        opacity: 0;
-        transition: opacity 0.12s;
-      }
-      .grid-tile.flash::after {
-        opacity: 0.2;
       }
       .cursor-glow {
         position: fixed;
@@ -611,8 +572,6 @@
         color: var(--accent);
         margin-bottom: 2rem;
         font-weight: 500;
-        opacity: 0;
-        animation: fadeUp 0.6s ease forwards 1.8s;
       }
       .pulse {
         width: 8px;
@@ -642,8 +601,6 @@
         line-height: 1.08;
         letter-spacing: -0.03em;
         margin-bottom: 1.5rem;
-        opacity: 0;
-        animation: fadeUp 0.7s ease forwards 2s;
       }
       .hero-title .line {
         display: block;
@@ -659,15 +616,11 @@
         margin-bottom: 2.5rem;
         font-weight: 300;
         max-width: 460px;
-        opacity: 0;
-        animation: fadeUp 0.7s ease forwards 2.2s;
       }
       .hero-actions {
         display: flex;
         gap: 1rem;
         flex-wrap: wrap;
-        opacity: 0;
-        animation: fadeUp 0.7s ease forwards 2.4s;
       }
       .btn-primary {
         background: var(--accent);
@@ -720,18 +673,6 @@
           0 24px 80px rgba(0, 0, 0, 0.6),
           0 0 0 1px rgba(255, 255, 255, 0.02),
           0 0 80px rgba(0, 240, 160, 0.02);
-        opacity: 0;
-        animation: terminalIn 0.8s ease forwards 2.1s;
-      }
-      @keyframes terminalIn {
-        from {
-          opacity: 0;
-          transform: translateY(30px) scale(0.96);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
       }
       .terminal::before {
         content: "";
@@ -865,8 +806,6 @@
         flex-direction: column;
         align-items: center;
         gap: 0.5rem;
-        opacity: 0;
-        animation: fadeUp 0.6s ease forwards 3.5s;
       }
       .scroll-hint span {
         font-size: 0.7rem;
@@ -897,20 +836,6 @@
           transform: scaleY(0);
           transform-origin: bottom;
         }
-      }
-      /* Skip intro: show everything instantly on repeat visits */
-      .skip-intro .grid-overlay {
-        display: none !important;
-      }
-      .skip-intro .hero-badge,
-      .skip-intro .hero-title,
-      .skip-intro .hero-sub,
-      .skip-intro .hero-actions,
-      .skip-intro .terminal,
-      .skip-intro .scroll-hint {
-        opacity: 1 !important;
-        animation: none !important;
-        transform: none !important;
       }
 
       .prompts-banner {
@@ -1707,16 +1632,6 @@
       .footer-links a:hover {
         color: var(--accent);
       }
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(25px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
       .reveal {
         opacity: 0;
         transform: translateY(35px);
@@ -1838,7 +1753,6 @@
     </style>
   </head>
   <body>
-    <div class="grid-overlay" id="gridOverlay"></div>
     <div class="cursor-glow" id="cursorGlow"></div>
 
     <nav>
@@ -2678,64 +2592,6 @@
       function trackEvent(n, p) {
         if (typeof gtag === "function") gtag("event", n, p || {});
       }
-      (function () {
-        var ov = document.getElementById("gridOverlay");
-        if (!ov) return;
-
-        // Skip animation if already seen or on mobile (faster FCP)
-        if (sessionStorage.getItem("intro_seen") || window.innerWidth < 768) {
-          ov.remove();
-          sessionStorage.setItem("intro_seen", "true");
-          document.documentElement.classList.add("skip-intro");
-          return;
-        }
-
-        var C = 10, R = 7;
-        ov.style.gridTemplateColumns = "repeat(" + C + ",1fr)";
-        ov.style.gridTemplateRows = "repeat(" + R + ",1fr)";
-        var frag = document.createDocumentFragment();
-        var tiles = [];
-        for (var i = 0; i < C * R; i++) {
-          var t = document.createElement("div");
-          t.className = "grid-tile";
-          frag.appendChild(t);
-          tiles.push(t);
-        }
-        ov.appendChild(frag);
-        var cx = Math.floor(C / 2),
-          cy = Math.floor(R / 2);
-        var sorted = tiles
-          .map(function (tile, idx) {
-            var r = Math.floor(idx / C),
-              c = idx % C;
-            return {
-              tile: tile,
-              dist: Math.sqrt((c - cx) * (c - cx) + (r - cy) * (r - cy)),
-            };
-          })
-          .sort(function (a, b) {
-            return a.dist - b.dist;
-          });
-        var B = 300,
-          G = 22;
-        sorted.forEach(function (item, i) {
-          var d = B + i * G;
-          setTimeout(function () {
-            item.tile.classList.add("flash");
-          }, d - 60);
-          setTimeout(function () {
-            item.tile.classList.remove("flash");
-            item.tile.classList.add("revealed");
-          }, d);
-        });
-        setTimeout(
-          function () {
-            ov.remove();
-            sessionStorage.setItem("intro_seen", "true");
-          },
-          B + sorted.length * G + 1200,
-        );
-      })();
       // Defer non-critical JS to after first paint
       (window.requestIdleCallback || function(cb){setTimeout(cb,1)})(function() {
       document.querySelectorAll(".t-line").forEach(function (l) {
