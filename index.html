@@ -274,11 +274,11 @@
         position: absolute;
         top: calc(100% + 12px);
         right: 0;
-        min-width: 280px;
+        width: 320px;
         background: #0c0c0c;
         border: 1px solid var(--border-hover);
         border-radius: 14px;
-        padding: 0.5rem;
+        padding: 0.6rem;
         opacity: 0;
         visibility: hidden;
         transform: translateY(-8px);
@@ -304,24 +304,41 @@
         border-top: 1px solid var(--border-hover);
         transform: rotate(45deg);
       }
+      .dd-group-label {
+        font-size: 0.6rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--text-muted);
+        padding: 0.5rem 0.75rem 0.25rem;
+        font-weight: 500;
+      }
+      .dd-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.25rem;
+        padding: 0.15rem 0;
+      }
       .dd-item {
         display: flex;
         align-items: center;
-        gap: 0.75rem;
-        padding: 0.7rem 0.9rem;
+        gap: 0.6rem;
+        padding: 0.55rem 0.75rem;
         border-radius: 10px;
         text-decoration: none;
         color: var(--text-mid);
-        font-size: 0.85rem;
+        font-size: 0.82rem;
         transition: all 0.2s;
       }
       .dd-item:hover {
         background: rgba(0, 240, 160, 0.06);
         color: var(--text);
       }
+      .dd-item-wide {
+        grid-column: 1 / -1;
+      }
       .dd-item .dd-emoji {
-        font-size: 1.15rem;
-        width: 28px;
+        font-size: 1rem;
+        width: 22px;
         text-align: center;
         flex-shrink: 0;
       }
@@ -331,10 +348,11 @@
       }
       .dd-item .dd-name {
         font-weight: 500;
-        font-size: 0.85rem;
+        font-size: 0.82rem;
+        line-height: 1.2;
       }
       .dd-item .dd-desc {
-        font-size: 0.7rem;
+        font-size: 0.68rem;
         color: var(--text-muted);
         font-weight: 300;
         margin-top: 1px;
@@ -342,7 +360,21 @@
       .dd-divider {
         height: 1px;
         background: var(--border);
-        margin: 0.35rem 0.5rem;
+        margin: 0.3rem 0.5rem;
+      }
+      .dd-footer {
+        display: block;
+        text-align: center;
+        padding: 0.6rem;
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: var(--accent);
+        text-decoration: none;
+        border-radius: 8px;
+        transition: all 0.2s;
+      }
+      .dd-footer:hover {
+        background: var(--accent-glow);
       }
       .nav-right {
         display: flex;
@@ -729,15 +761,6 @@
         min-height: 340px;
       }
       .t-line {
-        opacity: 0;
-        transform: translateX(-8px);
-        transition:
-          opacity 0.4s ease,
-          transform 0.4s ease;
-      }
-      .t-line.visible {
-        opacity: 1;
-        transform: translateX(0);
       }
       .t-comment {
         color: #3a3a3a;
@@ -1766,133 +1789,47 @@
             Free Resources <span class="dd-arrow">▾</span>
           </div>
           <div class="dd-menu">
-            <a href="/veyra/" class="dd-item" data-ga="nav_veyra" style="background:rgba(108,92,231,0.1);border:1px solid rgba(108,92,231,0.2);border-radius:10px;margin-bottom:6px;"
-              ><span class="dd-emoji">🤖</span
-              ><span class="dd-info"
-                ><span class="dd-name" style="color:#A78BFA;">Veyra — AI Lead Assistant</span
-                ><span class="dd-desc">Chat to record leads, auto-sync to Sheets</span></span
-              ></a
-            >
-            <div class="dd-divider"></div>
-            <a href="/existence/" class="dd-item" data-ga="nav_existence"
-              ><span class="dd-emoji">🎨</span
-              ><span class="dd-info"
-                ><span class="dd-name">Existence Series</span
-                ><span class="dd-desc">Design demos — live</span></span
-              ></a
-            >
-            <a href="/prompts.html" class="dd-item" data-ga="nav_prompts"
-              ><span class="dd-emoji">🔓</span
-              ><span class="dd-info"
-                ><span class="dd-name">Free Prompts</span
-                ><span class="dd-desc"
-                  >Resume, portfolio, landing page</span
-                ></span
-              ></a
-            >
-            <a
-              href="/shopping-prompt.html"
-              class="dd-item"
-              data-ga="nav_shopping"
-              ><span class="dd-emoji">🛒</span
-              ><span class="dd-info"
-                ><span class="dd-name">Shopping Prompt</span
-                ><span class="dd-desc">Blinkit-style site in 10 min</span></span
-              ></a
-            >
-            <div class="dd-divider"></div>
-            <a href="/manage-prompt.html" class="dd-item" data-ga="nav_manage"
-              ><span class="dd-emoji">🔧</span
-              ><span class="dd-info"
-                ><span class="dd-name">Manage Products</span
-                ><span class="dd-desc">Add, edit, hide — bina code</span></span
-              ></a
-            >
-            <div class="dd-divider"></div>
-            <a
-              href="/insta-bot-prompt.html"
-              class="dd-item"
-              data-ga="nav_bot_prompt"
-              ><span class="dd-emoji">🤖</span
-              ><span class="dd-info"
-                ><span class="dd-name">Build Your Agent</span
-                ><span class="dd-desc"
-                  >AI Instagram Coach — Free Prompt</span
-                ></span
-              ></a
-            >
-            <div class="dd-divider"></div>
-            <a href="/ai-agent-prompt.html" class="dd-item" data-ga="nav_agent"
-              ><span class="dd-emoji">⚡</span
-              ><span class="dd-info"
-                ><span class="dd-name">Build AI Agent</span
-                ><span class="dd-desc">Full prompt + code — FREE</span></span
-              ></a
-            >
-            <div class="dd-divider"></div>
-            <a href="/freestore-prompt.html" class="mp-link"
-              ><span class="mp-emoji">🛍️</span> Free Store Prompt</a
-            >
-            <div class="dd-divider"></div>
-            <a
-              href="/fraud-detection-prompt.html"
-              class="dd-item"
-              data-ga="nav_fraud"
-            >
-              <span class="dd-emoji">🛡️</span>
+            <a href="/veyra/" class="dd-item dd-item-wide" data-ga="nav_veyra" style="background:rgba(108,92,231,0.1);border:1px solid rgba(108,92,231,0.2);border-radius:10px;margin-bottom:4px;">
+              <span class="dd-emoji">🤖</span>
               <span class="dd-info">
-                <span class="dd-name">Fraud Detection</span>
-                <span class="dd-desc">Catch fake orders — AI prompt</span>
+                <span class="dd-name" style="color:#A78BFA;">Veyra — AI Lead Assistant</span>
+                <span class="dd-desc">Chat to record leads, auto-sync to Sheets</span>
               </span>
             </a>
             <div class="dd-divider"></div>
-            <a
-              href="/dukaanai.html"
-              class="dd-item"
-              data-ga="nav_dukaanai"
-            >
-              <span class="dd-emoji">🏪</span>
-              <span class="dd-info">
-                <span class="dd-name">DukaanAI</span>
-                <span class="dd-desc">Full store + AI agents — 3 prompts</span>
-              </span>
-            </a>
+            <div class="dd-group-label">Prompts & Tools</div>
+            <div class="dd-grid">
+              <a href="/prompts.html" class="dd-item" data-ga="nav_prompts">
+                <span class="dd-emoji">🔓</span>
+                <span class="dd-name">All Prompts</span>
+              </a>
+              <a href="/booking-prompt.html" class="dd-item" data-ga="nav_booking">
+                <span class="dd-emoji">📅</span>
+                <span class="dd-name">Booking Page</span>
+              </a>
+              <a href="/shopping-prompt.html" class="dd-item" data-ga="nav_shopping">
+                <span class="dd-emoji">🛒</span>
+                <span class="dd-name">Shopping Site</span>
+              </a>
+              <a href="/ai-agent-prompt.html" class="dd-item" data-ga="nav_agent">
+                <span class="dd-emoji">⚡</span>
+                <span class="dd-name">AI Agent</span>
+              </a>
+            </div>
             <div class="dd-divider"></div>
-            <a
-              href="/roadmap.html"
-              class="dd-item"
-              data-ga="nav_roadmap"
-            >
-              <span class="dd-emoji">🗺️</span>
-              <span class="dd-info">
-                <span class="dd-name">Product Roadmap</span>
-                <span class="dd-desc">Idea to launch — 6 phases</span>
-              </span>
-            </a>
+            <div class="dd-group-label">Explore</div>
+            <div class="dd-grid">
+              <a href="/existence/" class="dd-item" data-ga="nav_existence">
+                <span class="dd-emoji">🎨</span>
+                <span class="dd-name">Existence</span>
+              </a>
+              <a href="/roadmap.html" class="dd-item" data-ga="nav_roadmap">
+                <span class="dd-emoji">🗺️</span>
+                <span class="dd-name">Roadmap</span>
+              </a>
+            </div>
             <div class="dd-divider"></div>
-            <a
-              href="/design-roadmap.html"
-              class="dd-item"
-              data-ga="nav_design_roadmap"
-            >
-              <span class="dd-emoji">✏️</span>
-              <span class="dd-info">
-                <span class="dd-name">Paper to Production</span>
-                <span class="dd-desc">Wireframe to live store — 6 steps</span>
-              </span>
-            </a>
-            <div class="dd-divider"></div>
-            <a
-              href="/job-hunter-prompt.html"
-              class="dd-item"
-              data-ga="nav_job_hunter"
-            >
-              <span class="dd-emoji">💼</span>
-              <span class="dd-info">
-                <span class="dd-name">Job Hunter System</span>
-                <span class="dd-desc">Auto-scrape 10 job sources</span>
-              </span>
-            </a>
+            <a href="/prompts.html" class="dd-footer" data-ga="nav_all_prompts">Browse all 12+ free resources &rarr;</a>
           </div>
         </li>
       </ul>
@@ -1922,39 +1859,28 @@
       </div>
       <div class="mp-divider"></div>
       <div class="mp-section">
-        <div class="mp-label">Free Resources</div>
+        <div class="mp-label">Prompts & Tools</div>
+        <a href="/prompts.html" class="mp-link"
+          ><span class="mp-emoji">🔓</span> All Free Prompts</a
+        >
+        <a href="/booking-prompt.html" class="mp-link"
+          ><span class="mp-emoji">📅</span> Booking Page</a
+        >
+        <a href="/shopping-prompt.html" class="mp-link"
+          ><span class="mp-emoji">🛒</span> Shopping Site</a
+        >
+        <a href="/ai-agent-prompt.html" class="mp-link"
+          ><span class="mp-emoji">⚡</span> AI Agent</a
+        >
+      </div>
+      <div class="mp-divider"></div>
+      <div class="mp-section">
+        <div class="mp-label">Explore</div>
         <a href="/existence/" class="mp-link"
           ><span class="mp-emoji">🎨</span> Existence Series</a
         >
-        <a href="/prompts.html" class="mp-link"
-          ><span class="mp-emoji">🔓</span> Free Prompts</a
-        >
-        <a href="/shopping-prompt.html" class="mp-link"
-          ><span class="mp-emoji">🛒</span> Shopping Prompt</a
-        >
-        <a href="/manage-prompt.html" class="mp-link"
-          ><span class="mp-emoji">🔧</span> Manage Products</a
-        >
-        <a href="/ai-agent-prompt.html" class="mp-link"
-          ><span class="mp-emoji">⚡</span> Build AI Agent</a
-        >
-        <a href="/freestore-prompt.html" class="mp-link"
-          ><span class="mp-emoji">🛍️</span> Free Store Prompt</a
-        >
-        <a href="/fraud-detection-prompt.html" class="mp-link"
-          ><span class="mp-emoji">🛡️</span> Fraud Detection Prompt</a
-        >
-        <a href="/dukaanai.html" class="mp-link"
-          ><span class="mp-emoji">🏪</span> DukaanAI</a
-        >
         <a href="/roadmap.html" class="mp-link"
           ><span class="mp-emoji">🗺️</span> Product Roadmap</a
-        >
-        <a href="/design-roadmap.html" class="mp-link"
-          ><span class="mp-emoji">✏️</span> Paper to Production</a
-        >
-        <a href="/job-hunter-prompt.html" class="mp-link"
-          ><span class="mp-emoji">💼</span> Job Hunter System</a
         >
       </div>
       <a href="#contact" class="mp-cta mob-close">Let's Talk →</a>
@@ -1996,17 +1922,17 @@
             <div style="width: 36px"></div>
           </div>
           <div class="terminal-body" id="terminalBody">
-            <div class="t-line" data-delay="2400">
+            <div class="t-line">
               <span class="t-linenum">1</span
               ><span class="t-comment">// who am i?</span>
             </div>
-            <div class="t-line" data-delay="2800">
+            <div class="t-line">
               <span class="t-linenum">2</span
               ><span class="t-keyword">const</span>
               <span class="t-variable">himanshu</span>
               <span class="t-plain">=</span> <span class="t-bracket">{</span>
             </div>
-            <div class="t-line" data-delay="3200">
+            <div class="t-line">
               <span class="t-linenum">3</span
               ><span class="t-indent"
                 ><span class="t-property">role</span
@@ -2015,7 +1941,7 @@
                 ><span class="t-plain">,</span></span
               >
             </div>
-            <div class="t-line" data-delay="3600">
+            <div class="t-line">
               <span class="t-linenum">4</span
               ><span class="t-indent"
                 ><span class="t-property">experience</span
@@ -2024,7 +1950,7 @@
                 ><span class="t-plain">,</span></span
               >
             </div>
-            <div class="t-line" data-delay="4000">
+            <div class="t-line">
               <span class="t-linenum">5</span
               ><span class="t-indent"
                 ><span class="t-property">stack</span
@@ -2040,7 +1966,7 @@
                 ><span class="t-plain">,</span></span
               >
             </div>
-            <div class="t-line" data-delay="4400">
+            <div class="t-line">
               <span class="t-linenum">6</span
               ><span class="t-indent"
                 ><span class="t-property">shipped</span
@@ -2050,7 +1976,7 @@
                 ><span class="t-plain">,</span></span
               >
             </div>
-            <div class="t-line" data-delay="4800">
+            <div class="t-line">
               <span class="t-linenum">7</span
               ><span class="t-indent"
                 ><span class="t-property">clients</span
@@ -2059,7 +1985,7 @@
                 ><span class="t-plain">,</span></span
               >
             </div>
-            <div class="t-line" data-delay="5200">
+            <div class="t-line">
               <span class="t-linenum">8</span
               ><span class="t-indent"
                 ><span class="t-property">motto</span
@@ -2069,18 +1995,18 @@
                 ></span
               >
             </div>
-            <div class="t-line" data-delay="5600">
+            <div class="t-line">
               <span class="t-linenum">9</span><span class="t-bracket">}</span
               ><span class="t-plain">;</span>
             </div>
-            <div class="t-line" data-delay="6200">
+            <div class="t-line">
               <span class="t-linenum">10</span>
             </div>
-            <div class="t-line" data-delay="6600">
+            <div class="t-line">
               <span class="t-linenum">11</span
               ><span class="t-comment">// ready to build something?</span>
             </div>
-            <div class="t-line" data-delay="7000">
+            <div class="t-line">
               <span class="t-linenum">12</span
               ><span class="t-variable">himanshu</span
               ><span class="t-plain">.</span
@@ -2594,14 +2520,6 @@
       }
       // Defer non-critical JS to after first paint
       (window.requestIdleCallback || function(cb){setTimeout(cb,1)})(function() {
-      document.querySelectorAll(".t-line").forEach(function (l) {
-        setTimeout(
-          function () {
-            l.classList.add("visible");
-          },
-          parseInt(l.dataset.delay) || 0,
-        );
-      });
       var revealObs = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (e) {
@@ -2676,7 +2594,7 @@
         document.addEventListener("click", function (e) {
           if (!dd.contains(e.target)) dd.classList.remove("open");
         });
-        dd.querySelectorAll(".dd-item").forEach(function (a) {
+        dd.querySelectorAll(".dd-item, .dd-footer").forEach(function (a) {
           a.addEventListener("click", function () {
             dd.classList.remove("open");
           });
