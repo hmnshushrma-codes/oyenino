@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BGL94NLVL7"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-BGL94NLVL7");</script>
+    <title>Free AI Prompt — Build a Salon Booking App with React + Vite | Oye Nino</title>
+    <meta name="description" content="Get the exact AI prompt to build a config-driven salon booking app with React + Vite. 4 pages, mock API, Cloudflare Pages ready. Zero investment." />
+    <meta name="keywords" content="free salon booking app prompt, React booking app, Vite salon app, AI prompt booking system, salon booking website, appointment booking React, config-driven booking, Cloudflare Pages booking, oye nino, Himanshu" />
+    <meta name="author" content="Himanshu (@oye.nino)" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://oyenino.com/salon-booking-prompt.html" />
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:title" content="Free AI Prompt — Build a Salon Booking App with React + Vite" />
+    <meta property="og:description" content="Config-driven salon booking app — 4 pages, mock API, Cloudflare Pages ready. Get the exact prompt. Free." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://oyenino.com/salon-booking-prompt.html" />
+    <meta property="og:image" content="https://oyenino.com/og-image.jpg" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Free AI Prompt — Salon Booking App with React + Vite" />
+    <meta name="twitter:description" content="Config-driven salon booking app. 4 pages, mock API, Cloudflare Pages ready. Free prompt." />
+    <meta name="twitter:image" content="https://oyenino.com/og-image.jpg" />
+
+    <!-- STRUCTURED DATA -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Free AI Prompt — Build a Salon Booking App with React + Vite",
+        "description": "Get the exact AI prompt to build a config-driven salon booking app with React + Vite. 4 pages, mock API, Cloudflare Pages ready.",
+        "url": "https://oyenino.com/salon-booking-prompt.html",
+        "author": {
+          "@type": "Person",
+          "name": "Himanshu",
+          "sameAs": [
+            "https://www.instagram.com/oye.nino",
+            "https://youtube.com/@oye_nino"
+          ]
+        },
+        "isPartOf": { "@type": "WebSite", "url": "https://oyenino.com" }
+      }
+    </script>
+
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+      :root{--bg:#050505;--bg-elevated:#0c0c0c;--bg-card:#111111;--bg-card-hover:#161616;--text:#eeeae4;--text-mid:#b5b0a8;--text-muted:#706c66;--accent:#00F0A0;--accent-glow:rgba(0,240,160,0.1);--accent-glow-strong:rgba(0,240,160,0.2);--border:#1a1a1a;--border-hover:#2a2a2a;--serif:'Playfair Display',Georgia,serif;--sans:'Outfit',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--radius:16px;--transition:0.35s cubic-bezier(0.25,0.46,0.45,0.94);--amber:#f59e0b;--amber-soft:#fffbeb;--amber-glow:rgba(245,158,11,0.15);--amber-glow-strong:rgba(245,158,11,0.25)}
+      html{scroll-behavior:smooth;overflow-x:hidden}
+      body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+      ::selection{background:var(--accent);color:var(--bg)}
+      body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:50}
+
+      /* NAV */
+      nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0.85rem 2rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(24px) saturate(1.2);-webkit-backdrop-filter:blur(24px) saturate(1.2);background:rgba(5,5,5,0.8);border-bottom:1px solid rgba(255,255,255,0.04)}
+      .nav-logo{font-family:var(--sans);font-size:1.25rem;font-weight:600;color:var(--text);text-decoration:none;letter-spacing:-0.02em;flex-shrink:0}
+      .nav-logo span{color:var(--accent)}
+      .nav-links{display:flex;align-items:center;gap:2rem}
+      .nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.85rem;font-weight:400;letter-spacing:0.02em;transition:color var(--transition);position:relative}
+      .nav-links a:not(.nav-cta)::after{content:"";position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width var(--transition)}
+      .nav-links a:not(.nav-cta):hover{color:var(--text)}
+      .nav-links a:not(.nav-cta):hover::after{width:100%}
+      .nav-cta{background:var(--accent);color:var(--bg) !important;padding:0.5rem 1.5rem;border-radius:100px;font-weight:600;font-size:0.85rem;transition:transform 0.2s,box-shadow 0.3s;white-space:nowrap}
+      .nav-cta:hover{color:var(--bg) !important;transform:translateY(-1px);box-shadow:0 4px 24px var(--accent-glow-strong)}
+      .mobile-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px;z-index:101;width:32px;height:32px;position:relative;flex-shrink:0}
+      .ham-line{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:transform 0.3s,opacity 0.3s;position:absolute;left:5px}
+      .ham-line:nth-child(1){top:8px}.ham-line:nth-child(2){top:15px}.ham-line:nth-child(3){top:22px}
+      .mobile-toggle.open .ham-line:nth-child(1){transform:translateY(7px) rotate(45deg)}.mobile-toggle.open .ham-line:nth-child(2){opacity:0}.mobile-toggle.open .ham-line:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+      /* HERO */
+      .page-hero{padding:8rem 2rem 3rem;max-width:900px;margin:0 auto;position:relative}
+      .hero-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:400px;background:radial-gradient(ellipse,var(--amber-glow) 0%,transparent 65%);pointer-events:none;filter:blur(80px);animation:breathe 6s ease-in-out infinite}
+      @keyframes breathe{0%,100%{opacity:.4;transform:translateX(-50%) scale(1)}50%{opacity:.7;transform:translateX(-50%) scale(1.05)}}
+      .page-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;font-weight:500;animation:fadeUp .6s ease forwards}
+      .pulse{width:7px;height:7px;background:var(--accent);border-radius:50%;animation:pls 2s ease-in-out infinite}
+      @keyframes pls{0%,100%{opacity:1;box-shadow:0 0 0 0 var(--accent-glow-strong)}50%{opacity:.6;box-shadow:0 0 0 8px transparent}}
+      .page-hero h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.2rem);font-weight:400;line-height:1.1;letter-spacing:-0.03em;margin-bottom:1rem;animation:fadeUp .6s ease forwards .1s;opacity:0}
+      .page-hero h1 em{font-style:italic;color:var(--amber)}
+      .hero-comment{font-family:var(--mono);font-size:.9rem;color:var(--text-muted);margin-bottom:2.5rem;animation:fadeUp .6s ease forwards .2s;opacity:0}
+      .hero-comment span{color:var(--text-mid)}
+      @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+      /* DEMO PREVIEW */
+      .showcase{max-width:900px;margin:0 auto 3rem;padding:0 2rem;animation:fadeUp .6s ease forwards .3s;opacity:0}
+      .demo-preview{background:#0a0a0a;border-radius:20px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.4),0 0 0 1px rgba(255,255,255,0.05);margin-bottom:1.5rem}
+      .demo-nav{background:rgba(255,255,255,0.03);padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,0.06)}
+      .demo-nav-brand{font-size:1.05rem;font-weight:700;color:#fff;display:flex;align-items:center;gap:.3rem}
+      .demo-nav-brand .dot{color:var(--amber);font-size:1.4rem;line-height:1}
+      .demo-nav-cta{background:var(--amber);color:#0a0a0a;font-size:.75rem;font-weight:600;padding:.45rem 1.1rem;border-radius:50px;border:none;cursor:default}
+      .demo-hero-section{position:relative;height:260px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+      .demo-hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,0.3),rgba(10,10,10,0.85));z-index:1}
+      .demo-hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);z-index:0}
+      .demo-hero-content{position:relative;z-index:2;text-align:center;padding:0 1.5rem}
+      .demo-hero-content h2{font-size:1.8rem;font-weight:800;color:#fff;margin-bottom:.5rem}
+      .demo-hero-content p{font-size:.88rem;color:rgba(255,255,255,0.6);margin-bottom:1.25rem}
+      .demo-hero-btn{background:var(--amber);color:#0a0a0a;font-size:.85rem;font-weight:700;padding:.7rem 1.8rem;border-radius:50px;border:none;cursor:default;display:inline-flex;align-items:center;gap:.4rem}
+
+      /* SERVICES PREVIEW IN DEMO */
+      .demo-services{padding:1.5rem}
+      .demo-services-label{font-family:var(--mono);font-size:.7rem;color:rgba(255,255,255,0.35);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem}
+      .demo-svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+      .demo-svc-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:1rem;transition:all .25s;cursor:default}
+      .demo-svc-card.highlighted{border-color:var(--amber);background:var(--amber-glow)}
+      .demo-svc-name{font-size:.85rem;font-weight:600;color:#fff;margin-bottom:.25rem}
+      .demo-svc-meta{font-size:.72rem;color:rgba(255,255,255,0.4)}
+      .demo-svc-price{font-size:.95rem;font-weight:700;color:var(--amber);margin-top:.4rem}
+
+      /* BOOKING FLOW PREVIEW */
+      .demo-flow{padding:0 1.5rem 1.5rem}
+      .demo-progress{display:flex;align-items:center;gap:0;margin-bottom:1.25rem}
+      .demo-prog-step{display:flex;align-items:center;gap:0;flex:1}
+      .demo-prog-num{width:28px;height:28px;border-radius:50%;font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.3)}
+      .demo-prog-num.active{background:var(--amber);color:#0a0a0a}
+      .demo-prog-num.done{background:rgba(245,158,11,0.2);color:var(--amber)}
+      .demo-prog-bar{flex:1;height:2px;background:rgba(255,255,255,0.08);margin:0 .5rem;border-radius:1px}
+      .demo-prog-bar.done{background:var(--amber)}
+      .demo-prog-step:last-child .demo-prog-bar{display:none}
+      .demo-slots{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem}
+      .demo-slot{padding:.5rem;text-align:center;border-radius:10px;font-size:.75rem;font-weight:500;cursor:default}
+      .demo-slot.available{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.08)}
+      .demo-slot.selected{background:var(--amber);color:#0a0a0a;border:1px solid var(--amber)}
+      .demo-slot.booked{background:rgba(255,255,255,0.02);color:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.04);text-decoration:line-through}
+
+      .demo-links{display:flex;gap:1.5rem;align-items:center;flex-wrap:wrap;margin-top:.75rem}
+      .demo-link{display:inline-flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--accent);text-decoration:none;font-weight:500;transition:gap .2s}
+      .demo-link:hover{gap:.75rem}
+      .demo-link.github{color:var(--text-mid)}
+      .demo-link.github:hover{color:var(--text)}
+      .demo-link .gh-icon{width:16px;height:16px;fill:currentColor;flex-shrink:0}
+
+      /* TECH HIGHLIGHTS */
+      .tech-highlights{max-width:900px;margin:0 auto 3rem;padding:0 2rem;animation:fadeUp .6s ease forwards .35s;opacity:0}
+      .tech-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+      .tech-item{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.25rem;transition:border-color var(--transition)}
+      .tech-item:hover{border-color:var(--border-hover)}
+      .tech-icon{font-size:1.4rem;margin-bottom:.5rem}
+      .tech-label{font-size:.88rem;font-weight:600;color:var(--text);margin-bottom:.25rem}
+      .tech-desc{font-size:.78rem;color:var(--text-muted);font-weight:300;line-height:1.5}
+
+      /* GATE */
+      .gate-wrap{max-width:520px;margin:0 auto 5rem;padding:0 2rem;animation:fadeUp .6s ease forwards .4s;opacity:0}
+      .gate-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem;position:relative;overflow:hidden}
+      .gate-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent 60%)}
+      .gate-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;margin-bottom:.4rem}
+      .gate-subtitle{font-size:.88rem;color:var(--text-muted);margin-bottom:1.75rem;font-weight:300}
+      .gate-subtitle strong{color:var(--text-mid);font-weight:500}
+      .teaser-list{list-style:none;margin-bottom:1.75rem;display:flex;flex-direction:column;gap:.6rem}
+      .teaser-list li{display:flex;align-items:center;gap:.75rem;font-size:.88rem;color:var(--text-mid);font-weight:300}
+      .teaser-list li::before{content:'\2713';color:var(--accent);font-weight:700;flex-shrink:0}
+      .form-group{margin-bottom:1rem}
+      .form-group label{display:block;font-size:.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.45rem;font-weight:500}
+      .form-group input{width:100%;padding:.8rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--sans);font-size:.9rem;font-weight:300;transition:border-color var(--transition),box-shadow var(--transition);outline:none}
+      .form-group input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+      .form-group input::placeholder{color:#444}
+      .btn-unlock{width:100%;padding:1rem;background:var(--accent);color:var(--bg);border:none;border-radius:100px;font-family:var(--sans);font-size:.95rem;font-weight:600;cursor:pointer;transition:transform .2s,box-shadow .3s;margin-top:.5rem;display:flex;align-items:center;justify-content:center;gap:.5rem}
+      .btn-unlock:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 32px var(--accent-glow-strong)}
+      .btn-unlock:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
+      .gate-privacy{text-align:center;font-size:.75rem;color:var(--text-muted);margin-top:1rem;font-weight:300}
+      .error-msg{color:#ff6b6b;font-size:.8rem;margin-top:.5rem;display:none}
+      .error-msg.show{display:block}
+
+      /* PROMPT CONTENT */
+      #prompt-content{display:none;max-width:900px;margin:0 auto;padding:0 2rem 6rem}
+      #prompt-content.unlocked{display:block;animation:fadeUp .7s ease forwards}
+      .unlock-banner{background:linear-gradient(135deg,rgba(0,240,160,0.06),rgba(0,240,160,0.02));border:1px solid rgba(0,240,160,0.2);border-radius:var(--radius);padding:1.5rem 2rem;margin-bottom:3rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+      .unlock-icon{font-size:1.75rem}
+      .unlock-text strong{display:block;font-size:1rem;margin-bottom:.2rem}
+      .unlock-text span{font-size:.85rem;color:var(--text-muted);font-weight:300}
+      .loading-prompt{text-align:center;padding:3rem;color:var(--text-muted);font-size:.9rem}
+      .loading-prompt .spinner{display:inline-block;width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .6s linear infinite;margin-right:.5rem;vertical-align:middle}
+      @keyframes spin{to{transform:rotate(360deg)}}
+      .prompt-category{margin-bottom:3rem}
+      .category-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.75rem;padding-bottom:1rem;border-bottom:1px solid var(--border);flex-wrap:wrap}
+      .category-icon{width:48px;height:48px;border-radius:12px;background:var(--accent-glow);border:1px solid rgba(0,240,160,0.2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+      .category-info{flex:1;min-width:200px}
+      .category-eyebrow{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:.2rem}
+      .category-title{font-family:var(--serif);font-size:1.6rem;font-weight:400}
+      .prompt-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.5rem 1.75rem;position:relative;margin-bottom:1.25rem;transition:border-color var(--transition),box-shadow .3s}
+      .prompt-card:hover{border-color:var(--border-hover);box-shadow:0 4px 24px rgba(0,0,0,.3)}
+      .prompt-label{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:.6rem}
+      .prompt-card h4{font-size:1rem;font-weight:600;margin-bottom:.75rem}
+      .prompt-text{font-size:.82rem;color:var(--text-muted);line-height:1.75;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;font-family:var(--mono);position:relative;white-space:pre-wrap;word-break:break-word;max-height:500px;overflow-y:auto}
+      .prompt-text::-webkit-scrollbar{width:6px}
+      .prompt-text::-webkit-scrollbar-track{background:var(--bg)}
+      .prompt-text::-webkit-scrollbar-thumb{background:var(--border-hover);border-radius:3px}
+      .copy-btn{position:absolute;top:.65rem;right:.75rem;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:.3rem .7rem;font-size:.72rem;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:var(--sans);z-index:2}
+      .copy-btn:hover{border-color:var(--accent);color:var(--accent)}
+      .copy-btn.copied{background:var(--accent-glow);border-color:var(--accent);color:var(--accent)}
+      .prompt-tip{margin-top:.85rem;font-size:.8rem;color:var(--text-muted);font-weight:300;display:flex;gap:.5rem;align-items:flex-start}
+      .prompt-tip::before{content:'\1F4A1';font-size:.8rem;flex-shrink:0}
+      .how-to-use{background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius);padding:2rem 2.25rem;margin:2.5rem 0}
+      .how-to-use h3{font-family:var(--serif);font-size:1.25rem;font-weight:400;margin-bottom:1.25rem}
+      .step-item{display:flex;gap:1rem;margin-bottom:1rem;align-items:flex-start}
+      .step-num{width:28px;height:28px;border-radius:50%;border:1px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:600;color:var(--accent);flex-shrink:0;margin-top:.1rem}
+      .step-text{font-size:.9rem;color:var(--text-mid);font-weight:300;line-height:1.6}
+      .step-text strong{color:var(--text);font-weight:500}
+      .step-text code{background:rgba(0,240,160,0.08);padding:.1rem .4rem;border-radius:3px;font-size:.8rem;color:var(--accent);font-family:var(--mono)}
+      .prompts-cta{background:linear-gradient(135deg,var(--bg-card) 0%,rgba(0,240,160,0.03) 100%);border:1px solid var(--border);border-radius:var(--radius);padding:3rem;text-align:center;margin-top:3rem;position:relative;overflow:hidden}
+      .prompts-cta::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 50%,var(--accent-glow) 0%,transparent 50%);pointer-events:none;animation:rotateSlow 15s linear infinite}
+      @keyframes rotateSlow{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+      .prompts-cta h3{font-family:var(--serif);font-size:2rem;font-weight:400;margin-bottom:.6rem;position:relative}
+      .prompts-cta p{color:var(--text-mid);margin-bottom:1.75rem;font-weight:300;font-size:1rem;position:relative}
+      .btn-primary{background:var(--accent);color:var(--bg);padding:.9rem 2.25rem;border-radius:100px;text-decoration:none;font-weight:600;font-size:.95rem;transition:transform .2s,box-shadow .3s;display:inline-flex;align-items:center;gap:.5rem;position:relative}
+      .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 40px var(--accent-glow-strong)}
+      .btn-ghost{background:transparent;color:var(--text-mid);padding:.9rem 2rem;border-radius:100px;text-decoration:none;font-weight:400;font-size:.95rem;border:1px solid var(--border);transition:border-color var(--transition),color var(--transition);display:inline-flex;align-items:center;gap:.5rem}
+      .btn-ghost:hover{border-color:var(--border-hover);color:var(--text)}
+      .cta-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+      /* FOOTER */
+      footer{border-top:1px solid var(--border);padding:2rem;max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+      .footer-left{color:var(--text-muted);font-size:.8rem;font-weight:300}
+      .footer-links{display:flex;gap:1.5rem}
+      .footer-links a{color:var(--text-muted);text-decoration:none;font-size:.8rem;transition:color var(--transition)}
+      .footer-links a:hover{color:var(--accent)}
+
+      /* MOBILE */
+      @media(max-width:600px){
+        .nav-links{position:fixed;top:0;right:-100%;width:280px;max-width:85vw;height:100vh;height:100dvh;background:#0a0a0a;border-left:1px solid var(--border);padding:5rem 2rem 2rem;flex-direction:column;align-items:flex-start;gap:0;z-index:99;transition:right 0.35s cubic-bezier(0.4,0,0.2,1)}
+        .nav-links.open{right:0}
+        .nav-links a{padding:0.85rem 0;font-size:1rem;border-bottom:1px solid var(--border);width:100%}
+        .nav-links a:not(.nav-cta)::after{display:none}
+        .nav-cta{margin-top:1rem;text-align:center;display:block;width:100%;padding:0.85rem;border-bottom:none}
+        .mobile-toggle{display:block}
+        .page-hero{padding:7rem 1.5rem 2rem;overflow:hidden}
+        .hero-glow{width:300px;height:200px}
+        .showcase{padding:0 1rem}
+        .demo-svc-grid{grid-template-columns:1fr}
+        .demo-slots{grid-template-columns:repeat(3,1fr)}
+        .demo-hero-section{height:200px}
+        .demo-hero-content h2{font-size:1.3rem}
+        .tech-highlights{padding:0 1rem}
+        .tech-grid{grid-template-columns:1fr}
+        .gate-wrap{padding:0 1rem}
+        .gate-card{padding:1.75rem 1.25rem;overflow:hidden}
+        .cf-turnstile{transform:scale(.9);transform-origin:left top}
+        .prompt-text{font-size:.72rem;padding:1rem;overflow-x:auto}
+        .prompt-card{padding:1.25rem}
+        .unlock-banner{flex-direction:column;text-align:center;padding:1.25rem}
+        #prompt-content{padding:0 1rem 4rem}
+        .how-to-use{padding:1.5rem 1.25rem}
+        .prompts-cta{padding:2rem 1.25rem}
+        .cta-buttons{flex-direction:column;align-items:center}
+        footer{flex-direction:column;text-align:center;gap:.75rem}
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="/" class="nav-logo">oye.nino<span>.</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="/existence/">Existence</a>
+        <a href="/prompts.html">Free Prompts</a>
+        <a href="/#contact" class="nav-cta">Let's Talk</a>
+      </div>
+      <button class="mobile-toggle" id="mobToggle" aria-label="Menu">
+        <span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span>
+      </button>
+    </nav>
+
+    <!-- HERO -->
+    <div class="page-hero">
+      <div class="hero-glow"></div>
+      <div class="page-badge"><span class="pulse"></span> Free Prompt — The Existence Series</div>
+      <h1>one config. <em>full booking app.</em></h1>
+      <div class="hero-comment">// React + Vite &middot; <span>4 pages</span> &middot; <span>mock API</span> &middot; <span>Cloudflare ready</span></div>
+    </div>
+
+    <!-- DEMO PREVIEW -->
+    <div class="showcase">
+      <div class="demo-preview">
+        <!-- Fake navbar -->
+        <div class="demo-nav">
+          <div class="demo-nav-brand">Noir Salon<span class="dot">.</span></div>
+          <div class="demo-nav-cta">Book Now</div>
+        </div>
+        <!-- Fake hero -->
+        <div class="demo-hero-section">
+          <div class="demo-hero-bg"></div>
+          <div class="demo-hero-overlay"></div>
+          <div class="demo-hero-content">
+            <h2>Where style meets precision.</h2>
+            <p>Connaught Place, New Delhi</p>
+            <div class="demo-hero-btn">Book your slot &rarr;</div>
+          </div>
+        </div>
+        <!-- Fake services -->
+        <div class="demo-services">
+          <div class="demo-services-label">01 / services</div>
+          <div class="demo-svc-grid">
+            <div class="demo-svc-card highlighted">
+              <div class="demo-svc-name">Haircut + Styling</div>
+              <div class="demo-svc-meta">60 min</div>
+              <div class="demo-svc-price">&#8377;599</div>
+            </div>
+            <div class="demo-svc-card">
+              <div class="demo-svc-name">Beard Trim</div>
+              <div class="demo-svc-meta">20 min</div>
+              <div class="demo-svc-price">&#8377;199</div>
+            </div>
+            <div class="demo-svc-card">
+              <div class="demo-svc-name">Hair Colour</div>
+              <div class="demo-svc-meta">90 min</div>
+              <div class="demo-svc-price">&#8377;999</div>
+            </div>
+            <div class="demo-svc-card">
+              <div class="demo-svc-name">Combo Package</div>
+              <div class="demo-svc-meta">90 min</div>
+              <div class="demo-svc-price">&#8377;1,199</div>
+            </div>
+          </div>
+        </div>
+        <!-- Fake booking flow -->
+        <div class="demo-flow">
+          <div class="demo-progress">
+            <div class="demo-prog-step">
+              <div class="demo-prog-num done">1</div>
+              <div class="demo-prog-bar done"></div>
+            </div>
+            <div class="demo-prog-step">
+              <div class="demo-prog-num active">2</div>
+              <div class="demo-prog-bar"></div>
+            </div>
+            <div class="demo-prog-step">
+              <div class="demo-prog-num">3</div>
+            </div>
+          </div>
+          <div class="demo-slots">
+            <div class="demo-slot available">10:00 AM</div>
+            <div class="demo-slot available">10:30 AM</div>
+            <div class="demo-slot selected">11:00 AM</div>
+            <div class="demo-slot booked">11:30 AM</div>
+            <div class="demo-slot available">12:00 PM</div>
+            <div class="demo-slot booked">12:30 PM</div>
+            <div class="demo-slot available">1:00 PM</div>
+            <div class="demo-slot available">1:30 PM</div>
+          </div>
+        </div>
+      </div>
+      <div class="demo-links">
+        <a href="https://book.oyenino.com/" target="_blank" rel="noopener" class="demo-link">Try the live demo &rarr;</a>
+        <a href="https://github.com/hmnshushrma-codes/booking_app" target="_blank" rel="noopener" class="demo-link github"><svg class="gh-icon" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg> Fork on GitHub &rarr;</a>
+      </div>
+    </div>
+
+    <!-- TECH HIGHLIGHTS -->
+    <div class="tech-highlights" id="techSection">
+      <div class="tech-grid">
+        <div class="tech-item">
+          <div class="tech-icon">&#9881;&#65039;</div>
+          <div class="tech-label">Config-driven</div>
+          <div class="tech-desc">One config file controls everything — brand, services, prices, working hours</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">&#128241;</div>
+          <div class="tech-label">4 Pages</div>
+          <div class="tech-desc">Landing, Booking (3-step flow), Confirmation with calendar export, Slots Unavailable</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">&#128295;</div>
+          <div class="tech-label">Mock API layer</div>
+          <div class="tech-desc">Swap to real Hono + D1 backend later — only one file changes</div>
+        </div>
+        <div class="tech-item">
+          <div class="tech-icon">&#9729;&#65039;</div>
+          <div class="tech-label">Cloudflare ready</div>
+          <div class="tech-desc">Static build, deploys to Cloudflare Pages with zero config</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GATE: Form before prompt -->
+    <div class="gate-wrap" id="gate-section">
+      <div class="gate-card">
+        <div class="gate-title">Get the prompt — free hai</div>
+        <div class="gate-subtitle">Apna naam aur email daalo, salon booking app prompt turant milega. <strong>No spam, promise.</strong></div>
+
+        <ul class="teaser-list">
+          <li>Complete React + Vite booking app — config se sab control</li>
+          <li>Landing page, 3-step booking flow, confirmation with .ics</li>
+          <li>Mock API layer — real backend swap easy</li>
+          <li>Slot picker with available/booked/past states</li>
+          <li>Copy-paste ready — ChatGPT ya Claude mein daalo, project lo</li>
+        </ul>
+
+        <form id="gateForm" novalidate>
+          <div class="form-group">
+            <label for="gate-name">Your Name *</label>
+            <input type="text" id="gate-name" name="name" placeholder="Rahul Sharma" required autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="gate-phone">Phone Number *</label>
+            <input type="tel" id="gate-phone" name="phone" placeholder="+91 98765 43210" required autocomplete="tel" />
+            <div class="field-status" id="phoneStatus"></div>
+          </div>
+          <div class="form-group">
+            <label for="gate-email">Email Address *</label>
+            <input type="email" id="gate-email" name="email" placeholder="rahul@gmail.com" required autocomplete="email" />
+            <div class="field-status" id="emailStatus"></div>
+          </div>
+
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAACgSvRvZpT5d_Ab5" data-theme="dark" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired" style="margin-bottom:1rem;display:flex;justify-content:center"></div>
+
+          <div class="error-msg" id="formError"></div>
+          <button type="submit" class="btn-unlock" id="unlockBtn" disabled>Sab fields fill karo</button>
+          <p class="gate-privacy"><span>&#128274; Your info safe hai. Kabhi bhi unsubscribe kar sakte ho.</span></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- PROMPT CONTENT — hidden until unlocked, loaded from JSON -->
+    <div id="prompt-content">
+      <div class="unlock-banner">
+        <div class="unlock-icon">&#127881;</div>
+        <div class="unlock-text">
+          <strong>Prompt unlock ho gaya!</strong>
+          <span>Loading...</span>
+        </div>
+      </div>
+      <div id="dynamicContent">
+        <div class="loading-prompt"><span class="spinner"></span> Prompt load ho raha hai...</div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-left">&copy; 2026 Himanshu. Built with code &amp; clarity.</div>
+      <div class="footer-links">
+        <a href="https://youtube.com/@oye_nino" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.instagram.com/oye.nino" target="_blank" rel="noopener">Instagram</a>
+        <a href="/prompts.html">Free Prompts</a>
+        <a href="/">Portfolio</a>
+      </div>
+    </footer>
+
+    <!-- NAV TOGGLE -->
+    <script>
+      (function() {
+        var toggle = document.getElementById("mobToggle");
+        var links = document.getElementById("navLinks");
+        if (toggle && links) {
+          toggle.addEventListener("click", function() {
+            toggle.classList.toggle("open");
+            links.classList.toggle("open");
+            document.body.style.overflow = links.classList.contains("open") ? "hidden" : "";
+          });
+          links.querySelectorAll("a").forEach(function(a) {
+            a.addEventListener("click", function() {
+              toggle.classList.remove("open");
+              links.classList.remove("open");
+              document.body.style.overflow = "";
+            });
+          });
+        }
+      })();
+    </script>
+
+    <!-- FORM GATE + DYNAMIC CONTENT LOADER -->
+    <script src="/form-utils.js"></script>
+    <script>
+      var DATA_URL = '/salon-booking-prompt-data.json';
+
+      if (sessionStorage.getItem('salon_booking_prompt_unlocked') === 'true') showPrompt();
+
+      try {
+        if (typeof OyeNinoForm !== 'undefined') {
+          new OyeNinoForm({
+            formId: 'gateForm',
+            emailId: 'gate-email',
+            phoneId: 'gate-phone',
+            nameId: 'gate-name',
+            btnId: 'unlockBtn',
+            statusId: 'emailStatus',
+            phoneStatusId: 'phoneStatus',
+            errorId: 'formError',
+            formName: 'salon_booking_prompt_gate',
+            source: 'salon_booking_prompt_page',
+            requiredFields: ['name', 'email', 'phone'],
+            btnTexts: {
+              ready: '<span>\uD83D\uDD13</span> Prompt Unlock Karo \u2014 Free',
+              turnstile: "Verify you're human first \u2191",
+              email: 'Valid email daalo pehle',
+              phone: 'Valid phone number daalo',
+              fields: 'Sab fields fill karo',
+              submitting: '<span>\u23F3</span> Submitting...'
+            },
+            onSuccess: function() {
+              sessionStorage.setItem('salon_booking_prompt_unlocked', 'true');
+              showPrompt();
+            }
+          });
+        }
+      } catch(e) { console.warn('form-utils not loaded', e); }
+
+      function showPrompt() {
+        var gate = document.getElementById('gate-section');
+        gate.style.transition = 'opacity .4s ease, transform .4s ease';
+        gate.style.opacity = '0';
+        gate.style.transform = 'translateY(-10px)';
+        setTimeout(function() {
+          gate.style.display = 'none';
+          var content = document.getElementById('prompt-content');
+          content.classList.add('unlocked');
+          content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          loadPromptData();
+          oyeTrackEvent('salon_booking_prompt_unlocked');
+        }, 400);
+      }
+
+      function loadPromptData() {
+        var container = document.getElementById('dynamicContent');
+        fetch(DATA_URL)
+          .then(function(r) { if (!r.ok) throw new Error('Failed'); return r.json(); })
+          .then(function(data) { renderPromptContent(data, container); })
+          .catch(function(err) {
+            console.error('Failed to load prompt data:', err);
+            container.innerHTML = '<div class="loading-prompt" style="color:#ff6b6b;">Prompt load nahi ho paya. Page refresh karo ya <a href="/#contact" style="color:var(--accent);">contact karo</a>.</div>';
+          });
+      }
+
+      function renderPromptContent(data, container) {
+        var html = '';
+
+        // PROMPT SECTION
+        var p = data.prompt;
+        html += '<div class="prompt-category">';
+        html += '<div class="category-header"><div class="category-icon">&#128197;</div><div class="category-info"><div class="category-eyebrow">' + esc(p.eyebrow) + '</div><div class="category-title">' + esc(p.title) + '</div></div></div>';
+        html += '<div class="prompt-card"><div class="prompt-label">' + p.label + '</div><h4>' + esc(p.heading) + '</h4>';
+        html += '<div class="prompt-text" id="main-prompt">' + esc(p.text) + '</div>';
+        html += '<button class="copy-btn" onclick="copyPrompt(\'main-prompt\',this)">Copy</button>';
+        html += '<div class="prompt-tip">' + esc(p.tip) + '</div>';
+        html += '</div></div>';
+
+        // HOW TO USE
+        var h = data.howToUse;
+        html += '<div class="how-to-use"><h3>' + esc(h.title) + '</h3>';
+        h.steps.forEach(function(step, i) {
+          html += '<div class="step-item"><div class="step-num">' + (i + 1) + '</div><div class="step-text">' + step.text + '</div></div>';
+        });
+        html += '</div>';
+
+        // CTA
+        var cta = data.cta;
+        html += '<div class="prompts-cta"><h3>' + esc(cta.title) + '</h3><p>' + esc(cta.subtitle) + '</p><div class="cta-buttons">';
+        cta.buttons.forEach(function(btn) {
+          var cls = btn.style === 'primary' ? 'btn-primary' : 'btn-ghost';
+          html += '<a href="' + esc(btn.href) + '" class="' + cls + '">' + esc(btn.text) + '</a>';
+        });
+        html += '</div></div>';
+
+        container.innerHTML = html;
+
+        // Update unlock banner text
+        document.querySelector('.unlock-text span').textContent = 'Copy karo, Claude ya ChatGPT mein paste karo. Poora React booking app milega.';
+      }
+
+      function esc(s) {
+        if (!s) return '';
+        var d = document.createElement('div'); d.textContent = s; return d.innerHTML;
+      }
+
+      function copyPrompt(id, btn) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        navigator.clipboard.writeText(el.innerText).then(function() {
+          btn.textContent = '\u2713 Copied!';
+          btn.classList.add('copied');
+          oyeTrackEvent('prompt_copied', { prompt_id: id, page: window.location.pathname });
+          setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+        });
+      }
+    </script>
+  </body>
+</html>
