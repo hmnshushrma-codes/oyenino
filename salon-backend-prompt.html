@@ -1,0 +1,897 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BGL94NLVL7"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-BGL94NLVL7");</script>
+    <title>Free Guide — Backend Samjho, Phir Banao | Salon Booking Backend Strategy | Oye Nino</title>
+    <meta name="description" content="Backend samjho — concepts pehle, code baad mein. Zero se backend banane ki poori strategy: Hono + Cloudflare Workers + D1. Free guide, no paywall." />
+    <meta name="keywords" content="backend guide hindi, salon booking backend, Hono Cloudflare Workers, D1 database guide, API development guide, backend strategy free, booking system backend, zero investment backend, oye nino, Himanshu" />
+    <meta name="author" content="Himanshu (@oye.nino)" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://oyenino.com/salon-backend-prompt.html" />
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:title" content="Free Guide — Backend Samjho, Phir Banao | Salon Booking Backend" />
+    <meta property="og:description" content="Backend concepts pehle, code baad mein. Hono + Workers + D1. Poori strategy — free hai." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://oyenino.com/salon-backend-prompt.html" />
+    <meta property="og:image" content="https://oyenino.com/og-image.jpg" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Free Guide — Backend Samjho, Phir Banao" />
+    <meta name="twitter:description" content="Backend concepts pehle, code baad mein. Hono + Workers + D1. Poori strategy — free." />
+    <meta name="twitter:image" content="https://oyenino.com/og-image.jpg" />
+
+    <!-- STRUCTURED DATA -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Free Guide — Backend Samjho, Phir Banao | Salon Booking Backend Strategy",
+        "description": "Backend samjho — concepts pehle, code baad mein. Zero se backend banane ki poori strategy with Hono + Cloudflare Workers + D1.",
+        "url": "https://oyenino.com/salon-backend-prompt.html",
+        "author": {
+          "@type": "Person",
+          "name": "Himanshu",
+          "sameAs": [
+            "https://www.instagram.com/oye.nino",
+            "https://youtube.com/@oye_nino"
+          ]
+        },
+        "isPartOf": { "@type": "WebSite", "url": "https://oyenino.com" }
+      }
+    </script>
+
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+      :root{--bg:#050505;--bg-elevated:#0c0c0c;--bg-card:#111111;--bg-card-hover:#161616;--text:#eeeae4;--text-mid:#b5b0a8;--text-muted:#706c66;--accent:#00F0A0;--accent-glow:rgba(0,240,160,0.1);--accent-glow-strong:rgba(0,240,160,0.2);--border:#1a1a1a;--border-hover:#2a2a2a;--serif:'Playfair Display',Georgia,serif;--sans:'Outfit',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--radius:16px;--transition:0.35s cubic-bezier(0.25,0.46,0.45,0.94);--cyan:#06b6d4;--cyan-glow:rgba(6,182,212,0.15);--cyan-glow-strong:rgba(6,182,212,0.25)}
+      html{scroll-behavior:smooth;overflow-x:hidden}
+      body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+      ::selection{background:var(--accent);color:var(--bg)}
+      body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:50}
+
+      /* NAV */
+      nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0.85rem 2rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(24px) saturate(1.2);-webkit-backdrop-filter:blur(24px) saturate(1.2);background:rgba(5,5,5,0.8);border-bottom:1px solid rgba(255,255,255,0.04)}
+      .nav-logo{font-family:var(--sans);font-size:1.25rem;font-weight:600;color:var(--text);text-decoration:none;letter-spacing:-0.02em;flex-shrink:0}
+      .nav-logo span{color:var(--accent)}
+      .nav-links{display:flex;align-items:center;gap:2rem}
+      .nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.85rem;font-weight:400;letter-spacing:0.02em;transition:color var(--transition);position:relative}
+      .nav-links a:not(.nav-cta)::after{content:"";position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width var(--transition)}
+      .nav-links a:not(.nav-cta):hover{color:var(--text)}
+      .nav-links a:not(.nav-cta):hover::after{width:100%}
+      .nav-cta{background:var(--accent);color:var(--bg) !important;padding:0.5rem 1.5rem;border-radius:100px;font-weight:600;font-size:0.85rem;transition:transform 0.2s,box-shadow 0.3s;white-space:nowrap}
+      .nav-cta:hover{color:var(--bg) !important;transform:translateY(-1px);box-shadow:0 4px 24px var(--accent-glow-strong)}
+      .mobile-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px;z-index:101;width:32px;height:32px;position:relative;flex-shrink:0}
+      .ham-line{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:transform 0.3s,opacity 0.3s;position:absolute;left:5px}
+      .ham-line:nth-child(1){top:8px}.ham-line:nth-child(2){top:15px}.ham-line:nth-child(3){top:22px}
+      .mobile-toggle.open .ham-line:nth-child(1){transform:translateY(7px) rotate(45deg)}.mobile-toggle.open .ham-line:nth-child(2){opacity:0}.mobile-toggle.open .ham-line:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+      /* HERO */
+      .page-hero{padding:8rem 2rem 3rem;max-width:900px;margin:0 auto;position:relative}
+      .hero-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:400px;background:radial-gradient(ellipse,var(--cyan-glow) 0%,transparent 65%);pointer-events:none;filter:blur(80px);animation:breathe 6s ease-in-out infinite}
+      @keyframes breathe{0%,100%{opacity:.4;transform:translateX(-50%) scale(1)}50%{opacity:.7;transform:translateX(-50%) scale(1.05)}}
+      .page-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;font-weight:500;animation:fadeUp .6s ease forwards}
+      .pulse{width:7px;height:7px;background:var(--accent);border-radius:50%;animation:pls 2s ease-in-out infinite}
+      @keyframes pls{0%,100%{opacity:1;box-shadow:0 0 0 0 var(--accent-glow-strong)}50%{opacity:.6;box-shadow:0 0 0 8px transparent}}
+      .page-hero h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.2rem);font-weight:400;line-height:1.1;letter-spacing:-0.03em;margin-bottom:1rem;animation:fadeUp .6s ease forwards .1s;opacity:0}
+      .page-hero h1 em{font-style:italic;color:var(--cyan)}
+      .hero-comment{font-family:var(--mono);font-size:.9rem;color:var(--text-muted);margin-bottom:2.5rem;animation:fadeUp .6s ease forwards .2s;opacity:0}
+      .hero-comment span{color:var(--text-mid)}
+      @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+      /* ARCHITECTURE DIAGRAM */
+      .showcase{max-width:900px;margin:0 auto 3rem;padding:0 2rem;animation:fadeUp .6s ease forwards .3s;opacity:0}
+      .arch-diagram{background:#0a0a0a;border-radius:20px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.4),0 0 0 1px rgba(255,255,255,0.05);padding:2rem}
+      .arch-row{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
+      .arch-box{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:1.25rem 1.5rem;text-align:center;flex:1;min-width:160px;max-width:240px;transition:border-color .3s}
+      .arch-box:hover{border-color:var(--cyan)}
+      .arch-box-title{font-size:.85rem;font-weight:600;color:#fff;margin-bottom:.3rem}
+      .arch-box-sub{font-size:.72rem;color:rgba(255,255,255,0.4)}
+      .arch-box-icon{font-size:1.4rem;margin-bottom:.5rem}
+      .arch-arrow{color:var(--cyan);font-size:1.5rem;font-weight:700;flex-shrink:0}
+      .arch-label{text-align:center;font-size:.72rem;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase;margin-top:.5rem}
+
+      /* PHASE CARDS */
+      .phases{max-width:900px;margin:0 auto 3rem;padding:0 2rem;animation:fadeUp .6s ease forwards .35s;opacity:0}
+      .phases-title{font-family:var(--serif);font-size:1.4rem;font-weight:400;margin-bottom:1.5rem;color:var(--text)}
+      .phase-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+      .phase-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.25rem;transition:border-color var(--transition)}
+      .phase-card:hover{border-color:var(--border-hover)}
+      .phase-num{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cyan);font-weight:600;margin-bottom:.4rem}
+      .phase-name{font-size:.9rem;font-weight:600;color:var(--text);margin-bottom:.3rem}
+      .phase-desc{font-size:.78rem;color:var(--text-muted);font-weight:300;line-height:1.5}
+      .phase-time{font-size:.68rem;color:var(--text-muted);margin-top:.5rem;font-family:var(--mono)}
+
+      /* GATE */
+      .gate-wrap{max-width:520px;margin:0 auto 5rem;padding:0 2rem;animation:fadeUp .6s ease forwards .4s;opacity:0}
+      .gate-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem;position:relative;overflow:hidden}
+      .gate-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent 60%)}
+      .gate-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;margin-bottom:.4rem}
+      .gate-subtitle{font-size:.88rem;color:var(--text-muted);margin-bottom:1.75rem;font-weight:300}
+      .gate-subtitle strong{color:var(--text-mid);font-weight:500}
+      .teaser-list{list-style:none;margin-bottom:1.75rem;display:flex;flex-direction:column;gap:.6rem}
+      .teaser-list li{display:flex;align-items:center;gap:.75rem;font-size:.88rem;color:var(--text-mid);font-weight:300}
+      .teaser-list li::before{content:'\2713';color:var(--accent);font-weight:700;flex-shrink:0}
+      .form-group{margin-bottom:1rem}
+      .form-group label{display:block;font-size:.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.45rem;font-weight:500}
+      .form-group input{width:100%;padding:.8rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--sans);font-size:.9rem;font-weight:300;transition:border-color var(--transition),box-shadow var(--transition);outline:none}
+      .form-group input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+      .form-group input::placeholder{color:#444}
+      .btn-unlock{width:100%;padding:1rem;background:var(--accent);color:var(--bg);border:none;border-radius:100px;font-family:var(--sans);font-size:.95rem;font-weight:600;cursor:pointer;transition:transform .2s,box-shadow .3s;margin-top:.5rem;display:flex;align-items:center;justify-content:center;gap:.5rem}
+      .btn-unlock:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 32px var(--accent-glow-strong)}
+      .btn-unlock:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
+      .gate-privacy{text-align:center;font-size:.75rem;color:var(--text-muted);margin-top:1rem;font-weight:300}
+      .error-msg{color:#ff6b6b;font-size:.8rem;margin-top:.5rem;display:none}
+      .error-msg.show{display:block}
+
+      /* PROMPT CONTENT */
+      #prompt-content{display:none;max-width:900px;margin:0 auto;padding:0 2rem 6rem}
+      #prompt-content.unlocked{display:block;animation:fadeUp .7s ease forwards}
+      .unlock-banner{background:linear-gradient(135deg,rgba(0,240,160,0.06),rgba(0,240,160,0.02));border:1px solid rgba(0,240,160,0.2);border-radius:var(--radius);padding:1.5rem 2rem;margin-bottom:3rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+      .unlock-icon{font-size:1.75rem}
+      .unlock-text strong{display:block;font-size:1rem;margin-bottom:.2rem}
+      .unlock-text span{font-size:.85rem;color:var(--text-muted);font-weight:300}
+
+      /* PROMPT SECTIONS */
+      .prompt-category{margin-bottom:3rem}
+      .category-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.75rem;padding-bottom:1rem;border-bottom:1px solid var(--border);flex-wrap:wrap}
+      .category-icon{width:48px;height:48px;border-radius:12px;background:var(--cyan-glow);border:1px solid rgba(6,182,212,0.2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+      .category-info{flex:1;min-width:200px}
+      .category-eyebrow{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);font-weight:500;margin-bottom:.2rem}
+      .category-title{font-family:var(--serif);font-size:1.6rem;font-weight:400}
+      .prompt-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.5rem 1.75rem;position:relative;margin-bottom:1.25rem;transition:border-color var(--transition),box-shadow .3s}
+      .prompt-card:hover{border-color:var(--border-hover);box-shadow:0 4px 24px rgba(0,0,0,.3)}
+      .prompt-label{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);font-weight:600;margin-bottom:.6rem}
+      .prompt-card h4{font-size:1rem;font-weight:600;margin-bottom:.75rem}
+      .prompt-text{font-size:.82rem;color:var(--text-muted);line-height:1.75;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;font-family:var(--mono);position:relative;white-space:pre-wrap;word-break:break-word;max-height:600px;overflow-y:auto}
+      .prompt-text::-webkit-scrollbar{width:6px}
+      .prompt-text::-webkit-scrollbar-track{background:var(--bg)}
+      .prompt-text::-webkit-scrollbar-thumb{background:var(--border-hover);border-radius:3px}
+      .copy-btn{position:absolute;top:.65rem;right:.75rem;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:.3rem .7rem;font-size:.72rem;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:var(--sans);z-index:2}
+      .copy-btn:hover{border-color:var(--accent);color:var(--accent)}
+      .copy-btn.copied{background:var(--accent-glow);border-color:var(--accent);color:var(--accent)}
+      .prompt-tip{margin-top:.85rem;font-size:.8rem;color:var(--text-muted);font-weight:300;display:flex;gap:.5rem;align-items:flex-start}
+      .prompt-tip::before{content:'\1F4A1';font-size:.8rem;flex-shrink:0}
+
+      /* HOW TO USE + CTA */
+      .how-to-use{background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius);padding:2rem 2.25rem;margin:2.5rem 0}
+      .how-to-use h3{font-family:var(--serif);font-size:1.25rem;font-weight:400;margin-bottom:1.25rem}
+      .step-item{display:flex;gap:1rem;margin-bottom:1rem;align-items:flex-start}
+      .step-num{width:28px;height:28px;border-radius:50%;border:1px solid var(--cyan);display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:600;color:var(--cyan);flex-shrink:0;margin-top:.1rem}
+      .step-text{font-size:.9rem;color:var(--text-mid);font-weight:300;line-height:1.6}
+      .step-text strong{color:var(--text);font-weight:500}
+      .step-text code{background:rgba(6,182,212,0.08);padding:.1rem .4rem;border-radius:3px;font-size:.8rem;color:var(--cyan);font-family:var(--mono)}
+      .prompts-cta{background:linear-gradient(135deg,var(--bg-card) 0%,rgba(6,182,212,0.03) 100%);border:1px solid var(--border);border-radius:var(--radius);padding:3rem;text-align:center;margin-top:3rem;position:relative;overflow:hidden}
+      .prompts-cta::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 50%,var(--cyan-glow) 0%,transparent 50%);pointer-events:none;animation:rotateSlow 15s linear infinite}
+      @keyframes rotateSlow{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+      .prompts-cta h3{font-family:var(--serif);font-size:2rem;font-weight:400;margin-bottom:.6rem;position:relative}
+      .prompts-cta p{color:var(--text-mid);margin-bottom:1.75rem;font-weight:300;font-size:1rem;position:relative}
+      .btn-primary{background:var(--accent);color:var(--bg);padding:.9rem 2.25rem;border-radius:100px;text-decoration:none;font-weight:600;font-size:.95rem;transition:transform .2s,box-shadow .3s;display:inline-flex;align-items:center;gap:.5rem;position:relative}
+      .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 40px var(--accent-glow-strong)}
+      .btn-ghost{background:transparent;color:var(--text-mid);padding:.9rem 2rem;border-radius:100px;text-decoration:none;font-weight:400;font-size:.95rem;border:1px solid var(--border);transition:border-color var(--transition),color var(--transition);display:inline-flex;align-items:center;gap:.5rem}
+      .btn-ghost:hover{border-color:var(--border-hover);color:var(--text)}
+      .cta-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+      /* ERROR TABLE */
+      .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:1rem 0}
+      .error-table{width:100%;border-collapse:collapse;font-size:.8rem;min-width:400px}
+      .error-table th{text-align:left;padding:.6rem .75rem;background:rgba(6,182,212,0.06);border:1px solid var(--border);color:var(--cyan);font-weight:600;font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap}
+      .error-table td{padding:.6rem .75rem;border:1px solid var(--border);color:var(--text-mid);font-weight:300}
+      .error-table tr:hover td{background:rgba(255,255,255,0.02)}
+      .error-table code{background:rgba(6,182,212,0.08);padding:.1rem .35rem;border-radius:3px;color:var(--cyan);font-family:var(--mono);font-size:.75rem}
+
+      /* PHASE LIST */
+      .phase-list{list-style:none;margin:1rem 0}
+      .phase-list li{padding:.4rem 0;font-size:.82rem;color:var(--text-mid);display:flex;align-items:flex-start;gap:.5rem}
+      .phase-list li::before{content:'[ ]';font-family:var(--mono);color:var(--cyan);font-size:.72rem;flex-shrink:0;margin-top:.1rem}
+
+      /* FOOTER */
+      footer{border-top:1px solid var(--border);padding:2rem;max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+      .footer-left{color:var(--text-muted);font-size:.8rem;font-weight:300}
+      .footer-links{display:flex;gap:1.5rem}
+      .footer-links a{color:var(--text-muted);text-decoration:none;font-size:.8rem;transition:color var(--transition)}
+      .footer-links a:hover{color:var(--accent)}
+
+      /* MOBILE */
+      @media(max-width:600px){
+        .nav-links{position:fixed;top:0;right:-100%;width:280px;max-width:85vw;height:100vh;height:100dvh;background:#0a0a0a;border-left:1px solid var(--border);padding:5rem 2rem 2rem;flex-direction:column;align-items:flex-start;gap:0;z-index:99;transition:right 0.35s cubic-bezier(0.4,0,0.2,1)}
+        .nav-links.open{right:0}
+        .nav-links a{padding:0.85rem 0;font-size:1rem;border-bottom:1px solid var(--border);width:100%}
+        .nav-links a:not(.nav-cta)::after{display:none}
+        .nav-cta{margin-top:1rem;text-align:center;display:block;width:100%;padding:0.85rem;border-bottom:none}
+        .mobile-toggle{display:block}
+        .page-hero{padding:7rem 1.5rem 2rem;overflow:hidden}
+        .hero-glow{width:300px;height:200px}
+        .showcase{padding:0 1rem}
+        .arch-diagram{padding:1.25rem}
+        .arch-row{flex-direction:column;gap:.75rem}
+        .arch-arrow{transform:rotate(90deg)}
+        .arch-box{max-width:100%;min-width:unset}
+        .phases{padding:0 1rem}
+        .phase-grid{grid-template-columns:1fr}
+        .gate-wrap{padding:0 1rem}
+        .gate-card{padding:1.75rem 1.25rem;overflow:hidden}
+        .cf-turnstile{transform:scale(.9);transform-origin:left top}
+        .prompt-text{font-size:.72rem;padding:1rem;overflow-x:auto;white-space:pre;word-break:normal}
+        .prompt-card{padding:1.25rem}
+        .unlock-banner{flex-direction:column;text-align:center;padding:1.25rem}
+        #prompt-content{padding:0 1rem 4rem}
+        .how-to-use{padding:1.5rem 1.25rem}
+        .prompts-cta{padding:2rem 1.25rem}
+        .cta-buttons{flex-direction:column;align-items:center}
+        .error-table{font-size:.72rem}
+        .error-table th,.error-table td{padding:.4rem .5rem}
+        .category-title{font-size:1.25rem}
+        .category-icon{width:40px;height:40px;font-size:1.1rem}
+        .phase-list li{font-size:.78rem}
+        footer{flex-direction:column;text-align:center;gap:.75rem}
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="/" class="nav-logo">oye.nino<span>.</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="/existence/">Existence</a>
+        <a href="/prompts.html">Free Prompts</a>
+        <a href="/salon-booking-prompt.html">Frontend Prompt</a>
+        <a href="/#contact" class="nav-cta">Let's Talk</a>
+      </div>
+      <button class="mobile-toggle" id="mobToggle" aria-label="Menu">
+        <span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span>
+      </button>
+    </nav>
+
+    <!-- HERO -->
+    <div class="page-hero">
+      <div class="hero-glow"></div>
+      <div class="page-badge"><span class="pulse"></span> Free Guide — The Existence Series</div>
+      <h1>backend samjho. <em>phir banao.</em></h1>
+      <div class="hero-comment">// Hono + Workers + D1 &middot; <span>7 phases</span> &middot; <span>admin panel</span> &middot; <span>zero se production</span></div>
+    </div>
+
+    <!-- ARCHITECTURE DIAGRAM -->
+    <div class="showcase">
+      <div class="arch-diagram">
+        <div class="arch-label">System Architecture</div>
+        <div class="arch-row">
+          <div class="arch-box">
+            <div class="arch-box-icon">&#128241;</div>
+            <div class="arch-box-title">Frontend</div>
+            <div class="arch-box-sub">React + Vite (Showroom)</div>
+          </div>
+          <div class="arch-arrow">&#8594;</div>
+          <div class="arch-box">
+            <div class="arch-box-icon">&#9881;&#65039;</div>
+            <div class="arch-box-title">Backend</div>
+            <div class="arch-box-sub">Hono + Workers (Manager)</div>
+          </div>
+          <div class="arch-arrow">&#8594;</div>
+          <div class="arch-box">
+            <div class="arch-box-icon">&#128451;&#65039;</div>
+            <div class="arch-box-title">Database</div>
+            <div class="arch-box-sub">Cloudflare D1 (Godown)</div>
+          </div>
+        </div>
+        <div class="arch-label" style="margin-top:1.25rem;color:var(--text-mid);font-size:.78rem;letter-spacing:0;text-transform:none">Frontend sirf dikhata hai &middot; Backend check karta hai &middot; Database save karta hai</div>
+      </div>
+    </div>
+
+    <!-- PHASE CARDS -->
+    <div class="phases">
+      <div class="phases-title">7 phases — zero se production tak</div>
+      <div class="phase-grid">
+        <div class="phase-card">
+          <div class="phase-num">Phase 1</div>
+          <div class="phase-name">Backend Foundation</div>
+          <div class="phase-desc">Hono scaffold, D1 schema, GET /slots, POST /bookings, CORS, deploy</div>
+          <div class="phase-time">Day 1</div>
+        </div>
+        <div class="phase-card">
+          <div class="phase-num">Phase 2</div>
+          <div class="phase-name">Security Layer</div>
+          <div class="phase-desc">Turnstile verification, rate limiting, server-side validation, duplicate prevention</div>
+          <div class="phase-time">Day 1-2</div>
+        </div>
+        <div class="phase-card">
+          <div class="phase-num">Phase 3</div>
+          <div class="phase-name">Admin Backend</div>
+          <div class="phase-desc">JWT auth, login, forgot password, OTP via Resend, booking management APIs</div>
+          <div class="phase-time">Day 2</div>
+        </div>
+        <div class="phase-card">
+          <div class="phase-num">Phase 4</div>
+          <div class="phase-name">Frontend Routing</div>
+          <div class="phase-desc">React Router, state persistence, idempotency keys, real API integration</div>
+          <div class="phase-time">Day 2-3</div>
+        </div>
+        <div class="phase-card">
+          <div class="phase-num">Phase 5</div>
+          <div class="phase-name">Admin Panel</div>
+          <div class="phase-desc">Login, forgot password flow, dashboard with today/weekly/day-wise views</div>
+          <div class="phase-time">Day 3-4</div>
+        </div>
+        <div class="phase-card">
+          <div class="phase-num">Phase 6</div>
+          <div class="phase-name">Rate Limiting</div>
+          <div class="phase-desc">Cloudflare WAF rules, custom middleware, brute-force protection</div>
+          <div class="phase-time">Day 4</div>
+        </div>
+        <div class="phase-card" style="grid-column:1/-1">
+          <div class="phase-num">Phase 7</div>
+          <div class="phase-name">Polish &amp; Ship</div>
+          <div class="phase-desc">Edge cases, state persistence testing, booking rules, routing, back button, D1 monitoring</div>
+          <div class="phase-time">Day 4-5</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GATE: Form before content -->
+    <div class="gate-wrap" id="gate-section">
+      <div class="gate-card">
+        <div class="gate-title">Poori strategy unlock karo — free hai</div>
+        <div class="gate-subtitle">Backend samajhne ka guide + implementation phases + error handling. <strong>Sab kuch free.</strong></div>
+
+        <ul class="teaser-list">
+          <li>Backend concepts — Hinglish mein, zero jargon</li>
+          <li>Complete 7-phase implementation roadmap</li>
+          <li>Error handling strategy — every status code covered</li>
+          <li>Data flow diagrams — customer se database tak</li>
+          <li>AI prompt template — apna backend banwao samajh ke</li>
+        </ul>
+
+        <form id="gateForm" novalidate>
+          <div class="form-group">
+            <label for="gate-name">Your Name *</label>
+            <input type="text" id="gate-name" name="name" placeholder="Rahul Sharma" required autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="gate-phone">Phone Number *</label>
+            <input type="tel" id="gate-phone" name="phone" placeholder="+91 98765 43210" required autocomplete="tel" />
+            <div class="field-status" id="phoneStatus"></div>
+          </div>
+          <div class="form-group">
+            <label for="gate-email">Email Address *</label>
+            <input type="email" id="gate-email" name="email" placeholder="rahul@gmail.com" required autocomplete="email" />
+            <div class="field-status" id="emailStatus"></div>
+          </div>
+
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAACgSvRvZpT5d_Ab5" data-theme="dark" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired" style="margin-bottom:1rem;display:flex;justify-content:center"></div>
+
+          <div class="error-msg" id="formError"></div>
+          <button type="submit" class="btn-unlock" id="unlockBtn" disabled>Sab fields fill karo</button>
+          <p class="gate-privacy"><span>&#128274; Your info safe hai. Kabhi bhi unsubscribe kar sakte ho.</span></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- PROMPT CONTENT — hidden until unlocked -->
+    <div id="prompt-content">
+      <div class="unlock-banner">
+        <div class="unlock-icon">&#127881;</div>
+        <div class="unlock-text">
+          <strong>Guide unlock ho gaya!</strong>
+          <span>Poori backend strategy neeche hai — padho, samjho, phir AI se banwao.</span>
+        </div>
+      </div>
+
+      <!-- SECTION 1: System Overview -->
+      <div class="prompt-category">
+        <div class="category-header">
+          <div class="category-icon">&#127959;&#65039;</div>
+          <div class="category-info">
+            <div class="category-eyebrow">Section 1</div>
+            <div class="category-title">Poora System — Ek Nazar Mein</div>
+          </div>
+        </div>
+        <div class="prompt-card">
+          <div class="prompt-label">Architecture</div>
+          <h4>Frontend, Backend, Database — Teeno Ka Kaam</h4>
+          <div class="prompt-text" id="prompt-architecture">&#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;     &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;     &#9484;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9488;
+&#9474; FRONTEND            &#9474;     &#9474; BACKEND             &#9474;     &#9474; DATABASE          &#9474;
+&#9474; (Showroom)          &#9474; &#9472;&#9472;&#9654; &#9474; (Manager)           &#9474; &#9472;&#9472;&#9654; &#9474; (Godown)          &#9474;
+&#9474;                     &#9474;     &#9474;                     &#9474;     &#9474;                  &#9474;
+&#9474; Jo customer         &#9474;     &#9474; Sochta hai,         &#9474;     &#9474; Jaha data        &#9474;
+&#9474; dekhta hai          &#9474;     &#9474; check karta hai,    &#9474;     &#9474; hamesha ke liye  &#9474;
+&#9474;                     &#9474;     &#9474; decide karta hai    &#9474;     &#9474; stored hai       &#9474;
+&#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;     &#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;     &#9492;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9496;
+
+Frontend &#8594; Customer ko form dikhana, input lena
+Backend  &#8594; Check karna ki request sahi hai ya nahi, decide karna
+Database &#8594; Data ko permanently rakhna
+
+IMPORTANT: Frontend pe jo bhi validation hai, uspe bharosa mat karo.
+Koi bhi "inspect element" khol ke frontend bypass kar sakta hai.
+Backend apne khud ke checks karta hai &#8212; ye FINAL gate hai.</div>
+          <button class="copy-btn" onclick="copyPrompt('prompt-architecture',this)">Copy</button>
+          <div class="prompt-tip">Frontend = showroom (dikhata hai), Backend = manager (check karta hai), Database = godown (save karta hai). Teeno alag jagah rehte hain.</div>
+        </div>
+      </div>
+
+      <!-- SECTION 2: Data Flow -->
+      <div class="prompt-category">
+        <div class="category-header">
+          <div class="category-icon">&#128260;</div>
+          <div class="category-info">
+            <div class="category-eyebrow">Section 2</div>
+            <div class="category-title">Data Flow — "Book Now" Se Confirmation Tak</div>
+          </div>
+        </div>
+        <div class="prompt-card">
+          <div class="prompt-label">Complete Flow</div>
+          <h4>Jab Customer "Book Now" Dabata Hai</h4>
+          <div class="prompt-text" id="prompt-dataflow">CUSTOMER          FRONTEND          BACKEND           DATABASE
+   &#9474;                &#9474;                &#9474;                &#9474;
+   &#9474; 1. Form bharta  &#9474;                &#9474;                &#9474;
+   &#9474;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9654;&#9474;                &#9474;                &#9474;
+   &#9474;                &#9474;                &#9474;                &#9474;
+   &#9474;                &#9474; 2. "Book Now"   &#9474;                &#9474;
+   &#9474;                &#9474; click &#8594; POST   &#9474;                &#9474;
+   &#9474;                &#9474;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9654;&#9474;                &#9474;
+   &#9474;                &#9474;                &#9474;                &#9474;
+   &#9474;                &#9474;                &#9474; 3. Checks:      &#9474;
+   &#9474;                &#9474;                &#9474; - Naam sahi?    &#9474;
+   &#9474;                &#9474;                &#9474; - Phone valid?  &#9474;
+   &#9474;                &#9474;                &#9474; - Date future?  &#9474;
+   &#9474;                &#9474;                &#9474; - Slot free?    &#9474;
+   &#9474;                &#9474;                &#9474;                &#9474;
+   &#9474;                &#9474;                &#9474; 4. Sab sahi &#8594;  &#9474;
+   &#9474;                &#9474;                &#9474; save to DB      &#9474;
+   &#9474;                &#9474;                &#9474;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9654;&#9474;
+   &#9474;                &#9474;                &#9474;                &#9474;
+   &#9474;                &#9474;                &#9474; 5. "Saved!" &#9668;&#9472;&#9472;&#9474;
+   &#9474;                &#9474; 6. "Confirmed"  &#9474;                &#9474;
+   &#9474;                &#9474;&#9668;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9474;                &#9474;
+   &#9474; 7. Confirmation &#9474;                &#9474;                &#9474;
+   &#9474;&#9668;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9474;                &#9474;                &#9474;
+
+Step 3 sabse important hai &#8212; yahi backend ka ASLI kaam hai.
+Frontend sirf data collect karta hai, backend usko CHECK karta hai.</div>
+          <button class="copy-btn" onclick="copyPrompt('prompt-dataflow',this)">Copy</button>
+          <div class="prompt-tip">Jaise dukaan mein customer order deta hai, par manager pehle check karta hai stock hai ya nahi, price sahi hai ya nahi — tabhi order confirm hota hai.</div>
+        </div>
+      </div>
+
+      <!-- SECTION 3: Core Concepts -->
+      <div class="prompt-category">
+        <div class="category-header">
+          <div class="category-icon">&#128218;</div>
+          <div class="category-info">
+            <div class="category-eyebrow">Section 3</div>
+            <div class="category-title">Zaroori Concepts — Hinglish Mein</div>
+          </div>
+        </div>
+        <div class="prompt-card">
+          <div class="prompt-label">Concepts</div>
+          <h4>API, Validation, UNIQUE Constraint, Rate Limiting, CORS</h4>
+          <div class="prompt-text" id="prompt-concepts">&#9632; API kya hai?
+  Bas ek RASTA jisse frontend backend se baat karta hai.
+  GET = data maangna ("kaunse slots free hain?")
+  POST = naya data bhejna ("ye booking save kar do")
+
+&#9632; Database structure
+  Excel sheet jaisa &#8212; rows aur columns:
+  | id | customer_name | phone      | date       | slot     | status    |
+  | 1  | Rahul Sharma  | 98765xxxxx | 2026-07-15 | 10:00 AM | confirmed |
+
+&#9632; Validation &#8212; do jagah kyun?
+  Frontend validation = turant feedback ("phone galat hai") &#8212; BYPASS HO SAKTI HAI
+  Backend validation = asli security &#8212; BYPASS NAHI HO SAKTI
+  Dono chahiye. Frontend UX ke liye, backend security ke liye.
+
+&#9632; Double-booking kaise rukti hai?
+  Code mein check likhna kaafi nahi &#8212; do requests ek saath aa sakti hain.
+  Solution: Database mein UNIQUE rule &#8212;
+  "(service + date + time) ka combination do baar nahi ho sakta"
+  Jo request pehle pahunchi wo save, dusri auto-reject. Database khud enforce karta hai.
+
+&#9632; Rate limiting
+  "Ek IP se, ek time window mein, sirf itni requests allowed"
+  Example: 5 booking attempts per 15 min per person.
+  Cloudflare pe dashboard se ek click mein set hota hai &#8212; bina code likhe.
+
+&#9632; CORS
+  Jab frontend (yourbusiness.com) aur backend (api.yourbusiness.com) alag domain pe hote hain,
+  browser by default unhe baat karne se rokta hai.
+  CORS = permission list: "sirf yourbusiness.com se requests allowed"
+  Ye na ho toh console mein red error aayega.</div>
+          <button class="copy-btn" onclick="copyPrompt('prompt-concepts',this)">Copy</button>
+          <div class="prompt-tip">Ye concepts samajh lo — phir AI ko prompt likhna 10x aasan ho jayega. Kyunki tumhe pata hoga AI kya kar raha hai aur kyun.</div>
+        </div>
+      </div>
+
+      <!-- SECTION 4: Error Handling -->
+      <div class="prompt-category">
+        <div class="category-header">
+          <div class="category-icon">&#128680;</div>
+          <div class="category-info">
+            <div class="category-eyebrow">Section 4</div>
+            <div class="category-title">Error Handling — Har Status Code</div>
+          </div>
+        </div>
+        <div class="prompt-card">
+          <div class="prompt-label">Public Booking Errors</div>
+          <h4>Customer-Facing Error Responses</h4>
+          <div class="table-wrap"><table class="error-table">
+            <thead>
+              <tr><th>Status</th><th>Meaning</th><th>User Ko Dikhao</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>409</code></td><td>Slot just got booked</td><td>"Slot taken, pick another"</td></tr>
+              <tr><td><code>403</code></td><td>Turnstile failed</td><td>"Verification failed, try again"</td></tr>
+              <tr><td><code>400</code></td><td>Validation errors</td><td>Show specific message from backend</td></tr>
+              <tr><td><code>429</code></td><td>Rate limited</td><td>"Too many attempts, try later"</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+        <div class="prompt-card">
+          <div class="prompt-label">Admin Errors</div>
+          <h4>Admin Panel Error Responses</h4>
+          <div class="table-wrap"><table class="error-table">
+            <thead>
+              <tr><th>Status</th><th>Context</th><th>Action</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>401</code></td><td>JWT expired/invalid</td><td>Redirect to /admin login, clear localStorage</td></tr>
+              <tr><td><code>401</code></td><td>Login — wrong credentials</td><td>"Invalid email or password"</td></tr>
+              <tr><td><code>400</code></td><td>Verify OTP — wrong/expired</td><td>"Invalid or expired code"</td></tr>
+              <tr><td><code>400</code></td><td>Reset password — token expired</td><td>"Token expired, request a new code"</td></tr>
+              <tr><td><code>429</code></td><td>Login — too many attempts</td><td>"Too many attempts, try after 15 minutes"</td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </div>
+
+      <!-- SECTION 5: Implementation Phases -->
+      <div class="prompt-category">
+        <div class="category-header">
+          <div class="category-icon">&#128640;</div>
+          <div class="category-info">
+            <div class="category-eyebrow">Section 5</div>
+            <div class="category-title">Implementation Phases — Full Checklist</div>
+          </div>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-label">Phase 1 — Day 1</div>
+          <h4>Backend Foundation</h4>
+          <ul class="phase-list">
+            <li>Scaffold Hono project with TypeScript</li>
+            <li>Create D1 database and apply full schema (bookings, waitlist, admin, otp_codes)</li>
+            <li>Implement GET /slots/:serviceId/:date</li>
+            <li>Implement POST /bookings with full validation</li>
+            <li>Implement POST /waitlist</li>
+            <li>Add CORS middleware</li>
+            <li>Deploy to Cloudflare Workers</li>
+            <li>Set up api.book.oyenino.com DNS</li>
+          </ul>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-label">Phase 2 — Day 1-2</div>
+          <h4>Security Layer</h4>
+          <ul class="phase-list">
+            <li>Set up Turnstile in Cloudflare dashboard</li>
+            <li>Add Turnstile verification middleware to POST endpoints</li>
+            <li>Add rate limiting (Cloudflare's built-in or custom)</li>
+            <li>Add server-side input validation (mirror frontend rules)</li>
+            <li>Add duplicate booking prevention logic</li>
+          </ul>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-label">Phase 3 — Day 2</div>
+          <h4>Admin Backend</h4>
+          <ul class="phase-list">
+            <li>Implement POST /admin/login with PBKDF2 password verification</li>
+            <li>Implement JWT signing/verification middleware using hono/jwt</li>
+            <li>Implement POST /admin/forgot-password (OTP generation + email via Resend)</li>
+            <li>Implement POST /admin/verify-otp (OTP validation + reset token)</li>
+            <li>Implement POST /admin/reset-password (token verification + password update)</li>
+            <li>Implement GET /admin/bookings/today</li>
+            <li>Implement GET /admin/bookings/week</li>
+            <li>Implement GET /admin/bookings/:date</li>
+            <li>Implement PATCH /admin/bookings/:id/cancel</li>
+            <li>Seed admin account via wrangler D1 or setup endpoint</li>
+            <li>Set up Resend account + verify oyenino.com domain</li>
+            <li>Store secrets: JWT_SECRET, RESEND_API_KEY</li>
+          </ul>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-label">Phase 4 — Day 2-3</div>
+          <h4>Frontend — Routing &amp; State Persistence</h4>
+          <ul class="phase-list">
+            <li>Install react-router-dom</li>
+            <li>Refactor App.jsx from useState to BrowserRouter + Routes</li>
+            <li>Set up public routes: /, /book, /confirmation/:id, /slots-unavailable</li>
+            <li>Set up admin routes: /admin, /admin/forgot, /admin/dashboard</li>
+            <li>Build AdminGuard component (JWT check + expiry)</li>
+            <li>Implement sessionStorage persistence for booking flow state</li>
+            <li>Implement localStorage booking receipts (duplicate prevention)</li>
+            <li>Add idempotency key generation on booking submit</li>
+            <li>Add GET /bookings/:bookingId endpoint (for shareable confirmation URL)</li>
+            <li>Replace mock API with real endpoints</li>
+            <li>Add Turnstile widget to booking form</li>
+            <li>Update error handling for backend responses</li>
+          </ul>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-label">Phase 5 — Day 3-4</div>
+          <h4>Frontend — Admin Panel</h4>
+          <ul class="phase-list">
+            <li>Build Admin Login page (email + password form)</li>
+            <li>Build Forgot Password flow (3 steps: email &#8594; OTP &#8594; new password)</li>
+            <li>Build Admin Dashboard layout with tab navigation (Today / Weekly / Day-wise)</li>
+            <li>Build Today's Bookings view with booking cards + summary</li>
+            <li>Build Weekly view with day-wise bar chart + summary</li>
+            <li>Build Day-wise view with date picker + booking list</li>
+            <li>Add Cancel booking button with confirmation</li>
+            <li>Add Logout functionality (clear JWT from localStorage)</li>
+            <li>Add auth guard — redirect to login if no valid token</li>
+            <li>Wire up admin API calls in src/api/admin.js</li>
+          </ul>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-label">Phase 6 — Day 4</div>
+          <h4>Rate Limiting &amp; Security</h4>
+          <ul class="phase-list">
+            <li>Configure Cloudflare WAF rate limiting rules (Dashboard)</li>
+            <li>Add in-Worker rate limiting middleware (fallback / custom rules)</li>
+            <li>Test rate limits: booking spam, login brute force, OTP spam</li>
+            <li>Verify DDoS protection and Turnstile integration</li>
+          </ul>
+        </div>
+
+        <div class="prompt-card">
+          <div class="prompt-label">Phase 7 — Day 4-5</div>
+          <h4>Polish &amp; Ship</h4>
+          <ul class="phase-list">
+            <li>Test edge cases: past dates, concurrent bookings, bot attempts, page refresh mid-flow</li>
+            <li>Test state persistence: refresh on each step, 30-min timeout, stale date cleanup</li>
+            <li>Test booking rules: same person &#8594; day X &#10004;, day X again &#10008;, day Y &#10004;</li>
+            <li>Test admin: wrong password, expired OTP, expired JWT, cancel flow</li>
+            <li>Test routing: back button, direct URL access, 404 fallback, shareable confirmation links</li>
+            <li>Monitor D1 analytics in Cloudflare dashboard</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- SECTION 6: AI Prompt Template -->
+      <div class="prompt-category">
+        <div class="category-header">
+          <div class="category-icon">&#129302;</div>
+          <div class="category-info">
+            <div class="category-eyebrow">Section 6</div>
+            <div class="category-title">AI Ko Prompt Kaise Likhein</div>
+          </div>
+        </div>
+        <div class="prompt-card">
+          <div class="prompt-label">Prompt Template</div>
+          <h4>Samajh Se Likha Prompt — Copy &amp; Customize</h4>
+          <div class="prompt-text" id="prompt-template">Main [tumhara business] chalata hoon. Mujhe ek backend chahiye jo
+[core cheez — booking/order] save kare.
+
+Data flow: customer form bharta hai &#8594; backend check karta hai
+(naam, phone, date valid hai, slot khaali hai) &#8594; agar sahi hai toh
+database mein save hota hai &#8594; confirmation wapas jata hai.
+
+Zaroori rule: ek slot/item ek hi time pe do logo ko nahi milna chahiye
+&#8212; database level pe enforce karna, sirf code mein nahi.
+
+Stack: Hono + Cloudflare Workers + D1 (free tier).
+
+Scope: Abhi sirf save + check karna hai (GET availability, POST entry).
+Login/admin panel abhi nahi chahiye &#8212; wo baad mein.
+
+Do endpoints do, schema do, aur deploy karne ke commands bhi.</div>
+          <button class="copy-btn" onclick="copyPrompt('prompt-template',this)">Copy</button>
+          <div class="prompt-tip">Ye prompt tumhare khud ke samajh se aaya hai, na ki kisi template se copy-paste. Yahi farak hai "AI se code maangna" aur "AI se soch-samajh ke backend banwana" mein.</div>
+        </div>
+      </div>
+
+      <!-- SECTION 7: Cheat Sheet -->
+      <div class="prompt-category">
+        <div class="category-header">
+          <div class="category-icon">&#128221;</div>
+          <div class="category-info">
+            <div class="category-eyebrow">Section 7</div>
+            <div class="category-title">Ek-Line Cheat Sheet</div>
+          </div>
+        </div>
+        <div class="prompt-card">
+          <div class="prompt-label">Quick Reference</div>
+          <h4>Recording Ya Revision Ke Liye</h4>
+          <div class="prompt-text" id="prompt-cheatsheet">Backend         &#8594; Wo jo data ko check karke, permanently save karta hai
+Database        &#8594; Excel sheet jaisi cheez jaha data rehta hai
+API             &#8594; Frontend-backend ke baat karne ka rasta
+GET             &#8594; Data maangna
+POST            &#8594; Naya data bhejna
+Validation (FE) &#8594; Turant feedback, par bypass ho sakti hai
+Validation (BE) &#8594; Asli security, bypass nahi ho sakti
+UNIQUE          &#8594; Database khud double-booking rokta hai
+Rate limiting   &#8594; Ek time mein kitni requests allowed, uski limit
+CORS            &#8594; Kaun se domain se requests allowed, uski permission list</div>
+          <button class="copy-btn" onclick="copyPrompt('prompt-cheatsheet',this)">Copy</button>
+        </div>
+      </div>
+
+      <!-- SECTION 8: Build Strategy -->
+      <div class="prompt-category">
+        <div class="category-header">
+          <div class="category-icon">&#127919;</div>
+          <div class="category-info">
+            <div class="category-eyebrow">Section 8</div>
+            <div class="category-title">Zero Se Start Karne Ki Strategy</div>
+          </div>
+        </div>
+        <div class="prompt-card">
+          <div class="prompt-label">Staged Approach</div>
+          <h4>3 Stages — Isse Pehle Aage Mat Badho</h4>
+          <div class="prompt-text" id="prompt-strategy">STAGE 1 &#8212; Sirf ye kaam karna chahiye (pehle ye live karo)
+&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+&#10004; Data save ho raha hai (POST /bookings)
+&#10004; Availability check ho raha hai (GET /slots/:serviceId/:date)
+&#10004; Double-booking nahi ho sakti (UNIQUE constraint)
+
+        &#9474;
+        &#9660; (jab ye live ho jaye aur real logo se test ho jaye)
+
+STAGE 2 &#8212; Business chalne lage tab
+&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+&#10004; Owner ke liye dekhne ka dashboard
+&#10004; Basic bot protection (Turnstile)
+
+        &#9474;
+        &#9660; (jab scale badhe)
+
+STAGE 3 &#8212; Scale aane pe
+&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;&#9472;
+&#10004; Login/password wala proper admin panel
+&#10004; Rate limiting rules
+&#10004; Email notifications (Resend)
+
+NON-TECHNICAL LOGO KI GALTI: Stage 3 ki cheezein Stage 1 mein karna.
+Pehle Stage 1 live karo, real customers se test karo, PHIR aage badho.</div>
+          <button class="copy-btn" onclick="copyPrompt('prompt-strategy',this)">Copy</button>
+          <div class="prompt-tip">Sabse badi galti: sab kuch ek saath banane ki koshish karna. Isse project kabhi finish nahi hota. Staged approach follow karo.</div>
+        </div>
+      </div>
+
+      <!-- HOW TO USE -->
+      <div class="how-to-use">
+        <h3>Kaise use karna hai? 4 steps.</h3>
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-text"><strong>Pehle ye poora guide padho</strong> — concepts samjho, flow samjho. Code nahi, soch samjhna hai.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-text"><strong>Section 6 ka prompt template copy karo</strong> — apne business ke hisaab se customize karo. <code>[tumhara business]</code> wali jagah apna fill karo.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-text"><strong>ChatGPT ya Claude mein paste karo</strong> — Stage 1 se shuru karo. Admin panel ka prompt BAAD mein do, pehle nahi.</div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">4</div>
+          <div class="step-text"><strong>Phase checklist follow karo</strong> — har phase ka code AI se banwao, test karo, phir next phase pe jao. Rush mat karo.</div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="prompts-cta">
+        <h3>Frontend prompt bhi chahiye?</h3>
+        <p>React + Vite salon booking app — config-driven, 4 pages, mock API ready.</p>
+        <div class="cta-buttons">
+          <a href="/salon-booking-prompt.html" class="btn-primary">Frontend Prompt &rarr;</a>
+          <a href="/prompts.html" class="btn-ghost">All Free Prompts</a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-left">&copy; 2026 Himanshu. Built with code &amp; clarity.</div>
+      <div class="footer-links">
+        <a href="https://youtube.com/@oye_nino" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.instagram.com/oye.nino" target="_blank" rel="noopener">Instagram</a>
+        <a href="/prompts.html">Free Prompts</a>
+        <a href="/">Portfolio</a>
+      </div>
+    </footer>
+
+    <!-- NAV TOGGLE -->
+    <script>
+      (function() {
+        var toggle = document.getElementById("mobToggle");
+        var links = document.getElementById("navLinks");
+        if (toggle && links) {
+          toggle.addEventListener("click", function() {
+            toggle.classList.toggle("open");
+            links.classList.toggle("open");
+            document.body.style.overflow = links.classList.contains("open") ? "hidden" : "";
+          });
+          links.querySelectorAll("a").forEach(function(a) {
+            a.addEventListener("click", function() {
+              toggle.classList.remove("open");
+              links.classList.remove("open");
+              document.body.style.overflow = "";
+            });
+          });
+        }
+      })();
+    </script>
+
+    <!-- FORM GATE -->
+    <script src="/form-utils.js"></script>
+    <script>
+      if (sessionStorage.getItem('salon_backend_prompt_unlocked') === 'true') showPrompt();
+
+      try {
+        if (typeof OyeNinoForm !== 'undefined') {
+          new OyeNinoForm({
+            formId: 'gateForm',
+            emailId: 'gate-email',
+            phoneId: 'gate-phone',
+            nameId: 'gate-name',
+            btnId: 'unlockBtn',
+            statusId: 'emailStatus',
+            phoneStatusId: 'phoneStatus',
+            errorId: 'formError',
+            formName: 'salon_backend_prompt_gate',
+            source: 'salon_backend_prompt_page',
+            requiredFields: ['name', 'email', 'phone'],
+            btnTexts: {
+              ready: '<span>\uD83D\uDD13</span> Guide Unlock Karo \u2014 Free',
+              turnstile: "Verify you're human first \u2191",
+              email: 'Valid email daalo pehle',
+              phone: 'Valid phone number daalo',
+              fields: 'Sab fields fill karo',
+              submitting: '<span>\u23F3</span> Submitting...'
+            },
+            onSuccess: function() {
+              sessionStorage.setItem('salon_backend_prompt_unlocked', 'true');
+              showPrompt();
+            }
+          });
+        }
+      } catch(e) { console.warn('form-utils not loaded', e); }
+
+      function showPrompt() {
+        var gate = document.getElementById('gate-section');
+        gate.style.transition = 'opacity .4s ease, transform .4s ease';
+        gate.style.opacity = '0';
+        gate.style.transform = 'translateY(-10px)';
+        setTimeout(function() {
+          gate.style.display = 'none';
+          var content = document.getElementById('prompt-content');
+          content.classList.add('unlocked');
+          content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          oyeTrackEvent('salon_backend_prompt_unlocked');
+        }, 400);
+      }
+
+      function copyPrompt(id, btn) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        navigator.clipboard.writeText(el.innerText).then(function() {
+          btn.textContent = '\u2713 Copied!';
+          btn.classList.add('copied');
+          oyeTrackEvent('prompt_copied', { prompt_id: id, page: window.location.pathname });
+          setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+        });
+      }
+    </script>
+  </body>
+</html>
