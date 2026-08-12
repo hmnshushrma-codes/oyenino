@@ -1,0 +1,114 @@
+{
+  "sections": [
+    {
+      "icon": "📋",
+      "eyebrow": "Before You Start",
+      "title": "Prerequisites — Ye Ready Rakhna",
+      "type": "checklist",
+      "items": [
+        "<strong>GitHub account</strong> — <a href='https://github.com' target='_blank' rel='noopener'>github.com</a> pe free sign up karo. Yahi jagah tumhara code rahega.",
+        "<strong>Cloudflare account</strong> — <a href='https://dash.cloudflare.com/sign-up' target='_blank' rel='noopener'>dash.cloudflare.com</a> pe free sign up karo. Ye tumhari website host karega.",
+        "<strong>Code already in a GitHub repo</strong> — Tumhara frontend project (React, Vue, plain HTML — kuch bhi) ek GitHub repository mein hona chahiye. Agar abhi tak nahi hai, toh pehle wo karo."
+      ]
+    },
+    {
+      "icon": "📤",
+      "eyebrow": "Step 1",
+      "title": "Code Ko GitHub Pe Push Karo",
+      "type": "step",
+      "content": "Agar tumhara code sirf tumhare computer pe hai aur abhi tak GitHub pe nahi hai, toh pehle use push karna hoga.\n\nTerminal kholke ye commands chalaao:\n\n  git init\n  git add .\n  git commit -m \"first commit\"\n  git remote add origin https://github.com/TUMHARA-USERNAME/REPO-NAME.git\n  git push -u origin main\n\nAgar code pehle se GitHub pe hai — seedha Step 2 pe jao.",
+      "why": "Cloudflare Pages ko tumhara code GitHub se chahiye. Jab bhi tum code update karoge, Cloudflare apne aap nayi build bana dega. Matlab: push karo → site update ho jaaye, apne aap."
+    },
+    {
+      "icon": "☁️",
+      "eyebrow": "Step 2",
+      "title": "Cloudflare Account Banao → Workers & Pages Pe Jao",
+      "type": "step",
+      "content": "1. <a href='https://dash.cloudflare.com/sign-up' target='_blank' rel='noopener'>dash.cloudflare.com</a> pe jao aur sign up karo (free hai).\n2. Dashboard khulega — left sidebar mein \"Workers & Pages\" pe click karo.\n3. Ye section tumhari saari deployed sites dikhayega. Abhi khaali hoga.",
+      "why": "Workers & Pages Cloudflare ka free hosting platform hai. Ye tumhari static website ko duniya bhar ke servers pe rakh deta hai, toh site fast load hoti hai — chahe user India mein ho ya US mein."
+    },
+    {
+      "icon": "🔗",
+      "eyebrow": "Step 3",
+      "title": "Create Application → Pages → Connect to Git",
+      "type": "step",
+      "content": "1. \"Workers & Pages\" page pe \"Create\" button dabao.\n2. \"Pages\" tab select karo.\n3. \"Connect to Git\" pe click karo.\n4. Ye tumse GitHub account connect karne ko bolega — \"Connect GitHub\" dabao.",
+      "why": "Cloudflare ko tumhare GitHub se seedha connection chahiye taaki wo tumhara code le sake. Ek baar connect ho gaya toh har git push pe site apne aap update hogi — tumhe manually kuch karne ki zaroorat nahi."
+    },
+    {
+      "icon": "📂",
+      "eyebrow": "Step 4",
+      "title": "Repo Select Karo, GitHub Authorize Karo",
+      "type": "step",
+      "content": "1. GitHub authorization screen aayegi — \"Authorize Cloudflare\" pe click karo.\n2. Fir choose karo kaunse repos Cloudflare ko access mile:\n   • \"All repositories\" — sab repos access de do (simple hai)\n   • Ya \"Only select repositories\" — sirf ek specific repo choose karo\n3. Apna frontend project wala repo select karo.\n4. \"Begin setup\" pe click karo.",
+      "why": "Ye one-time permission hai. Cloudflare ko sirf code padhne ka access milta hai — wo tumhara code change nahi kar sakta. \"Only select repositories\" zyada secure hai kyunki tum sirf zaroorat wale repo ka access dete ho."
+    },
+    {
+      "icon": "⚙️",
+      "eyebrow": "Step 5",
+      "title": "Build Settings Configure Karo",
+      "type": "step",
+      "content": "Ye sabse important step hai — yahan galti hui toh deploy fail hoga.\n\n1. Project name: Jo naam doge wahi tumhara URL banega (e.g. \"my-site\" → my-site.pages.dev)\n2. Production branch: \"main\" (ya jo bhi tumhara default branch hai)\n3. Framework preset: Dropdown se apna framework select karo:\n   • React (Create React App) → Build command: npm run build, Output: build\n   • React (Vite) → Build command: npm run build, Output: dist\n   • Vue → Build command: npm run build, Output: dist\n   • Next.js → Build command: npx next build, Output: .next\n   • Plain HTML → Dono khaali chhod do\n4. Build command: npm run build (ya framework ke hisaab se)\n5. Build output directory: dist (ya build — framework pe depend karta hai)\n\nNote: Agar tumhe nahi pata framework kaunsa hai, toh package.json file kholo aur \"scripts\" mein \"build\" ke aage jo command hai wo dekho. Output directory project ke docs mein hota hai.",
+      "why": "Build command Cloudflare ko batata hai ki tumhare source code se final website kaise banani hai. Output directory batata hai ki build ke baad final files kaunse folder mein hongi. Ye dono galat hue toh Cloudflare ko final files nahi milengi aur deploy fail ho jaayega."
+    },
+    {
+      "icon": "🚀",
+      "eyebrow": "Step 6",
+      "title": "Save & Deploy — Live URL Milega!",
+      "type": "step",
+      "content": "1. Sab settings check karo — sab sahi hai? \"Save and Deploy\" dabao.\n2. Cloudflare tumhara code pull karega, build chalayega, aur deploy karega.\n3. 1-2 minute lagega — progress screen pe sab dikhega.\n4. Jab \"Success\" aaye → tumhari site live hai!\n\nTumhara live URL: https://TUMHARA-PROJECT.pages.dev\n\nAb jab bhi tum GitHub pe code push karoge, Cloudflare apne aap nayi build bana ke deploy kar dega. Manual kuch nahi karna.",
+      "why": "Bas ek click mein tumhari site duniya ko accessible ho gayi. Cloudflare free mein SSL (https), CDN (fast loading), aur automatic deployments deta hai. Koi hosting bill nahi, koi server manage nahi karna."
+    },
+    {
+      "icon": "🌐",
+      "eyebrow": "Step 7 (Optional)",
+      "title": "Custom Domain Lagao",
+      "type": "step",
+      "content": "Agar tumhare paas apna domain hai (e.g. mybusiness.com):\n\n1. Cloudflare Pages dashboard mein apne project pe jao.\n2. \"Custom domains\" tab pe click karo.\n3. \"Set up a custom domain\" pe click karo.\n4. Apna domain dalo (e.g. mybusiness.com).\n5. Cloudflare DNS records set karne ko bolega — follow karo.\n6. 5-10 minute mein domain connect ho jaayega.\n\nAgar domain Cloudflare pe nahi hai toh tumhe nameservers change karne padenge — domain provider ki settings mein jao aur Cloudflare ke nameservers dalo.\n\nNote: Domain khareedna optional hai. .pages.dev URL permanent hai aur professional projects ke liye bhi kaam karta hai.",
+      "why": "Custom domain se tumhari site zyada professional lagti hai (mybusiness.com vs mybusiness.pages.dev). Lekin ye zaruri nahi hai — .pages.dev URL bhi fully functional hai, SSL ke saath."
+    }
+  ],
+  "errors": {
+    "title": "Common Errors & Fixes",
+    "icon": "🔧",
+    "items": [
+      {
+        "problem": "Build failed — \"Output directory not found\"",
+        "cause": "Output directory galat hai. Tumne \"dist\" likha par tumhara framework \"build\" folder banata hai (ya ulta).",
+        "fix": "Local machine pe <code>npm run build</code> chalaao aur dekho kaunsa folder banta hai — wahi naam Cloudflare mein dalo."
+      },
+      {
+        "problem": "Build failed — \"Missing environment variables\"",
+        "cause": "Tumhara code .env file se kuch values padhta hai (API keys, URLs) jo Cloudflare pe nahi hain.",
+        "fix": "Cloudflare Pages → Settings → Environment Variables mein saari required values add karo. Variable names exactly match hone chahiye (.env file se copy karo)."
+      },
+      {
+        "problem": "Build failed — \"Node version mismatch\"",
+        "cause": "Tumhara project naye Node version maangta hai par Cloudflare purana use kar raha hai.",
+        "fix": "Cloudflare Pages → Settings → Environment Variables mein <code>NODE_VERSION</code> naam se variable add karo, value mein apna version dalo (e.g. <code>18</code> ya <code>20</code>). Local mein <code>node --version</code> se check karo."
+      },
+      {
+        "problem": "Site deploy ho gayi par blank page dikh raha hai",
+        "cause": "Usually routing issue hota hai — React/Vue apps mein SPA routing ke liye special config chahiye.",
+        "fix": "Project root mein <code>_redirects</code> file banao aur usme likho: <code>/* /index.html 200</code>. Ye sab routes ko index.html pe redirect karega."
+      },
+      {
+        "problem": "Deploy successful par changes nahi dikh rahe",
+        "cause": "Browser cache purana version dikha raha hai.",
+        "fix": "Hard refresh karo: Ctrl+Shift+R (Windows/Linux) ya Cmd+Shift+R (Mac). Ya incognito window mein check karo."
+      }
+    ]
+  },
+  "closing": {
+    "title": "Ye Sirf Frontend Hai",
+    "text": "Ye guide sirf frontend deployment ke liye thi — matlab tumhari website ka woh hissa jo users dekhte hain.\n\nAgar tumhare project mein backend bhi hai (API, database, login system), toh usko separately deploy karna hoga. Backend deploy guide ek alag episode mein aayega.\n\nAbhi ke liye: tumhara frontend live hai, duniya dekhh sakti hai. Ye bahut bada step hai. 🎉"
+  },
+  "cta": {
+    "title": "Backend bhi banana hai?",
+    "subtitle": "Backend samjho, phir banao — Hono + Workers + D1. Poori strategy guide, free hai.",
+    "buttons": [
+      { "text": "Backend Guide →", "href": "/salon-backend-prompt.html", "style": "primary" },
+      { "text": "All Free Prompts", "href": "/prompts.html", "style": "ghost" }
+    ]
+  }
+}

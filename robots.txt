@@ -4,6 +4,7 @@ Disallow: /node_modules/
 Disallow: /dist/
 Disallow: /.astro/
 Disallow: /example/
+Disallow: /frontend-deploy-prompt-data.json
 
 User-agent: Googlebot
 Allow: /
