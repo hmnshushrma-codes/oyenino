@@ -5,6 +5,7 @@ Disallow: /dist/
 Disallow: /.astro/
 Disallow: /example/
 Disallow: /frontend-deploy-prompt-data.json
+Disallow: /backend-deploy-prompt-data.json
 
 User-agent: Googlebot
 Allow: /

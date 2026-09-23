@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BGL94NLVL7"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-BGL94NLVL7");</script>
+    <title>Free Guide — Backend Deploy Karo (Hono.js → Cloudflare Workers) | Zero Investment Series | Oye Nino</title>
+    <meta name="description" content="Backend deploy karo free mein — Hono.js se Cloudflare Workers tak, step by step. Frontend se connect karo, CORS set karo, AI prompt template bhi hai. Zero Investment Series Episode 5." />
+    <meta name="keywords" content="deploy backend free, hono cloudflare workers deploy, free backend hosting, zero investment backend, cloudflare workers tutorial, hono.js guide hindi, backend deploy guide, connect frontend backend, CORS setup, wrangler deploy, oye nino, Himanshu" />
+    <meta name="author" content="Himanshu (@oye.nino)" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://oyenino.com/backend-deploy-prompt.html" />
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:title" content="Free Guide — Backend Deploy Karo (Hono.js → Cloudflare Workers)" />
+    <meta property="og:description" content="Step-by-step guide: Hono.js se Cloudflare Workers pe deploy karo. Free hosting, frontend se connect karo, CORS fix karo. No server needed." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://oyenino.com/backend-deploy-prompt.html" />
+    <meta property="og:image" content="https://oyenino.com/og-image.jpg" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Free Guide — Backend Deploy Karo (Hono.js → Cloudflare Workers)" />
+    <meta name="twitter:description" content="Hono.js se Cloudflare Workers pe deploy. Free hosting, frontend integration. Step-by-step guide." />
+    <meta name="twitter:image" content="https://oyenino.com/og-image.jpg" />
+
+    <!-- STRUCTURED DATA -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        "name": "Backend Deploy Karo — Hono.js Se Cloudflare Workers Tak",
+        "description": "Step-by-step guide to deploy your backend for free using Hono.js and Cloudflare Workers, and connect it to your frontend.",
+        "url": "https://oyenino.com/backend-deploy-prompt.html",
+        "author": {
+          "@type": "Person",
+          "name": "Himanshu",
+          "sameAs": [
+            "https://www.instagram.com/oye.nino",
+            "https://youtube.com/@oye_nino"
+          ]
+        },
+        "isPartOf": { "@type": "WebSite", "url": "https://oyenino.com" }
+      }
+    </script>
+
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+      :root{--bg:#050505;--bg-elevated:#0c0c0c;--bg-card:#111111;--bg-card-hover:#161616;--text:#eeeae4;--text-mid:#b5b0a8;--text-muted:#706c66;--accent:#00F0A0;--accent-glow:rgba(0,240,160,0.1);--accent-glow-strong:rgba(0,240,160,0.2);--border:#1a1a1a;--border-hover:#2a2a2a;--serif:'Playfair Display',Georgia,serif;--sans:'Outfit',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--radius:16px;--transition:0.35s cubic-bezier(0.25,0.46,0.45,0.94);--cyan:#06b6d4;--cyan-glow:rgba(6,182,212,0.15);--cyan-glow-strong:rgba(6,182,212,0.25)}
+      html{scroll-behavior:smooth;overflow-x:hidden}
+      body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+      ::selection{background:var(--accent);color:var(--bg)}
+      body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:50}
+
+      /* NAV */
+      nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0.85rem 2rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(24px) saturate(1.2);-webkit-backdrop-filter:blur(24px) saturate(1.2);background:rgba(5,5,5,0.8);border-bottom:1px solid rgba(255,255,255,0.04)}
+      .nav-logo{font-family:var(--sans);font-size:1.25rem;font-weight:600;color:var(--text);text-decoration:none;letter-spacing:-0.02em;flex-shrink:0}
+      .nav-logo span{color:var(--accent)}
+      .nav-links{display:flex;align-items:center;gap:2rem}
+      .nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.85rem;font-weight:400;letter-spacing:0.02em;transition:color var(--transition);position:relative}
+      .nav-links a:not(.nav-cta)::after{content:"";position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width var(--transition)}
+      .nav-links a:not(.nav-cta):hover{color:var(--text)}
+      .nav-links a:not(.nav-cta):hover::after{width:100%}
+      .nav-cta{background:var(--accent);color:var(--bg) !important;padding:0.5rem 1.5rem;border-radius:100px;font-weight:600;font-size:0.85rem;transition:transform 0.2s,box-shadow 0.3s;white-space:nowrap}
+      .nav-cta:hover{color:var(--bg) !important;transform:translateY(-1px);box-shadow:0 4px 24px var(--accent-glow-strong)}
+      .mobile-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px;z-index:101;width:32px;height:32px;position:relative;flex-shrink:0}
+      .ham-line{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:transform 0.3s,opacity 0.3s;position:absolute;left:5px}
+      .ham-line:nth-child(1){top:8px}.ham-line:nth-child(2){top:15px}.ham-line:nth-child(3){top:22px}
+      .mobile-toggle.open .ham-line:nth-child(1){transform:translateY(7px) rotate(45deg)}.mobile-toggle.open .ham-line:nth-child(2){opacity:0}.mobile-toggle.open .ham-line:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+      /* HERO */
+      .page-hero{padding:8rem 2rem 3rem;max-width:900px;margin:0 auto;position:relative}
+      .hero-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:400px;background:radial-gradient(ellipse,var(--cyan-glow) 0%,transparent 65%);pointer-events:none;filter:blur(80px);animation:breathe 6s ease-in-out infinite}
+      @keyframes breathe{0%,100%{opacity:.4;transform:translateX(-50%) scale(1)}50%{opacity:.7;transform:translateX(-50%) scale(1.05)}}
+      .page-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;font-weight:500;animation:fadeUp .6s ease forwards}
+      .pulse{width:7px;height:7px;background:var(--accent);border-radius:50%;animation:pls 2s ease-in-out infinite}
+      @keyframes pls{0%,100%{opacity:1;box-shadow:0 0 0 0 var(--accent-glow-strong)}50%{opacity:.6;box-shadow:0 0 0 8px transparent}}
+      .page-hero h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.2rem);font-weight:400;line-height:1.1;letter-spacing:-0.03em;margin-bottom:1rem;animation:fadeUp .6s ease forwards .1s;opacity:0}
+      .page-hero h1 em{font-style:italic;color:var(--cyan)}
+      .hero-comment{font-family:var(--mono);font-size:.9rem;color:var(--text-muted);margin-bottom:2.5rem;animation:fadeUp .6s ease forwards .2s;opacity:0}
+      .hero-comment span{color:var(--text-mid)}
+      @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+      /* FLOW DIAGRAM */
+      .showcase{max-width:900px;margin:0 auto 3rem;padding:0 2rem;animation:fadeUp .6s ease forwards .3s;opacity:0}
+      .flow-diagram{background:#0a0a0a;border-radius:20px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.4),0 0 0 1px rgba(255,255,255,0.05);padding:2rem}
+      .flow-row{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
+      .flow-box{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:1.25rem 1.5rem;text-align:center;flex:1;min-width:140px;max-width:200px;transition:border-color .3s}
+      .flow-box:hover{border-color:var(--cyan)}
+      .flow-box-title{font-size:.85rem;font-weight:600;color:#fff;margin-bottom:.3rem}
+      .flow-box-sub{font-size:.72rem;color:rgba(255,255,255,0.4)}
+      .flow-box-icon{font-size:1.4rem;margin-bottom:.5rem}
+      .flow-arrow{color:var(--cyan);font-size:1.5rem;font-weight:700;flex-shrink:0}
+      .flow-label{text-align:center;font-size:.72rem;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase;margin-top:.5rem}
+
+      /* WHAT YOU GET */
+      .features{max-width:900px;margin:0 auto 3rem;padding:0 2rem;animation:fadeUp .6s ease forwards .35s;opacity:0}
+      .features-title{font-family:var(--serif);font-size:1.4rem;font-weight:400;margin-bottom:1.5rem;color:var(--text)}
+      .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+      .feature-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.25rem;transition:border-color var(--transition)}
+      .feature-card:hover{border-color:var(--border-hover)}
+      .feature-icon{font-size:1.2rem;margin-bottom:.5rem}
+      .feature-name{font-size:.9rem;font-weight:600;color:var(--text);margin-bottom:.3rem}
+      .feature-desc{font-size:.78rem;color:var(--text-muted);font-weight:300;line-height:1.5}
+
+      /* GATE */
+      .gate-wrap{max-width:520px;margin:0 auto 5rem;padding:0 2rem;animation:fadeUp .6s ease forwards .4s;opacity:0}
+      .gate-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem;position:relative;overflow:hidden}
+      .gate-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent 60%)}
+      .gate-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;margin-bottom:.4rem}
+      .gate-subtitle{font-size:.88rem;color:var(--text-muted);margin-bottom:1.75rem;font-weight:300}
+      .gate-subtitle strong{color:var(--text-mid);font-weight:500}
+      .teaser-list{list-style:none;margin-bottom:1.75rem;display:flex;flex-direction:column;gap:.6rem}
+      .teaser-list li{display:flex;align-items:center;gap:.75rem;font-size:.88rem;color:var(--text-mid);font-weight:300}
+      .teaser-list li::before{content:'\2713';color:var(--accent);font-weight:700;flex-shrink:0}
+      .form-group{margin-bottom:1rem}
+      .form-group label{display:block;font-size:.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.45rem;font-weight:500}
+      .form-group input{width:100%;padding:.8rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--sans);font-size:.9rem;font-weight:300;transition:border-color var(--transition),box-shadow var(--transition);outline:none}
+      .form-group input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+      .form-group input::placeholder{color:#444}
+      .btn-unlock{width:100%;padding:1rem;background:var(--accent);color:var(--bg);border:none;border-radius:100px;font-family:var(--sans);font-size:.95rem;font-weight:600;cursor:pointer;transition:transform .2s,box-shadow .3s;margin-top:.5rem;display:flex;align-items:center;justify-content:center;gap:.5rem}
+      .btn-unlock:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 32px var(--accent-glow-strong)}
+      .btn-unlock:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
+      .gate-privacy{text-align:center;font-size:.75rem;color:var(--text-muted);margin-top:1rem;font-weight:300}
+      .error-msg{color:#ff6b6b;font-size:.8rem;margin-top:.5rem;display:none}
+      .error-msg.show{display:block}
+
+      /* PROMPT CONTENT */
+      #prompt-content{display:none;max-width:900px;margin:0 auto;padding:0 2rem 6rem}
+      #prompt-content.unlocked{display:block;animation:fadeUp .7s ease forwards}
+      .unlock-banner{background:linear-gradient(135deg,rgba(0,240,160,0.06),rgba(0,240,160,0.02));border:1px solid rgba(0,240,160,0.2);border-radius:var(--radius);padding:1.5rem 2rem;margin-bottom:3rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+      .unlock-icon{font-size:1.75rem}
+      .unlock-text strong{display:block;font-size:1rem;margin-bottom:.2rem}
+      .unlock-text span{font-size:.85rem;color:var(--text-muted);font-weight:300}
+      .loading-prompt{text-align:center;padding:3rem;color:var(--text-muted);font-size:.9rem}
+      .loading-prompt .spinner{display:inline-block;width:20px;height:20px;border:2px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .6s linear infinite;margin-right:.5rem;vertical-align:middle}
+      @keyframes spin{to{transform:rotate(360deg)}}
+
+      /* GUIDE SECTIONS */
+      .guide-section{margin-bottom:3rem}
+      .section-header{display:flex;align-items:center;gap:1rem;margin-bottom:1.75rem;padding-bottom:1rem;border-bottom:1px solid var(--border);flex-wrap:wrap}
+      .section-icon{width:48px;height:48px;border-radius:12px;background:var(--cyan-glow);border:1px solid rgba(6,182,212,0.2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+      .section-info{flex:1;min-width:200px}
+      .section-eyebrow{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);font-weight:500;margin-bottom:.2rem}
+      .section-title{font-family:var(--serif);font-size:1.6rem;font-weight:400}
+      .guide-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.5rem 1.75rem;margin-bottom:1.25rem;transition:border-color var(--transition),box-shadow .3s}
+      .guide-card:hover{border-color:var(--border-hover);box-shadow:0 4px 24px rgba(0,0,0,.3)}
+      .guide-card-content{font-size:.88rem;color:var(--text-mid);line-height:1.8;font-weight:300;white-space:pre-line}
+      .guide-card-content a{color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(6,182,212,0.3);transition:border-color .2s}
+      .guide-card-content a:hover{border-color:var(--cyan)}
+      .guide-card-content code{background:rgba(6,182,212,0.08);padding:.1rem .4rem;border-radius:3px;font-size:.8rem;color:var(--cyan);font-family:var(--mono)}
+      .guide-why{margin-top:1rem;font-size:.82rem;color:var(--text-muted);font-weight:300;display:flex;gap:.5rem;align-items:flex-start;background:rgba(0,240,160,0.03);border:1px solid rgba(0,240,160,0.08);border-radius:10px;padding:1rem 1.25rem}
+      .guide-why::before{content:'\1F4A1';font-size:.85rem;flex-shrink:0}
+      .guide-why strong{color:var(--text-mid);font-weight:500}
+
+      /* CHECKLIST */
+      .checklist{list-style:none;display:flex;flex-direction:column;gap:.75rem}
+      .checklist li{display:flex;align-items:flex-start;gap:.75rem;font-size:.88rem;color:var(--text-mid);font-weight:300;line-height:1.6}
+      .checklist li::before{content:'\2610';font-family:var(--mono);color:var(--cyan);font-size:.85rem;flex-shrink:0;margin-top:.15rem}
+      .checklist li a{color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(6,182,212,0.3)}
+      .checklist li a:hover{border-color:var(--cyan)}
+
+      /* ERROR TABLE */
+      .error-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;margin-bottom:1rem}
+      .error-problem{font-size:.88rem;font-weight:600;color:var(--text);margin-bottom:.5rem;display:flex;align-items:center;gap:.5rem}
+      .error-problem::before{content:'\26A0';color:#ff6b6b}
+      .error-cause{font-size:.82rem;color:var(--text-muted);font-weight:300;margin-bottom:.5rem;line-height:1.6}
+      .error-fix{font-size:.82rem;color:var(--accent);font-weight:400;line-height:1.6;display:flex;align-items:flex-start;gap:.5rem}
+      .error-fix::before{content:'\2192';font-weight:700;flex-shrink:0}
+      .error-fix code{background:rgba(6,182,212,0.08);padding:.1rem .4rem;border-radius:3px;font-size:.78rem;color:var(--cyan);font-family:var(--mono)}
+
+      /* PROMPT TEMPLATE SECTION */
+      .prompt-section{margin-bottom:3rem}
+      .prompt-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.5rem 1.75rem;position:relative;margin-bottom:1.25rem}
+      .prompt-label{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);font-weight:600;margin-bottom:.6rem}
+      .prompt-card h4{font-size:1rem;font-weight:600;margin-bottom:.75rem}
+      .prompt-instruction{font-size:.85rem;color:var(--text-mid);font-weight:300;margin-bottom:1rem;line-height:1.6}
+      .prompt-text{font-size:.82rem;color:var(--text-muted);line-height:1.75;background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:1.25rem 1.5rem;font-family:var(--mono);position:relative;white-space:pre-wrap;word-break:break-word}
+      .copy-btn{position:absolute;top:.65rem;right:.75rem;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:.3rem .7rem;font-size:.72rem;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:var(--sans);z-index:2}
+      .copy-btn:hover{border-color:var(--accent);color:var(--accent)}
+      .copy-btn.copied{background:var(--accent-glow);border-color:var(--accent);color:var(--accent)}
+      .prompt-tip{margin-top:.85rem;font-size:.8rem;color:var(--text-muted);font-weight:300;display:flex;gap:.5rem;align-items:flex-start}
+      .prompt-tip::before{content:'\1F4A1';font-size:.8rem;flex-shrink:0}
+
+      /* CLOSING NOTE */
+      .closing-note{background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius);padding:2rem 2.25rem;margin:2.5rem 0}
+      .closing-note h3{font-family:var(--serif);font-size:1.25rem;font-weight:400;margin-bottom:1rem}
+      .closing-note p{font-size:.9rem;color:var(--text-mid);font-weight:300;line-height:1.7;white-space:pre-line}
+
+      /* CTA */
+      .prompts-cta{background:linear-gradient(135deg,var(--bg-card) 0%,rgba(6,182,212,0.03) 100%);border:1px solid var(--border);border-radius:var(--radius);padding:3rem;text-align:center;margin-top:3rem;position:relative;overflow:hidden}
+      .prompts-cta::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 50%,var(--cyan-glow) 0%,transparent 50%);pointer-events:none;animation:rotateSlow 15s linear infinite}
+      @keyframes rotateSlow{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+      .prompts-cta h3{font-family:var(--serif);font-size:2rem;font-weight:400;margin-bottom:.6rem;position:relative}
+      .prompts-cta p{color:var(--text-mid);margin-bottom:1.75rem;font-weight:300;font-size:1rem;position:relative}
+      .btn-primary{background:var(--accent);color:var(--bg);padding:.9rem 2.25rem;border-radius:100px;text-decoration:none;font-weight:600;font-size:.95rem;transition:transform .2s,box-shadow .3s;display:inline-flex;align-items:center;gap:.5rem;position:relative}
+      .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 40px var(--accent-glow-strong)}
+      .btn-ghost{background:transparent;color:var(--text-mid);padding:.9rem 2rem;border-radius:100px;text-decoration:none;font-weight:400;font-size:.95rem;border:1px solid var(--border);transition:border-color var(--transition),color var(--transition);display:inline-flex;align-items:center;gap:.5rem}
+      .btn-ghost:hover{border-color:var(--border-hover);color:var(--text)}
+      .cta-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+      /* PDF BUTTON */
+      .pdf-bar{display:flex;align-items:center;justify-content:flex-end;gap:.75rem;margin-bottom:2rem;flex-wrap:wrap}
+      .btn-pdf{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.5rem;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;color:var(--text);font-family:var(--sans);font-size:.85rem;font-weight:500;cursor:pointer;transition:border-color var(--transition),box-shadow .3s}
+      .btn-pdf:hover{border-color:var(--accent);box-shadow:0 4px 20px var(--accent-glow)}
+      .btn-pdf-sub{font-size:.68rem;color:var(--text-muted);font-weight:300}
+
+      /* FOOTER */
+      footer{border-top:1px solid var(--border);padding:2rem;max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+      .footer-left{color:var(--text-muted);font-size:.8rem;font-weight:300}
+      .footer-links{display:flex;gap:1.5rem}
+      .footer-links a{color:var(--text-muted);text-decoration:none;font-size:.8rem;transition:color var(--transition)}
+      .footer-links a:hover{color:var(--accent)}
+
+      /* MOBILE */
+      @media(max-width:600px){
+        .nav-links{position:fixed;top:0;right:-100%;width:280px;max-width:85vw;height:100vh;height:100dvh;background:#0a0a0a;border-left:1px solid var(--border);padding:5rem 2rem 2rem;flex-direction:column;align-items:flex-start;gap:0;z-index:99;transition:right 0.35s cubic-bezier(0.4,0,0.2,1)}
+        .nav-links.open{right:0}
+        .nav-links a{padding:0.85rem 0;font-size:1rem;border-bottom:1px solid var(--border);width:100%}
+        .nav-links a:not(.nav-cta)::after{display:none}
+        .nav-cta{margin-top:1rem;text-align:center;display:block;width:100%;padding:0.85rem;border-bottom:none}
+        .mobile-toggle{display:block}
+        .page-hero{padding:7rem 1.5rem 2rem;overflow:hidden}
+        .hero-glow{width:300px;height:200px}
+        .showcase{padding:0 1rem}
+        .flow-diagram{padding:1.25rem}
+        .flow-row{flex-direction:column;gap:.75rem}
+        .flow-arrow{transform:rotate(90deg)}
+        .flow-box{max-width:100%;min-width:unset}
+        .features{padding:0 1rem}
+        .feature-grid{grid-template-columns:1fr}
+        .gate-wrap{padding:0 1rem}
+        .gate-card{padding:1.75rem 1.25rem;overflow:hidden}
+        .cf-turnstile{transform:scale(.9);transform-origin:left top}
+        .guide-card{padding:1.25rem}
+        .prompt-card{padding:1.25rem}
+        .prompt-text{font-size:.72rem;padding:1rem}
+        .unlock-banner{flex-direction:column;text-align:center;padding:1.25rem}
+        #prompt-content{padding:0 1rem 4rem}
+        .closing-note{padding:1.5rem 1.25rem}
+        .prompts-cta{padding:2rem 1.25rem}
+        .cta-buttons{flex-direction:column;align-items:center}
+        .section-title{font-size:1.25rem}
+        .section-icon{width:40px;height:40px;font-size:1.1rem}
+        .pdf-bar{justify-content:center}
+        footer{flex-direction:column;text-align:center;gap:.75rem}
+      }
+
+      /* PRINT STYLES */
+      @media print{
+        nav,footer,.gate-wrap,.prompts-cta,.pdf-bar,.hero-glow,.btn-pdf,.copy-btn{display:none !important}
+        body{background:#fff;color:#111;font-size:11pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+        body::after{display:none}
+        .page-hero{padding:1rem 0 1rem;animation:none}
+        .page-hero h1{color:#111;font-size:24pt;opacity:1;animation:none}
+        .page-hero h1 em{color:#0066cc}
+        .page-badge{color:#0066cc;animation:none}
+        .hero-comment{color:#666;animation:none;opacity:1}
+        .showcase{animation:none;opacity:1;margin-bottom:1.5rem}
+        .flow-diagram{box-shadow:none;border:1px solid #ddd;background:#f9f9f9}
+        .flow-box{border-color:#ddd;background:#fff}
+        .flow-box-title{color:#111}
+        .flow-box-sub{color:#666}
+        .flow-arrow{color:#0066cc}
+        .features{animation:none;opacity:1;margin-bottom:1.5rem}
+        .feature-card{background:#f9f9f9;border-color:#ddd;page-break-inside:avoid}
+        .feature-name{color:#111}
+        .feature-desc{color:#444}
+        #prompt-content{display:block !important;padding:0;animation:none}
+        .unlock-banner{display:none !important}
+        .guide-section,.prompt-section{page-break-inside:avoid;margin-bottom:1.5rem}
+        .section-header{border-color:#ddd}
+        .section-icon{background:#e8f4f8;border-color:#b3d9e8}
+        .section-eyebrow{color:#0066cc}
+        .section-title{color:#111}
+        .guide-card,.prompt-card{background:#f9f9f9;border-color:#ddd;page-break-inside:avoid;box-shadow:none}
+        .guide-card-content{color:#333}
+        .guide-card-content code{background:#e8f4f8;color:#0066cc}
+        .guide-card-content a{color:#0066cc;border-color:#0066cc}
+        .guide-why{background:#f0faf5;border-color:#b3e0c8}
+        .guide-why strong{color:#111}
+        .checklist li{color:#333}
+        .checklist li::before{color:#0066cc}
+        .checklist li a{color:#0066cc}
+        .error-card{background:#fff5f5;border-color:#ffcccc;page-break-inside:avoid}
+        .error-problem{color:#111}
+        .error-cause{color:#444}
+        .error-fix{color:#006644}
+        .error-fix code{background:#e8f4f8;color:#0066cc}
+        .prompt-text{background:#f9f9f9;border-color:#ddd;color:#333}
+        .prompt-label{color:#0066cc}
+        .prompt-instruction{color:#444}
+        .prompt-tip{color:#666}
+        .closing-note{background:#f9f9f9;border-color:#ddd;page-break-inside:avoid}
+        .closing-note h3{color:#111}
+        .closing-note p{color:#333}
+        h1{page-break-after:avoid}
+        h3,h4{page-break-after:avoid}
+        a{text-decoration:none}
+        a[href]::after{content:none}
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="/" class="nav-logo">oye.nino<span>.</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="/existence/">Existence</a>
+        <a href="/prompts.html">Free Prompts</a>
+        <a href="/frontend-deploy-prompt.html">Frontend Guide</a>
+        <a href="/#contact" class="nav-cta">Let's Talk</a>
+      </div>
+      <button class="mobile-toggle" id="mobToggle" aria-label="Menu">
+        <span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span>
+      </button>
+    </nav>
+
+    <!-- HERO -->
+    <div class="page-hero">
+      <div class="hero-glow"></div>
+      <div class="page-badge"><span class="pulse"></span> Free Guide — Zero Investment Series &middot; Episode 5</div>
+      <h1>backend <em>deploy karo.</em></h1>
+      <div class="hero-comment">// Hono.js &rarr; Cloudflare Workers &middot; <span>free hosting</span> &middot; <span>connect to frontend</span> &middot; <span>no server needed</span></div>
+    </div>
+
+    <!-- FLOW DIAGRAM -->
+    <div class="showcase">
+      <div class="flow-diagram">
+        <div class="flow-label">Deployment Flow</div>
+        <div class="flow-row">
+          <div class="flow-box">
+            <div class="flow-box-icon">&#9881;&#65039;</div>
+            <div class="flow-box-title">Your Code</div>
+            <div class="flow-box-sub">Hono routes — API endpoints</div>
+          </div>
+          <div class="flow-arrow">&#8594;</div>
+          <div class="flow-box">
+            <div class="flow-box-icon">&#9729;&#65039;</div>
+            <div class="flow-box-title">Cloudflare Workers</div>
+            <div class="flow-box-sub">Deploy — free hosting</div>
+          </div>
+          <div class="flow-arrow">&#8594;</div>
+          <div class="flow-box">
+            <div class="flow-box-icon">&#128640;</div>
+            <div class="flow-box-title">Live API</div>
+            <div class="flow-box-sub">Connects to your frontend</div>
+          </div>
+        </div>
+        <div class="flow-label" style="margin-top:1.25rem;color:var(--text-mid);font-size:.78rem;letter-spacing:0;text-transform:none">Code likho &rarr; Ek command mein deploy karo &rarr; Frontend se connect karo &rarr; Done</div>
+      </div>
+    </div>
+
+    <!-- WHAT YOU GET -->
+    <div class="features">
+      <div class="features-title">Guide mein kya milega?</div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">&#128640;</div>
+          <div class="feature-name">Step-by-Step Deploy</div>
+          <div class="feature-desc">Scaffold se live URL tak — har step ka "kya karo" aur "kyun karo" dono explained. Non-technical friendly.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128176;</div>
+          <div class="feature-name">Zero Cost</div>
+          <div class="feature-desc">Cloudflare Workers free tier — 100K requests/day free. No credit card, no hosting bill, no hidden charges.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128295;</div>
+          <div class="feature-name">Common Errors Fixed</div>
+          <div class="feature-desc">CORS blocks, stale env vars, wrong deploy — 5 common problems aur unke fixes, Hinglish mein.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128279;</div>
+          <div class="feature-name">Frontend Integration</div>
+          <div class="feature-desc">Backend ko Episode 3 ke frontend se connect karo — env vars, redeploy, CORS. Poora flow covered.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GATE: Form before content -->
+    <div class="gate-wrap" id="gate-section">
+      <div class="gate-card">
+        <div class="gate-title">Poori guide unlock karo — free hai</div>
+        <div class="gate-subtitle">Step-by-step backend deploy + frontend integration + AI prompt template. <strong>Sab kuch free.</strong></div>
+
+        <ul class="teaser-list">
+          <li>8-step walkthrough — Hinglish mein, zero jargon</li>
+          <li>Har step ka "kyun" explained — samajh ke karo, andhe mein nahi</li>
+          <li>5 common errors + instant fixes</li>
+          <li>Frontend-backend integration guide</li>
+          <li>AI prompt template — apna backend AI se banwao</li>
+          <li>Print/PDF ready — save karke rakh lo</li>
+        </ul>
+
+        <form id="gateForm" novalidate>
+          <div class="form-group">
+            <label for="gate-name">Your Name *</label>
+            <input type="text" id="gate-name" name="name" placeholder="Rahul Sharma" required autocomplete="name" />
+          </div>
+          <div class="form-group">
+            <label for="gate-phone">Phone Number *</label>
+            <input type="tel" id="gate-phone" name="phone" placeholder="+91 98765 43210" required autocomplete="tel" />
+            <div class="field-status" id="phoneStatus"></div>
+          </div>
+          <div class="form-group">
+            <label for="gate-email">Email Address *</label>
+            <input type="email" id="gate-email" name="email" placeholder="rahul@gmail.com" required autocomplete="email" />
+            <div class="field-status" id="emailStatus"></div>
+          </div>
+
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAACgSvRvZpT5d_Ab5" data-theme="dark" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired" style="margin-bottom:1rem;display:flex;justify-content:center"></div>
+
+          <div class="error-msg" id="formError"></div>
+          <button type="submit" class="btn-unlock" id="unlockBtn" disabled>Sab fields fill karo</button>
+          <p class="gate-privacy"><span>&#128274; Your info safe hai. Kabhi bhi unsubscribe kar sakte ho.</span></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- PROMPT CONTENT — hidden until unlocked, loaded from JSON -->
+    <div id="prompt-content">
+      <div class="unlock-banner">
+        <div class="unlock-icon">&#127881;</div>
+        <div class="unlock-text">
+          <strong>Guide unlock ho gaya!</strong>
+          <span>Loading...</span>
+        </div>
+      </div>
+      <div id="dynamicContent">
+        <div class="loading-prompt"><span class="spinner"></span> Guide load ho raha hai...</div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-left">&copy; 2026 Himanshu. Built with code &amp; clarity.</div>
+      <div class="footer-links">
+        <a href="https://youtube.com/@oye_nino" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.instagram.com/oye.nino" target="_blank" rel="noopener">Instagram</a>
+        <a href="/prompts.html">Free Prompts</a>
+        <a href="/">Portfolio</a>
+      </div>
+    </footer>
+
+    <!-- NAV TOGGLE -->
+    <script>
+      (function() {
+        var toggle = document.getElementById("mobToggle");
+        var links = document.getElementById("navLinks");
+        if (toggle && links) {
+          toggle.addEventListener("click", function() {
+            toggle.classList.toggle("open");
+            links.classList.toggle("open");
+            document.body.style.overflow = links.classList.contains("open") ? "hidden" : "";
+          });
+          links.querySelectorAll("a").forEach(function(a) {
+            a.addEventListener("click", function() {
+              toggle.classList.remove("open");
+              links.classList.remove("open");
+              document.body.style.overflow = "";
+            });
+          });
+        }
+      })();
+    </script>
+
+    <!-- FORM GATE + DYNAMIC CONTENT LOADER -->
+    <script src="/form-utils.js"></script>
+    <script>
+      var DATA_URL = '/backend-deploy-prompt-data.json';
+
+      if (sessionStorage.getItem('backend_deploy_prompt_unlocked') === 'true') showPrompt();
+
+      try {
+        if (typeof OyeNinoForm !== 'undefined') {
+          new OyeNinoForm({
+            formId: 'gateForm',
+            emailId: 'gate-email',
+            phoneId: 'gate-phone',
+            nameId: 'gate-name',
+            btnId: 'unlockBtn',
+            statusId: 'emailStatus',
+            phoneStatusId: 'phoneStatus',
+            errorId: 'formError',
+            formName: 'backend_deploy_prompt_gate',
+            source: 'backend_deploy_prompt_page',
+            requiredFields: ['name', 'email', 'phone'],
+            btnTexts: {
+              ready: '<span>\uD83D\uDD13</span> Guide Unlock Karo \u2014 Free',
+              turnstile: "Verify you're human first \u2191",
+              email: 'Valid email daalo pehle',
+              phone: 'Valid phone number daalo',
+              fields: 'Sab fields fill karo',
+              submitting: '<span>\u23F3</span> Submitting...'
+            },
+            onSuccess: function() {
+              sessionStorage.setItem('backend_deploy_prompt_unlocked', 'true');
+              showPrompt();
+            }
+          });
+        }
+      } catch(e) { console.warn('form-utils not loaded', e); }
+
+      function showPrompt() {
+        var gate = document.getElementById('gate-section');
+        gate.style.transition = 'opacity .4s ease, transform .4s ease';
+        gate.style.opacity = '0';
+        gate.style.transform = 'translateY(-10px)';
+        setTimeout(function() {
+          gate.style.display = 'none';
+          var content = document.getElementById('prompt-content');
+          content.classList.add('unlocked');
+          content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          loadGuideData();
+          oyeTrackEvent('backend_deploy_prompt_unlocked');
+        }, 400);
+      }
+
+      function loadGuideData() {
+        var container = document.getElementById('dynamicContent');
+        fetch(DATA_URL)
+          .then(function(r) { if (!r.ok) throw new Error('Failed'); return r.json(); })
+          .then(function(data) { renderGuideContent(data, container); })
+          .catch(function(err) {
+            console.error('Failed to load guide data:', err);
+            container.innerHTML = '<div class="loading-prompt" style="color:#ff6b6b;">Guide load nahi ho paya. Page refresh karo ya <a href="/#contact" style="color:var(--accent);">contact karo</a>.</div>';
+          });
+      }
+
+      function renderGuideContent(data, container) {
+        var html = '';
+
+        // PDF BUTTON
+        html += '<div class="pdf-bar">';
+        html += '<div>';
+        html += '<button class="btn-pdf" onclick="window.print()">&#128196; Download as PDF</button>';
+        html += '<div class="btn-pdf-sub">Opens print dialog \u2014 choose "Save as PDF"</div>';
+        html += '</div>';
+        html += '</div>';
+
+        // GUIDE SECTIONS
+        data.sections.forEach(function(sec, i) {
+          html += '<div class="guide-section">';
+          html += '<div class="section-header">';
+          html += '<div class="section-icon">' + sec.icon + '</div>';
+          html += '<div class="section-info">';
+          html += '<div class="section-eyebrow">' + esc(sec.eyebrow) + '</div>';
+          html += '<div class="section-title">' + esc(sec.title) + '</div>';
+          html += '</div></div>';
+
+          html += '<div class="guide-card">';
+
+          if (sec.type === 'checklist') {
+            html += '<ul class="checklist">';
+            sec.items.forEach(function(item) {
+              html += '<li>' + item + '</li>';
+            });
+            html += '</ul>';
+          } else if (sec.type === 'step') {
+            html += '<div class="guide-card-content">' + sec.content + '</div>';
+            if (sec.why) {
+              html += '<div class="guide-why"><strong>Kyun zaruri hai:</strong> ' + esc(sec.why) + '</div>';
+            }
+          }
+
+          html += '</div></div>';
+        });
+
+        // ERROR SECTION
+        var errors = data.errors;
+        html += '<div class="guide-section">';
+        html += '<div class="section-header">';
+        html += '<div class="section-icon">' + errors.icon + '</div>';
+        html += '<div class="section-info">';
+        html += '<div class="section-eyebrow">Troubleshooting</div>';
+        html += '<div class="section-title">' + esc(errors.title) + '</div>';
+        html += '</div></div>';
+
+        errors.items.forEach(function(err) {
+          html += '<div class="error-card">';
+          html += '<div class="error-problem">' + esc(err.problem) + '</div>';
+          html += '<div class="error-cause">' + err.cause + '</div>';
+          html += '<div class="error-fix">' + err.fix + '</div>';
+          html += '</div>';
+        });
+        html += '</div>';
+
+        // AI PROMPT TEMPLATE SECTION
+        var prompt = data.prompt;
+        html += '<div class="prompt-section">';
+        html += '<div class="section-header">';
+        html += '<div class="section-icon">' + prompt.icon + '</div>';
+        html += '<div class="section-info">';
+        html += '<div class="section-eyebrow">' + esc(prompt.eyebrow) + '</div>';
+        html += '<div class="section-title">' + esc(prompt.title) + '</div>';
+        html += '</div></div>';
+
+        html += '<div class="prompt-card">';
+        html += '<div class="prompt-label">' + esc(prompt.label) + '</div>';
+        html += '<h4>' + esc(prompt.heading) + '</h4>';
+        html += '<div class="prompt-instruction">' + esc(prompt.instruction) + '</div>';
+        html += '<div style="position:relative;">';
+        html += '<div class="prompt-text" id="ai-prompt-template">' + esc(prompt.text) + '</div>';
+        html += '<button class="copy-btn" onclick="copyPrompt(\'ai-prompt-template\',this)">Copy</button>';
+        html += '</div>';
+        html += '<div class="prompt-tip">' + esc(prompt.tip) + '</div>';
+        html += '</div></div>';
+
+        // CLOSING NOTE
+        var closing = data.closing;
+        html += '<div class="closing-note">';
+        html += '<h3>' + esc(closing.title) + '</h3>';
+        html += '<p>' + esc(closing.text) + '</p>';
+        html += '</div>';
+
+        // CTA
+        var cta = data.cta;
+        html += '<div class="prompts-cta"><h3>' + esc(cta.title) + '</h3><p>' + esc(cta.subtitle) + '</p><div class="cta-buttons">';
+        cta.buttons.forEach(function(btn) {
+          var cls = btn.style === 'primary' ? 'btn-primary' : 'btn-ghost';
+          html += '<a href="' + esc(btn.href) + '" class="' + cls + '">' + esc(btn.text) + '</a>';
+        });
+        html += '</div></div>';
+
+        container.innerHTML = html;
+
+        // Update unlock banner text
+        document.querySelector('.unlock-text span').textContent = 'Step-by-step padho, deploy karo, frontend se connect karo. No server needed.';
+      }
+
+      function esc(s) {
+        if (!s) return '';
+        var d = document.createElement('div'); d.textContent = s; return d.innerHTML;
+      }
+
+      function copyPrompt(id, btn) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        navigator.clipboard.writeText(el.innerText).then(function() {
+          btn.textContent = '\u2713 Copied!';
+          btn.classList.add('copied');
+          oyeTrackEvent('prompt_copied', { prompt_id: id, page: window.location.pathname });
+          setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+        });
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,132 @@
+{
+  "sections": [
+    {
+      "icon": "📋",
+      "eyebrow": "Before You Start",
+      "title": "Prerequisites — Ye Ready Rakhna",
+      "type": "checklist",
+      "items": [
+        "<strong>Node.js installed</strong> — <a href='https://nodejs.org' target='_blank' rel='noopener'>nodejs.org</a> se download karo (LTS version lo). Terminal mein <code>node --version</code> likh ke check karo ki installed hai ya nahi.",
+        "<strong>Cloudflare account</strong> — <a href='https://dash.cloudflare.com/sign-up' target='_blank' rel='noopener'>dash.cloudflare.com</a> pe free sign up karo. Yahi jagah tumhara backend host hoga.",
+        "<strong>Frontend already deployed</strong> — Tumhara frontend Cloudflare Pages pe live hona chahiye. Agar abhi tak nahi kiya toh pehle <a href='/frontend-deploy-prompt.html'>Episode 3 — Frontend Deploy Guide</a> follow karo."
+      ]
+    },
+    {
+      "icon": "🤔",
+      "eyebrow": "Step 1",
+      "title": "Hono Kya Hai Aur Yahan Kyun?",
+      "type": "step",
+      "content": "Backend banane ke liye zyaadatar log Express.js use karte hain. Lekin Cloudflare Workers ek alag tarah ka environment hai — ye normal Node.js server nahi hai.\n\nSimple words mein:\n\n• Normal server (Express) = Ek poora computer rent karte ho, uspe code chalta hai 24/7\n• Cloudflare Workers = Code sirf tab chalta hai jab koi request aaye, baaki time kuch nahi chalta\n\nExpress is environment mein seedha nahi chal sakta kyunki ye Node.js ke liye bana hai, Workers ke liye nahi.\n\nHono ek lightweight framework hai jo specifically Workers ke liye bana hai. Iska syntax Express jaisa hi hai — agar Express dekha hai toh Hono mein kuch naya nahi lagega.\n\nExample:\n  Express:  app.get('/hello', (req, res) => res.send('hi'))\n  Hono:     app.get('/hello', (c) => c.text('hi'))\n\nAlmost same. Bas environment alag hai, isliye framework alag hai.",
+      "why": "Ye samajhna zaruri hai kyunki agar tum Express install karke Workers pe deploy karne ki koshish karoge toh errors aayenge. Hono use karo — free hai, fast hai, aur Workers ke liye perfect hai."
+    },
+    {
+      "icon": "📦",
+      "eyebrow": "Step 2",
+      "title": "Naya Hono Project Banao (Scaffold)",
+      "type": "step",
+      "content": "Terminal kholo aur ye command chalaao:\n\n  npm create hono@latest my-backend\n\nYe tumse kuch sawaal puuchega:\n\n  1. \"Which template?\" → cloudflare-workers select karo\n  2. \"Install dependencies?\" → Yes\n\nCommand complete hone ke baad:\n\n  cd my-backend\n\nAb tumhare paas ek ready-made project hai jisme ye files hongi:\n  • src/index.ts — tumhara main code file (API routes yahan likhoge)\n  • wrangler.toml — Cloudflare ko batata hai ki deploy kaise karna hai\n  • package.json — project ki dependencies\n\nNote: .ts extension hai matlab TypeScript hai. Daro mat — TypeScript sirf JavaScript hai with types. Tum plain JavaScript jaisa hi likh sakte ho.",
+      "why": "npm create hono@latest sab kuch automatically set up kar deta hai — folder structure, dependencies, config files. Manually karne mein 15-20 minute lagte, ye command 30 second mein kar deta hai."
+    },
+    {
+      "icon": "✍️",
+      "eyebrow": "Step 3",
+      "title": "Ek Basic API Route Likho",
+      "type": "step",
+      "content": "src/index.ts file kholo. Usme kuch default code hoga. Usse replace karo ya uske neeche add karo:\n\n  import { Hono } from 'hono'\n\n  const app = new Hono()\n\n  app.get('/', (c) => {\n    return c.json({ message: 'Backend chal raha hai!' })\n  })\n\n  app.get('/api/hello', (c) => {\n    return c.json({ greeting: 'Namaste duniya!' })\n  })\n\n  export default app\n\nYe kya kar raha hai:\n  • Jab koi tumhare backend ka main URL khole → \"Backend chal raha hai!\" dikhega\n  • Jab koi /api/hello pe jaaye → \"Namaste duniya!\" dikhega\n\nLocal test karne ke liye terminal mein:\n\n  npm run dev\n\nBrowser mein http://localhost:8787 kholo — response dikhna chahiye.",
+      "why": "Pehle ek simple route bana ke test karo ki sab kaam kar raha hai. Complex routes baad mein add karna. Pehle bas \"hello world\" chal jaaye — ye sabse important step hai."
+    },
+    {
+      "icon": "📄",
+      "eyebrow": "Step 4",
+      "title": "wrangler.toml Samjho",
+      "type": "step",
+      "content": "wrangler.toml file tumhare project ke root mein hogi. Ye Cloudflare ko batati hai ki tumhara project kaise deploy karna hai.\n\nDefault content kuch aisa hoga:\n\n  name = \"my-backend\"\n  main = \"src/index.ts\"\n  compatibility_date = \"2024-01-01\"\n\nKya matlab hai:\n  • name → Tumhare Worker ka naam. Ye URL mein aayega: my-backend.TUMHARA-SUBDOMAIN.workers.dev\n  • main → Kaunsi file run karni hai (tumhara main code)\n  • compatibility_date → Cloudflare ko batata hai ki kaunsa version ka runtime use karna hai\n\nAbhi isme kuch change karne ki zarurat nahi — default settings kaam karengi. Baad mein jab database ya environment variables add karoge tab isme cheezein add hoti hain.",
+      "why": "Ye file Cloudflare ke liye instruction manual hai. Agar ye sahi nahi hai toh deploy fail hoga. Abhi default settings mein kaam chalao, lekin samjho ki har line ka matlab kya hai — taaki baad mein confident ho ke changes kar sako."
+    },
+    {
+      "icon": "🔑",
+      "eyebrow": "Step 5",
+      "title": "Cloudflare Mein Login Karo (Terminal Se)",
+      "type": "step",
+      "content": "Terminal mein ye command chalaao:\n\n  npx wrangler login\n\nYe browser kholega aur Cloudflare login page dikhayega.\n\n  1. Apne Cloudflare account se login karo\n  2. \"Allow\" pe click karo jab permission maange\n  3. Browser mein \"Successfully logged in\" message aayega\n  4. Terminal mein wapas jao — ye confirm karega ki login ho gaya\n\nYe one-time step hai. Ek baar login ho gaya toh baar baar nahi karna padega (jab tak logout nahi karte).",
+      "why": "Wrangler CLI ko tumhare Cloudflare account ka access chahiye taaki wo tumhara code deploy kar sake. Ye login tumhare account ko terminal se connect karta hai."
+    },
+    {
+      "icon": "🚀",
+      "eyebrow": "Step 6",
+      "title": "Deploy Karo — Live URL Milega!",
+      "type": "step",
+      "content": "Terminal mein ye command chalaao:\n\n  npx wrangler deploy\n\nYe kya karega:\n  1. Tumhara code compile karega\n  2. Cloudflare ke servers pe upload karega\n  3. Live URL dega\n\nOutput kuch aisa dikhega:\n\n  Published my-backend (1.5s)\n  https://my-backend.TUMHARA-SUBDOMAIN.workers.dev\n\nYe URL ab duniya mein kahi se bhi accessible hai. Browser mein khol ke dekho — tumhara \"Backend chal raha hai!\" message dikhna chahiye.\n\nhttps://my-backend.TUMHARA-SUBDOMAIN.workers.dev/api/hello pe jaoge toh \"Namaste duniya!\" dikhega.\n\nDone. Tumhara backend live hai. Free mein. Koi server bill nahi aayega.",
+      "why": "Ek command mein tumhara code duniya ke 300+ data centers pe deploy ho gaya. Koi server manage nahi karna, koi monthly bill nahi. Cloudflare Workers free tier mein 100,000 requests per day milte hain — chhote-medium projects ke liye kaafi hai."
+    },
+    {
+      "icon": "🔗",
+      "eyebrow": "Step 7",
+      "title": "Frontend Ko Backend Se Connect Karo",
+      "type": "step",
+      "content": "Ab tumhare paas dono hain:\n  • Frontend: https://tumhara-project.pages.dev (Episode 3 se)\n  • Backend: https://my-backend.TUMHARA-SUBDOMAIN.workers.dev (abhi deploy kiya)\n\nFrontend ko backend se baat karwane ke liye:\n\n  1. Frontend project ki .env file kholo (ya .env.local, .env.production — jo bhi hai)\n  2. API base URL update karo:\n\n     VITE_API_URL=https://my-backend.TUMHARA-SUBDOMAIN.workers.dev\n\n     (Agar React CRA hai toh REACT_APP_API_URL use karo)\n\n  3. Frontend code mein jahan bhi API call ho raha hai, ye URL use karo:\n\n     fetch(import.meta.env.VITE_API_URL + '/api/hello')\n\n  4. Changes commit karo aur GitHub pe push karo:\n\n     git add .\n     git commit -m \"connect frontend to backend\"\n     git push\n\n  5. Cloudflare Pages apne aap nayi build banayega aur deploy karega\n\nImportant: Cloudflare Pages ki Settings → Environment Variables mein bhi VITE_API_URL add karo — same value ke saath. Warna build ke time .env file nahi milegi aur API calls kaam nahi karengi.",
+      "why": "Frontend aur backend alag-alag jagah deployed hain (Pages vs Workers). Frontend ko batana padta hai ki backend kahan hai. Environment variable use karne se URL ek jagah change karo toh sab jagah update ho jaata hai."
+    },
+    {
+      "icon": "🛡️",
+      "eyebrow": "Step 8",
+      "title": "CORS Setup Karo — Warna Frontend Block Hoga",
+      "type": "step",
+      "content": "Agar tum abhi frontend se backend ko call karoge, toh kaam nahi karega. Browser console mein ye error dikhega:\n\n  Access to fetch at 'https://my-backend...' from origin 'https://tumhara-project.pages.dev' has been blocked by CORS policy\n\nYe kyun hota hai:\n  Tumhara frontend ek domain pe hai (pages.dev) aur backend doosre pe (workers.dev). Browser by default alag domains ko ek doosre se baat nahi karne deta — ye security feature hai.\n\nFix: Backend mein CORS middleware add karo.\n\n  1. Terminal mein (backend project folder mein):\n     npm install hono\n     (Hono mein CORS built-in hai, alag se install nahi karna)\n\n  2. src/index.ts mein ye add karo:\n\n     import { Hono } from 'hono'\n     import { cors } from 'hono/cors'\n\n     const app = new Hono()\n\n     app.use('*', cors({\n       origin: 'https://tumhara-project.pages.dev',\n     }))\n\n     // ... tumhare routes ...\n\n  3. Deploy karo:\n     npx wrangler deploy\n\nAb frontend se backend calls kaam karenge.\n\nNote: origin mein apna ACTUAL frontend URL dalo — wildcard (*) mat use karo production mein, warna koi bhi website tumhare backend se baat kar sakegi.",
+      "why": "CORS sabse common error hai jab frontend aur backend alag domains pe hote hain. Ye ek baar set kar lo — 2 minute ka kaam hai — aur phir bhool jao."
+    }
+  ],
+  "errors": {
+    "title": "Common Errors & Fixes",
+    "icon": "🔧",
+    "items": [
+      {
+        "problem": "CORS error — \"blocked by CORS policy\"",
+        "cause": "Backend mein CORS middleware nahi hai, ya origin URL galat hai (trailing slash, http vs https).",
+        "fix": "Step 8 follow karo — <code>cors()</code> middleware add karo apne frontend URL ke saath. URL exactly match hona chahiye — <code>https://tumhara-project.pages.dev</code> (bina trailing slash ke)."
+      },
+      {
+        "problem": "Frontend pe API calls kaam nahi kar rahe — \"undefined\" ya empty response",
+        "cause": "Environment variable set nahi hai ya galat naam hai. Vite mein <code>VITE_</code> prefix zaruri hai.",
+        "fix": "Check karo: (1) <code>.env</code> file mein <code>VITE_API_URL=https://...</code> hai? (2) Cloudflare Pages → Settings → Environment Variables mein bhi same value hai? (3) Code mein <code>import.meta.env.VITE_API_URL</code> use kar rahe ho?"
+      },
+      {
+        "problem": "Deploy ke baad changes nahi dikh rahe (backend)",
+        "cause": "Code change kiya par <code>npx wrangler deploy</code> nahi chalaaya. Workers mein auto-deploy nahi hota jaise Pages mein hota hai.",
+        "fix": "Backend mein har code change ke baad <code>npx wrangler deploy</code> chalaana padta hai. Ye Pages se alag hai — Workers mein manual deploy karna hota hai."
+      },
+      {
+        "problem": "Frontend deploy ke baad bhi purana API URL use ho raha hai",
+        "cause": "Cloudflare Pages mein environment variable update kiya par rebuild trigger nahi kiya.",
+        "fix": "Pages dashboard mein env var update karne ke baad ek naya commit push karo (ya manual redeploy trigger karo). Sirf env var change karna kaafi nahi — build dobara hona chahiye."
+      },
+      {
+        "problem": "\"wrangler: command not found\" error",
+        "cause": "Wrangler globally installed nahi hai. <code>npx</code> use karo ya globally install karo.",
+        "fix": "Commands mein <code>npx wrangler deploy</code> use karo (npx ke saath). Ya globally install karo: <code>npm install -g wrangler</code>."
+      }
+    ]
+  },
+  "prompt": {
+    "icon": "🤖",
+    "eyebrow": "Bonus",
+    "title": "Apna Backend AI Se Banwao",
+    "label": "Prompt Template",
+    "heading": "Copy Karo, Customize Karo, AI Mein Paste Karo",
+    "instruction": "Ye prompt copy kar, apni cheezein [brackets] mein fill kar, aur Claude ya ChatGPT mein paste kar de.",
+    "text": "Main [tumhara business/website] ke liye ek backend deploy karna chahta hoon.\n\nStack: Hono.js + Cloudflare Workers (free tier).\n\nMujhe chahiye:\n- Ek naya Hono project scaffold karo, Cloudflare Workers template ke saath\n- Ye API routes bana do: [apne routes yahan likho — e.g. GET /api/products, POST /api/orders]\n- CORS setup karo taaki mera frontend (jo [tumhara frontend URL] pe live hai) isse baat kar sake\n- wrangler.toml sahi se configure karo\n- Deploy karne ke commands do — wrangler login se wrangler deploy tak\n- Deploy hone ke baad batao ki frontend ke API base URL ko kaise update karna hai taaki dono connect ho jayein\n\nMeri current frontend deployment: [tumhara .pages.dev ya custom domain URL]\n\nScope: Abhi sirf basic API + live deploy chahiye. Database, auth, admin panel baad mein — pehle bas zinda backend chahiye jisse frontend baat kar sake.",
+    "tip": "Ye prompt non-technical logo ke liye hai. AI ko sab kuch samjhana zaruri nahi — [brackets] mein sirf apna business naam, routes, aur frontend URL daal do. Baaki AI samajh jaayega."
+  },
+  "closing": {
+    "title": "Backend Live Hai — Ab Aage Kya?",
+    "text": "Tumhara backend deploy ho gaya, frontend se connected hai, CORS set hai. Ye bahut bada step hai.\n\nAb tumhare paas ek working full-stack setup hai:\n  • Frontend → Cloudflare Pages (free)\n  • Backend → Cloudflare Workers (free)\n  • Dono ek doosre se baat kar rahe hain\n\nAgle steps (jab zarurat lage):\n  • Database add karo (Cloudflare D1 — free hai)\n  • Authentication add karo (login/signup)\n  • Admin panel banao\n\nLekin pehle ye basic setup ko production mein test karo. Real users se feedback lo. Features baad mein add karna — pehle foundation solid honi chahiye. 🎉"
+  },
+  "cta": {
+    "title": "Frontend deploy guide chahiye?",
+    "subtitle": "GitHub se Cloudflare Pages — step-by-step, free mein. Zero Investment Series Episode 3.",
+    "buttons": [
+      { "text": "Frontend Deploy Guide →", "href": "/frontend-deploy-prompt.html", "style": "primary" },
+      { "text": "All Free Prompts", "href": "/prompts.html", "style": "ghost" }
+    ]
+  }
+}
