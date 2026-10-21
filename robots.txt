@@ -6,6 +6,8 @@ Disallow: /.astro/
 Disallow: /example/
 Disallow: /frontend-deploy-prompt-data.json
 Disallow: /backend-deploy-prompt-data.json
+Disallow: /oye-nino-sql-beginners-guide.pdf
+Disallow: /sql-cheat-sheet-print.html
 
 User-agent: Googlebot
 Allow: /

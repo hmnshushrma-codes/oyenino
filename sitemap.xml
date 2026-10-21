@@ -94,6 +94,13 @@
     <priority>0.8</priority>
   </url>
 
+  <url>
+    <loc>https://oyenino.com/sql-cheat-sheet.html</loc>
+    <lastmod>2026-10-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
   <!-- Guides & Roadmaps -->
   <url>
     <loc>https://oyenino.com/roadmap.html</loc>

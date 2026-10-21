@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>SQL Explained Like a Friend — The Complete Beginner's Cheat Sheet | Oye Nino</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  @page {
+    size: A4;
+    margin: 2cm 1.8cm 2.2cm;
+    @bottom-left { content: "OYE NINO — oyenino.com"; font-family: 'Outfit', sans-serif; font-size: 7pt; color: #bbb; letter-spacing: 0.05em; }
+    @bottom-right { content: "Page " counter(page); font-family: 'Outfit', sans-serif; font-size: 7pt; color: #bbb; }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Outfit', system-ui, sans-serif; font-size: 10.5pt; line-height: 1.65; color: #1a1a1a; }
+
+  h1 { font-size: 22pt; font-weight: 600; margin-bottom: 4pt; letter-spacing: -0.02em; }
+  h1 em { font-style: italic; color: #2563eb; }
+  .subtitle { font-size: 10pt; color: #666; margin-bottom: 6pt; }
+  .brand { font-size: 9pt; color: #2563eb; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 16pt; }
+
+  h2 { font-size: 14pt; font-weight: 600; color: #2563eb; margin-top: 20pt; margin-bottom: 8pt; padding-bottom: 4pt; border-bottom: 1px solid #e5e7eb; page-break-after: avoid; }
+  h3 { font-size: 12pt; font-weight: 600; margin-top: 14pt; margin-bottom: 6pt; page-break-after: avoid; }
+  h4 { font-size: 10.5pt; font-weight: 600; margin-top: 10pt; margin-bottom: 4pt; }
+
+  p { margin-bottom: 6pt; }
+  strong { font-weight: 600; }
+  em { font-style: italic; }
+  code { font-family: 'JetBrains Mono', monospace; font-size: 9pt; background: #f0f4ff; padding: 1pt 3pt; border-radius: 2pt; color: #2563eb; }
+
+  ul, ol { margin-bottom: 8pt; padding-left: 18pt; }
+  li { margin-bottom: 3pt; }
+
+  .callout { border-radius: 6pt; padding: 8pt 10pt; margin-bottom: 8pt; font-size: 9.5pt; line-height: 1.6; }
+  .callout-imagine { background: #f0f4ff; border-left: 3pt solid #2563eb; }
+  .callout-happened { background: #f0fdf4; border-left: 3pt solid #16a34a; }
+  .callout-remember { background: #fffbeb; border-left: 3pt solid #d97706; }
+  .callout-important { background: #fef2f2; border-left: 3pt solid #dc2626; }
+
+  .story-setup { background: #f8fafc; border-left: 3pt solid #2563eb; padding: 10pt 12pt; margin-bottom: 12pt; font-size: 9.5pt; }
+
+  pre { font-family: 'JetBrains Mono', monospace; font-size: 8.5pt; line-height: 1.6; background: #f8fafc; border: 1pt solid #e5e7eb; border-radius: 6pt; padding: 8pt 10pt; margin-bottom: 8pt; white-space: pre-wrap; word-break: break-word; page-break-inside: avoid; }
+  pre .kw { color: #2563eb; font-weight: 500; }
+  pre .fn { color: #7c3aed; }
+  pre .str { color: #b45309; }
+  pre .num { color: #db2777; }
+  pre .cm { color: #9ca3af; font-style: italic; }
+  pre .type { color: #0d9488; }
+
+  table { width: 100%; border-collapse: collapse; margin-bottom: 8pt; font-size: 9pt; page-break-inside: avoid; }
+  th { background: #f0f4ff; color: #2563eb; font-weight: 600; text-align: left; padding: 5pt 8pt; border: 1pt solid #e5e7eb; font-size: 8pt; text-transform: uppercase; letter-spacing: 0.04em; }
+  td { padding: 4pt 8pt; border: 1pt solid #e5e7eb; font-family: 'JetBrains Mono', monospace; font-size: 8.5pt; }
+  td code { background: none; padding: 0; font-size: inherit; }
+
+  .mistake { margin-bottom: 6pt; padding-left: 20pt; position: relative; }
+  .mistake-num { position: absolute; left: 0; color: #2563eb; font-weight: 700; font-family: 'JetBrains Mono', monospace; }
+
+  .memory-grid { display: flex; flex-wrap: wrap; gap: 6pt; margin-bottom: 10pt; }
+  .memory-item { flex: 1 1 45%; background: #f8fafc; border: 1pt solid #e5e7eb; border-radius: 4pt; padding: 5pt 8pt; }
+  .memory-term { font-weight: 600; color: #2563eb; font-size: 9pt; }
+  .memory-def { font-size: 8.5pt; color: #666; }
+
+  .page-break { page-break-before: always; }
+  .footer-note { margin-top: 20pt; padding-top: 8pt; border-top: 1pt solid #e5e7eb; font-size: 8pt; color: #999; text-align: center; }
+
+  a { color: #2563eb; text-decoration: none; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div style="text-align:center; padding-top: 60pt;">
+  <div style="font-size:11pt; color:#2563eb; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:30pt;">OYE NINO</div>
+  <div style="width:80pt; height:3pt; background:linear-gradient(90deg,#2563eb,#00f0a0); margin:0 auto 30pt; border-radius:2pt;"></div>
+  <h1 style="font-size:28pt; margin-bottom:8pt;">SQL EXPLAINED<br><em>LIKE A FRIEND</em></h1>
+  <div class="subtitle" style="font-size:11pt; margin-bottom:6pt;">The Beginner's SQL Cheat Sheet with Practical Examples</div>
+  <div style="font-size:9.5pt; color:#888; margin-bottom:24pt;">PostgreSQL Edition &mdash; Version 1.0</div>
+  <div style="width:60pt; height:1pt; background:#e5e7eb; margin:0 auto 24pt;"></div>
+  <p style="font-size:9.5pt; color:#666; max-width:340pt; margin:0 auto 20pt;">No complicated language. No prior database knowledge. Just a college database story, real SQL examples, and explanations you can actually understand and try.</p>
+  <div style="margin-top:30pt; padding-top:16pt; border-top:1pt solid #e5e7eb;">
+    <p style="font-size:9pt; color:#666; margin-bottom:4pt;"><strong>oyenino.com</strong></p>
+    <p style="font-size:9pt; color:#999;">Instagram: @oui.nino &mdash; YouTube: @oye_nino</p>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- STORY SETUP -->
+<div class="story-setup">
+  <strong>The story:</strong> Rahul (student ID 101) and Priya (student ID 102) study at the same college. The college keeps student details in one table and relationship details in another. We'll use these two tables to understand how databases work.
+</div>
+
+<p><strong>How to use this guide:</strong> Read each &ldquo;Imagine this&rdquo; explanation, look at the SQL command, then read &ldquo;What just happened?&rdquo; before moving on. Try the exercises near the end. <strong>SQL dialect:</strong> PostgreSQL.</p>
+
+<!-- PART 1 -->
+<h2>Part 1 &mdash; Before SQL, understand the database</h2>
+
+<h3>1. What is a database?</h3>
+<div class="callout callout-imagine"><strong>Imagine this:</strong> Your college has hundreds of students. Their names, email addresses, courses and other records cannot just live on random sticky notes. You need an organized place to keep them.</div>
+<p>A <strong>database</strong> is that organized place. A <strong>table</strong> is like a register inside the database.</p>
+<ul>
+  <li><strong>Column</strong> = a type of detail, such as <code>first_name</code>.</li>
+  <li><strong>Row</strong> = one complete record, such as Rahul's details.</li>
+  <li><strong>Cell</strong> = a single value, such as <code>Rahul</code>.</li>
+</ul>
+
+<h4>Our Students table</h4>
+<table>
+  <tr><th>id</th><th>first_name</th><th>email</th></tr>
+  <tr><td>101</td><td>Rahul</td><td>rahul@college.test</td></tr>
+  <tr><td>102</td><td>Priya</td><td>priya@college.test</td></tr>
+  <tr><td>103</td><td>Aman</td><td>aman@college.test</td></tr>
+</table>
+
+<h3>2. Primary Key (PK): one unique identity</h3>
+<div class="callout callout-imagine"><strong>Imagine this:</strong> Two students can both be named Rahul. How do you tell them apart? Give each student a unique ID.</div>
+<p><code>students.id</code> is the <strong>Primary Key</strong>. It uniquely identifies each student row, and cannot be <code>NULL</code>.</p>
+
+<h3>3. Foreign Key (FK): connect two tables</h3>
+
+<h4>Relationships table</h4>
+<table>
+  <tr><th>id</th><th>student_a_id</th><th>student_b_id</th><th>relationship_status</th><th>is_deleted</th></tr>
+  <tr><td>1</td><td>101</td><td>102</td><td>dating</td><td>false</td></tr>
+</table>
+<p><code>student_a_id</code> and <code>student_b_id</code> are <strong>Foreign Keys</strong> &mdash; they point to primary-key values in the Students table.</p>
+<div class="callout callout-important"><strong>Important:</strong> A primary key does not magically become a foreign key. A <em>separate column</em> in another table stores a reference to it.</div>
+
+<h3>4. What is SQL?</h3>
+<p><strong>SQL = Structured Query Language.</strong> It's how we ask a relational database questions and tell it what to change.</p>
+<ul>
+  <li>&ldquo;Show me all students&rdquo; &rarr; <code>SELECT</code></li>
+  <li>&ldquo;Add a new student&rdquo; &rarr; <code>INSERT</code></li>
+  <li>&ldquo;Change a relationship status&rdquo; &rarr; <code>UPDATE</code></li>
+  <li>&ldquo;Remove a row&rdquo; &rarr; <code>DELETE</code></li>
+</ul>
+
+<!-- PART 2 -->
+<h2>Part 2 &mdash; Set up a safe practice database</h2>
+<div class="callout callout-important"><strong>Only run this in a new, disposable PostgreSQL database.</strong></div>
+<pre><span class="kw">CREATE TABLE</span> students (
+  id <span class="type">INTEGER</span> <span class="kw">PRIMARY KEY</span>,
+  first_name <span class="type">VARCHAR</span>(<span class="num">50</span>) <span class="kw">NOT NULL</span>,
+  email <span class="type">VARCHAR</span>(<span class="num">120</span>) <span class="kw">NOT NULL UNIQUE</span>
+);
+
+<span class="kw">CREATE TABLE</span> relationships (
+  id <span class="type">INTEGER</span> <span class="kw">PRIMARY KEY</span>,
+  student_a_id <span class="type">INTEGER</span> <span class="kw">NOT NULL REFERENCES</span> students(id),
+  student_b_id <span class="type">INTEGER</span> <span class="kw">NOT NULL REFERENCES</span> students(id),
+  relationship_status <span class="type">VARCHAR</span>(<span class="num">20</span>) <span class="kw">NOT NULL</span>,
+  is_deleted <span class="type">BOOLEAN</span> <span class="kw">NOT NULL DEFAULT FALSE</span>,
+  ended_at <span class="type">TIMESTAMPTZ</span>,
+  <span class="kw">CHECK</span> (student_a_id &lt;&gt; student_b_id)
+);
+
+<span class="kw">INSERT INTO</span> students (id, first_name, email) <span class="kw">VALUES</span>
+  (<span class="num">101</span>, <span class="str">'Rahul'</span>, <span class="str">'rahul@college.test'</span>),
+  (<span class="num">102</span>, <span class="str">'Priya'</span>, <span class="str">'priya@college.test'</span>),
+  (<span class="num">103</span>, <span class="str">'Aman'</span>, <span class="str">'aman@college.test'</span>);
+
+<span class="kw">INSERT INTO</span> relationships
+  (id, student_a_id, student_b_id, relationship_status, is_deleted)
+<span class="kw">VALUES</span>
+  (<span class="num">1</span>, <span class="num">101</span>, <span class="num">102</span>, <span class="str">'dating'</span>, <span class="num">FALSE</span>);</pre>
+
+<div class="page-break"></div>
+
+<!-- PART 3 -->
+<h2>Part 3 &mdash; Read data with SELECT (DQL)</h2>
+
+<h3>5. SELECT: &ldquo;Show me the data&rdquo;</h3>
+<div class="callout callout-imagine"><strong>Imagine this:</strong> You walk into the college office and say, &ldquo;Show me the student register.&rdquo;</div>
+<pre><span class="kw">SELECT</span> * <span class="kw">FROM</span> students;</pre>
+<div class="callout callout-happened"><strong>What just happened?</strong> <code>SELECT</code> retrieves data. <code>*</code> means all columns. <code>FROM students</code> tells SQL which table.</div>
+
+<h4>Choose only the columns you need</h4>
+<pre><span class="kw">SELECT</span> id, first_name <span class="kw">FROM</span> students;</pre>
+
+<h3>6. WHERE: &ldquo;Only the student I asked for&rdquo;</h3>
+<pre><span class="kw">SELECT</span> * <span class="kw">FROM</span> students
+<span class="kw">WHERE</span> id = <span class="num">101</span>;</pre>
+<div class="callout callout-happened"><strong>What just happened?</strong> <code>WHERE</code> filters rows. Only Rahul's record matches ID 101.</div>
+<pre><span class="kw">SELECT</span> * <span class="kw">FROM</span> students
+<span class="kw">WHERE</span> first_name = <span class="str">'Priya'</span>;</pre>
+<div class="callout callout-remember"><strong>Remember:</strong> Text uses single quotes. Numbers generally don't need them.</div>
+
+<h3>7. AND / OR / NOT: combine conditions</h3>
+<pre><span class="kw">SELECT</span> * <span class="kw">FROM</span> students
+<span class="kw">WHERE</span> id &gt;= <span class="num">101</span> <span class="kw">AND</span> id &lt;= <span class="num">102</span>;</pre>
+<pre><span class="kw">SELECT</span> * <span class="kw">FROM</span> students
+<span class="kw">WHERE</span> first_name = <span class="str">'Rahul'</span> <span class="kw">OR</span> first_name = <span class="str">'Aman'</span>;</pre>
+
+<h3>8. ORDER BY: arrange the results</h3>
+<pre><span class="kw">SELECT</span> id, first_name <span class="kw">FROM</span> students
+<span class="kw">ORDER BY</span> first_name <span class="kw">ASC</span>;</pre>
+<div class="callout callout-happened"><strong>What just happened?</strong> Results sorted A &rarr; Z. Use <code>DESC</code> for reverse.</div>
+
+<h3>9. LIMIT and OFFSET: show a small page</h3>
+<pre><span class="kw">SELECT</span> id, first_name <span class="kw">FROM</span> students
+<span class="kw">ORDER BY</span> id
+<span class="kw">LIMIT</span> <span class="num">2</span> <span class="kw">OFFSET</span> <span class="num">0</span>;</pre>
+<div class="callout callout-happened"><strong>What just happened?</strong> Returns the first two students. <code>OFFSET 2</code> would skip those and show the next page.</div>
+
+<h3>10. LIKE and ILIKE: search by text</h3>
+<pre><span class="kw">SELECT</span> * <span class="kw">FROM</span> students
+<span class="kw">WHERE</span> first_name <span class="kw">ILIKE</span> <span class="str">'ra%'</span>;</pre>
+<div class="callout callout-happened"><strong>What just happened?</strong> PostgreSQL <code>ILIKE</code> is case-insensitive. <code>%</code> matches any characters. Rahul matches.</div>
+
+<h3>11. IN and BETWEEN: shorthand filters</h3>
+<pre><span class="kw">SELECT</span> * <span class="kw">FROM</span> students
+<span class="kw">WHERE</span> id <span class="kw">IN</span> (<span class="num">101</span>, <span class="num">103</span>);</pre>
+<pre><span class="kw">SELECT</span> * <span class="kw">FROM</span> students
+<span class="kw">WHERE</span> id <span class="kw">BETWEEN</span> <span class="num">101</span> <span class="kw">AND</span> <span class="num">102</span>;</pre>
+
+<h3>12. IS NULL: missing information</h3>
+<pre><span class="kw">SELECT</span> * <span class="kw">FROM</span> relationships
+<span class="kw">WHERE</span> ended_at <span class="kw">IS NULL</span>;</pre>
+<div class="callout callout-happened"><strong>What just happened?</strong> Finds records with no end date. Use <code>IS NULL</code>, not <code>= NULL</code>.</div>
+
+<div class="page-break"></div>
+
+<!-- PART 4 -->
+<h2>Part 4 &mdash; Read related data with JOIN</h2>
+
+<h3>13. JOIN: connect IDs to names</h3>
+<div class="callout callout-imagine"><strong>Imagine this:</strong> The Relationships table says <code>101</code> and <code>102</code>. You want the actual names.</div>
+<pre><span class="kw">SELECT</span>
+  a.first_name <span class="kw">AS</span> student,
+  b.first_name <span class="kw">AS</span> partner,
+  r.relationship_status <span class="kw">AS</span> status
+<span class="kw">FROM</span> relationships <span class="kw">AS</span> r
+<span class="kw">JOIN</span> students <span class="kw">AS</span> a <span class="kw">ON</span> r.student_a_id = a.id
+<span class="kw">JOIN</span> students <span class="kw">AS</span> b <span class="kw">ON</span> r.student_b_id = b.id
+<span class="kw">WHERE</span> r.id = <span class="num">1</span> <span class="kw">AND</span> r.is_deleted = <span class="num">FALSE</span>;</pre>
+
+<p><strong>Expected result:</strong></p>
+<table>
+  <tr><th>student</th><th>partner</th><th>status</th></tr>
+  <tr><td>Rahul</td><td>Priya</td><td>dating</td></tr>
+</table>
+
+<h4>INNER JOIN vs LEFT JOIN</h4>
+<ul>
+  <li><strong>INNER JOIN</strong> (plain <code>JOIN</code>) returns rows only when matching records exist on both sides.</li>
+  <li><strong>LEFT JOIN</strong> keeps every row from the left table, even if the right table has no match.</li>
+</ul>
+<pre><span class="kw">SELECT</span> s.first_name, r.id <span class="kw">AS</span> relationship_id
+<span class="kw">FROM</span> students <span class="kw">AS</span> s
+<span class="kw">LEFT JOIN</span> relationships <span class="kw">AS</span> r
+  <span class="kw">ON</span> r.student_a_id = s.id <span class="kw">AND</span> r.is_deleted = <span class="num">FALSE</span>
+<span class="kw">ORDER BY</span> s.id;</pre>
+
+<!-- PART 5 -->
+<h2>Part 5 &mdash; Change data with DML</h2>
+
+<h3>14. INSERT: add a new record</h3>
+<pre><span class="kw">INSERT INTO</span> students (id, first_name, email)
+<span class="kw">VALUES</span> (<span class="num">104</span>, <span class="str">'Neha'</span>, <span class="str">'neha@college.test'</span>);</pre>
+
+<h3>15. UPDATE: change existing information</h3>
+<pre><span class="kw">UPDATE</span> relationships
+<span class="kw">SET</span> relationship_status = <span class="str">'broken_up'</span>,
+    is_deleted = <span class="num">TRUE</span>,
+    ended_at = <span class="fn">CURRENT_TIMESTAMP</span>
+<span class="kw">WHERE</span> id = <span class="num">1</span>;</pre>
+<div class="callout callout-important"><strong>Very important:</strong> <code>UPDATE</code> without <code>WHERE</code> can modify <em>every row</em> in the table.</div>
+
+<h3>16. Soft delete vs hard delete</h3>
+<p><strong>Soft delete:</strong> Mark inactive with a flag like <code>is_deleted</code>. <strong>Hard delete:</strong> <code>DELETE FROM</code> removes the row.</p>
+<pre><span class="cm">-- Normal active view</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> relationships <span class="kw">WHERE</span> is_deleted = <span class="num">FALSE</span>;
+
+<span class="cm">-- Hard delete (DANGEROUS)</span>
+<span class="kw">DELETE FROM</span> relationships <span class="kw">WHERE</span> id = <span class="num">1</span>;</pre>
+
+<h3>17. DELETE: removing a row is not the same as DROP</h3>
+<pre><span class="kw">DELETE FROM</span> students <span class="kw">WHERE</span> id = <span class="num">104</span>;</pre>
+<p>This deletes Neha's row. It does <strong>not</strong> delete the Students table itself.</p>
+
+<div class="page-break"></div>
+
+<!-- PART 6 -->
+<h2>Part 6 &mdash; Count and summarize records</h2>
+
+<h3>18. COUNT</h3>
+<pre><span class="kw">SELECT</span> <span class="fn">COUNT</span>(*) <span class="kw">AS</span> total_students <span class="kw">FROM</span> students;</pre>
+
+<h3>19. GROUP BY</h3>
+<pre><span class="kw">SELECT</span> relationship_status, <span class="fn">COUNT</span>(*) <span class="kw">AS</span> total
+<span class="kw">FROM</span> relationships
+<span class="kw">GROUP BY</span> relationship_status;</pre>
+
+<h3>20. HAVING: filter the groups</h3>
+<pre><span class="kw">SELECT</span> relationship_status, <span class="fn">COUNT</span>(*) <span class="kw">AS</span> total
+<span class="kw">FROM</span> relationships
+<span class="kw">GROUP BY</span> relationship_status
+<span class="kw">HAVING</span> <span class="fn">COUNT</span>(*) &gt;= <span class="num">1</span>;</pre>
+<p><code>WHERE</code> filters rows <em>before</em> grouping. <code>HAVING</code> filters groups <em>after</em>.</p>
+
+<h3>21. DISTINCT</h3>
+<pre><span class="kw">SELECT DISTINCT</span> relationship_status <span class="kw">FROM</span> relationships;</pre>
+
+<!-- PART 7 -->
+<h2>Part 7 &mdash; The five common SQL categories</h2>
+<table>
+  <tr><th>Category</th><th>Full form</th><th>Meaning</th><th>Commands</th></tr>
+  <tr><td><strong>DQL</strong></td><td>Data Query Language</td><td>Show me something</td><td><code>SELECT</code></td></tr>
+  <tr><td><strong>DML</strong></td><td>Data Manipulation Language</td><td>Change the records</td><td><code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code></td></tr>
+  <tr><td><strong>DDL</strong></td><td>Data Definition Language</td><td>Build/change the registers</td><td><code>CREATE</code>, <code>ALTER</code>, <code>DROP</code>, <code>TRUNCATE</code></td></tr>
+  <tr><td><strong>DCL</strong></td><td>Data Control Language</td><td>Who is allowed?</td><td><code>GRANT</code>, <code>REVOKE</code></td></tr>
+  <tr><td><strong>TCL</strong></td><td>Transaction Control Language</td><td>Save or undo changes</td><td><code>COMMIT</code>, <code>ROLLBACK</code>, <code>SAVEPOINT</code></td></tr>
+</table>
+
+<h3>22. DDL: CREATE, ALTER, DROP, TRUNCATE</h3>
+<pre><span class="kw">ALTER TABLE</span> students <span class="kw">ADD COLUMN</span> enrolled_year <span class="type">INTEGER</span>;</pre>
+
+<h3>23. DCL: GRANT and REVOKE</h3>
+<pre><span class="kw">GRANT SELECT ON</span> students <span class="kw">TO</span> college_reader;
+<span class="kw">REVOKE SELECT ON</span> students <span class="kw">FROM</span> college_reader;</pre>
+
+<h3>24. TCL: BEGIN, COMMIT, ROLLBACK</h3>
+<pre><span class="kw">BEGIN</span>;
+<span class="kw">UPDATE</span> relationships
+<span class="kw">SET</span> relationship_status = <span class="str">'dating'</span>,
+    is_deleted = <span class="num">FALSE</span>, ended_at = <span class="kw">NULL</span>
+<span class="kw">WHERE</span> id = <span class="num">1</span>;
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> relationships <span class="kw">WHERE</span> id = <span class="num">1</span>;
+<span class="kw">ROLLBACK</span>;
+<span class="cm">-- Or use COMMIT to save the change.</span></pre>
+
+<h4>SAVEPOINT</h4>
+<pre><span class="kw">BEGIN</span>;
+<span class="kw">SAVEPOINT</span> before_change;
+<span class="kw">UPDATE</span> relationships <span class="kw">SET</span> is_deleted = <span class="num">FALSE</span> <span class="kw">WHERE</span> id = <span class="num">1</span>;
+<span class="kw">ROLLBACK TO SAVEPOINT</span> before_change;
+<span class="kw">COMMIT</span>;</pre>
+
+<div class="page-break"></div>
+
+<!-- PART 8 -->
+<h2>Part 8 &mdash; Quick syntax reference</h2>
+<table>
+  <tr><th>Want to&hellip;</th><th>Pattern</th></tr>
+  <tr><td>See all rows</td><td><code>SELECT * FROM table_name;</code></td></tr>
+  <tr><td>See chosen columns</td><td><code>SELECT col1, col2 FROM table_name;</code></td></tr>
+  <tr><td>Filter rows</td><td><code>SELECT * FROM table_name WHERE condition;</code></td></tr>
+  <tr><td>Sort results</td><td><code>SELECT * FROM table_name ORDER BY col1 DESC;</code></td></tr>
+  <tr><td>Show a few rows</td><td><code>SELECT * FROM table_name ORDER BY id LIMIT 10;</code></td></tr>
+  <tr><td>Add a row</td><td><code>INSERT INTO table_name (col1) VALUES ('value');</code></td></tr>
+  <tr><td>Update a row</td><td><code>UPDATE table_name SET col1 = 'value' WHERE id = 1;</code></td></tr>
+  <tr><td>Delete a row</td><td><code>DELETE FROM table_name WHERE id = 1;</code></td></tr>
+  <tr><td>Count rows</td><td><code>SELECT COUNT(*) FROM table_name;</code></td></tr>
+  <tr><td>Combine related rows</td><td><code>SELECT * FROM a JOIN b ON a.id = b.a_id;</code></td></tr>
+  <tr><td>Group results</td><td><code>SELECT col1, COUNT(*) FROM table_name GROUP BY col1;</code></td></tr>
+  <tr><td>Hide soft-deleted</td><td><code>SELECT * FROM table_name WHERE is_deleted = FALSE;</code></td></tr>
+</table>
+
+<!-- PART 9 -->
+<h2>Part 9 &mdash; Five beginner mistakes to avoid</h2>
+<div class="mistake"><span class="mistake-num">1.</span> <strong>Forgetting <code>WHERE</code> in UPDATE or DELETE.</strong> Without it, you may change or remove every row.</div>
+<div class="mistake"><span class="mistake-num">2.</span> <strong>Thinking FK values must be different from PK values.</strong> A foreign key is supposed to match a referenced key value.</div>
+<div class="mistake"><span class="mistake-num">3.</span> <strong>Thinking <code>JOIN</code> permanently merges tables.</strong> A JOIN combines related rows in a query result; the underlying tables remain separate.</div>
+<div class="mistake"><span class="mistake-num">4.</span> <strong>Thinking <code>is_deleted = TRUE</code> removes data.</strong> It changes a flag; your queries must intentionally exclude those rows.</div>
+<div class="mistake"><span class="mistake-num">5.</span> <strong>Using <code>= NULL</code>.</strong> Use <code>IS NULL</code> or <code>IS NOT NULL</code>.</div>
+<div class="callout callout-important" style="margin-top:8pt"><strong>Bonus:</strong> Never concatenate untrusted user input directly into SQL strings. Use parameterized queries to prevent SQL injection.</div>
+
+<!-- PART 10 -->
+<h2>Part 10 &mdash; Practice exercises</h2>
+<p><strong>Q1.</strong> Show only student names.<br>
+<strong>Q2.</strong> Find the student whose ID is 102.<br>
+<strong>Q3.</strong> Show students in alphabetical order.<br>
+<strong>Q4.</strong> Find Rahul's partner's name using both tables.<br>
+<strong>Q5.</strong> Show all relationships that are not soft-deleted.<br>
+<strong>Q6.</strong> Count the number of students.</p>
+
+<h4>Answers</h4>
+<pre><span class="cm">-- Q1</span>
+<span class="kw">SELECT</span> first_name <span class="kw">FROM</span> students;
+
+<span class="cm">-- Q2</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> students <span class="kw">WHERE</span> id = <span class="num">102</span>;
+
+<span class="cm">-- Q3</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> students <span class="kw">ORDER BY</span> first_name <span class="kw">ASC</span>;
+
+<span class="cm">-- Q4</span>
+<span class="kw">SELECT</span> b.first_name <span class="kw">AS</span> partner
+<span class="kw">FROM</span> relationships <span class="kw">AS</span> r
+<span class="kw">JOIN</span> students <span class="kw">AS</span> b <span class="kw">ON</span> b.id = r.student_b_id
+<span class="kw">WHERE</span> r.student_a_id = <span class="num">101</span> <span class="kw">AND</span> r.is_deleted = <span class="num">FALSE</span>;
+
+<span class="cm">-- Q5</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> relationships <span class="kw">WHERE</span> is_deleted = <span class="num">FALSE</span>;
+
+<span class="cm">-- Q6</span>
+<span class="kw">SELECT</span> <span class="fn">COUNT</span>(*) <span class="kw">FROM</span> students;</pre>
+
+<!-- PART 11 -->
+<h2>Part 11 &mdash; One-page memory map</h2>
+<div class="memory-grid">
+  <div class="memory-item"><div class="memory-term">Database</div><div class="memory-def">Organized collection of data.</div></div>
+  <div class="memory-item"><div class="memory-term">Table</div><div class="memory-def">Rows and columns.</div></div>
+  <div class="memory-item"><div class="memory-term">Primary Key</div><div class="memory-def">Unique ID for one row.</div></div>
+  <div class="memory-item"><div class="memory-term">Foreign Key</div><div class="memory-def">Column referencing another table's key.</div></div>
+  <div class="memory-item"><div class="memory-term">SELECT</div><div class="memory-def">Read data.</div></div>
+  <div class="memory-item"><div class="memory-term">WHERE</div><div class="memory-def">Filter rows.</div></div>
+  <div class="memory-item"><div class="memory-term">JOIN</div><div class="memory-def">Connect related records in query results.</div></div>
+  <div class="memory-item"><div class="memory-term">INSERT</div><div class="memory-def">Add data.</div></div>
+  <div class="memory-item"><div class="memory-term">UPDATE</div><div class="memory-def">Modify data.</div></div>
+  <div class="memory-item"><div class="memory-term">DELETE</div><div class="memory-def">Remove rows.</div></div>
+  <div class="memory-item"><div class="memory-term">Soft delete</div><div class="memory-def">Keep row, mark it inactive/hidden.</div></div>
+  <div class="memory-item"><div class="memory-term">COMMIT / ROLLBACK</div><div class="memory-def">Save / undo a transaction.</div></div>
+</div>
+
+<p style="margin-top:14pt"><strong>If you understood how Rahul's ID 101 connects to a relationship row, how SQL retrieves Priya's name, and how UPDATE can hide the record without deleting it, you already understand the foundation of relational databases.</strong></p>
+<p style="margin-top:8pt"><strong>Keep learning, keep building. &mdash; Oye Nino</strong></p>
+
+<div class="footer-note">
+  <p>Educational note: All names, emails and records in this guide are fictional.</p>
+</div>
+
+<div class="page-break"></div>
+
+<!-- FINAL PAGE -->
+<div style="text-align:center; padding-top:80pt;">
+  <div style="font-size:11pt; color:#2563eb; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:20pt;">OYE NINO</div>
+  <h2 style="border:none; margin-top:0; padding-bottom:0; font-size:18pt;">Keep learning, keep building.</h2>
+  <p style="font-size:10pt; color:#666; margin-top:16pt; max-width:340pt; margin-left:auto; margin-right:auto;">If this guide helped you, share it with a friend who's starting their SQL journey. More free guides, prompts and tools are waiting for you.</p>
+  <div style="margin-top:30pt;">
+    <p style="font-size:10pt; margin-bottom:6pt;"><strong>Follow Oye Nino</strong></p>
+    <p style="font-size:9.5pt; color:#666; margin-bottom:4pt;">Instagram: <strong>@oui.nino</strong></p>
+    <p style="font-size:9.5pt; color:#666; margin-bottom:4pt;">YouTube: <strong>@oye_nino</strong></p>
+    <p style="font-size:9.5pt; color:#666; margin-bottom:4pt;">Website: <strong>oyenino.com</strong></p>
+  </div>
+  <div style="margin-top:30pt; padding-top:16pt; border-top:1pt solid #e5e7eb;">
+    <p style="font-size:9pt; color:#999;">Free prompts, deploy guides, AI tools &amp; more at <strong>oyenino.com/prompts.html</strong></p>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1453 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BGL94NLVL7"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-BGL94NLVL7");</script>
+    <title>SQL Cheat Sheet for Beginners (Free PDF) | Oye Nino</title>
+    <meta name="description" content="Learn SQL from scratch with simple examples. Understand SELECT, JOIN, UPDATE, Primary Keys, Foreign Keys and more. Get Oye Nino's free SQL cheat sheet." />
+    <meta name="keywords" content="SQL cheat sheet, learn SQL beginners, SQL tutorial hindi, SQL explained simple, PostgreSQL basics, SELECT JOIN UPDATE, primary key foreign key, SQL examples, oye nino, Himanshu" />
+    <meta name="author" content="Himanshu (@oye.nino)" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://oyenino.com/sql-cheat-sheet.html" />
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:title" content="SQL Cheat Sheet for Beginners (Free PDF) | Oye Nino" />
+    <meta property="og:description" content="Learn SQL from scratch with simple examples. Understand SELECT, JOIN, UPDATE, Primary Keys, Foreign Keys and more. Free cheat sheet by Oye Nino." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://oyenino.com/sql-cheat-sheet.html" />
+    <meta property="og:image" content="https://oyenino.com/og-image.jpg" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SQL Cheat Sheet for Beginners (Free PDF) | Oye Nino" />
+    <meta name="twitter:description" content="Learn SQL from scratch with simple examples. SELECT, JOIN, UPDATE, Primary Keys, Foreign Keys and more. Free guide by Oye Nino." />
+    <meta name="twitter:image" content="https://oyenino.com/og-image.jpg" />
+
+    <!-- STRUCTURED DATA -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LearningResource",
+        "name": "SQL Explained Like a Friend — The Complete Beginner's Cheat Sheet",
+        "description": "Learn SQL from scratch with a college database story: tables, primary and foreign keys, SELECT, JOIN, UPDATE, soft delete, and practical examples.",
+        "url": "https://oyenino.com/sql-cheat-sheet.html",
+        "educationalLevel": "Beginner",
+        "inLanguage": "en",
+        "teaches": ["SQL", "PostgreSQL", "Database fundamentals", "SELECT", "JOIN", "INSERT", "UPDATE", "DELETE"],
+        "author": {
+          "@type": "Person",
+          "name": "Himanshu",
+          "sameAs": [
+            "https://www.instagram.com/oye.nino",
+            "https://youtube.com/@oye_nino"
+          ]
+        },
+        "isPartOf": { "@type": "WebSite", "url": "https://oyenino.com" }
+      }
+    </script>
+
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+      :root{--bg:#050505;--bg-elevated:#0c0c0c;--bg-card:#111111;--bg-card-hover:#161616;--text:#eeeae4;--text-mid:#b5b0a8;--text-muted:#706c66;--accent:#00F0A0;--accent-dim:#00c583;--accent-glow:rgba(0,240,160,0.1);--accent-glow-strong:rgba(0,240,160,0.2);--border:#1a1a1a;--border-hover:#2a2a2a;--serif:'Playfair Display',Georgia,serif;--sans:'Outfit',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--radius:16px;--transition:0.35s cubic-bezier(0.25,0.46,0.45,0.94);--sql-blue:#60a5fa;--sql-blue-glow:rgba(96,165,250,0.12);--sql-blue-glow-strong:rgba(96,165,250,0.22)}
+      html{scroll-behavior:smooth;overflow-x:hidden}
+      body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+      ::selection{background:var(--accent);color:var(--bg)}
+      body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:50}
+
+      /* NAV */
+      nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0.85rem 2rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(24px) saturate(1.2);-webkit-backdrop-filter:blur(24px) saturate(1.2);background:rgba(5,5,5,0.8);border-bottom:1px solid rgba(255,255,255,0.04)}
+      .nav-logo{font-family:var(--sans);font-size:1.25rem;font-weight:600;color:var(--text);text-decoration:none;letter-spacing:-0.02em;flex-shrink:0}
+      .nav-logo span{color:var(--accent)}
+      .nav-links{display:flex;align-items:center;gap:2rem}
+      .nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.85rem;font-weight:400;letter-spacing:0.02em;transition:color var(--transition);position:relative}
+      .nav-links a:not(.nav-cta)::after{content:"";position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width var(--transition)}
+      .nav-links a:not(.nav-cta):hover{color:var(--text)}
+      .nav-links a:not(.nav-cta):hover::after{width:100%}
+      .nav-cta{background:var(--accent);color:var(--bg) !important;padding:0.5rem 1.5rem;border-radius:100px;font-weight:600;font-size:0.85rem;transition:transform 0.2s,box-shadow 0.3s;white-space:nowrap}
+      .nav-cta:hover{color:var(--bg) !important;transform:translateY(-1px);box-shadow:0 4px 24px var(--accent-glow-strong)}
+      .mobile-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px;z-index:101;width:32px;height:32px;position:relative;flex-shrink:0}
+      .ham-line{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:transform 0.3s,opacity 0.3s;position:absolute;left:5px}
+      .ham-line:nth-child(1){top:8px}.ham-line:nth-child(2){top:15px}.ham-line:nth-child(3){top:22px}
+      .mobile-toggle.open .ham-line:nth-child(1){transform:translateY(7px) rotate(45deg)}.mobile-toggle.open .ham-line:nth-child(2){opacity:0}.mobile-toggle.open .ham-line:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+      /* HERO */
+      .page-hero{padding:8rem 2rem 3rem;max-width:900px;margin:0 auto;position:relative}
+      .hero-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:400px;background:radial-gradient(ellipse,var(--sql-blue-glow) 0%,transparent 65%);pointer-events:none;filter:blur(80px);animation:breathe 6s ease-in-out infinite}
+      @keyframes breathe{0%,100%{opacity:.4;transform:translateX(-50%) scale(1)}50%{opacity:.7;transform:translateX(-50%) scale(1.05)}}
+      .page-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;font-weight:500;animation:fadeUp .6s ease forwards}
+      .pulse{width:7px;height:7px;background:var(--accent);border-radius:50%;animation:pls 2s ease-in-out infinite}
+      @keyframes pls{0%,100%{opacity:1;box-shadow:0 0 0 0 var(--accent-glow-strong)}50%{opacity:.6;box-shadow:0 0 0 8px transparent}}
+      .page-hero h1{font-family:var(--serif);font-size:clamp(2.4rem,6vw,4.2rem);font-weight:400;line-height:1.1;letter-spacing:-0.03em;margin-bottom:1rem;animation:fadeUp .6s ease forwards .1s;opacity:0}
+      .page-hero h1 em{font-style:italic;color:var(--sql-blue)}
+      .hero-comment{font-family:var(--mono);font-size:.9rem;color:var(--text-muted);margin-bottom:2.5rem;animation:fadeUp .6s ease forwards .2s;opacity:0}
+      .hero-comment span{color:var(--text-mid)}
+      .hero-sub{font-size:1.05rem;color:var(--text-mid);font-weight:300;line-height:1.7;margin-bottom:2rem;max-width:640px;animation:fadeUp .6s ease forwards .2s;opacity:0}
+      @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+      /* PREVIEW SNIPPET */
+      .showcase{max-width:900px;margin:0 auto 3rem;padding:0 2rem;animation:fadeUp .6s ease forwards .3s;opacity:0}
+      .preview-box{background:#0a0a0a;border-radius:20px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.4),0 0 0 1px rgba(255,255,255,0.05);padding:2rem}
+      .preview-label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sql-blue);font-weight:500;margin-bottom:1rem}
+      .preview-code{font-family:var(--mono);font-size:.82rem;line-height:1.7;color:var(--text-mid);white-space:pre-wrap;word-break:break-word}
+      .preview-code .kw{color:var(--sql-blue);font-weight:500}
+      .preview-code .str{color:#a78bfa}
+      .preview-code .cm{color:#555}
+      .preview-result{margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,0.06)}
+      .preview-result-label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:.75rem}
+
+      /* FEATURES */
+      .features{max-width:900px;margin:0 auto 3rem;padding:0 2rem;animation:fadeUp .6s ease forwards .35s;opacity:0}
+      .features-title{font-family:var(--serif);font-size:1.4rem;font-weight:400;margin-bottom:1.5rem;color:var(--text)}
+      .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+      .feature-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.25rem;transition:border-color var(--transition)}
+      .feature-card:hover{border-color:var(--border-hover)}
+      .feature-icon{font-size:1.2rem;margin-bottom:.5rem}
+      .feature-name{font-size:.9rem;font-weight:600;color:var(--text);margin-bottom:.3rem}
+      .feature-desc{font-size:.78rem;color:var(--text-muted);font-weight:300;line-height:1.5}
+
+      /* GATE */
+      .gate-wrap{max-width:520px;margin:0 auto 5rem;padding:0 2rem;animation:fadeUp .6s ease forwards .4s;opacity:0}
+      .gate-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem;position:relative;overflow:hidden}
+      .gate-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent 60%)}
+      .gate-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;margin-bottom:.4rem}
+      .gate-subtitle{font-size:.88rem;color:var(--text-muted);margin-bottom:1.75rem;font-weight:300}
+      .gate-subtitle strong{color:var(--text-mid);font-weight:500}
+      .teaser-list{list-style:none;margin-bottom:1.75rem;display:flex;flex-direction:column;gap:.6rem}
+      .teaser-list li{display:flex;align-items:center;gap:.75rem;font-size:.88rem;color:var(--text-mid);font-weight:300}
+      .teaser-list li::before{content:'\2713';color:var(--accent);font-weight:700;flex-shrink:0}
+      .form-group{margin-bottom:1rem}
+      .form-group label{display:block;font-size:.72rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.45rem;font-weight:500}
+      .form-group input{width:100%;padding:.8rem 1rem;background:var(--bg);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:var(--sans);font-size:.9rem;font-weight:300;transition:border-color var(--transition),box-shadow var(--transition);outline:none}
+      .form-group input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+      .form-group input::placeholder{color:#444}
+      .consent-group{margin-bottom:1rem;display:flex;align-items:flex-start;gap:.6rem}
+      .consent-group input[type="checkbox"]{width:18px;height:18px;margin-top:2px;accent-color:var(--accent);flex-shrink:0;cursor:pointer}
+      .consent-group label{font-size:.78rem;color:var(--text-muted);font-weight:300;line-height:1.5;cursor:pointer}
+      .btn-unlock{width:100%;padding:1rem;background:var(--accent);color:var(--bg);border:none;border-radius:100px;font-family:var(--sans);font-size:.95rem;font-weight:600;cursor:pointer;transition:transform .2s,box-shadow .3s;margin-top:.5rem;display:flex;align-items:center;justify-content:center;gap:.5rem}
+      .btn-unlock:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 32px var(--accent-glow-strong)}
+      .btn-unlock:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
+      .gate-privacy{text-align:center;font-size:.72rem;color:var(--text-muted);margin-top:1rem;font-weight:300}
+      .error-msg{color:#ff6b6b;font-size:.8rem;margin-top:.5rem;display:none}
+      .error-msg.show{display:block}
+
+      /* PROMPT CONTENT */
+      #prompt-content{display:none;max-width:900px;margin:0 auto;padding:0 2rem 6rem}
+      #prompt-content.unlocked{display:block;animation:fadeUp .7s ease forwards}
+
+      /* UNLOCK BANNER */
+      .unlock-banner{background:linear-gradient(135deg,rgba(0,240,160,0.06),rgba(0,240,160,0.02));border:1px solid rgba(0,240,160,0.2);border-radius:var(--radius);padding:1.5rem 2rem;margin-bottom:2rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+      .unlock-icon{font-size:1.75rem}
+      .unlock-text strong{display:block;font-size:1rem;margin-bottom:.2rem}
+      .unlock-text span{font-size:.85rem;color:var(--text-muted);font-weight:300}
+
+      /* PDF BAR */
+      .pdf-bar{display:flex;align-items:center;justify-content:flex-end;gap:.75rem;margin-bottom:2rem;flex-wrap:wrap}
+      .btn-pdf{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.5rem;background:var(--bg-card);border:1px solid var(--border);border-radius:100px;color:var(--text);font-family:var(--sans);font-size:.85rem;font-weight:500;cursor:pointer;transition:border-color var(--transition),box-shadow .3s;text-decoration:none}
+      .btn-pdf:hover{border-color:var(--accent);box-shadow:0 4px 20px var(--accent-glow)}
+      .btn-pdf-sub{font-size:.68rem;color:var(--text-muted);font-weight:300}
+
+      /* TABLE OF CONTENTS */
+      .toc{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem 2rem;margin-bottom:3rem}
+      .toc-toggle{display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none}
+      .toc-toggle h3{font-family:var(--serif);font-size:1.1rem;font-weight:400}
+      .toc-arrow{font-size:.8rem;color:var(--text-muted);transition:transform .3s}
+      .toc.collapsed .toc-arrow{transform:rotate(-90deg)}
+      .toc-list{list-style:none;margin-top:1rem;display:flex;flex-direction:column;gap:.35rem}
+      .toc.collapsed .toc-list{display:none}
+      .toc-list a{color:var(--text-mid);text-decoration:none;font-size:.85rem;font-weight:300;padding:.3rem .5rem;border-radius:6px;display:block;transition:background .2s,color .2s}
+      .toc-list a:hover{background:var(--accent-glow);color:var(--accent)}
+      .toc-list .toc-part{color:var(--sql-blue);font-weight:500;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;margin-top:.75rem;padding:.3rem .5rem}
+      .toc-list .toc-part:first-child{margin-top:0}
+
+      /* GUIDE CONTENT */
+      .guide-part{margin-bottom:3rem}
+      .guide-part-header{display:flex;align-items:center;gap:1rem;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border)}
+      .guide-part-icon{width:48px;height:48px;border-radius:12px;background:var(--sql-blue-glow);border:1px solid rgba(96,165,250,0.2);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0}
+      .guide-part-info{flex:1;min-width:200px}
+      .guide-part-eyebrow{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--sql-blue);font-weight:500;margin-bottom:.2rem}
+      .guide-part-title{font-family:var(--serif);font-size:1.6rem;font-weight:400}
+
+      .guide-section{margin-bottom:2.5rem}
+      .guide-section h3{font-family:var(--serif);font-size:1.25rem;font-weight:400;margin-bottom:.75rem;color:var(--text);scroll-margin-top:5rem}
+      .guide-section h4{font-size:1rem;font-weight:600;margin-bottom:.5rem;margin-top:1.25rem;color:var(--text)}
+      .guide-section p{font-size:.9rem;color:var(--text-mid);font-weight:300;line-height:1.75;margin-bottom:.75rem}
+      .guide-section ul,.guide-section ol{margin-bottom:1rem;padding-left:1.25rem}
+      .guide-section li{font-size:.88rem;color:var(--text-mid);font-weight:300;line-height:1.7;margin-bottom:.35rem}
+      .guide-section strong{color:var(--text);font-weight:500}
+
+      /* CALLOUT BOXES */
+      .callout{border-radius:12px;padding:1rem 1.25rem;margin-bottom:1rem;font-size:.88rem;line-height:1.7;font-weight:300}
+      .callout-imagine{background:rgba(96,165,250,0.06);border:1px solid rgba(96,165,250,0.15);color:var(--text-mid)}
+      .callout-imagine::before{content:'💡 ';font-size:.9rem}
+      .callout-happened{background:rgba(0,240,160,0.04);border:1px solid rgba(0,240,160,0.12);color:var(--text-mid)}
+      .callout-happened::before{content:'✅ ';font-size:.9rem}
+      .callout-remember{background:rgba(255,217,61,0.05);border:1px solid rgba(255,217,61,0.15);color:var(--text-mid)}
+      .callout-remember::before{content:'⚠️ ';font-size:.9rem}
+      .callout-important{background:rgba(255,107,107,0.05);border:1px solid rgba(255,107,107,0.15);color:var(--text-mid)}
+      .callout-important::before{content:'🚨 ';font-size:.9rem}
+      .callout strong{color:var(--text);font-weight:500}
+      blockquote.story-setup{background:var(--bg-card);border-left:3px solid var(--sql-blue);border-radius:0 12px 12px 0;padding:1.25rem 1.5rem;margin-bottom:1.5rem;font-size:.9rem;color:var(--text-mid);font-weight:300;line-height:1.7}
+      blockquote.story-setup strong{color:var(--text);font-weight:500}
+
+      /* CODE BLOCKS */
+      .code-block{position:relative;margin-bottom:1rem;border-radius:12px;overflow:hidden;background:#0a0a0a;border:1px solid rgba(255,255,255,0.06)}
+      .code-header{display:flex;align-items:center;justify-content:space-between;padding:.5rem 1rem;background:rgba(255,255,255,0.03);border-bottom:1px solid rgba(255,255,255,0.05)}
+      .code-lang{font-family:var(--mono);font-size:.68rem;color:var(--sql-blue);letter-spacing:.08em;text-transform:uppercase;font-weight:500}
+      .copy-btn{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:.25rem .6rem;font-size:.68rem;font-weight:500;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:var(--sans)}
+      .copy-btn:hover{border-color:var(--accent);color:var(--accent)}
+      .copy-btn.copied{background:var(--accent-glow);border-color:var(--accent);color:var(--accent)}
+      .code-body{padding:1rem 1.25rem;font-family:var(--mono);font-size:.8rem;line-height:1.7;color:var(--text-mid);white-space:pre-wrap;word-break:break-word;overflow-x:auto}
+      .code-body .kw{color:var(--sql-blue);font-weight:500}
+      .code-body .fn{color:#a78bfa}
+      .code-body .str{color:#fbbf24}
+      .code-body .num{color:#f472b6}
+      .code-body .cm{color:#555;font-style:italic}
+      .code-body .op{color:#94a3b8}
+      .code-body .type{color:#2dd4bf}
+
+      /* TABLES */
+      .sql-table{width:100%;border-collapse:collapse;margin-bottom:1rem;font-size:.82rem;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+      .sql-table th{background:rgba(96,165,250,0.08);color:var(--sql-blue);font-weight:600;text-align:left;padding:.65rem 1rem;font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;border-bottom:1px solid var(--border)}
+      .sql-table td{padding:.6rem 1rem;color:var(--text-mid);font-weight:300;border-bottom:1px solid rgba(255,255,255,0.03);font-family:var(--mono);font-size:.78rem}
+      .sql-table tr:last-child td{border-bottom:none}
+      .sql-table tr:hover td{background:rgba(255,255,255,0.02)}
+      .sql-table code{background:rgba(96,165,250,0.08);padding:.1rem .35rem;border-radius:3px;font-size:.75rem;color:var(--sql-blue)}
+
+      /* EXPECTED RESULT */
+      .result-label{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:.5rem;margin-top:.5rem}
+
+      /* PRACTICE */
+      .practice-section{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;margin-bottom:2rem}
+      .practice-section h3{margin-bottom:1rem}
+      .practice-list{list-style:none;counter-reset:q;display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.5rem}
+      .practice-list li{counter-increment:q;display:flex;gap:.75rem;font-size:.88rem;color:var(--text-mid);font-weight:300}
+      .practice-list li::before{content:'Q' counter(q) '.';color:var(--sql-blue);font-weight:600;font-family:var(--mono);font-size:.82rem;flex-shrink:0;min-width:2rem}
+      details{border:1px solid var(--border);border-radius:12px;overflow:hidden}
+      details summary{padding:1rem 1.25rem;cursor:pointer;font-weight:600;font-size:.9rem;color:var(--accent);background:rgba(0,240,160,0.03);user-select:none}
+      details summary:hover{background:rgba(0,240,160,0.06)}
+      details[open] summary{border-bottom:1px solid var(--border)}
+      details .answers-content{padding:1rem 1.25rem}
+
+      /* MEMORY MAP */
+      .memory-map{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.5rem}
+      .memory-item{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem}
+      .memory-term{font-size:.82rem;font-weight:600;color:var(--sql-blue);margin-bottom:.2rem}
+      .memory-def{font-size:.78rem;color:var(--text-muted);font-weight:300;line-height:1.5}
+
+      /* CATEGORY TABLE */
+      .cat-table{width:100%;border-collapse:collapse;margin-bottom:1rem;font-size:.82rem;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+      .cat-table th{background:rgba(96,165,250,0.08);color:var(--sql-blue);font-weight:600;text-align:left;padding:.65rem 1rem;font-size:.75rem;border-bottom:1px solid var(--border)}
+      .cat-table td{padding:.6rem 1rem;color:var(--text-mid);font-weight:300;border-bottom:1px solid rgba(255,255,255,0.03)}
+      .cat-table tr:last-child td{border-bottom:none}
+      .cat-table td:first-child{font-weight:600;color:var(--text)}
+      .cat-table td code{background:rgba(96,165,250,0.08);padding:.1rem .35rem;border-radius:3px;font-size:.75rem;color:var(--sql-blue);font-family:var(--mono)}
+
+      /* REFERENCE TABLE */
+      .ref-table{width:100%;border-collapse:collapse;margin-bottom:1rem;font-size:.82rem;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+      .ref-table th{background:rgba(96,165,250,0.08);color:var(--sql-blue);font-weight:600;text-align:left;padding:.65rem 1rem;font-size:.75rem;border-bottom:1px solid var(--border)}
+      .ref-table td{padding:.6rem 1rem;color:var(--text-mid);font-weight:300;border-bottom:1px solid rgba(255,255,255,0.03);vertical-align:top}
+      .ref-table tr:last-child td{border-bottom:none}
+      .ref-table td code{background:rgba(96,165,250,0.08);padding:.1rem .35rem;border-radius:3px;font-size:.75rem;color:var(--sql-blue);font-family:var(--mono);white-space:nowrap}
+
+      /* MISTAKES */
+      .mistake-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.25rem 1.5rem;margin-bottom:1rem;display:flex;gap:1rem;align-items:flex-start}
+      .mistake-num{color:var(--sql-blue);font-weight:700;font-family:var(--mono);font-size:.9rem;flex-shrink:0;min-width:1.5rem}
+      .mistake-body{font-size:.88rem;color:var(--text-mid);font-weight:300;line-height:1.7}
+      .mistake-body strong{color:var(--text);font-weight:500}
+
+      /* CLOSING */
+      .closing-note{background:var(--bg-elevated);border:1px solid var(--border);border-radius:var(--radius);padding:2rem 2.25rem;margin:2.5rem 0}
+      .closing-note h3{font-family:var(--serif);font-size:1.25rem;font-weight:400;margin-bottom:1rem}
+      .closing-note p{font-size:.9rem;color:var(--text-mid);font-weight:300;line-height:1.7}
+
+      /* CTA */
+      .prompts-cta{background:linear-gradient(135deg,var(--bg-card) 0%,rgba(96,165,250,0.03) 100%);border:1px solid var(--border);border-radius:var(--radius);padding:3rem;text-align:center;margin-top:3rem;position:relative;overflow:hidden}
+      .prompts-cta::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 50%,var(--sql-blue-glow) 0%,transparent 50%);pointer-events:none;animation:rotateSlow 15s linear infinite}
+      @keyframes rotateSlow{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+      .prompts-cta h3{font-family:var(--serif);font-size:2rem;font-weight:400;margin-bottom:.6rem;position:relative}
+      .prompts-cta p{color:var(--text-mid);margin-bottom:1.75rem;font-weight:300;font-size:1rem;position:relative}
+      .btn-primary{background:var(--accent);color:var(--bg);padding:.9rem 2.25rem;border-radius:100px;text-decoration:none;font-weight:600;font-size:.95rem;transition:transform .2s,box-shadow .3s;display:inline-flex;align-items:center;gap:.5rem;position:relative}
+      .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 40px var(--accent-glow-strong)}
+      .btn-ghost{background:transparent;color:var(--text-mid);padding:.9rem 2rem;border-radius:100px;text-decoration:none;font-weight:400;font-size:.95rem;border:1px solid var(--border);transition:border-color var(--transition),color var(--transition);display:inline-flex;align-items:center;gap:.5rem}
+      .btn-ghost:hover{border-color:var(--border-hover);color:var(--text)}
+      .cta-buttons{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+
+      /* FOOTER */
+      footer{border-top:1px solid var(--border);padding:2rem;max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+      .footer-left{color:var(--text-muted);font-size:.8rem;font-weight:300}
+      .footer-links{display:flex;gap:1.5rem}
+      .footer-links a{color:var(--text-muted);text-decoration:none;font-size:.8rem;transition:color var(--transition)}
+      .footer-links a:hover{color:var(--accent)}
+
+      /* MOBILE */
+      @media(max-width:600px){
+        .nav-links{position:fixed;top:0;right:-100%;width:280px;max-width:85vw;height:100vh;height:100dvh;background:#0a0a0a;border-left:1px solid var(--border);padding:5rem 2rem 2rem;flex-direction:column;align-items:flex-start;gap:0;z-index:99;transition:right 0.35s cubic-bezier(0.4,0,0.2,1)}
+        .nav-links.open{right:0}
+        .nav-links a{padding:0.85rem 0;font-size:1rem;border-bottom:1px solid var(--border);width:100%}
+        .nav-links a:not(.nav-cta)::after{display:none}
+        .nav-cta{margin-top:1rem;text-align:center;display:block;width:100%;padding:0.85rem;border-bottom:none}
+        .mobile-toggle{display:block}
+        .page-hero{padding:7rem 1.5rem 2rem;overflow:hidden}
+        .hero-glow{width:300px;height:200px}
+        .showcase{padding:0 1rem}
+        .preview-box{padding:1.25rem}
+        .features{padding:0 1rem}
+        .feature-grid{grid-template-columns:1fr}
+        .gate-wrap{padding:0 1rem}
+        .gate-card{padding:1.75rem 1.25rem;overflow:hidden}
+        .cf-turnstile{transform:scale(.9);transform-origin:left top}
+        #prompt-content{padding:0 1rem 4rem}
+        .unlock-banner{flex-direction:column;text-align:center;padding:1.25rem}
+        .toc{padding:1.25rem}
+        .code-body{font-size:.72rem;padding:.75rem 1rem}
+        .sql-table,.cat-table,.ref-table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch}
+        .memory-map{grid-template-columns:1fr}
+        .closing-note{padding:1.5rem 1.25rem}
+        .prompts-cta{padding:2rem 1.25rem}
+        .cta-buttons{flex-direction:column;align-items:center}
+        .pdf-bar{justify-content:center}
+        footer{flex-direction:column;text-align:center;gap:.75rem}
+      }
+
+      /* PRINT STYLES */
+      @media print{
+        nav,footer,.gate-wrap,.prompts-cta,.pdf-bar,.hero-glow,.btn-pdf,.copy-btn,.toc,.unlock-banner{display:none !important}
+        body{background:#fff;color:#111;font-size:11pt;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+        body::after{display:none}
+        .page-hero{padding:1rem 0 1rem;animation:none}
+        .page-hero h1{color:#111;font-size:24pt;opacity:1;animation:none}
+        .page-hero h1 em{color:#2563eb}
+        .page-badge{color:#2563eb;animation:none}
+        .hero-comment{color:#666;animation:none;opacity:1}
+        .hero-sub{color:#444;animation:none;opacity:1}
+        .showcase{animation:none;opacity:1;margin-bottom:1.5rem}
+        .preview-box{box-shadow:none;border:1px solid #ddd;background:#f9f9f9}
+        .preview-label{color:#2563eb}
+        .preview-code{color:#333}
+        .preview-code .kw{color:#2563eb}
+        .features{animation:none;opacity:1;margin-bottom:1.5rem}
+        .feature-card{background:#f9f9f9;border-color:#ddd;page-break-inside:avoid}
+        .feature-name{color:#111}
+        .feature-desc{color:#444}
+        #prompt-content{display:block !important;padding:0;animation:none}
+        .guide-part{page-break-inside:avoid}
+        .guide-part-header{border-color:#ddd}
+        .guide-part-icon{background:#e8f0ff;border-color:#b3ccff}
+        .guide-part-eyebrow{color:#2563eb}
+        .guide-part-title{color:#111}
+        .guide-section h3{color:#111}
+        .guide-section p,.guide-section li{color:#333}
+        .callout{page-break-inside:avoid}
+        .callout-imagine{background:#f0f4ff;border-color:#b3ccff}
+        .callout-happened{background:#f0faf5;border-color:#b3e0c8}
+        .callout-remember{background:#fff8e1;border-color:#ffe082}
+        .callout-important{background:#fff5f5;border-color:#ffcccc}
+        .code-block{page-break-inside:avoid;box-shadow:none;border-color:#ddd}
+        .code-header{background:#f5f5f5;border-color:#ddd}
+        .code-lang{color:#2563eb}
+        .code-body{color:#333;background:#f9f9f9}
+        .code-body .kw{color:#2563eb}
+        .code-body .str{color:#7c3aed}
+        .code-body .cm{color:#888}
+        .code-body .num{color:#db2777}
+        .sql-table,.cat-table,.ref-table{page-break-inside:avoid}
+        .sql-table th,.cat-table th,.ref-table th{background:#e8f0ff;color:#2563eb}
+        .sql-table td,.cat-table td,.ref-table td{color:#333}
+        .sql-table code,.cat-table td code,.ref-table td code{background:#e8f0ff;color:#2563eb}
+        blockquote.story-setup{background:#f9f9f9;border-color:#2563eb}
+        .mistake-card{page-break-inside:avoid;background:#f9f9f9;border-color:#ddd}
+        .mistake-num{color:#2563eb}
+        .mistake-body{color:#333}
+        .practice-section{page-break-inside:avoid;background:#f9f9f9;border-color:#ddd}
+        .memory-item{background:#f9f9f9;border-color:#ddd}
+        .memory-term{color:#2563eb}
+        .memory-def{color:#333}
+        .closing-note{background:#f9f9f9;border-color:#ddd;page-break-inside:avoid}
+        .closing-note h3{color:#111}
+        .closing-note p{color:#333}
+        h1{page-break-after:avoid}
+        h3,h4{page-break-after:avoid}
+        a{text-decoration:none;color:#2563eb}
+        a[href]::after{content:none}
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="/" class="nav-logo">oye.nino<span>.</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="/existence/">Existence</a>
+        <a href="/prompts.html">Free Prompts</a>
+        <a href="/frontend-deploy-prompt.html">Frontend Deploy</a>
+        <a href="/backend-deploy-prompt.html">Backend Deploy</a>
+        <a href="/#contact" class="nav-cta">Let's Talk</a>
+      </div>
+      <button class="mobile-toggle" id="mobToggle" aria-label="Menu">
+        <span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span>
+      </button>
+    </nav>
+
+    <!-- HERO -->
+    <div class="page-hero">
+      <div class="hero-glow"></div>
+      <div class="page-badge"><span class="pulse"></span> Free Guide &mdash; SQL for Absolute Beginners</div>
+      <h1>SQL explained <em>like a friend.</em></h1>
+      <p class="hero-sub">No complicated language. No prior database knowledge. Just a college database story, real SQL examples, and explanations you can actually understand. PostgreSQL dialect, beginner-friendly.</p>
+      <div class="hero-comment">// tables &middot; <span>keys</span> &middot; <span>SELECT</span> &middot; <span>JOIN</span> &middot; <span>UPDATE</span> &middot; <span>soft delete</span> &middot; <span>practice exercises</span></div>
+    </div>
+
+    <!-- PREVIEW SNIPPET -->
+    <div class="showcase">
+      <div class="preview-box">
+        <div class="preview-label">Sample from the guide</div>
+        <div class="preview-code"><span class="cm">-- Find Rahul's partner using both tables</span>
+<span class="kw">SELECT</span>
+  a.first_name <span class="kw">AS</span> student,
+  b.first_name <span class="kw">AS</span> partner,
+  r.relationship_status <span class="kw">AS</span> status
+<span class="kw">FROM</span> relationships <span class="kw">AS</span> r
+<span class="kw">JOIN</span> students <span class="kw">AS</span> a <span class="kw">ON</span> r.student_a_id = a.id
+<span class="kw">JOIN</span> students <span class="kw">AS</span> b <span class="kw">ON</span> r.student_b_id = b.id
+<span class="kw">WHERE</span> r.id = <span class="num">1</span> <span class="kw">AND</span> r.is_deleted = <span class="num">FALSE</span>;</div>
+        <div class="preview-result">
+          <div class="preview-result-label">Expected result</div>
+          <table class="sql-table" style="margin-bottom:0">
+            <tr><th>student</th><th>partner</th><th>status</th></tr>
+            <tr><td>Rahul</td><td>Priya</td><td>dating</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHAT YOU GET -->
+    <div class="features">
+      <div class="features-title">Guide mein kya milega?</div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">&#128218;</div>
+          <div class="feature-name">Complete Beginner Guide</div>
+          <div class="feature-desc">Database basics se lekar JOINs, transactions aur practice exercises tak — sab ek jagah, Hinglish-friendly explanations ke saath.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128187;</div>
+          <div class="feature-name">Real SQL Examples</div>
+          <div class="feature-desc">Har concept ke saath copy-paste ready SQL code. College database story ke through — Rahul, Priya aur ek relationship table.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#128203;</div>
+          <div class="feature-name">Quick Reference Tables</div>
+          <div class="feature-desc">SQL categories, syntax patterns, aur one-page memory map — revision ke liye perfect cheat sheet.</div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">&#127919;</div>
+          <div class="feature-name">Practice Exercises</div>
+          <div class="feature-desc">6 practice questions with hidden answers — try karo pehle khud, phir check karo. Setup SQL bhi included.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CRAWLABLE EDUCATIONAL CONTENT (visible to search engines and all visitors) -->
+    <section class="seo-content" style="max-width:900px;margin:0 auto 3rem;padding:0 2rem">
+
+      <h2 style="font-family:var(--serif);font-size:1.6rem;font-weight:400;margin-bottom:1rem;color:var(--text)">What is SQL and why learn it?</h2>
+      <p style="font-size:.95rem;color:var(--text-mid);font-weight:300;line-height:1.75;margin-bottom:1rem"><strong>SQL (Structured Query Language)</strong> is the standard language for working with relational databases. Whether you're building a web app, analyzing data, or just starting your programming journey, SQL is one of the most valuable skills you can learn. Every major tech company uses SQL &mdash; from startups to Google, Amazon and Meta.</p>
+      <p style="font-size:.95rem;color:var(--text-mid);font-weight:300;line-height:1.75;margin-bottom:1.5rem">This free SQL cheat sheet teaches you SQL from absolute zero using a simple college database story. No jargon, no prerequisites &mdash; just clear examples in PostgreSQL that you can try yourself.</p>
+
+      <h2 style="font-family:var(--serif);font-size:1.3rem;font-weight:400;margin-bottom:1rem;color:var(--text)">Topics covered in this SQL tutorial</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem .75rem;margin-bottom:1.5rem;font-size:.88rem;color:var(--text-mid);font-weight:300">
+        <div>&#8226; Database basics (tables, rows, columns)</div>
+        <div>&#8226; Primary Key vs Foreign Key</div>
+        <div>&#8226; SQL SELECT query with examples</div>
+        <div>&#8226; WHERE, AND, OR, NOT filters</div>
+        <div>&#8226; ORDER BY, LIMIT, OFFSET</div>
+        <div>&#8226; LIKE, ILIKE, IN, BETWEEN</div>
+        <div>&#8226; SQL JOIN explained (INNER, LEFT)</div>
+        <div>&#8226; INSERT, UPDATE, DELETE (DML)</div>
+        <div>&#8226; Soft delete vs hard delete</div>
+        <div>&#8226; COUNT, GROUP BY, HAVING, DISTINCT</div>
+        <div>&#8226; CREATE, ALTER, DROP, TRUNCATE (DDL)</div>
+        <div>&#8226; GRANT, REVOKE (DCL)</div>
+        <div>&#8226; BEGIN, COMMIT, ROLLBACK (TCL)</div>
+        <div>&#8226; Practice exercises with answers</div>
+      </div>
+
+      <h2 style="font-family:var(--serif);font-size:1.3rem;font-weight:400;margin-bottom:1rem;color:var(--text)">Primary Key vs Foreign Key &mdash; quick example</h2>
+      <p style="font-size:.9rem;color:var(--text-mid);font-weight:300;line-height:1.75;margin-bottom:.75rem">A <strong>Primary Key</strong> uniquely identifies each row in a table &mdash; like a student ID. A <strong>Foreign Key</strong> is a column in another table that references that ID, connecting two tables together.</p>
+      <div style="overflow-x:auto;margin-bottom:.75rem">
+        <table class="sql-table">
+          <tr><th>id (PK)</th><th>first_name</th><th>email</th></tr>
+          <tr><td>101</td><td>Rahul</td><td>rahul@college.test</td></tr>
+          <tr><td>102</td><td>Priya</td><td>priya@college.test</td></tr>
+        </table>
+      </div>
+      <p style="font-size:.85rem;color:var(--text-muted);font-weight:300;margin-bottom:1.5rem"><code>id</code> is the Primary Key. Another table can reference <code>101</code> or <code>102</code> using a Foreign Key column, connecting student names to their records.</p>
+
+      <h2 style="font-family:var(--serif);font-size:1.3rem;font-weight:400;margin-bottom:1rem;color:var(--text)">Sample SQL query</h2>
+      <p style="font-size:.9rem;color:var(--text-mid);font-weight:300;line-height:1.75;margin-bottom:.75rem">The full guide includes 24 explained SQL commands. Here's a preview of a JOIN query that connects two tables:</p>
+      <div class="code-block">
+        <div class="code-header"><span class="code-lang">SQL</span></div>
+        <pre class="code-body"><span class="cm">-- Find Rahul's partner using a JOIN</span>
+<span class="kw">SELECT</span> a.first_name <span class="kw">AS</span> student,
+       b.first_name <span class="kw">AS</span> partner
+<span class="kw">FROM</span> relationships <span class="kw">AS</span> r
+<span class="kw">JOIN</span> students <span class="kw">AS</span> a <span class="kw">ON</span> r.student_a_id = a.id
+<span class="kw">JOIN</span> students <span class="kw">AS</span> b <span class="kw">ON</span> r.student_b_id = b.id
+<span class="kw">WHERE</span> r.is_deleted = <span class="num">FALSE</span>;</pre>
+      </div>
+      <p style="font-size:.85rem;color:var(--text-muted);font-weight:300;margin-bottom:.5rem"><strong>Result:</strong> Rahul | Priya &mdash; the JOIN connected the ID numbers to actual names from the Students table.</p>
+      <p style="font-size:.88rem;color:var(--text-mid);font-weight:300;line-height:1.75;margin-bottom:0">The complete guide explains this step by step, with 30+ SQL examples, expected results, and 6 practice exercises you can try yourself. Unlock the full guide below &darr;</p>
+
+    </section>
+
+    <!-- GATE: Form before content -->
+    <div class="gate-wrap" id="gate-section">
+      <div class="gate-card">
+        <div class="gate-title">SQL guide unlock karo &mdash; free hai</div>
+        <div class="gate-subtitle">Complete beginner's cheat sheet + practice exercises. <strong>Turant access.</strong></div>
+
+        <ul class="teaser-list">
+          <li>11 parts covering databases, SELECT, JOIN, DML, DDL, TCL</li>
+          <li>Real SQL examples with a college database story</li>
+          <li>Copy-paste ready code blocks</li>
+          <li>Practice exercises with answers</li>
+          <li>Print/PDF ready — save karke rakh lo</li>
+        </ul>
+
+        <form id="gateForm" novalidate>
+          <div class="form-group">
+            <label for="gate-name">Your Name *</label>
+            <input type="text" id="gate-name" name="name" placeholder="Rahul Sharma" required autocomplete="name" maxlength="100" />
+          </div>
+          <div class="form-group">
+            <label for="gate-phone">Phone Number *</label>
+            <input type="tel" id="gate-phone" name="phone" placeholder="+91 98765 43210" required autocomplete="tel" maxlength="20" />
+            <div class="field-status" id="phoneStatus"></div>
+          </div>
+          <div class="form-group">
+            <label for="gate-email">Email Address *</label>
+            <input type="email" id="gate-email" name="email" placeholder="rahul@gmail.com" required autocomplete="email" maxlength="120" />
+            <div class="field-status" id="emailStatus"></div>
+          </div>
+
+          <div class="consent-group">
+            <input type="checkbox" id="marketingConsent" name="marketing_consent" value="yes" />
+            <label for="marketingConsent">I'd like to receive occasional learning tips and new guides from Oye Nino. (Optional &mdash; you can unsubscribe anytime.)</label>
+          </div>
+
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAACgSvRvZpT5d_Ab5" data-theme="dark" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired" style="margin-bottom:1rem;display:flex;justify-content:center"></div>
+
+          <div class="error-msg" id="formError"></div>
+          <button type="submit" class="btn-unlock" id="unlockBtn" disabled>Sab fields fill karo</button>
+          <p class="gate-privacy">&#128274; We collect your name, email and phone number to deliver this free guide and for communication about your request. Your device type and approximate location are recorded for analytics. We do not sell or share your data. Marketing emails only if you opt in above. Kabhi bhi unsubscribe kar sakte ho. <a href="/privacy-policy.html" style="color:var(--accent);border-bottom:1px solid rgba(0,240,160,0.3)">Privacy Policy</a></p>
+        </form>
+      </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- PROMPT CONTENT — hidden until form submitted -->
+    <!-- ============================================ -->
+    <div id="prompt-content">
+      <div class="unlock-banner">
+        <div class="unlock-icon">&#127881;</div>
+        <div class="unlock-text">
+          <strong>SQL guide unlock ho gaya!</strong>
+          <span>Padho, practice karo, aur SQL seekho. Print ya PDF save bhi kar sakte ho.</span>
+        </div>
+      </div>
+
+      <!-- PDF BAR -->
+      <div class="pdf-bar">
+        <div>
+          <a href="/oye-nino-sql-beginners-guide.pdf" download="oye-nino-sql-beginners-guide.pdf" class="btn-pdf" id="pdfDownloadBtn">&#128196; Download PDF</a>
+          <div class="btn-pdf-sub">12-page PDF &mdash; save karke rakh lo</div>
+        </div>
+        <div>
+          <button class="btn-pdf" onclick="window.print()" style="opacity:0.7">&#128424; Print this page</button>
+        </div>
+      </div>
+
+      <!-- TABLE OF CONTENTS -->
+      <div class="toc" id="toc">
+        <div class="toc-toggle" onclick="document.getElementById('toc').classList.toggle('collapsed')" role="button" tabindex="0" aria-label="Toggle table of contents">
+          <h3>&#128209; Table of Contents</h3>
+          <span class="toc-arrow">&#9660;</span>
+        </div>
+        <ol class="toc-list">
+          <li class="toc-part">Part 1 &mdash; Before SQL, understand the database</li>
+          <li><a href="#sec-1">1. What is a database?</a></li>
+          <li><a href="#sec-2">2. Primary Key (PK)</a></li>
+          <li><a href="#sec-3">3. Foreign Key (FK)</a></li>
+          <li><a href="#sec-4">4. What is SQL?</a></li>
+          <li class="toc-part">Part 2 &mdash; Practice database setup</li>
+          <li><a href="#sec-setup">Setup SQL</a></li>
+          <li class="toc-part">Part 3 &mdash; Read data with SELECT</li>
+          <li><a href="#sec-5">5. SELECT</a></li>
+          <li><a href="#sec-6">6. WHERE</a></li>
+          <li><a href="#sec-7">7. AND / OR / NOT</a></li>
+          <li><a href="#sec-8">8. ORDER BY</a></li>
+          <li><a href="#sec-9">9. LIMIT and OFFSET</a></li>
+          <li><a href="#sec-10">10. LIKE and ILIKE</a></li>
+          <li><a href="#sec-11">11. IN and BETWEEN</a></li>
+          <li><a href="#sec-12">12. IS NULL</a></li>
+          <li class="toc-part">Part 4 &mdash; JOIN</li>
+          <li><a href="#sec-13">13. JOIN</a></li>
+          <li class="toc-part">Part 5 &mdash; Change data with DML</li>
+          <li><a href="#sec-14">14. INSERT</a></li>
+          <li><a href="#sec-15">15. UPDATE</a></li>
+          <li><a href="#sec-16">16. Soft delete vs hard delete</a></li>
+          <li><a href="#sec-17">17. DELETE</a></li>
+          <li class="toc-part">Part 6 &mdash; Count and summarize</li>
+          <li><a href="#sec-18">18. COUNT</a></li>
+          <li><a href="#sec-19">19. GROUP BY</a></li>
+          <li><a href="#sec-20">20. HAVING</a></li>
+          <li><a href="#sec-21">21. DISTINCT</a></li>
+          <li class="toc-part">Part 7 &mdash; SQL categories</li>
+          <li><a href="#sec-categories">Categories table</a></li>
+          <li><a href="#sec-22">22. DDL</a></li>
+          <li><a href="#sec-23">23. DCL</a></li>
+          <li><a href="#sec-24">24. TCL</a></li>
+          <li class="toc-part">Part 8&ndash;11</li>
+          <li><a href="#sec-ref">Quick reference</a></li>
+          <li><a href="#sec-mistakes">Beginner mistakes</a></li>
+          <li><a href="#sec-practice">Practice exercises</a></li>
+          <li><a href="#sec-memory">Memory map</a></li>
+        </ol>
+      </div>
+
+      <!-- STORY SETUP -->
+      <blockquote class="story-setup">
+        <strong>The story:</strong> Rahul (student ID 101) and Priya (student ID 102) study at the same college. The college keeps student details in one table and relationship details in another. We'll use these two tables to understand how databases work. No complicated relationship drama required.
+      </blockquote>
+
+      <div class="callout callout-imagine"><strong>How to use this guide:</strong> 1. Read each "Imagine this" explanation. 2. Look at the SQL command underneath. 3. Read "What just happened?" before moving on. 4. Try the exercises near the end. Run the setup SQL only in a disposable practice database &mdash; not in production.<br><br><strong>SQL dialect:</strong> PostgreSQL. Some commands vary slightly in MySQL, SQLite, and SQL Server.</div>
+
+      <!-- ==================== PART 1 ==================== -->
+      <div class="guide-part">
+        <div class="guide-part-header">
+          <div class="guide-part-icon">&#128218;</div>
+          <div class="guide-part-info">
+            <div class="guide-part-eyebrow">Part 1</div>
+            <h2 class="guide-part-title">Before SQL, understand the database</h2>
+          </div>
+        </div>
+
+        <div class="guide-section" id="sec-1">
+          <h3>1. What is a database?</h3>
+          <div class="callout callout-imagine"><strong>Imagine this:</strong> Your college has hundreds of students. Their names, email addresses, courses and other records cannot just live on random sticky notes. You need an organized place to keep them.</div>
+          <p>A <strong>database</strong> is that organized place. It stores information so an application can find and change it reliably.</p>
+          <p>A <strong>table</strong> is like a register or spreadsheet inside the database. A database can have many tables.</p>
+          <ul>
+            <li><strong>Column</strong> = a type of detail, such as <code>first_name</code>.</li>
+            <li><strong>Row</strong> = one complete record, such as Rahul's details.</li>
+            <li><strong>Cell</strong> = a single value, such as <code>Rahul</code>.</li>
+          </ul>
+          <h4>Our Students table</h4>
+          <table class="sql-table">
+            <tr><th>id</th><th>first_name</th><th>email</th></tr>
+            <tr><td>101</td><td>Rahul</td><td>rahul@college.test</td></tr>
+            <tr><td>102</td><td>Priya</td><td>priya@college.test</td></tr>
+            <tr><td>103</td><td>Aman</td><td>aman@college.test</td></tr>
+          </table>
+          <p>Here, <code>id</code>, <code>first_name</code>, and <code>email</code> are columns. Each student occupies one row.</p>
+        </div>
+
+        <div class="guide-section" id="sec-2">
+          <h3>2. Primary Key (PK): one unique identity</h3>
+          <div class="callout callout-imagine"><strong>Imagine this:</strong> Two students can both be named Rahul. How do you tell them apart? Give each student a unique ID.</div>
+          <p><code>students.id</code> is the <strong>Primary Key</strong>. It uniquely identifies each student row, and a primary key cannot be <code>NULL</code>.</p>
+          <div class="callout callout-remember"><strong>Remember:</strong> A name is not necessarily unique. A student ID is designed to be unique.</div>
+        </div>
+
+        <div class="guide-section" id="sec-3">
+          <h3>3. Foreign Key (FK): connect two tables</h3>
+          <p>Let's make a second table:</p>
+          <h4>Relationships table</h4>
+          <table class="sql-table">
+            <tr><th>id</th><th>student_a_id</th><th>student_b_id</th><th>relationship_status</th><th>is_deleted</th></tr>
+            <tr><td>1</td><td>101</td><td>102</td><td>dating</td><td>false</td></tr>
+          </table>
+          <p><code>student_a_id = 101</code> means Rahul. <code>student_b_id = 102</code> means Priya. But where do those names come from? From the <strong>Students</strong> table.</p>
+          <ul>
+            <li><code>relationships.student_a_id</code> references <code>students.id</code>.</li>
+            <li><code>relationships.student_b_id</code> also references <code>students.id</code>.</li>
+          </ul>
+          <p>These two columns are <strong>Foreign Keys</strong>. They point to primary-key values in another table.</p>
+          <div class="callout callout-important"><strong>Important:</strong> A primary key does <strong>not</strong> magically become a foreign key. A <em>separate column</em> in another table stores a reference to it.</div>
+          <p><strong>Mental picture:</strong> <code>relationships.student_a_id (101)</code> &rarr; <code>students.id (101)</code> &rarr; <code>Rahul</code>.</p>
+        </div>
+
+        <div class="guide-section" id="sec-4">
+          <h3>4. What is SQL?</h3>
+          <p><strong>SQL = Structured Query Language.</strong> It's the language we use to ask a relational database questions and tell it what to change.</p>
+          <ul>
+            <li>&ldquo;Show me all students&rdquo; &rarr; <code>SELECT</code>.</li>
+            <li>&ldquo;Add a new student&rdquo; &rarr; <code>INSERT</code>.</li>
+            <li>&ldquo;Change a relationship status&rdquo; &rarr; <code>UPDATE</code>.</li>
+            <li>&ldquo;Remove a row&rdquo; &rarr; <code>DELETE</code>.</li>
+          </ul>
+          <p>A <strong>query</strong> is an instruction sent to the database. Some queries read information; others modify it.</p>
+        </div>
+      </div>
+
+      <!-- ==================== PART 2 ==================== -->
+      <div class="guide-part">
+        <div class="guide-part-header">
+          <div class="guide-part-icon">&#9881;&#65039;</div>
+          <div class="guide-part-info">
+            <div class="guide-part-eyebrow">Part 2</div>
+            <h2 class="guide-part-title">Set up a safe practice database</h2>
+          </div>
+        </div>
+
+        <div class="guide-section" id="sec-setup">
+          <div class="callout callout-important"><strong>Only run this section in a new, disposable PostgreSQL database.</strong> It creates tables and inserts fictional example records. Do not run it against an existing application database without reviewing it.</div>
+
+          <div class="code-block">
+            <div class="code-header">
+              <span class="code-lang">SQL</span>
+              <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+            </div>
+            <pre class="code-body"><span class="kw">CREATE TABLE</span> students (
+  id <span class="type">INTEGER</span> <span class="kw">PRIMARY KEY</span>,
+  first_name <span class="type">VARCHAR</span>(<span class="num">50</span>) <span class="kw">NOT NULL</span>,
+  email <span class="type">VARCHAR</span>(<span class="num">120</span>) <span class="kw">NOT NULL UNIQUE</span>
+);
+
+<span class="kw">CREATE TABLE</span> relationships (
+  id <span class="type">INTEGER</span> <span class="kw">PRIMARY KEY</span>,
+  student_a_id <span class="type">INTEGER</span> <span class="kw">NOT NULL REFERENCES</span> students(id),
+  student_b_id <span class="type">INTEGER</span> <span class="kw">NOT NULL REFERENCES</span> students(id),
+  relationship_status <span class="type">VARCHAR</span>(<span class="num">20</span>) <span class="kw">NOT NULL</span>,
+  is_deleted <span class="type">BOOLEAN</span> <span class="kw">NOT NULL DEFAULT FALSE</span>,
+  ended_at <span class="type">TIMESTAMPTZ</span>,
+  <span class="kw">CHECK</span> (student_a_id &lt;&gt; student_b_id)
+);
+
+<span class="kw">INSERT INTO</span> students (id, first_name, email) <span class="kw">VALUES</span>
+  (<span class="num">101</span>, <span class="str">'Rahul'</span>, <span class="str">'rahul@college.test'</span>),
+  (<span class="num">102</span>, <span class="str">'Priya'</span>, <span class="str">'priya@college.test'</span>),
+  (<span class="num">103</span>, <span class="str">'Aman'</span>, <span class="str">'aman@college.test'</span>);
+
+<span class="kw">INSERT INTO</span> relationships
+  (id, student_a_id, student_b_id, relationship_status, is_deleted)
+<span class="kw">VALUES</span>
+  (<span class="num">1</span>, <span class="num">101</span>, <span class="num">102</span>, <span class="str">'dating'</span>, <span class="num">FALSE</span>);</pre>
+          </div>
+          <div class="callout callout-happened"><strong>What just happened?</strong> <code>CREATE TABLE</code> made the two registers. <code>PRIMARY KEY</code> makes the student ID unique. <code>REFERENCES students(id)</code> connects the tables. <code>INSERT</code> filled them with example data.</div>
+        </div>
+      </div>
+
+      <!-- ==================== PART 3 ==================== -->
+      <div class="guide-part">
+        <div class="guide-part-header">
+          <div class="guide-part-icon">&#128269;</div>
+          <div class="guide-part-info">
+            <div class="guide-part-eyebrow">Part 3</div>
+            <h2 class="guide-part-title">Read data with SELECT (DQL)</h2>
+          </div>
+        </div>
+
+        <div class="guide-section" id="sec-5">
+          <h3>5. SELECT: &ldquo;Show me the data&rdquo;</h3>
+          <div class="callout callout-imagine"><strong>Imagine this:</strong> You walk into the college office and say, &ldquo;Show me the student register.&rdquo;</div>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">SELECT</span> * <span class="kw">FROM</span> students;</pre>
+          </div>
+          <div class="callout callout-happened"><strong>What just happened?</strong> <code>SELECT</code> means retrieve data. <code>*</code> means all columns. <code>FROM students</code> tells SQL which table to read.</div>
+          <p><strong>Expected result:</strong> Three rows: Rahul, Priya, and Aman.</p>
+
+          <h4>Choose only the columns you need</h4>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">SELECT</span> id, first_name <span class="kw">FROM</span> students;</pre>
+          </div>
+          <p><strong>Why?</strong> Sometimes you need names, not email addresses. Selecting only necessary columns also makes queries clearer.</p>
+        </div>
+
+        <div class="guide-section" id="sec-6">
+          <h3>6. WHERE: &ldquo;Only the student I asked for&rdquo;</h3>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">SELECT</span> * <span class="kw">FROM</span> students
+<span class="kw">WHERE</span> id = <span class="num">101</span>;</pre>
+          </div>
+          <div class="callout callout-happened"><strong>What just happened?</strong> <code>WHERE</code> filters rows. Only Rahul's record matches ID 101.</div>
+
+          <h4>More filtering</h4>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">SELECT</span> * <span class="kw">FROM</span> students
+<span class="kw">WHERE</span> first_name = <span class="str">'Priya'</span>;</pre>
+          </div>
+          <div class="callout callout-remember"><strong>Remember:</strong> Text uses single quotes. Numbers generally don't need them.</div>
+        </div>
+
+        <div class="guide-section" id="sec-7">
+          <h3>7. AND / OR / NOT: combine conditions</h3>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">SELECT</span> * <span class="kw">FROM</span> students
+<span class="kw">WHERE</span> id >= <span class="num">101</span> <span class="kw">AND</span> id &lt;= <span class="num">102</span>;</pre>
+          </div>
+          <div class="callout callout-happened"><strong>What just happened?</strong> Both conditions must be true. This returns Rahul and Priya.</div>
+
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">SELECT</span> * <span class="kw">FROM</span> students
+<span class="kw">WHERE</span> first_name = <span class="str">'Rahul'</span> <span class="kw">OR</span> first_name = <span class="str">'Aman'</span>;</pre>
+          </div>
+          <div class="callout callout-happened"><strong>What just happened?</strong> Either condition can be true.</div>
+        </div>
+
+        <div class="guide-section" id="sec-8">
+          <h3>8. ORDER BY: arrange the results</h3>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">SELECT</span> id, first_name <span class="kw">FROM</span> students
+<span class="kw">ORDER BY</span> first_name <span class="kw">ASC</span>;</pre>
+          </div>
+          <div class="callout callout-happened"><strong>What just happened?</strong> Results are alphabetically sorted A &rarr; Z. Use <code>DESC</code> for reverse order.</div>
+        </div>
+
+        <div class="guide-section" id="sec-9">
+          <h3>9. LIMIT and OFFSET: show a small page</h3>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">SELECT</span> id, first_name <span class="kw">FROM</span> students
+<span class="kw">ORDER BY</span> id
+<span class="kw">LIMIT</span> <span class="num">2</span> <span class="kw">OFFSET</span> <span class="num">0</span>;</pre>
+          </div>
+          <div class="callout callout-happened"><strong>What just happened?</strong> Returns the first two students. <code>OFFSET 2</code> would skip those and show the next page. Always choose a stable <code>ORDER BY</code> when paginating.</div>
+        </div>
+
+        <div class="guide-section" id="sec-10">
+          <h3>10. LIKE and ILIKE: search by text</h3>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">SELECT</span> * <span class="kw">FROM</span> students
+<span class="kw">WHERE</span> first_name <span class="kw">ILIKE</span> <span class="str">'ra%'</span>;</pre>
+          </div>
+          <div class="callout callout-happened"><strong>What just happened?</strong> PostgreSQL <code>ILIKE</code> searches without caring about letter case. <code>%</code> means &ldquo;any number of characters.&rdquo; Rahul matches. Standard <code>LIKE</code> is generally case-sensitive in PostgreSQL.</div>
+        </div>
+
+        <div class="guide-section" id="sec-11">
+          <h3>11. IN and BETWEEN: shorthand filters</h3>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">SELECT</span> * <span class="kw">FROM</span> students
+<span class="kw">WHERE</span> id <span class="kw">IN</span> (<span class="num">101</span>, <span class="num">103</span>);</pre>
+          </div>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">SELECT</span> * <span class="kw">FROM</span> students
+<span class="kw">WHERE</span> id <span class="kw">BETWEEN</span> <span class="num">101</span> <span class="kw">AND</span> <span class="num">102</span>;</pre>
+          </div>
+          <div class="callout callout-happened"><strong>What just happened?</strong> <code>IN</code> matches one of several values. <code>BETWEEN</code> includes both endpoints.</div>
+        </div>
+
+        <div class="guide-section" id="sec-12">
+          <h3>12. IS NULL: missing information</h3>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">SELECT</span> * <span class="kw">FROM</span> relationships
+<span class="kw">WHERE</span> ended_at <span class="kw">IS NULL</span>;</pre>
+          </div>
+          <div class="callout callout-happened"><strong>What just happened?</strong> Finds records with no end date. Use <code>IS NULL</code>, not <code>= NULL</code>.</div>
+        </div>
+      </div>
+
+      <!-- ==================== PART 4 ==================== -->
+      <div class="guide-part">
+        <div class="guide-part-header">
+          <div class="guide-part-icon">&#128279;</div>
+          <div class="guide-part-info">
+            <div class="guide-part-eyebrow">Part 4</div>
+            <h2 class="guide-part-title">Read related data with JOIN</h2>
+          </div>
+        </div>
+
+        <div class="guide-section" id="sec-13">
+          <h3>13. JOIN: connect IDs to names</h3>
+          <div class="callout callout-imagine"><strong>Imagine this:</strong> The Relationships table says <code>101</code> and <code>102</code>. You want the actual names, not just numbers. SQL can connect the rows using the foreign keys.</div>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">SELECT</span>
+  a.first_name <span class="kw">AS</span> student,
+  b.first_name <span class="kw">AS</span> partner,
+  r.relationship_status <span class="kw">AS</span> status
+<span class="kw">FROM</span> relationships <span class="kw">AS</span> r
+<span class="kw">JOIN</span> students <span class="kw">AS</span> a <span class="kw">ON</span> r.student_a_id = a.id
+<span class="kw">JOIN</span> students <span class="kw">AS</span> b <span class="kw">ON</span> r.student_b_id = b.id
+<span class="kw">WHERE</span> r.id = <span class="num">1</span> <span class="kw">AND</span> r.is_deleted = <span class="num">FALSE</span>;</pre>
+          </div>
+          <div class="result-label">Expected result</div>
+          <table class="sql-table">
+            <tr><th>student</th><th>partner</th><th>status</th></tr>
+            <tr><td>Rahul</td><td>Priya</td><td>dating</td></tr>
+          </table>
+
+          <div class="callout callout-happened"><strong>What just happened, line by line?</strong><br>
+            1. <code>FROM relationships AS r</code> starts with the relationship records and gives the table a short nickname, <code>r</code>.<br>
+            2. <code>JOIN students AS a ON r.student_a_id = a.id</code> finds the student whose ID matches <code>student_a_id</code>.<br>
+            3. <code>JOIN students AS b ON r.student_b_id = b.id</code> finds the second student.<br>
+            4. <code>SELECT</code> chooses the names and status to display.<br>
+            5. <code>WHERE</code> keeps only relationship 1 if it hasn't been soft-deleted.
+          </div>
+          <div class="callout callout-remember"><strong>Remember:</strong> A <code>JOIN</code> is a clause used within a <code>SELECT</code> query, not a sixth category of SQL commands.</div>
+
+          <h4>INNER JOIN vs LEFT JOIN</h4>
+          <ul>
+            <li><strong>INNER JOIN</strong> (plain <code>JOIN</code>) returns rows only when matching records exist on both sides.</li>
+            <li><strong>LEFT JOIN</strong> keeps every row from the left table, even if the right table has no match; missing right-side columns become <code>NULL</code>.</li>
+          </ul>
+          <p>Example: list every student, including those with no relationship record:</p>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">SELECT</span> s.first_name, r.id <span class="kw">AS</span> relationship_id
+<span class="kw">FROM</span> students <span class="kw">AS</span> s
+<span class="kw">LEFT JOIN</span> relationships <span class="kw">AS</span> r
+  <span class="kw">ON</span> r.student_a_id = s.id <span class="kw">AND</span> r.is_deleted = <span class="num">FALSE</span>
+<span class="kw">ORDER BY</span> s.id;</pre>
+          </div>
+          <p>Aman will still appear, with a <code>NULL</code> relationship ID. Note that this example checks only <code>student_a_id</code> for simplicity.</p>
+        </div>
+      </div>
+
+      <!-- ==================== PART 5 ==================== -->
+      <div class="guide-part">
+        <div class="guide-part-header">
+          <div class="guide-part-icon">&#9999;&#65039;</div>
+          <div class="guide-part-info">
+            <div class="guide-part-eyebrow">Part 5</div>
+            <h2 class="guide-part-title">Change data with DML</h2>
+          </div>
+        </div>
+
+        <div class="guide-section" id="sec-14">
+          <h3>14. INSERT: add a new record</h3>
+          <div class="callout callout-imagine"><strong>Imagine this:</strong> A new student joins the college. Add them to the register.</div>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">INSERT INTO</span> students (id, first_name, email)
+<span class="kw">VALUES</span> (<span class="num">104</span>, <span class="str">'Neha'</span>, <span class="str">'neha@college.test'</span>);</pre>
+          </div>
+          <div class="callout callout-happened"><strong>What just happened?</strong> A new row was added. In a real app, IDs are often generated automatically rather than typed manually.</div>
+        </div>
+
+        <div class="guide-section" id="sec-15">
+          <h3>15. UPDATE: change existing information</h3>
+          <div class="callout callout-imagine"><strong>Imagine this:</strong> Rahul and Priya break up. Their existing relationship record needs an update.</div>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">UPDATE</span> relationships
+<span class="kw">SET</span> relationship_status = <span class="str">'broken_up'</span>,
+    is_deleted = <span class="num">TRUE</span>,
+    ended_at = <span class="fn">CURRENT_TIMESTAMP</span>
+<span class="kw">WHERE</span> id = <span class="num">1</span>;</pre>
+          </div>
+          <div class="callout callout-happened"><strong>What just happened?</strong> Only relationship <code>id = 1</code> changes. Its status now describes the breakup, and <code>is_deleted = TRUE</code> means the application can hide it from its normal active view.</div>
+          <div class="callout callout-important"><strong>Very important:</strong> <code>UPDATE</code> without <code>WHERE</code> can modify <em>every row</em> in the table. Always double-check the filter before running it.</div>
+
+          <h4>See the updated record</h4>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">SELECT</span> id, relationship_status, is_deleted
+<span class="kw">FROM</span> relationships
+<span class="kw">WHERE</span> id = <span class="num">1</span>;</pre>
+          </div>
+          <p><strong>Expected result:</strong> <code>1 | broken_up | true</code>.</p>
+        </div>
+
+        <div class="guide-section" id="sec-16">
+          <h3>16. Soft delete vs hard delete</h3>
+          <p><strong>Soft delete</strong> is an application design pattern: instead of removing a row, mark it as hidden/inactive using a flag such as <code>is_deleted</code>.</p>
+
+          <h4>Normal active view</h4>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">SELECT</span> * <span class="kw">FROM</span> relationships
+<span class="kw">WHERE</span> is_deleted = <span class="num">FALSE</span>;</pre>
+          </div>
+          <p>After the breakup update, the example relationship no longer appears.</p>
+
+          <h4>History view</h4>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">SELECT</span> * <span class="kw">FROM</span> relationships
+<span class="kw">WHERE</span> id = <span class="num">1</span>;</pre>
+          </div>
+          <p>The row still exists. The database didn't forget it.</p>
+
+          <h4>Hard delete: remove the row</h4>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="cm">-- DANGEROUS: removes the row permanently if committed.</span>
+<span class="cm">-- Shown for learning; do not run unless you intend to delete it.</span>
+<span class="kw">DELETE FROM</span> relationships
+<span class="kw">WHERE</span> id = <span class="num">1</span>;</pre>
+          </div>
+          <p><strong>Difference:</strong> Soft delete keeps the record and requires the app to filter it. Hard delete removes the row (subject to transaction rollback, backups, and database retention behavior).</p>
+          <div class="callout callout-remember"><strong>Safety tip:</strong> If your application has personal data, keeping history is not always appropriate. Retention and deletion must follow your privacy and legal requirements.</div>
+        </div>
+
+        <div class="guide-section" id="sec-17">
+          <h3>17. DELETE: removing a row is not the same as DROP</h3>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">DELETE FROM</span> students
+<span class="kw">WHERE</span> id = <span class="num">104</span>;</pre>
+          </div>
+          <p>This deletes Neha's row (if it is not referenced by another row). It does <strong>not</strong> delete the Students table itself.</p>
+        </div>
+      </div>
+
+      <!-- ==================== PART 6 ==================== -->
+      <div class="guide-part">
+        <div class="guide-part-header">
+          <div class="guide-part-icon">&#128200;</div>
+          <div class="guide-part-info">
+            <div class="guide-part-eyebrow">Part 6</div>
+            <h2 class="guide-part-title">Count and summarize records</h2>
+          </div>
+        </div>
+
+        <div class="guide-section" id="sec-18">
+          <h3>18. COUNT: how many rows?</h3>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">SELECT</span> <span class="fn">COUNT</span>(*) <span class="kw">AS</span> total_students
+<span class="kw">FROM</span> students;</pre>
+          </div>
+          <div class="callout callout-happened"><strong>What just happened?</strong> Returns the number of students. If you inserted Neha, the count is four; otherwise it is three.</div>
+        </div>
+
+        <div class="guide-section" id="sec-19">
+          <h3>19. GROUP BY: make groups, then count</h3>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">SELECT</span> relationship_status, <span class="fn">COUNT</span>(*) <span class="kw">AS</span> total
+<span class="kw">FROM</span> relationships
+<span class="kw">GROUP BY</span> relationship_status;</pre>
+          </div>
+          <div class="callout callout-happened"><strong>What just happened?</strong> SQL groups records with the same status and counts each group.</div>
+        </div>
+
+        <div class="guide-section" id="sec-20">
+          <h3>20. HAVING: filter the groups</h3>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">SELECT</span> relationship_status, <span class="fn">COUNT</span>(*) <span class="kw">AS</span> total
+<span class="kw">FROM</span> relationships
+<span class="kw">GROUP BY</span> relationship_status
+<span class="kw">HAVING</span> <span class="fn">COUNT</span>(*) >= <span class="num">1</span>;</pre>
+          </div>
+          <div class="callout callout-happened"><strong>What just happened?</strong> <code>WHERE</code> filters individual rows <em>before</em> grouping. <code>HAVING</code> filters the summarized groups <em>after</em> grouping.</div>
+        </div>
+
+        <div class="guide-section" id="sec-21">
+          <h3>21. DISTINCT: avoid repeated values</h3>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">SELECT DISTINCT</span> relationship_status
+<span class="kw">FROM</span> relationships;</pre>
+          </div>
+          <div class="callout callout-happened"><strong>What just happened?</strong> Each unique status appears once.</div>
+        </div>
+      </div>
+
+      <!-- ==================== PART 7 ==================== -->
+      <div class="guide-part">
+        <div class="guide-part-header">
+          <div class="guide-part-icon">&#128220;</div>
+          <div class="guide-part-info">
+            <div class="guide-part-eyebrow">Part 7</div>
+            <h2 class="guide-part-title">The five common SQL categories</h2>
+          </div>
+        </div>
+
+        <div class="guide-section" id="sec-categories">
+          <p>These labels are common teaching conventions. Some sources classify <code>SELECT</code> under DML instead of giving DQL its own category.</p>
+          <table class="cat-table">
+            <tr><th>Category</th><th>Full form</th><th>Friendly meaning</th><th>Commands</th></tr>
+            <tr><td>DQL</td><td>Data Query Language</td><td>&ldquo;Show me something&rdquo;</td><td><code>SELECT</code></td></tr>
+            <tr><td>DML</td><td>Data Manipulation Language</td><td>&ldquo;Change the records&rdquo;</td><td><code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code></td></tr>
+            <tr><td>DDL</td><td>Data Definition Language</td><td>&ldquo;Build/change the registers&rdquo;</td><td><code>CREATE</code>, <code>ALTER</code>, <code>DROP</code>, <code>TRUNCATE</code></td></tr>
+            <tr><td>DCL</td><td>Data Control Language</td><td>&ldquo;Who is allowed to do what?&rdquo;</td><td><code>GRANT</code>, <code>REVOKE</code></td></tr>
+            <tr><td>TCL</td><td>Transaction Control Language</td><td>&ldquo;Save or undo this set of changes&rdquo;</td><td><code>COMMIT</code>, <code>ROLLBACK</code>, <code>SAVEPOINT</code></td></tr>
+          </table>
+        </div>
+
+        <div class="guide-section" id="sec-22">
+          <h3>22. DDL: CREATE, ALTER, DROP, TRUNCATE</h3>
+          <p><strong>CREATE</strong> makes a new structure. We already used <code>CREATE TABLE</code> in setup.</p>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">ALTER TABLE</span> students
+<span class="kw">ADD COLUMN</span> enrolled_year <span class="type">INTEGER</span>;</pre>
+          </div>
+          <div class="callout callout-happened"><strong>What just happened?</strong> We added a new column to the existing Students table.</div>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="cm">-- DESTRUCTIVE examples for understanding only:</span>
+<span class="cm">-- DROP TABLE students;       -- removes the table structure and data</span>
+<span class="cm">-- TRUNCATE TABLE students;   -- removes all rows, keeps the table</span></pre>
+          </div>
+          <div class="callout callout-important"><strong>Do not run these destructive examples in the practice story.</strong> Foreign-key references may prevent some operations unless additional steps are taken.</div>
+        </div>
+
+        <div class="guide-section" id="sec-23">
+          <h3>23. DCL: GRANT and REVOKE</h3>
+          <div class="callout callout-imagine"><strong>Imagine this:</strong> A college staff member should be allowed to view records, but not edit them.</div>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="cm">-- Requires an existing role and sufficient privileges.</span>
+<span class="kw">GRANT SELECT ON</span> students <span class="kw">TO</span> college_reader;
+<span class="kw">REVOKE SELECT ON</span> students <span class="kw">FROM</span> college_reader;</pre>
+          </div>
+          <div class="callout callout-happened"><strong>What just happened?</strong> <code>GRANT</code> gives permission; <code>REVOKE</code> removes that grant. Real-world permissions may also come from other roles.</div>
+        </div>
+
+        <div class="guide-section" id="sec-24">
+          <h3>24. TCL: BEGIN, COMMIT, ROLLBACK</h3>
+          <div class="callout callout-imagine"><strong>Imagine this:</strong> You are testing an update and want a chance to undo it before saving.</div>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">BEGIN</span>;
+
+<span class="kw">UPDATE</span> relationships
+<span class="kw">SET</span> relationship_status = <span class="str">'dating'</span>,
+    is_deleted = <span class="num">FALSE</span>,
+    ended_at = <span class="kw">NULL</span>
+<span class="kw">WHERE</span> id = <span class="num">1</span>;
+
+<span class="cm">-- Inspect the result before choosing one:</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> relationships <span class="kw">WHERE</span> id = <span class="num">1</span>;
+
+<span class="kw">ROLLBACK</span>;
+<span class="cm">-- Or use COMMIT instead of ROLLBACK to save the change.</span></pre>
+          </div>
+          <div class="callout callout-happened"><strong>What just happened?</strong> <code>BEGIN</code> starts a transaction. <code>ROLLBACK</code> cancels changes made in that transaction. <code>COMMIT</code> would save them.</div>
+
+          <h4>SAVEPOINT: undo just part of a transaction</h4>
+          <div class="code-block">
+            <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+            <pre class="code-body"><span class="kw">BEGIN</span>;
+<span class="kw">SAVEPOINT</span> before_change;
+<span class="kw">UPDATE</span> relationships <span class="kw">SET</span> is_deleted = <span class="num">FALSE</span> <span class="kw">WHERE</span> id = <span class="num">1</span>;
+<span class="kw">ROLLBACK TO SAVEPOINT</span> before_change;
+<span class="kw">COMMIT</span>;</pre>
+          </div>
+          <div class="callout callout-happened"><strong>What just happened?</strong> The change after the savepoint was undone, but the transaction could still finish.</div>
+        </div>
+      </div>
+
+      <!-- ==================== PART 8 — QUICK REFERENCE ==================== -->
+      <div class="guide-part">
+        <div class="guide-part-header">
+          <div class="guide-part-icon">&#128196;</div>
+          <div class="guide-part-info">
+            <div class="guide-part-eyebrow">Part 8</div>
+            <h2 class="guide-part-title">Quick syntax reference</h2>
+          </div>
+        </div>
+
+        <div class="guide-section" id="sec-ref">
+          <table class="ref-table">
+            <tr><th>Want to&hellip;</th><th>Pattern</th></tr>
+            <tr><td>See all rows</td><td><code>SELECT * FROM table_name;</code></td></tr>
+            <tr><td>See chosen columns</td><td><code>SELECT col1, col2 FROM table_name;</code></td></tr>
+            <tr><td>Filter rows</td><td><code>SELECT * FROM table_name WHERE condition;</code></td></tr>
+            <tr><td>Sort results</td><td><code>SELECT * FROM table_name ORDER BY col1 DESC;</code></td></tr>
+            <tr><td>Show a few rows</td><td><code>SELECT * FROM table_name ORDER BY id LIMIT 10;</code></td></tr>
+            <tr><td>Add a row</td><td><code>INSERT INTO table_name (col1) VALUES ('value');</code></td></tr>
+            <tr><td>Update a row</td><td><code>UPDATE table_name SET col1 = 'value' WHERE id = 1;</code></td></tr>
+            <tr><td>Delete a row</td><td><code>DELETE FROM table_name WHERE id = 1;</code></td></tr>
+            <tr><td>Count rows</td><td><code>SELECT COUNT(*) FROM table_name;</code></td></tr>
+            <tr><td>Combine related rows</td><td><code>SELECT * FROM a JOIN b ON a.id = b.a_id;</code></td></tr>
+            <tr><td>Group results</td><td><code>SELECT col1, COUNT(*) FROM table_name GROUP BY col1;</code></td></tr>
+            <tr><td>Hide soft-deleted</td><td><code>SELECT * FROM table_name WHERE is_deleted = FALSE;</code></td></tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- ==================== PART 9 — MISTAKES ==================== -->
+      <div class="guide-part">
+        <div class="guide-part-header">
+          <div class="guide-part-icon">&#9888;&#65039;</div>
+          <div class="guide-part-info">
+            <div class="guide-part-eyebrow">Part 9</div>
+            <h2 class="guide-part-title">Five beginner mistakes to avoid</h2>
+          </div>
+        </div>
+
+        <div class="guide-section" id="sec-mistakes">
+          <div class="mistake-card">
+            <div class="mistake-num">1</div>
+            <div class="mistake-body"><strong>Forgetting <code>WHERE</code> in UPDATE or DELETE.</strong> Without it, you may change or remove every row.</div>
+          </div>
+          <div class="mistake-card">
+            <div class="mistake-num">2</div>
+            <div class="mistake-body"><strong>Thinking FK values must be different from PK values.</strong> A foreign key is supposed to match a referenced key value.</div>
+          </div>
+          <div class="mistake-card">
+            <div class="mistake-num">3</div>
+            <div class="mistake-body"><strong>Thinking <code>JOIN</code> permanently merges tables.</strong> A JOIN combines related rows in a query result; the underlying tables remain separate.</div>
+          </div>
+          <div class="mistake-card">
+            <div class="mistake-num">4</div>
+            <div class="mistake-body"><strong>Thinking <code>is_deleted = TRUE</code> removes data.</strong> It changes a flag; your queries must intentionally exclude those rows.</div>
+          </div>
+          <div class="mistake-card">
+            <div class="mistake-num">5</div>
+            <div class="mistake-body"><strong>Using <code>= NULL</code>.</strong> Use <code>IS NULL</code> or <code>IS NOT NULL</code>.</div>
+          </div>
+          <div class="callout callout-important" style="margin-top:1rem"><strong>Bonus:</strong> Never concatenate untrusted user input directly into SQL strings. In applications, use parameterized queries to prevent SQL injection.</div>
+        </div>
+      </div>
+
+      <!-- ==================== PART 10 — PRACTICE ==================== -->
+      <div class="guide-part">
+        <div class="guide-part-header">
+          <div class="guide-part-icon">&#127919;</div>
+          <div class="guide-part-info">
+            <div class="guide-part-eyebrow">Part 10</div>
+            <h2 class="guide-part-title">Practice: can you solve these?</h2>
+          </div>
+        </div>
+
+        <div class="guide-section" id="sec-practice">
+          <p>Try before looking at the answers.</p>
+          <div class="practice-section">
+            <ol class="practice-list">
+              <li>Show only student names.</li>
+              <li>Find the student whose ID is 102.</li>
+              <li>Show students in alphabetical order.</li>
+              <li>Find Rahul's partner's name using both tables.</li>
+              <li>Show all relationships that are not soft-deleted.</li>
+              <li>Count the number of students.</li>
+            </ol>
+            <details>
+              <summary>Reveal practice answers</summary>
+              <div class="answers-content">
+                <div class="code-block">
+                  <div class="code-header"><span class="code-lang">SQL</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+                  <pre class="code-body"><span class="cm">-- Q1</span>
+<span class="kw">SELECT</span> first_name <span class="kw">FROM</span> students;
+
+<span class="cm">-- Q2</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> students <span class="kw">WHERE</span> id = <span class="num">102</span>;
+
+<span class="cm">-- Q3</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> students <span class="kw">ORDER BY</span> first_name <span class="kw">ASC</span>;
+
+<span class="cm">-- Q4 (returns no rows after the soft-delete update unless reset)</span>
+<span class="kw">SELECT</span> b.first_name <span class="kw">AS</span> partner
+<span class="kw">FROM</span> relationships <span class="kw">AS</span> r
+<span class="kw">JOIN</span> students <span class="kw">AS</span> b <span class="kw">ON</span> b.id = r.student_b_id
+<span class="kw">WHERE</span> r.student_a_id = <span class="num">101</span> <span class="kw">AND</span> r.is_deleted = <span class="num">FALSE</span>;
+
+<span class="cm">-- Q5</span>
+<span class="kw">SELECT</span> * <span class="kw">FROM</span> relationships <span class="kw">WHERE</span> is_deleted = <span class="num">FALSE</span>;
+
+<span class="cm">-- Q6</span>
+<span class="kw">SELECT</span> <span class="fn">COUNT</span>(*) <span class="kw">FROM</span> students;</pre>
+                </div>
+              </div>
+            </details>
+          </div>
+        </div>
+      </div>
+
+      <!-- ==================== PART 11 — MEMORY MAP ==================== -->
+      <div class="guide-part">
+        <div class="guide-part-header">
+          <div class="guide-part-icon">&#129504;</div>
+          <div class="guide-part-info">
+            <div class="guide-part-eyebrow">Part 11</div>
+            <h2 class="guide-part-title">One-page memory map</h2>
+          </div>
+        </div>
+
+        <div class="guide-section" id="sec-memory">
+          <div class="memory-map">
+            <div class="memory-item"><div class="memory-term">Database</div><div class="memory-def">Organized collection of data.</div></div>
+            <div class="memory-item"><div class="memory-term">Table</div><div class="memory-def">Rows and columns.</div></div>
+            <div class="memory-item"><div class="memory-term">Primary Key</div><div class="memory-def">Unique ID for one row.</div></div>
+            <div class="memory-item"><div class="memory-term">Foreign Key</div><div class="memory-def">Column referencing another table's key.</div></div>
+            <div class="memory-item"><div class="memory-term">SELECT</div><div class="memory-def">Read data.</div></div>
+            <div class="memory-item"><div class="memory-term">WHERE</div><div class="memory-def">Filter rows.</div></div>
+            <div class="memory-item"><div class="memory-term">JOIN</div><div class="memory-def">Connect related records in query results.</div></div>
+            <div class="memory-item"><div class="memory-term">INSERT</div><div class="memory-def">Add data.</div></div>
+            <div class="memory-item"><div class="memory-term">UPDATE</div><div class="memory-def">Modify data.</div></div>
+            <div class="memory-item"><div class="memory-term">DELETE</div><div class="memory-def">Remove rows.</div></div>
+            <div class="memory-item"><div class="memory-term">Soft delete</div><div class="memory-def">Keep row, mark it inactive/hidden.</div></div>
+            <div class="memory-item"><div class="memory-term">COMMIT / ROLLBACK</div><div class="memory-def">Save / undo a transaction.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLOSING NOTE -->
+      <div class="closing-note">
+        <h3>Final thought</h3>
+        <p>If you understood how Rahul's ID <code>101</code> connects to a relationship row, how SQL retrieves Priya's name, and how <code>UPDATE</code> can hide the record without deleting it, you already understand the foundation of relational databases.</p>
+        <p style="margin-top:1rem"><strong>Keep learning, keep building. &mdash; Oye Nino</strong></p>
+        <p style="margin-top:.75rem;font-size:.8rem;color:var(--text-muted)"><em>Educational note: All names, emails and records in this guide are fictional. This guide is for learning, not production database operations.</em></p>
+      </div>
+
+      <!-- CTA -->
+      <div class="prompts-cta">
+        <h3>Aur seekhna hai?</h3>
+        <p>Free prompts, guides, aur tools explore karo &mdash; sab kuch free.</p>
+        <div class="cta-buttons">
+          <a href="/prompts.html" class="btn-primary">Browse All Free Resources &rarr;</a>
+          <a href="/" class="btn-ghost">Back to Portfolio</a>
+        </div>
+      </div>
+    </div>
+    <!-- END #prompt-content -->
+
+    <footer>
+      <div class="footer-left">&copy; 2026 Himanshu. Built with code &amp; clarity.</div>
+      <div class="footer-links">
+        <a href="https://youtube.com/@oye_nino" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.instagram.com/oye.nino" target="_blank" rel="noopener">Instagram</a>
+        <a href="/prompts.html">Free Prompts</a>
+        <a href="/">Portfolio</a>
+        <a href="/privacy-policy.html">Privacy</a>
+      </div>
+    </footer>
+
+    <!-- NAV TOGGLE -->
+    <script>
+      (function() {
+        var toggle = document.getElementById("mobToggle");
+        var links = document.getElementById("navLinks");
+        if (toggle && links) {
+          toggle.addEventListener("click", function() {
+            toggle.classList.toggle("open");
+            links.classList.toggle("open");
+            document.body.style.overflow = links.classList.contains("open") ? "hidden" : "";
+          });
+          links.querySelectorAll("a").forEach(function(a) {
+            a.addEventListener("click", function() {
+              toggle.classList.remove("open");
+              links.classList.remove("open");
+              document.body.style.overflow = "";
+            });
+          });
+        }
+      })();
+    </script>
+
+    <!-- FORM GATE -->
+    <script src="/form-utils.js"></script>
+    <script>
+      // UTM capture
+      (function() {
+        var params = new URLSearchParams(window.location.search);
+        var allowed = ['utm_source','utm_medium','utm_campaign','utm_content'];
+        var utm = {};
+        allowed.forEach(function(k) {
+          var v = params.get(k);
+          if (v && v.length <= 100) utm[k] = v.substring(0, 100);
+        });
+        if (Object.keys(utm).length) {
+          sessionStorage.setItem('sql_cheat_sheet_utm', JSON.stringify(utm));
+        }
+      })();
+
+      // Auto-unlock if already submitted this session
+      if (sessionStorage.getItem('sql_cheat_sheet_unlocked') === 'true') showPrompt();
+
+      try {
+        if (typeof OyeNinoForm !== 'undefined') {
+          new OyeNinoForm({
+            formId: 'gateForm',
+            emailId: 'gate-email',
+            phoneId: 'gate-phone',
+            nameId: 'gate-name',
+            btnId: 'unlockBtn',
+            statusId: 'emailStatus',
+            phoneStatusId: 'phoneStatus',
+            errorId: 'formError',
+            formName: 'sql_cheat_sheet_gate',
+            source: 'sql_cheat_sheet_page',
+            requiredFields: ['name', 'email', 'phone'],
+            btnTexts: {
+              ready: '<span>\uD83D\uDD13</span> SQL Guide Unlock Karo \u2014 Free',
+              turnstile: "Verify you're human first \u2191",
+              email: 'Valid email daalo pehle',
+              phone: 'Valid phone number daalo',
+              fields: 'Sab fields fill karo',
+              submitting: '<span>\u23F3</span> Submitting...'
+            },
+            onSuccess: function(payload) {
+              // Capture marketing consent and UTM separately
+              var consent = document.getElementById('marketingConsent').checked;
+              var utm = {};
+              try { utm = JSON.parse(sessionStorage.getItem('sql_cheat_sheet_utm') || '{}'); } catch(e) {}
+              oyeTrackEvent('sql_cheat_sheet_gate_consent', { marketing_opt_in: consent });
+              if (Object.keys(utm).length) {
+                oyeTrackEvent('sql_cheat_sheet_gate_utm', utm);
+              }
+              sessionStorage.setItem('sql_cheat_sheet_unlocked', 'true');
+              showPrompt();
+            }
+          });
+        }
+      } catch(e) { console.warn('form-utils not loaded', e); }
+
+      function showPrompt() {
+        var gate = document.getElementById('gate-section');
+        gate.style.transition = 'opacity .4s ease, transform .4s ease';
+        gate.style.opacity = '0';
+        gate.style.transform = 'translateY(-10px)';
+        setTimeout(function() {
+          gate.style.display = 'none';
+          var content = document.getElementById('prompt-content');
+          content.classList.add('unlocked');
+          content.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          oyeTrackEvent('sql_cheat_sheet_guide_viewed');
+        }, 400);
+      }
+
+      // Copy code block utility
+      function copyCode(btn) {
+        var block = btn.closest('.code-block');
+        var code = block.querySelector('.code-body');
+        var text = code.innerText || code.textContent;
+        navigator.clipboard.writeText(text).then(function() {
+          btn.textContent = '\u2713 Copied!';
+          btn.classList.add('copied');
+          oyeTrackEvent('sql_code_copied', { page: 'sql-cheat-sheet' });
+          setTimeout(function() { btn.textContent = 'Copy'; btn.classList.remove('copied'); }, 2000);
+        });
+      }
+
+      // TOC keyboard support
+      document.querySelector('.toc-toggle').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          document.getElementById('toc').classList.toggle('collapsed');
+        }
+      });
+
+      // Track PDF download
+      var pdfDlBtn = document.getElementById('pdfDownloadBtn');
+      if (pdfDlBtn) {
+        pdfDlBtn.addEventListener('click', function() {
+          oyeTrackEvent('sql_cheat_sheet_pdf_download', { method: 'direct' });
+        });
+      }
+    </script>
+  </body>
+</html>

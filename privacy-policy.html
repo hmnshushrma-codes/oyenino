@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BGL94NLVL7"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-BGL94NLVL7");</script>
+    <title>Privacy Policy | Oye Nino</title>
+    <meta name="description" content="Privacy policy for oyenino.com — what data we collect, why, and how it is used." />
+    <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href="https://oyenino.com/privacy-policy.html" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+      :root{--bg:#050505;--bg-card:#111111;--text:#eeeae4;--text-mid:#b5b0a8;--text-muted:#706c66;--accent:#00F0A0;--accent-glow:rgba(0,240,160,0.1);--accent-glow-strong:rgba(0,240,160,0.2);--border:#1a1a1a;--border-hover:#2a2a2a;--sans:'Outfit',system-ui,sans-serif;--transition:0.35s cubic-bezier(0.25,0.46,0.45,0.94)}
+      html{scroll-behavior:smooth}
+      body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+      ::selection{background:var(--accent);color:var(--bg)}
+      body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:50}
+
+      nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0.85rem 2rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(24px) saturate(1.2);-webkit-backdrop-filter:blur(24px) saturate(1.2);background:rgba(5,5,5,0.8);border-bottom:1px solid rgba(255,255,255,0.04)}
+      .nav-logo{font-size:1.25rem;font-weight:600;color:var(--text);text-decoration:none;letter-spacing:-0.02em}
+      .nav-logo span{color:var(--accent)}
+      .nav-links{display:flex;align-items:center;gap:2rem}
+      .nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.85rem;font-weight:400;transition:color var(--transition)}
+      .nav-links a:hover{color:var(--text)}
+      .nav-cta{background:var(--accent);color:var(--bg) !important;padding:0.5rem 1.5rem;border-radius:100px;font-weight:600;font-size:0.85rem;transition:transform 0.2s,box-shadow 0.3s}
+      .nav-cta:hover{transform:translateY(-1px);box-shadow:0 4px 24px var(--accent-glow-strong)}
+      .mobile-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px;z-index:101;width:32px;height:32px;position:relative;flex-shrink:0}
+      .ham-line{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:transform 0.3s,opacity 0.3s;position:absolute;left:5px}
+      .ham-line:nth-child(1){top:8px}.ham-line:nth-child(2){top:15px}.ham-line:nth-child(3){top:22px}
+      .mobile-toggle.open .ham-line:nth-child(1){transform:translateY(7px) rotate(45deg)}.mobile-toggle.open .ham-line:nth-child(2){opacity:0}.mobile-toggle.open .ham-line:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+      .content{max-width:720px;margin:0 auto;padding:7rem 2rem 4rem}
+      .content h1{font-size:2rem;font-weight:600;margin-bottom:.5rem}
+      .content .updated{font-size:.82rem;color:var(--text-muted);margin-bottom:2.5rem}
+      .content h2{font-size:1.15rem;font-weight:600;margin-top:2rem;margin-bottom:.75rem;color:var(--text)}
+      .content p{font-size:.9rem;color:var(--text-mid);font-weight:300;line-height:1.75;margin-bottom:.75rem}
+      .content ul{margin-bottom:1rem;padding-left:1.25rem}
+      .content li{font-size:.88rem;color:var(--text-mid);font-weight:300;line-height:1.7;margin-bottom:.35rem}
+      .content strong{color:var(--text);font-weight:500}
+      .content a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(0,240,160,0.3);transition:border-color .2s}
+      .content a:hover{border-color:var(--accent)}
+      .content code{font-size:.82rem;background:rgba(0,240,160,0.06);padding:.1rem .35rem;border-radius:3px;color:var(--accent)}
+      .flag{background:rgba(255,217,61,0.06);border:1px solid rgba(255,217,61,0.15);border-radius:10px;padding:1rem 1.25rem;margin:1rem 0;font-size:.85rem;color:var(--text-mid);line-height:1.7}
+      .flag::before{content:'⚠️ ';font-size:.85rem}
+
+      footer{border-top:1px solid var(--border);padding:2rem;max-width:720px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+      .footer-left{color:var(--text-muted);font-size:.8rem;font-weight:300}
+      .footer-links{display:flex;gap:1.5rem}
+      .footer-links a{color:var(--text-muted);text-decoration:none;font-size:.8rem;transition:color var(--transition)}
+      .footer-links a:hover{color:var(--accent)}
+
+      @media(max-width:600px){
+        .nav-links{position:fixed;top:0;right:-100%;width:280px;max-width:85vw;height:100vh;height:100dvh;background:#0a0a0a;border-left:1px solid var(--border);padding:5rem 2rem 2rem;flex-direction:column;align-items:flex-start;gap:0;z-index:99;transition:right 0.35s cubic-bezier(0.4,0,0.2,1)}
+        .nav-links.open{right:0}
+        .nav-links a{padding:0.85rem 0;font-size:1rem;border-bottom:1px solid var(--border);width:100%}
+        .nav-cta{margin-top:1rem;text-align:center;display:block;width:100%;padding:0.85rem;border-bottom:none}
+        .mobile-toggle{display:block}
+        .content{padding:6rem 1.5rem 3rem}
+        footer{flex-direction:column;text-align:center;gap:.75rem}
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a href="/" class="nav-logo">oye.nino<span>.</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="/prompts.html">Free Prompts</a>
+        <a href="/sql-cheat-sheet.html">SQL Guide</a>
+        <a href="/#contact" class="nav-cta">Let's Talk</a>
+      </div>
+      <button class="mobile-toggle" id="mobToggle" aria-label="Menu">
+        <span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span>
+      </button>
+    </nav>
+
+    <div class="content">
+      <h1>Privacy Policy</h1>
+      <p class="updated">Last updated: 21 October 2026</p>
+
+      <p>This privacy policy explains what personal data <strong>oyenino.com</strong> (&ldquo;we&rdquo;, &ldquo;us&rdquo;) collects when you use our website and free resources, and how that data is used.</p>
+
+      <h2>1. Data we collect</h2>
+      <p>When you submit a form on our site (for example, to unlock a free guide, prompt or tool), we collect:</p>
+      <ul>
+        <li><strong>Information you provide:</strong> full name, email address, and phone number.</li>
+        <li><strong>Marketing preference:</strong> whether you opted in to receive marketing emails (recorded separately from your access request).</li>
+        <li><strong>Device information</strong> (collected automatically): browser type, operating system, device type (mobile/tablet/desktop), screen size, viewport size, language, timezone, and connection type.</li>
+        <li><strong>Approximate location</strong> (collected automatically via your IP address): city, region, country, coordinates, ISP, and postal code. This is obtained through the third-party service <code>ipapi.co</code>.</li>
+        <li><strong>Bot protection token:</strong> a Cloudflare Turnstile verification token confirming you are a human visitor.</li>
+      </ul>
+
+      <h2>2. Why we collect this data</h2>
+      <ul>
+        <li><strong>Name, email and phone:</strong> to deliver the free resource you requested and to follow up about your request if needed.</li>
+        <li><strong>Device and location data:</strong> to understand our audience, prevent abuse, and improve our resources.</li>
+        <li><strong>Turnstile token:</strong> to protect our forms from automated spam and abuse.</li>
+        <li><strong>Marketing preference:</strong> to send learning tips and new resource announcements only if you have explicitly opted in.</li>
+      </ul>
+
+      <h2>3. How we store your data</h2>
+      <p>Form submissions are sent to our backend service at <code>forms.oyenino.com</code>. Your data is transmitted over HTTPS.</p>
+      <div class="flag"><strong>Data retention:</strong> We have not yet published a specific data retention period. If you would like your data deleted, please contact us at the address below and we will process your request. We intend to formalize a retention policy — this section will be updated when that is in place.</div>
+
+      <h2>4. Third-party services</h2>
+      <p>Our site uses the following third-party services that may process your data:</p>
+      <ul>
+        <li><strong>Google Analytics 4</strong> (measurement ID: <code>G-BGL94NLVL7</code>): collects anonymized usage data such as page views, scroll depth and button clicks. We do not send your name, email or phone number to Google Analytics.</li>
+        <li><strong>Cloudflare Turnstile:</strong> bot verification widget. Cloudflare processes a challenge token to confirm you are human. See <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare's privacy policy</a>.</li>
+        <li><strong>ipapi.co:</strong> used to determine your approximate location from your IP address. See <a href="https://ipapi.co/privacy/" target="_blank" rel="noopener">ipapi.co's privacy policy</a>.</li>
+        <li><strong>Google DNS</strong> (<code>dns.google</code>): used to verify your email domain has valid MX records. Only the email domain (not your full email address) is sent.</li>
+        <li><strong>Google Fonts:</strong> loads typefaces from Google's servers. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's privacy policy</a>.</li>
+      </ul>
+
+      <h2>5. Marketing communications</h2>
+      <p>We only send marketing emails if you explicitly check the opt-in box on our forms. Submitting a form to access a free resource does <strong>not</strong> subscribe you to marketing emails. You can unsubscribe from marketing emails at any time.</p>
+
+      <h2>6. Cookies and local storage</h2>
+      <p>Our site uses <code>sessionStorage</code> (cleared when you close the browser tab) to remember that you have already submitted a form during your current session. This avoids asking you to fill out the form again on the same page. We do not use persistent cookies for tracking. Google Analytics and Cloudflare Turnstile may set their own cookies as described in their respective privacy policies.</p>
+
+      <h2>7. Your rights</h2>
+      <p>You have the right to:</p>
+      <ul>
+        <li>Request a copy of the personal data we hold about you.</li>
+        <li>Request deletion of your personal data.</li>
+        <li>Withdraw marketing consent at any time.</li>
+        <li>Object to data processing where applicable.</li>
+      </ul>
+      <div class="flag"><strong>Note:</strong> We are a small independent site and do not yet have a formal data subject access request process. For any privacy-related requests, please contact us directly. We will respond as quickly as possible.</div>
+
+      <h2>8. Children's privacy</h2>
+      <p>Our site is not directed at children under 13. We do not knowingly collect personal data from children.</p>
+
+      <h2>9. Contact</h2>
+      <p>For privacy questions or data requests, contact Himanshu via the <a href="/#contact">contact form on the homepage</a> or reach out on <a href="https://www.instagram.com/oui.nino" target="_blank" rel="noopener">Instagram (@oui.nino)</a>.</p>
+
+      <h2>10. Changes to this policy</h2>
+      <p>We may update this policy from time to time. The &ldquo;last updated&rdquo; date at the top reflects the most recent revision.</p>
+    </div>
+
+    <footer>
+      <div class="footer-left">&copy; 2026 Himanshu. Built with code &amp; clarity.</div>
+      <div class="footer-links">
+        <a href="https://youtube.com/@oye_nino" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.instagram.com/oui.nino" target="_blank" rel="noopener">Instagram</a>
+        <a href="/prompts.html">Free Prompts</a>
+        <a href="/">Portfolio</a>
+      </div>
+    </footer>
+
+    <script>
+      (function() {
+        var toggle = document.getElementById("mobToggle");
+        var links = document.getElementById("navLinks");
+        if (toggle && links) {
+          toggle.addEventListener("click", function() {
+            toggle.classList.toggle("open");
+            links.classList.toggle("open");
+            document.body.style.overflow = links.classList.contains("open") ? "hidden" : "";
+          });
+          links.querySelectorAll("a").forEach(function(a) {
+            a.addEventListener("click", function() {
+              toggle.classList.remove("open");
+              links.classList.remove("open");
+              document.body.style.overflow = "";
+            });
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
