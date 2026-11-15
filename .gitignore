@@ -2,3 +2,9 @@ node_modules/
 dist/
 .astro/
 seo.md
+
+# Private notes and plans, not published
+docs/
+
+# macOS
+.DS_Store
