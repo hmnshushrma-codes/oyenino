@@ -24,7 +24,7 @@ How to use the prompts:
 
 You can write to the AI in Hinglish too. If you type in Hinglish, it usually answers in Hinglish.
 
-Made by Oui Nino (@oye.nino).
+Made by Oui Nino (@oye.nino, oyenino.com).
 
 ## Pick your path
 
