@@ -6,44 +6,64 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BGL94NLVL7"></script>
     <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-BGL94NLVL7");</script>
-    <title>Home Server Starter Pack (Free) | Oye Nino</title>
-    <meta name="description" content="Find out if you need a home server, then build one step by step with copy-paste AI prompts. Beginner guide, Raspberry Pi 5 tech guide, 16 AI prompts and a safety cheat sheet. Free from Oye Nino." />
-    <meta name="keywords" content="home server, home server for beginners, raspberry pi 5 home server, docker compose beginners, self hosting india, AI prompts home server, oye nino, Himanshu" />
-    <meta name="author" content="Himanshu (@oye.nino)" />
+    <title>Home Server Starter Pack: Free Guides and AI Prompts | Oye Nino</title>
+    <meta name="description" content="Free Home Server Starter Pack: beginner guide, Raspberry Pi 5 build guide, 16 AI prompts and a safety cheat sheet. See if you need one, then build it." />
+    <meta name="keywords" content="home server, home server for beginners, raspberry pi 5 home server, docker compose beginners, AI prompts home server, oye nino" />
+    <meta name="author" content="Oye Nino (@oye.nino)" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://oyenino.com/starter-pack.html" />
 
-    <!-- OPEN GRAPH -->
-    <meta property="og:title" content="Home Server Starter Pack (Free) | Oye Nino" />
-    <meta property="og:description" content="Do you need a home server? Find out, then build one step by step with copy-paste AI prompts. Free starter pack by Oye Nino." />
-    <meta property="og:type" content="article" />
+    <!-- OPEN GRAPH (no og:image until a real 1200x630 image exists; /og-image.jpg returns 404) -->
+    <meta property="og:site_name" content="Oye Nino" />
+    <meta property="og:title" content="Home Server Starter Pack: Free Guides and AI Prompts" />
+    <meta property="og:description" content="Find out if you need a home server, then build one step by step: beginner guide, Raspberry Pi 5 build guide, 16 AI prompts and a safety cheat sheet. Free." />
+    <meta property="og:type" content="website" />
     <meta property="og:url" content="https://oyenino.com/starter-pack.html" />
-    <meta property="og:image" content="https://oyenino.com/og-image.jpg" />
     <meta property="og:locale" content="en_IN" />
 
-    <!-- TWITTER CARD -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Home Server Starter Pack (Free) | Oye Nino" />
-    <meta name="twitter:description" content="Do you need a home server? Find out, then build one step by step with copy-paste AI prompts." />
-    <meta name="twitter:image" content="https://oyenino.com/og-image.jpg" />
+    <!-- TWITTER CARD ("summary" until a large image exists) -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Home Server Starter Pack: Free Guides and AI Prompts" />
+    <meta name="twitter:description" content="Find out if you need a home server, then build one step by step with a beginner guide, a Raspberry Pi 5 build guide and 16 AI prompts. Free." />
 
-    <!-- STRUCTURED DATA -->
+    <!-- STRUCTURED DATA. The FAQ answers must match the visible FAQ exactly (scripts/check-starter-pack.js checks this). -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "LearningResource",
-        "name": "Home Server Starter Pack",
-        "description": "A beginner guide, a Raspberry Pi 5 tech guide, 16 copy-paste AI prompts and a safety cheat sheet for building a home server.",
-        "url": "https://oyenino.com/starter-pack.html",
-        "educationalLevel": "Beginner",
-        "inLanguage": "en",
-        "teaches": ["Home servers", "Raspberry Pi", "Docker", "Docker Compose", "Backups", "Home network security"],
-        "author": {
-          "@type": "Person",
-          "name": "Himanshu",
-          "sameAs": ["https://www.instagram.com/oye.nino", "https://youtube.com/@oye_nino"]
-        },
-        "isPartOf": { "@type": "WebSite", "url": "https://oyenino.com" }
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://oyenino.com/#oyenino",
+            "name": "Oye Nino",
+            "url": "https://oyenino.com/",
+            "sameAs": ["https://www.instagram.com/oye.nino", "https://youtube.com/@oye_nino"]
+          },
+          {
+            "@type": "WebPage",
+            "@id": "https://oyenino.com/starter-pack.html",
+            "url": "https://oyenino.com/starter-pack.html",
+            "name": "Home Server Starter Pack: Free Guides and AI Prompts",
+            "description": "Free Home Server Starter Pack: beginner guide, Raspberry Pi 5 build guide, 16 AI prompts and a safety cheat sheet. See if you need one, then build it.",
+            "inLanguage": "en-IN",
+            "about": { "@type": "Thing", "name": "Home server" },
+            "isPartOf": { "@type": "WebSite", "url": "https://oyenino.com/", "name": "Oye Nino" },
+            "author": { "@id": "https://oyenino.com/#oyenino" },
+            "publisher": { "@id": "https://oyenino.com/#oyenino" }
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://oyenino.com/starter-pack.html#faq",
+            "isPartOf": { "@id": "https://oyenino.com/starter-pack.html" },
+            "mainEntity": [
+              {"@type": "Question", "name": "What is a home server?", "acceptedAnswer": {"@type": "Answer", "text": "A home server is a small computer that stays on at home and does jobs for you, such as backing up your phone photos, blocking ads on your Wi-Fi or playing your own videos on your TV. It can be an old laptop, a mini PC or a Raspberry Pi."}},
+              {"@type": "Question", "name": "Do I need a home server?", "acceptedAnswer": {"@type": "Answer", "text": "Maybe not. A home server makes sense if your cloud storage is always full, you want control over where your photos and files are kept, or you enjoy learning how things work. It needs regular updates and backups, so it is not a good fit if you want something that never needs your attention. The Beginner guide helps you decide before you buy anything."}},
+              {"@type": "Question", "name": "What hardware do I need to start?", "acceptedAnswer": {"@type": "Answer", "text": "You can start with a computer you already own, such as an old laptop. The Tech guide uses a Raspberry Pi 5 with 8 GB of RAM, its official power supply and an SSD in a USB 3 adapter. A network cable and a second drive for backups are also useful."}},
+              {"@type": "Question", "name": "Do I need to know coding or Linux?", "acceptedAnswer": {"@type": "Answer", "text": "No. The Beginner guide uses plain words, and the AI prompts help an AI chat such as ChatGPT or Claude walk you through one step at a time. The Tech guide is written for people who are comfortable with a command line."}},
+              {"@type": "Question", "name": "Is the Home Server Starter Pack free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The pack is free. The apps it covers are free software too. The hardware costs money once, and running it uses a little electricity."}},
+              {"@type": "Question", "name": "How do I get the starter pack?", "acceptedAnswer": {"@type": "Answer", "text": "Fill in the form on this page with your name and email address. The phone number is optional. The pack opens straight away in your browser and stays unlocked on that device. You must be 18 or older to sign up."}}
+            ]
+          }
+        ]
       }
     </script>
 
@@ -99,6 +119,16 @@
       .feature-desc{font-size:.82rem;color:var(--text-muted);font-weight:300;line-height:1.5}
       .sample{margin-top:1rem;background:#0a0a0a;border:1px solid var(--border);border-radius:14px;padding:1.25rem}
       .sample-label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:.6rem}
+      .summary-lead{font-size:1rem;color:var(--text-mid);font-weight:300;line-height:1.75;margin-bottom:1.75rem;max-width:720px}
+      .summary-h3{font-size:1.05rem;font-weight:600;color:var(--text);margin:2rem 0 .9rem}
+      .summary-list{margin:0 0 1rem 1.2rem;color:var(--text-mid);font-weight:300;font-size:.92rem;line-height:1.7}
+      .summary-list li{margin-bottom:.5rem}
+      .summary-list strong,.faq-a strong{color:var(--text);font-weight:500}
+      .summary-note{margin-top:1.5rem;font-size:.88rem;color:var(--text-muted);font-weight:300;line-height:1.7}
+      .summary-note a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(0,240,160,0.3)}
+      .faq-item{border-top:1px solid var(--border);padding:1.1rem 0}
+      .faq-q{font-size:1rem;font-weight:600;color:var(--text);margin-bottom:.4rem;line-height:1.4}
+      .faq-a{font-size:.92rem;color:var(--text-mid);font-weight:300;line-height:1.7}
       .sample p{font-family:var(--mono);font-size:.8rem;line-height:1.7;color:var(--text-mid);white-space:pre-wrap;word-break:break-word}
 
       /* GATE (same as the other gated pages) */
@@ -234,6 +264,7 @@
         <a href="/prompts.html">Free Prompts</a>
         <a href="/frontend-deploy-prompt.html">Frontend Deploy</a>
         <a href="/backend-deploy-prompt.html">Backend Deploy</a>
+        <a href="/starter-pack.html" aria-current="page">Starter Pack</a>
         <a href="/#contact" class="nav-cta">Let's Talk</a>
       </div>
       <button class="mobile-toggle" id="mobToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
@@ -251,9 +282,12 @@
         <p class="hero-comment">// beginner guide &middot; <span>Raspberry Pi 5 build</span> &middot; <span>16 AI prompts</span> &middot; <span>safety cheat sheet</span></p>
       </header>
 
-      <!-- WHAT'S INSIDE (public preview) -->
-      <section class="features" id="whats-inside" aria-labelledby="inside-title">
-        <h2 class="features-title" id="inside-title">What is inside</h2>
+      <!-- PUBLIC SUMMARY (answer first). The guides themselves stay gated and are not in this HTML. -->
+      <section class="features summary" id="about" aria-labelledby="about-title">
+        <h2 class="features-title" id="about-title">What is the Home Server Starter Pack?</h2>
+        <p class="summary-lead">The Home Server Starter Pack is a free set of guides from Oye Nino. It helps you decide if you need a home server, and then shows you how to build one step by step, with copy-paste AI prompts for every stage. It works for complete beginners and for people who already know some tech.</p>
+
+        <h3 class="summary-h3" id="whats-inside">What is inside</h3>
         <ul class="feature-grid">
           <li class="feature-card"><div class="feature-name">Beginner guide</div><div class="feature-desc">What a home server is, whether you need one, and a one-week plan. No jargon.</div></li>
           <li class="feature-card"><div class="feature-name">Tech guide</div><div class="feature-desc">The exact Raspberry Pi 5 build: SSD boot, Ubuntu Server, Docker, backups and the problems I hit.</div></li>
@@ -264,6 +298,21 @@
           <div class="sample-label">Sample prompt</div>
           <p>Before I run this command on my server, explain what it does, line by line: [paste the command]. Tell me if it can delete files, change permissions, open the server to the internet...</p>
         </div>
+
+        <h3 class="summary-h3">Who it is for</h3>
+        <ul class="summary-list">
+          <li><strong>Curious beginners</strong> who want to know what a home server is, whether it is worth it, and what the first step looks like. No technical background needed.</li>
+          <li><strong>Techies</strong> who want a working build path on a Raspberry Pi 5 or a small Linux machine, with real commands and the mistakes to avoid.</li>
+        </ul>
+
+        <h3 class="summary-h3">What you need</h3>
+        <ul class="summary-list">
+          <li><strong>To read the pack:</strong> a phone or a computer with a browser.</li>
+          <li><strong>To build a server:</strong> a computer that can stay on, such as an old laptop, a mini PC or a Raspberry Pi 5, plus a network cable and a second drive for backups.</li>
+          <li><strong>Time:</strong> about an hour to understand the basics. The beginner path plans one small task a day for a week. The tech path takes roughly a weekend.</li>
+        </ul>
+
+        <p class="summary-note">The pack is free. You need to be 18 or older to sign up. Read how we handle your details in our <a href="/privacy-policy.html">privacy policy</a>.</p>
       </section>
 
       <!-- GATE -->
@@ -325,6 +374,35 @@
         <article class="md sp-intro" id="sp-intro"></article>
         <div class="sp-tabs" id="sp-tabs" role="tablist" aria-label="Starter pack sections"></div>
         <div id="sp-panels"></div>
+      </section>
+
+      <!-- FAQ (public). The text must match the FAQPage JSON-LD in <head> exactly. -->
+      <section class="features faq" id="faq" aria-labelledby="faq-title">
+        <h2 class="features-title" id="faq-title">Questions people ask</h2>
+        <div class="faq-item">
+          <h3 class="faq-q">What is a home server?</h3>
+          <p class="faq-a">A home server is a small computer that stays on at home and does jobs for you, such as backing up your phone photos, blocking ads on your Wi-Fi or playing your own videos on your TV. It can be an old laptop, a mini PC or a Raspberry Pi.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q">Do I need a home server?</h3>
+          <p class="faq-a">Maybe not. A home server makes sense if your cloud storage is always full, you want control over where your photos and files are kept, or you enjoy learning how things work. It needs regular updates and backups, so it is not a good fit if you want something that never needs your attention. The Beginner guide helps you decide before you buy anything.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q">What hardware do I need to start?</h3>
+          <p class="faq-a">You can start with a computer you already own, such as an old laptop. The Tech guide uses a Raspberry Pi 5 with 8 GB of RAM, its official power supply and an SSD in a USB 3 adapter. A network cable and a second drive for backups are also useful.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q">Do I need to know coding or Linux?</h3>
+          <p class="faq-a">No. The Beginner guide uses plain words, and the AI prompts help an AI chat such as ChatGPT or Claude walk you through one step at a time. The Tech guide is written for people who are comfortable with a command line.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q">Is the Home Server Starter Pack free?</h3>
+          <p class="faq-a">Yes. The pack is free. The apps it covers are free software too. The hardware costs money once, and running it uses a little electricity.</p>
+        </div>
+        <div class="faq-item">
+          <h3 class="faq-q">How do I get the starter pack?</h3>
+          <p class="faq-a">Fill in the form on this page with your name and email address. The phone number is optional. The pack opens straight away in your browser and stays unlocked on that device. You must be 18 or older to sign up.</p>
+        </div>
       </section>
     </main>
 
