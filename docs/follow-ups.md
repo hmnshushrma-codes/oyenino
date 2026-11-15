@@ -29,7 +29,3 @@ Open items found while building the Home Server Starter Pack. None of these are 
 6. A "delete everything for this email" action in the admin dashboard, for deletion requests.
 7. Optional: cut the KV backup lifetime from 90 to 30 days. The privacy policy now says backups expire within 90 days, so this is no longer required, but it shortens how long deleted data survives.
 8. Remove personal data from the notification emails, and clean up the ones already in the inbox.
-
-## Content
-
-9. Confirm the brand line in `content/starter-pack/start-here.md`. It is currently a placeholder, "Made by Oui Nino (@oye.nino, oyenino.com).", while the rest of the site says "Oye Nino". After changing it, run `node scripts/build-starter-pack-content.mjs` and `node scripts/check-starter-pack.js`.
