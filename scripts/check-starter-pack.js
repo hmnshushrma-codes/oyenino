@@ -366,6 +366,42 @@ for (const ua of Object.keys(groups)) {
 const sm = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");
 check(/<loc>https:\/\/oyenino\.com\/starter-pack\.html<\/loc>\s*<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/.test(sm), "sitemap.xml must list starter-pack.html with a lastmod");
 
+// ---------- 10. Social preview images ----------
+// Reads width and height from the JPEG start-of-frame marker. No image library needed.
+function jpegSize(buf) {
+  if (buf[0] !== 0xff || buf[1] !== 0xd8) return null;
+  let i = 2;
+  while (i + 9 < buf.length) {
+    if (buf[i] !== 0xff) return null;
+    const marker = buf[i + 1];
+    const len = buf.readUInt16BE(i + 2);
+    if (marker >= 0xc0 && marker <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(marker)) {
+      return { height: buf.readUInt16BE(i + 5), width: buf.readUInt16BE(i + 7) };
+    }
+    i += 2 + len;
+  }
+  return null;
+}
+for (const file of ["starter-pack-og.jpg", "og-image.jpg"]) {
+  const p = path.join(ROOT, file);
+  if (!fs.existsSync(p)) { failures.push(`${file} is missing`); continue; }
+  const buf = fs.readFileSync(p);
+  const dim = jpegSize(buf);
+  check(dim !== null, `${file} is not a readable JPEG`);
+  check(dim && dim.width === 1200 && dim.height === 630, `${file} should be 1200x630, is ${dim ? dim.width + "x" + dim.height : "unknown"}`);
+  check(buf.length < 300 * 1024, `${file} should be under 300 KB, is ${(buf.length / 1024).toFixed(1)} KB`);
+  for (const ua of Object.keys(groups)) check(robotsAllowed(ua, "/" + file), `robots.txt blocks /${file} for ${ua}`);
+}
+const IMG = "https://www.oyenino.com/starter-pack-og.jpg";
+const meta = (attr, name) => (page.match(new RegExp(`<meta ${attr}="${name}" content="([^"]*)"`)) || [])[1];
+check(meta("property", "og:image") === IMG, `og:image should be ${IMG}`);
+check(meta("property", "og:image:width") === "1200", "og:image:width should be 1200");
+check(meta("property", "og:image:height") === "630", "og:image:height should be 630");
+check((meta("property", "og:image:alt") || "").length >= 20, "og:image:alt is missing or too short");
+check(meta("name", "twitter:card") === "summary_large_image", "twitter:card should be summary_large_image");
+check(meta("name", "twitter:image") === IMG, `twitter:image should be ${IMG}`);
+check((page.match(/property="og:image"/g) || []).length === 1 && (page.match(/name="twitter:image"/g) || []).length === 1, "starter-pack.html should have exactly one og:image and one twitter:image");
+
 // ---------- Report ----------
 console.log(`Starter pack version ${PACK.version}`);
 console.log(`Prompts in index: ${indexIds.length}. P links in guides: ${refCount}.`);
