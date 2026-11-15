@@ -1,0 +1,68 @@
+<!doctype html>
+<!--
+  Social preview image template (1200x630). Not linked from the site.
+  Rendered by scripts/render-og-images.mjs, which picks a variant with ?v=starter or ?v=site.
+  Colours and fonts match the site tokens in starter-pack.html.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Outfit:wght@400;500;600&display=block" rel="stylesheet" />
+<style>
+  :root{--bg:#050505;--text:#eeeae4;--text-mid:#b5b0a8;--accent:#00F0A0;--border:#1a1a1a;
+        --serif:'Playfair Display',Georgia,serif;--sans:'Outfit',system-ui,sans-serif}
+  *{margin:0;padding:0;box-sizing:border-box}
+  html,body{width:1200px;height:630px;overflow:hidden;background:var(--bg)}
+  body{position:relative;color:var(--text);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  /* Soft accent glow, same feel as the site hero */
+  .glow{position:absolute;inset:0;background:
+    radial-gradient(600px 380px at 50% 0%,rgba(0,240,160,0.14),transparent 70%),
+    radial-gradient(500px 300px at 50% 110%,rgba(0,240,160,0.08),transparent 70%)}
+  .frame{position:absolute;inset:24px;border:1px solid var(--border);border-radius:24px}
+  /* Safe area: all text stays inside the central 1000x500 box */
+  .safe{position:absolute;left:100px;top:65px;width:1000px;height:500px;
+        display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+  h1{font-family:var(--serif);font-weight:400;line-height:1.02;letter-spacing:-0.03em;font-variant-ligatures:none;font-feature-settings:'liga' 0,'dlig' 0}
+  h1 em{font-style:italic;color:var(--accent)}
+  .sub{font-weight:500;color:var(--text);line-height:1.25;margin-top:34px}
+  .rule{width:72px;height:4px;border-radius:2px;background:var(--accent);margin-top:40px}
+  .foot{font-weight:500;color:var(--text-mid);margin-top:30px;letter-spacing:0.01em}
+  .foot b{font-weight:600;color:var(--text)}
+  .foot .dot{color:var(--accent)}
+
+  .starter h1{font-size:118px}
+  .starter .sub{font-size:52px}
+  .starter .foot{font-size:38px}
+
+  .site h1{font-size:150px}
+  /* Brand name stays upright: the italic N swash collides with the i dot and reads as an umlaut */
+  .site h1 em{font-style:normal}
+  .site .sub{font-size:48px;max-width:900px}
+  .site .foot{font-size:40px}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<div class="frame"></div>
+<div class="safe" id="safe"></div>
+<script>
+  var v = new URLSearchParams(location.search).get("v") || "starter";
+  var safe = document.getElementById("safe");
+  if (v === "site") {
+    document.body.className = "site";
+    safe.innerHTML =
+      '<h1>Oye <em>Nino</em></h1>' +
+      '<p class="sub">Free guides and AI prompts for websites, apps and home servers</p>' +
+      '<div class="rule"></div>' +
+      '<p class="foot"><b>oyenino<span class="dot">.</span>com</b></p>';
+  } else {
+    document.body.className = "starter";
+    safe.innerHTML =
+      '<h1>Home Server<br><em>Starter Pack</em></h1>' +
+      '<p class="sub">Free guides + AI prompts</p>' +
+      '<div class="rule"></div>' +
+      '<p class="foot"><b>Oye Nino</b> | oyenino.com</p>';
+  }
+</script>
+</body>
+</html>
