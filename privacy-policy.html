@@ -80,7 +80,7 @@
 
     <div class="content">
       <h1>Privacy Policy</h1>
-      <p class="updated">Last updated: 21 October 2026</p>
+      <p class="updated">Last updated: 16 November 2026</p>
 
       <p>This privacy policy explains what personal data <strong>oyenino.com</strong> (&ldquo;we&rdquo;, &ldquo;us&rdquo;) collects when you use our website and free resources, and how that data is used.</p>
 
@@ -104,7 +104,8 @@
 
       <h2>3. How we store your data</h2>
       <p>Form submissions are sent to our backend service at <code>forms.oyenino.com</code>. Your data is transmitted over HTTPS.</p>
-      <div class="flag"><strong>Data retention:</strong> We have not yet published a specific data retention period. If you would like your data deleted, please contact us at the address below and we will process your request. We intend to formalize a retention policy — this section will be updated when that is in place.</div>
+      <p><strong>How long we keep it:</strong> We keep your personal data while our mailing list is active. We review the data we hold at least once a year and delete what we no longer need.</p>
+      <p>If you ask us to delete your data, we will delete it within 30 days, unless the law requires us to keep it. See section 7 for how to ask.</p>
 
       <h2>4. Third-party services</h2>
       <p>Our site uses the following third-party services that may process your data:</p>
@@ -120,7 +121,13 @@
       <p>We only send marketing emails if you explicitly check the opt-in box on our forms. Submitting a form to access a free resource does <strong>not</strong> subscribe you to marketing emails. You can unsubscribe from marketing emails at any time.</p>
 
       <h2>6. Cookies and local storage</h2>
-      <p>Our site uses <code>sessionStorage</code> (cleared when you close the browser tab) to remember that you have already submitted a form during your current session. This avoids asking you to fill out the form again on the same page. We do not use persistent cookies for tracking. Google Analytics and Cloudflare Turnstile may set their own cookies as described in their respective privacy policies.</p>
+      <p>We do not set cookies ourselves. To avoid asking you to fill in the same form again, we save a small flag in your browser after you submit a form:</p>
+      <ul>
+        <li><strong>Most free guide and prompt pages</strong> use <code>sessionStorage</code>. The flag is deleted when you close the browser tab.</li>
+        <li><strong>The Home Server Starter Pack</strong> (<code>/starter-pack.html</code>) uses <code>localStorage</code>, with a key such as <code>starter_pack_unlocked_2026-11-16</code> and the value <code>1</code>. It stays in your browser until you clear your site data, so the pack stays unlocked on that device. When we publish a new version of the pack, the key changes and you will be asked to fill in the form again.</li>
+      </ul>
+      <p>These flags contain no personal data and are never sent to us. They only record that the form was submitted in this browser. You can remove them at any time by clearing this site's data in your browser settings.</p>
+      <p>Google Analytics and Cloudflare Turnstile may set their own cookies, as described in their privacy policies.</p>
 
       <h2>7. Your rights</h2>
       <p>You have the right to:</p>
@@ -133,7 +140,7 @@
       <div class="flag"><strong>Note:</strong> We are a small independent site and do not yet have a formal data subject access request process. For any privacy-related requests, please contact us directly. We will respond as quickly as possible.</div>
 
       <h2>8. Children's privacy</h2>
-      <p>Our site is not directed at children under 13. We do not knowingly collect personal data from children.</p>
+      <p>Our site is not directed at children. Under India's Digital Personal Data Protection Act, 2023, anyone under 18 is a child. If you are under 18, please do not submit our forms. If we learn that we have collected personal data from someone under 18, we will delete it.</p>
 
       <h2>9. Contact</h2>
       <p>For privacy questions or data requests, contact Himanshu via the <a href="/#contact">contact form on the homepage</a> or reach out on <a href="https://www.instagram.com/oye.nino" target="_blank" rel="noopener">Instagram (@oye.nino)</a>.</p>
