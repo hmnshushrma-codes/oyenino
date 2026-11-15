@@ -259,11 +259,119 @@ for (const f of gaFiles) {
   else passes++;
 }
 
+// ---------- 8. Every site nav links to the starter pack ----------
+// The nav is copied into each page. A page has the site nav if its .nav-links block links to /prompts.html
+// (demo pages under example/ and existence/ have their own local menus and are skipped).
+// Fix a failure with: node scripts/nav-add-starter-pack.mjs
+let navPages = 0;
+for (const f of listHtml(ROOT)) {
+  const rel = path.relative(ROOT, f);
+  const src = fs.readFileSync(f, "utf8");
+  if (rel === "index.html") {
+    const menu = (src.match(/<div class="dd-menu">[\s\S]*?<a href="\/prompts\.html" class="dd-footer"/) || [""])[0];
+    const panel = (src.match(/<div class="mob-panel" id="mobPanel">[\s\S]*?class="mp-cta/) || [""])[0];
+    check(menu.includes('href="/starter-pack.html"'), "index.html: Free Resources dropdown has no Starter Pack link");
+    check(panel.includes('href="/starter-pack.html"'), "index.html: mobile menu has no Starter Pack link");
+    navPages++;
+    continue;
+  }
+  const nav = src.match(/class="nav-links"[\s\S]*?<\/(div|ul)>/);
+  if (!nav || !nav[0].includes('href="/prompts.html"')) continue;
+  navPages++;
+  check(nav[0].includes('href="/starter-pack.html"'), `${rel}: site nav has no Starter Pack link`);
+}
+check(navPages >= 25, `Expected at least 25 pages with the site nav, found ${navPages}`);
+check(/<a href="\/starter-pack\.html" aria-current="page">Starter Pack<\/a>/.test(page), "starter-pack.html: its own nav link should have aria-current=\"page\"");
+
+// ---------- 9. SEO basics on starter-pack.html ----------
+const decode = (s) => s.replace(/<[^>]+>/g, "").replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/&lt;/g, "<")
+  .replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/\s+/g, " ").trim();
+const title = (page.match(/<title>([^<]*)<\/title>/) || [])[1] || "";
+const desc = (page.match(/<meta name="description" content="([^"]*)"/) || [])[1] || "";
+check(title.length >= 30 && title.length <= 65, `Title should be 30 to 65 characters, is ${title.length}`);
+check(desc.length >= 70 && desc.length <= 160, `Meta description should be 70 to 160 characters, is ${desc.length}`);
+check((page.match(/<h1[\s>]/g) || []).length === 1, "starter-pack.html must have exactly one <h1>");
+check(/<link rel="canonical" href="https:\/\/oyenino\.com\/starter-pack\.html" \/>/.test(page), "Canonical URL missing or changed");
+for (const m of page.matchAll(/(?:og:image|twitter:image)" content="https:\/\/(?:www\.)?oyenino\.com(\/[^"]+)"/g)) {
+  check(fs.existsSync(path.join(ROOT, m[1])), `Social image ${m[1]} does not exist in the repo`);
+}
+
+// JSON-LD: parses, no fake ratings/prices/dates, FAQ matches the visible FAQ exactly
+let ld = null;
+try {
+  ld = JSON.parse((page.match(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/) || [])[1]);
+} catch (e) {
+  failures.push("starter-pack.html JSON-LD does not parse: " + e.message);
+}
+if (ld) {
+  const raw = JSON.stringify(ld);
+  check(!/aggregateRating|"review"|ratingValue|"offers"|"price"|datePublished|dateModified/.test(raw), "JSON-LD must not contain ratings, reviews, prices or dates");
+  const nodes = ld["@graph"] || [ld];
+  check(nodes.some((n) => n["@type"] === "WebPage" && n.author), "JSON-LD needs a WebPage with an author");
+  const faqLd = nodes.find((n) => n["@type"] === "FAQPage");
+  const visible = [...page.matchAll(/<h3 class="faq-q">([\s\S]*?)<\/h3>\s*<p class="faq-a">([\s\S]*?)<\/p>/g)].map((m) => [decode(m[1]), decode(m[2])]);
+  check(visible.length >= 5 && visible.length <= 7, `Visible FAQ should have 5 to 7 questions, has ${visible.length}`);
+  const ldQs = faqLd ? faqLd.mainEntity.map((q) => [q.name, q.acceptedAnswer && q.acceptedAnswer.text]) : [];
+  check(ldQs.length === visible.length, `FAQPage JSON-LD has ${ldQs.length} questions, visible FAQ has ${visible.length}`);
+  visible.forEach(([q, a], i) => {
+    const l = ldQs[i] || [];
+    check(l[0] === q, `FAQ question ${i + 1} differs between page and JSON-LD: "${q}" vs "${l[0]}"`);
+    check(l[1] === a, `FAQ answer ${i + 1} differs between page and JSON-LD`);
+  });
+}
+
+// The gated content must not appear in the public HTML. Compare the start of every prompt and code block.
+// P13 is allowed: its opening is shown on purpose as the "Sample prompt" teaser.
+for (const d of PACK.docs) {
+  for (const m of d.md.matchAll(/```[^\n]*\n([\s\S]*?)```/g)) {
+    const head = m[1].trim().slice(0, 60);
+    if (head.length < 30 || head.startsWith("Before I run this command on my server")) continue;
+    check(!page.includes(md.escapeHtml(head)) && !page.includes(head), `${d.id}: gated text appears in the public HTML: "${head}"`);
+  }
+}
+
+// robots.txt: page and renderer crawlable, content files blocked, for every user-agent group (longest match wins)
+const robots = fs.readFileSync(path.join(ROOT, "robots.txt"), "utf8");
+const groups = {};
+let currentUAs = [], lastWasUA = false;
+for (const lineRaw of robots.split("\n")) {
+  const line = lineRaw.split("#")[0].trim();
+  const mm = line.match(/^([A-Za-z-]+)\s*:\s*(.*)$/);
+  if (!mm) continue;
+  const key = mm[1].toLowerCase(), val = mm[2].trim();
+  if (key === "user-agent") {
+    if (!lastWasUA) currentUAs = [];
+    currentUAs.push(val.toLowerCase());
+    groups[val.toLowerCase()] = groups[val.toLowerCase()] || [];
+    lastWasUA = true;
+  } else if (key === "allow" || key === "disallow") {
+    currentUAs.forEach((ua) => groups[ua].push([key, val]));
+    lastWasUA = false;
+  } else lastWasUA = false;
+}
+function robotsAllowed(ua, p) {
+  const rules = groups[ua] || groups["*"] || [];
+  let best = ["allow", ""];
+  for (const [k, v] of rules) {
+    if (v && p.startsWith(v) && (v.length > best[1].length || (v.length === best[1].length && k === "allow"))) best = [k, v];
+  }
+  return best[0] === "allow";
+}
+for (const ua of Object.keys(groups)) {
+  check(robotsAllowed(ua, "/starter-pack.html"), `robots.txt blocks /starter-pack.html for ${ua}`);
+  check(robotsAllowed(ua, "/starter-pack-render.js"), `robots.txt blocks /starter-pack-render.js for ${ua}`);
+  check(!robotsAllowed(ua, "/starter-pack-content.js"), `robots.txt allows /starter-pack-content.js for ${ua}`);
+  check(!robotsAllowed(ua, "/content/starter-pack/tech-guide.md"), `robots.txt allows /content/ for ${ua}`);
+}
+const sm = fs.readFileSync(path.join(ROOT, "sitemap.xml"), "utf8");
+check(/<loc>https:\/\/oyenino\.com\/starter-pack\.html<\/loc>\s*<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/.test(sm), "sitemap.xml must list starter-pack.html with a lastmod");
+
 // ---------- Report ----------
 console.log(`Starter pack version ${PACK.version}`);
 console.log(`Prompts in index: ${indexIds.length}. P links in guides: ${refCount}.`);
 console.log(`GA personal data scan: ${gaScanned} files.`);
 for (const w of gaWarnings) console.log("  WARN " + w);
+console.log(`Pages with the site nav: ${navPages}.`);
 if (failures.length) {
   console.error(`\n${failures.length} check(s) FAILED:`);
   for (const f of failures) console.error("  FAIL " + f);
