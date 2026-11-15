@@ -382,8 +382,8 @@
         onSuccess: function (payload) {
           sessionStorage.setItem("veyra_unlocked", "true");
           if (typeof gtag === "function") {
+            // Never send personal data (name, email, phone, IP) to GA. See guide.md "Analytics rule".
             gtag("event", "veyra_access_granted", {
-              visitor_name: payload.name || "",
               vertical: payload.vertical || "",
             });
           }

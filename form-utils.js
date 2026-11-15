@@ -517,7 +517,8 @@
         .then(function (result) {
           if (result.ok) {
             // ===== REAL SUCCESS =====
-            trackEvent(self.cfg.formName + "_success", { visitor_name: payload.name || "" });
+            // Never send personal data (name, email, phone, IP) to GA. See guide.md "Analytics rule".
+            trackEvent(self.cfg.formName + "_success", { form_id: self.cfg.formName });
             if (self.cfg.onSuccess) self.cfg.onSuccess(payload);
           } else {
             // ===== SERVER REJECTED =====

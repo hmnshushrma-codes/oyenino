@@ -1,0 +1,750 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BGL94NLVL7"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag("js",new Date());gtag("config","G-BGL94NLVL7");</script>
+    <title>Home Server Starter Pack (Free) | Oye Nino</title>
+    <meta name="description" content="Find out if you need a home server, then build one step by step with copy-paste AI prompts. Beginner guide, Raspberry Pi 5 tech guide, 16 AI prompts and a safety cheat sheet. Free from Oye Nino." />
+    <meta name="keywords" content="home server, home server for beginners, raspberry pi 5 home server, docker compose beginners, self hosting india, AI prompts home server, oye nino, Himanshu" />
+    <meta name="author" content="Himanshu (@oye.nino)" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://oyenino.com/starter-pack.html" />
+
+    <!-- OPEN GRAPH -->
+    <meta property="og:title" content="Home Server Starter Pack (Free) | Oye Nino" />
+    <meta property="og:description" content="Do you need a home server? Find out, then build one step by step with copy-paste AI prompts. Free starter pack by Oye Nino." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://oyenino.com/starter-pack.html" />
+    <meta property="og:image" content="https://oyenino.com/og-image.jpg" />
+    <meta property="og:locale" content="en_IN" />
+
+    <!-- TWITTER CARD -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Home Server Starter Pack (Free) | Oye Nino" />
+    <meta name="twitter:description" content="Do you need a home server? Find out, then build one step by step with copy-paste AI prompts." />
+    <meta name="twitter:image" content="https://oyenino.com/og-image.jpg" />
+
+    <!-- STRUCTURED DATA -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LearningResource",
+        "name": "Home Server Starter Pack",
+        "description": "A beginner guide, a Raspberry Pi 5 tech guide, 16 copy-paste AI prompts and a safety cheat sheet for building a home server.",
+        "url": "https://oyenino.com/starter-pack.html",
+        "educationalLevel": "Beginner",
+        "inLanguage": "en",
+        "teaches": ["Home servers", "Raspberry Pi", "Docker", "Docker Compose", "Backups", "Home network security"],
+        "author": {
+          "@type": "Person",
+          "name": "Himanshu",
+          "sameAs": ["https://www.instagram.com/oye.nino", "https://youtube.com/@oye_nino"]
+        },
+        "isPartOf": { "@type": "WebSite", "url": "https://oyenino.com" }
+      }
+    </script>
+
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+      :root{--bg:#050505;--bg-elevated:#0c0c0c;--bg-card:#111111;--bg-card-hover:#161616;--text:#eeeae4;--text-mid:#b5b0a8;--text-muted:#706c66;--accent:#00F0A0;--accent-dim:#00c583;--accent-glow:rgba(0,240,160,0.1);--accent-glow-strong:rgba(0,240,160,0.2);--border:#1a1a1a;--border-hover:#2a2a2a;--serif:'Playfair Display',Georgia,serif;--sans:'Outfit',system-ui,sans-serif;--mono:'JetBrains Mono',monospace;--radius:16px;--transition:0.35s cubic-bezier(0.25,0.46,0.45,0.94);--warn:#FFD93D;--error:#ff6b6b}
+      html{scroll-behavior:smooth;overflow-x:hidden}
+      body{font-family:var(--sans);background:var(--bg);color:var(--text);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+      ::selection{background:var(--accent);color:var(--bg)}
+      body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");pointer-events:none;z-index:50}
+      a:focus-visible,button:focus-visible,[tabindex]:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+      .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+      /* NAV (same as the other gated pages, with a 44px menu button) */
+      nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0.85rem 2rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(24px) saturate(1.2);-webkit-backdrop-filter:blur(24px) saturate(1.2);background:rgba(5,5,5,0.8);border-bottom:1px solid rgba(255,255,255,0.04)}
+      .nav-logo{font-family:var(--sans);font-size:1.25rem;font-weight:600;color:var(--text);text-decoration:none;letter-spacing:-0.02em;flex-shrink:0}
+      .nav-logo span{color:var(--accent)}
+      .nav-links{display:flex;align-items:center;gap:2rem}
+      .nav-links a{color:var(--text-muted);text-decoration:none;font-size:0.85rem;font-weight:400;letter-spacing:0.02em;transition:color var(--transition);position:relative}
+      .nav-links a:not(.nav-cta)::after{content:"";position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--accent);transition:width var(--transition)}
+      .nav-links a:not(.nav-cta):hover{color:var(--text)}
+      .nav-links a:not(.nav-cta):hover::after{width:100%}
+      .nav-cta{background:var(--accent);color:var(--bg) !important;padding:0.5rem 1.5rem;border-radius:100px;font-weight:600;font-size:0.85rem;transition:transform 0.2s,box-shadow 0.3s;white-space:nowrap}
+      .nav-cta:hover{color:var(--bg) !important;transform:translateY(-1px);box-shadow:0 4px 24px var(--accent-glow-strong)}
+      .mobile-toggle{display:none;background:none;border:none;cursor:pointer;padding:0;z-index:101;width:44px;height:44px;position:relative;flex-shrink:0;margin-right:-8px}
+      .ham-line{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:transform 0.3s,opacity 0.3s;position:absolute;left:11px}
+      .ham-line:nth-child(1){top:14px}.ham-line:nth-child(2){top:21px}.ham-line:nth-child(3){top:28px}
+      .mobile-toggle.open .ham-line:nth-child(1){transform:translateY(7px) rotate(45deg)}.mobile-toggle.open .ham-line:nth-child(2){opacity:0}.mobile-toggle.open .ham-line:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+      /* HERO */
+      .page-hero{padding:8rem 2rem 2.5rem;max-width:900px;margin:0 auto;position:relative}
+      .hero-glow{position:absolute;top:0;left:50%;transform:translateX(-50%);width:700px;height:400px;background:radial-gradient(ellipse,var(--accent-glow) 0%,transparent 65%);pointer-events:none;filter:blur(80px)}
+      .page-badge{display:inline-flex;align-items:center;gap:.5rem;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:1.5rem;font-weight:500}
+      .pulse{width:7px;height:7px;background:var(--accent);border-radius:50%;animation:pls 2s ease-in-out infinite}
+      @keyframes pls{0%,100%{opacity:1;box-shadow:0 0 0 0 var(--accent-glow-strong)}50%{opacity:.6;box-shadow:0 0 0 8px transparent}}
+      .page-hero h1{font-family:var(--serif);font-size:clamp(2.2rem,6vw,4.2rem);font-weight:400;line-height:1.1;letter-spacing:-0.03em;margin-bottom:1rem;animation:fadeUp .6s ease both .1s}
+      .page-hero h1 em{font-style:italic;color:var(--accent)}
+      .hero-sub{font-size:1.05rem;color:var(--text-mid);font-weight:300;line-height:1.7;margin-bottom:1.25rem;max-width:640px;animation:fadeUp .6s ease both .2s}
+      .hero-comment{font-family:var(--mono);font-size:.85rem;color:var(--text-muted);animation:fadeUp .6s ease both .25s}
+      .hero-comment span{color:var(--text-mid)}
+      @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+      /* WHAT'S INSIDE */
+      .features{max-width:900px;margin:0 auto 3rem;padding:0 2rem}
+      .features-title{font-family:var(--serif);font-size:1.4rem;font-weight:400;margin-bottom:1.25rem}
+      .feature-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;list-style:none}
+      .feature-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:1.25rem}
+      .feature-name{font-size:.95rem;font-weight:600;margin-bottom:.3rem}
+      .feature-desc{font-size:.82rem;color:var(--text-muted);font-weight:300;line-height:1.5}
+      .sample{margin-top:1rem;background:#0a0a0a;border:1px solid var(--border);border-radius:14px;padding:1.25rem}
+      .sample-label{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:500;margin-bottom:.6rem}
+      .sample p{font-family:var(--mono);font-size:.8rem;line-height:1.7;color:var(--text-mid);white-space:pre-wrap;word-break:break-word}
+
+      /* GATE (same as the other gated pages) */
+      .gate-wrap{max-width:520px;margin:0 auto 5rem;padding:0 2rem}
+      .gate-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:2.5rem;position:relative;overflow:hidden}
+      .gate-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent 60%)}
+      .gate-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;margin-bottom:.4rem}
+      .gate-subtitle{font-size:.88rem;color:var(--text-muted);margin-bottom:1.5rem;font-weight:300}
+      .gate-subtitle strong{color:var(--text-mid);font-weight:500}
+      .teaser-list{list-style:none;margin-bottom:1.5rem;display:flex;flex-direction:column;gap:.55rem}
+      .teaser-list li{display:flex;align-items:flex-start;gap:.75rem;font-size:.88rem;color:var(--text-mid);font-weight:300}
+      .teaser-list li::before{content:'\2713';color:var(--accent);font-weight:700;flex-shrink:0}
+      .form-group{margin-bottom:1rem}
+      .form-group label{display:block;font-size:.75rem;color:var(--text-mid);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.45rem;font-weight:500}
+      .form-group input{width:100%;min-height:48px;padding:.8rem 1rem;background:var(--bg);border:1px solid var(--border-hover);border-radius:10px;color:var(--text);font-family:var(--sans);font-size:1rem;font-weight:300;transition:border-color var(--transition),box-shadow var(--transition);outline:none}
+      .form-group input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-glow)}
+      .form-group input::placeholder{color:#555}
+      .consent-group{margin-bottom:1rem;display:flex;align-items:flex-start;gap:.6rem;min-height:44px}
+      .consent-group input[type="checkbox"]{width:22px;height:22px;margin-top:1px;accent-color:var(--accent);flex-shrink:0;cursor:pointer}
+      .consent-group label{font-size:.82rem;color:var(--text-mid);font-weight:300;line-height:1.5;cursor:pointer;padding-bottom:.25rem}
+      .btn-unlock{width:100%;min-height:52px;padding:1rem;background:var(--accent);color:var(--bg);border:none;border-radius:100px;font-family:var(--sans);font-size:.95rem;font-weight:600;cursor:pointer;transition:transform .2s,box-shadow .3s;margin-top:.5rem;display:flex;align-items:center;justify-content:center;gap:.5rem}
+      .btn-unlock:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 32px var(--accent-glow-strong)}
+      .btn-unlock:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
+      .gate-privacy{font-size:.75rem;color:var(--text-muted);margin-top:1rem;font-weight:300;line-height:1.6}
+      .gate-privacy a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(0,240,160,0.3)}
+      .error-msg{color:var(--error);font-size:.85rem;margin-top:.5rem;display:none}
+      .error-msg.show{display:block}
+      .turnstile-box{margin-bottom:1rem;display:flex;justify-content:center;min-height:65px}
+      .noscript-msg{background:rgba(255,217,61,0.06);border:1px solid rgba(255,217,61,0.2);color:var(--text-mid);border-radius:10px;padding:1rem;font-size:.88rem;margin-bottom:1rem}
+
+      /* UNLOCKED CONTENT */
+      #prompt-content{display:none;max-width:900px;margin:0 auto;padding:0 2rem 6rem}
+      #prompt-content.unlocked{display:block;animation:fadeUp .5s ease both}
+      .unlock-banner{background:linear-gradient(135deg,rgba(0,240,160,0.06),rgba(0,240,160,0.02));border:1px solid rgba(0,240,160,0.2);border-radius:var(--radius);padding:1.25rem 1.5rem;margin-bottom:2.5rem}
+      .unlock-banner strong{display:block;font-size:1.05rem;margin-bottom:.25rem}
+      .unlock-banner p{font-size:.88rem;color:var(--text-mid);font-weight:300}
+      .sp-status{font-size:.9rem;color:var(--text-mid);margin-bottom:1.5rem}
+      .sp-status:empty{display:none}
+      .sp-status.is-error{color:var(--error)}
+      .btn-retry{margin-left:.5rem;min-height:44px;padding:0 1.1rem;border-radius:100px;border:1px solid var(--border-hover);background:var(--bg-card);color:var(--text);font-family:var(--sans);font-size:.88rem;cursor:pointer}
+
+      /* TABS */
+      .sp-tabs{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin:2.5rem 0 2rem;scroll-margin-top:80px}
+      .sp-tab{min-height:48px;padding:.6rem .9rem;border-radius:12px;border:1px solid var(--border-hover);background:var(--bg-card);color:var(--text-mid);font-family:var(--sans);font-size:.92rem;font-weight:500;cursor:pointer;text-align:center;transition:border-color .2s,background .2s,color .2s}
+      .sp-tab:hover{border-color:var(--text-muted);color:var(--text)}
+      .sp-tab[aria-selected="true"]{background:var(--accent-glow);border-color:var(--accent);color:var(--text)}
+      .sp-panel:focus-visible{outline-offset:6px;border-radius:4px}
+      @media(min-width:700px){.sp-tabs{grid-template-columns:repeat(4,1fr)}}
+
+      /* RENDERED MARKDOWN */
+      .md{color:var(--text-mid);font-weight:300;font-size:.98rem;line-height:1.75;overflow-wrap:break-word}
+      .md h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.7rem,4.5vw,2.3rem);color:var(--text);line-height:1.2;margin:0 0 1rem;letter-spacing:-0.02em}
+      .md h3{font-size:1.25rem;font-weight:600;color:var(--text);margin:2.5rem 0 .75rem;line-height:1.3}
+      .md h4{font-size:1.05rem;font-weight:600;color:var(--text);margin:1.75rem 0 .6rem;line-height:1.35;scroll-margin-top:90px}
+      .md h4.p-heading{color:var(--accent)}
+      .md p{margin-bottom:1rem}
+      .md strong{color:var(--text);font-weight:500}
+      .md a{color:var(--accent);text-decoration:none;border-bottom:1px solid rgba(0,240,160,0.35)}
+      .md a:hover{border-bottom-color:var(--accent)}
+      .md a.p-ref{font-weight:500;padding:.1rem .1rem}
+      .md ul,.md ol{margin:0 0 1.25rem 1.35rem}
+      .md li{margin-bottom:.45rem;padding-left:.2rem}
+      .md li::marker{color:var(--text-muted)}
+      .md ul.task-list{list-style:none;margin-left:0}
+      .md li.task label{display:flex;gap:.65rem;align-items:flex-start}
+      .md li.task input{width:20px;height:20px;margin-top:.3rem;accent-color:var(--accent);flex-shrink:0}
+      .md code{font-family:var(--mono);font-size:.84em;background:rgba(0,240,160,0.06);color:var(--accent);padding:.1rem .35rem;border-radius:4px;overflow-wrap:anywhere}
+      .table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 1.5rem;border:1px solid var(--border);border-radius:12px;max-width:100%}
+      .md table{border-collapse:collapse;width:max-content;min-width:100%;font-size:.86rem;line-height:1.55}
+      .md th,.md td{text-align:left;vertical-align:top;padding:.7rem .85rem;border-bottom:1px solid var(--border);max-width:15rem}
+      .md th{color:var(--text);font-weight:600;background:var(--bg-elevated);white-space:nowrap}
+      .md tbody tr:last-child td{border-bottom:none}
+      .code-block{margin:0 0 1.5rem;background:#0a0a0a;border:1px solid var(--border);border-radius:12px;overflow:hidden}
+      .code-head{display:flex;align-items:center;gap:.75rem;padding:.25rem .35rem .25rem 1rem;border-bottom:1px solid var(--border);background:var(--bg-elevated)}
+      .code-lang{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-muted)}
+      .copy-hint{flex:1;text-align:right;font-size:.8rem;color:var(--warn)}
+      .copy-hint.ok{color:var(--accent)}
+      .copy-btn{min-height:44px;min-width:72px;padding:0 1rem;border-radius:8px;border:1px solid var(--border-hover);background:var(--bg-card);color:var(--text);font-family:var(--sans);font-size:.85rem;font-weight:500;cursor:pointer}
+      .copy-btn:hover{border-color:var(--accent)}
+      .copy-btn.copied{border-color:var(--accent);color:var(--accent)}
+      .code-body{margin:0;padding:1rem 1.1rem;overflow-x:auto;-webkit-overflow-scrolling:touch;font-family:var(--mono);font-size:.8rem;line-height:1.7;color:var(--text);-webkit-user-select:text;user-select:text}
+      .code-body code{background:none;color:inherit;padding:0;font-size:inherit;overflow-wrap:normal}
+      .is-prompt .code-body{white-space:pre-wrap;word-break:break-word}
+      .is-prompt .code-body code{overflow-wrap:anywhere}
+      mark.ph{background:rgba(255,217,61,0.14);color:var(--warn);border-radius:3px;padding:0 .12em}
+      .p-index{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;margin-bottom:2.5rem}
+      .md .p-index-title{font-family:var(--sans);font-size:.78rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin:0 0 .75rem}
+      .md .p-index ol{list-style:none;margin:0;display:grid;grid-template-columns:1fr;gap:.25rem}
+      .md .p-index li{margin:0;padding:0}
+      .md .p-index a{display:flex;align-items:center;gap:.6rem;min-height:44px;padding:.35rem .5rem;border:none;border-radius:8px;color:var(--text-mid);font-weight:400;font-size:.9rem}
+      .md .p-index a:hover{background:var(--bg-card-hover);color:var(--text)}
+      .md .p-index .p-num{font-family:var(--mono);color:var(--accent);font-size:.8rem;min-width:2.4rem}
+      @media(min-width:700px){.md .p-index ol{grid-template-columns:1fr 1fr}}
+      .sp-intro{padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+
+      footer{border-top:1px solid var(--border);padding:2rem;max-width:900px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+      .footer-left{color:var(--text-muted);font-size:.8rem;font-weight:300}
+      .footer-links{display:flex;gap:1.25rem;flex-wrap:wrap;justify-content:center}
+      .footer-links a{color:var(--text-muted);text-decoration:none;font-size:.85rem;transition:color var(--transition);display:inline-flex;align-items:center;min-height:44px}
+      .footer-links a:hover{color:var(--accent)}
+
+      /* MOBILE */
+      @media(max-width:600px){
+        nav{padding:0.5rem 1rem}
+        .nav-links{position:fixed;top:0;right:-100%;width:280px;max-width:85vw;height:100vh;height:100dvh;background:#0a0a0a;border-left:1px solid var(--border);padding:5rem 2rem 2rem;flex-direction:column;align-items:flex-start;gap:0;z-index:99;transition:right 0.35s cubic-bezier(0.4,0,0.2,1);visibility:hidden}
+        .nav-links.open{right:0;visibility:visible}
+        .nav-links a{padding:0.85rem 0;font-size:1rem;border-bottom:1px solid var(--border);width:100%}
+        .nav-links a:not(.nav-cta)::after{display:none}
+        .nav-cta{margin-top:1rem;text-align:center;display:block;width:100%;padding:0.85rem;border-bottom:none}
+        .mobile-toggle{display:block}
+        .page-hero{padding:6.5rem 1rem 2rem;overflow:hidden}
+        .hero-glow{width:300px;height:200px}
+        .features{padding:0 1rem}
+        .feature-grid{grid-template-columns:1fr}
+        .gate-wrap{padding:0 1rem}
+        .gate-card{padding:1.75rem 1rem}
+        #prompt-content{padding:0 1rem 4rem}
+        .md{font-size:.95rem}
+        .code-body{font-size:.76rem;padding:.85rem}
+        footer{flex-direction:column;text-align:center;gap:.5rem;padding:1.5rem 1rem}
+      }
+      @media(prefers-reduced-motion:reduce){
+        *,*::before,*::after{animation:none !important;transition:none !important}
+        html{scroll-behavior:auto}
+      }
+    </style>
+  </head>
+  <body>
+    <nav aria-label="Main">
+      <a href="/" class="nav-logo">oye.nino<span>.</span></a>
+      <div class="nav-links" id="navLinks">
+        <a href="/existence/">Existence</a>
+        <a href="/prompts.html">Free Prompts</a>
+        <a href="/frontend-deploy-prompt.html">Frontend Deploy</a>
+        <a href="/backend-deploy-prompt.html">Backend Deploy</a>
+        <a href="/#contact" class="nav-cta">Let's Talk</a>
+      </div>
+      <button class="mobile-toggle" id="mobToggle" aria-label="Menu" aria-expanded="false" aria-controls="navLinks">
+        <span class="ham-line"></span><span class="ham-line"></span><span class="ham-line"></span>
+      </button>
+    </nav>
+
+    <main>
+      <!-- HERO -->
+      <header class="page-hero">
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="page-badge"><span class="pulse" aria-hidden="true"></span> Free starter pack: home servers</div>
+        <h1>Apna home server, <em>ghar pe.</em></h1>
+        <p class="hero-sub">Pehle samjho, phir banao. Beginners aur techies dono ke liye.</p>
+        <p class="hero-comment">// beginner guide &middot; <span>Raspberry Pi 5 build</span> &middot; <span>16 AI prompts</span> &middot; <span>safety cheat sheet</span></p>
+      </header>
+
+      <!-- WHAT'S INSIDE (public preview) -->
+      <section class="features" id="whats-inside" aria-labelledby="inside-title">
+        <h2 class="features-title" id="inside-title">What is inside</h2>
+        <ul class="feature-grid">
+          <li class="feature-card"><div class="feature-name">Beginner guide</div><div class="feature-desc">What a home server is, whether you need one, and a one-week plan. No jargon.</div></li>
+          <li class="feature-card"><div class="feature-name">Tech guide</div><div class="feature-desc">The exact Raspberry Pi 5 build: SSD boot, Ubuntu Server, Docker, backups and the problems I hit.</div></li>
+          <li class="feature-card"><div class="feature-name">AI prompt library</div><div class="feature-desc">16 copy-paste prompts for planning, building, fixing and staying safe.</div></li>
+          <li class="feature-card"><div class="feature-name">Cheat sheet</div><div class="feature-desc">A safety checklist and a plain-English glossary to keep open while you build.</div></li>
+        </ul>
+        <div class="sample">
+          <div class="sample-label">Sample prompt</div>
+          <p>Before I run this command on my server, explain what it does, line by line: [paste the command]. Tell me if it can delete files, change permissions, open the server to the internet...</p>
+        </div>
+      </section>
+
+      <!-- GATE -->
+      <section class="gate-wrap" id="gate-section" aria-labelledby="gate-title">
+        <div class="gate-card">
+          <h2 class="gate-title" id="gate-title">Get the free starter pack</h2>
+          <p class="gate-subtitle">Enter your details to unlock it. <strong>It opens right away.</strong></p>
+
+          <ul class="teaser-list">
+            <li>Two paths: Beginner and Tech</li>
+            <li>16 AI prompts with a Copy button on each</li>
+            <li>Real commands and the mistakes to avoid</li>
+            <li>Safety checklist and glossary</li>
+          </ul>
+
+          <noscript><p class="noscript-msg">This page needs JavaScript to unlock the pack. Please turn it on, or open the page in your phone's main browser.</p></noscript>
+
+          <form id="gateForm" novalidate>
+            <div class="form-group">
+              <label for="gate-name">Your name (required)</label>
+              <input type="text" id="gate-name" name="name" placeholder="Rahul Sharma" required autocomplete="name" maxlength="100" />
+            </div>
+            <div class="form-group">
+              <label for="gate-phone">Phone number (optional)</label>
+              <input type="tel" id="gate-phone" name="phone" placeholder="+91 98765 43210" autocomplete="tel" inputmode="tel" maxlength="20" aria-describedby="phoneStatus" />
+              <div class="field-status" id="phoneStatus" aria-live="polite"></div>
+            </div>
+            <div class="form-group">
+              <label for="gate-email">Email address (required)</label>
+              <input type="email" id="gate-email" name="email" placeholder="rahul@gmail.com" required autocomplete="email" inputmode="email" maxlength="120" aria-describedby="emailStatus" />
+              <div class="field-status" id="emailStatus" aria-live="polite"></div>
+            </div>
+
+            <div class="consent-group">
+              <input type="checkbox" id="marketingConsent" name="marketing_consent" value="yes" />
+              <label for="marketingConsent">I would like to get occasional learning tips and new guides from Oye Nino by email. This is optional. You can unsubscribe at any time.</label>
+            </div>
+
+            <div class="cf-turnstile turnstile-box" id="turnstileBox" data-sitekey="0x4AAAAAACgSvRvZpT5d_Ab5" data-theme="dark" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired"></div>
+            <script>
+              // The normal Turnstile widget is 300px wide and does not fit a 320px screen inside the card.
+              if (window.innerWidth < 380) document.getElementById("turnstileBox").setAttribute("data-size", "compact");
+            </script>
+
+            <div class="error-msg" id="formError" role="alert"></div>
+            <button type="submit" class="btn-unlock" id="unlockBtn" disabled>Fill in all fields</button>
+            <p class="gate-privacy">We collect your name and email, and your phone number if you give it, to give you this pack and to reply about your request. Your device type and approximate location are recorded for analytics. We do not sell your data. We only send marketing emails if you tick the box above. Read the <a href="/privacy-policy.html">privacy policy</a>.</p>
+          </form>
+        </div>
+      </section>
+
+      <!-- CONTENT: filled in only after unlock. starter-pack-content.js is not loaded before that. -->
+      <section id="prompt-content" aria-label="Home Server Starter Pack">
+        <div class="unlock-banner">
+          <strong>Starter pack unlocked</strong>
+          <p id="sp-saved-note">It stays unlocked on this device. If you open this page in another browser or app, fill in the form again there.</p>
+        </div>
+        <div class="sp-status" id="sp-status" role="status"></div>
+        <article class="md sp-intro" id="sp-intro"></article>
+        <div class="sp-tabs" id="sp-tabs" role="tablist" aria-label="Starter pack sections"></div>
+        <div id="sp-panels"></div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-left">&copy; 2026 Himanshu. Built with code &amp; clarity.</div>
+      <div class="footer-links">
+        <a href="https://youtube.com/@oye_nino" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://www.instagram.com/oye.nino" target="_blank" rel="noopener">Instagram</a>
+        <a href="/prompts.html">Free Prompts</a>
+        <a href="/">Portfolio</a>
+        <a href="/privacy-policy.html">Privacy</a>
+      </div>
+    </footer>
+
+    <!-- NAV TOGGLE -->
+    <script>
+      (function () {
+        var toggle = document.getElementById("mobToggle");
+        var links = document.getElementById("navLinks");
+        if (!toggle || !links) return;
+        function setOpen(open) {
+          toggle.classList.toggle("open", open);
+          links.classList.toggle("open", open);
+          toggle.setAttribute("aria-expanded", open ? "true" : "false");
+          document.body.style.overflow = open ? "hidden" : "";
+        }
+        toggle.addEventListener("click", function () { setOpen(!links.classList.contains("open")); });
+        links.querySelectorAll("a").forEach(function (a) { a.addEventListener("click", function () { setOpen(false); }); });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && links.classList.contains("open")) { setOpen(false); toggle.focus(); }
+        });
+      })();
+    </script>
+
+    <script src="/form-utils.js"></script>
+    <script src="/starter-pack-render.js"></script>
+    <script>
+      (function () {
+        "use strict";
+
+        // Must match STARTER_PACK.version in starter-pack-content.js (scripts/check-starter-pack.js checks this).
+        // Changing it locks the pack again for everyone, so they fill the form for the new version.
+        var STARTER_PACK_VERSION = "2026-11-16";
+        var UNLOCK_KEY = "starter_pack_unlocked_" + STARTER_PACK_VERSION;
+        var DEFAULT_TAB = "beginner";
+
+        // Never send personal data (name, email, phone, IP) to GA. scripts/check-starter-pack.js enforces this.
+        function track(name, params) {
+          try {
+            if (typeof window.oyeTrackEvent === "function") window.oyeTrackEvent(name, params || {});
+            else if (typeof window.gtag === "function") window.gtag("event", name, params || {});
+          } catch (e) {}
+        }
+
+        // ---------- Storage that never throws (private mode and in-app browsers can block it) ----------
+        var memoryUnlocked = false;
+        function storageGet(key) {
+          try { return window.localStorage.getItem(key); } catch (e) { return null; }
+        }
+        function storageSet(key, value) {
+          try { window.localStorage.setItem(key, value); return true; } catch (e) { return false; }
+        }
+        function isUnlocked() { return memoryUnlocked || storageGet(UNLOCK_KEY) === "1"; }
+
+        // ---------- UTM capture (kept in memory, sent to GA only, as on the SQL page) ----------
+        var utm = {};
+        try {
+          var params = new URLSearchParams(window.location.search);
+          ["utm_source", "utm_medium", "utm_campaign", "utm_content"].forEach(function (k) {
+            var v = params.get(k);
+            if (v && v.length <= 100) utm[k] = v;
+          });
+        } catch (e) {}
+
+        var gate = document.getElementById("gate-section");
+        var content = document.getElementById("prompt-content");
+        var statusEl = document.getElementById("sp-status");
+
+        // ---------- Gate ----------
+        if (isUnlocked()) {
+          showContent(true);
+        } else {
+          initOptionalPhone();
+          try {
+            if (typeof OyeNinoForm !== "undefined") {
+              // No phoneId: form-utils would make the phone required. Phone is optional here and
+              // checked by initOptionalPhone() instead. The value is still sent with the form.
+              new OyeNinoForm({
+                formId: "gateForm",
+                emailId: "gate-email",
+                nameId: "gate-name",
+                btnId: "unlockBtn",
+                statusId: "emailStatus",
+                errorId: "formError",
+                formName: "starter_pack_gate",
+                source: "starter_pack_page",
+                requiredFields: ["name", "email"],
+                btnTexts: {
+                  ready: "Unlock the starter pack",
+                  turnstile: "Complete the human check first",
+                  email: "Enter a valid email first",
+                  phone: "Enter a valid phone number",
+                  fields: "Fill in all fields",
+                  submitting: "Submitting..."
+                },
+                onSuccess: function () {
+                  var consent = document.getElementById("marketingConsent").checked;
+                  var stored = storageSet(UNLOCK_KEY, "1");
+                  memoryUnlocked = true;
+                  track("starter_pack_unlock", { method: "form", marketing_opt_in: consent, storage_ok: stored, content_version: STARTER_PACK_VERSION });
+                  if (Object.keys(utm).length) track("starter_pack_gate_utm", utm);
+                  if (!stored) {
+                    document.getElementById("sp-saved-note").textContent =
+                      "This browser is not letting the page save that you unlocked it, so you will need to fill in the form again if you close this page. Keep this tab open while you read.";
+                  }
+                  showContent(false);
+                }
+              });
+            }
+          } catch (e) { console.warn("form-utils not loaded", e); }
+        }
+
+        // Optional phone: empty is fine. If filled in, it must look like a real number.
+        // Registered before OyeNinoForm so it can stop an invalid submit before form-utils sends it.
+        function phoneProblem(raw) {
+          var v = String(raw || "").trim();
+          if (!v) return "";
+          var c = v.replace(/[\s\-().]/g, "");
+          if (/^00[1-9]/.test(c)) c = "+" + c.slice(2);
+          if (/^0[6-9]\d{9}$/.test(c) || /^\+?[1-9]\d{6,14}$/.test(c)) return "";
+          return "Enter a valid phone number with country code, for example +91 98765 43210, or leave it empty.";
+        }
+        function initOptionalPhone() {
+          var form = document.getElementById("gateForm");
+          var input = document.getElementById("gate-phone");
+          var status = document.getElementById("phoneStatus");
+          var errorEl = document.getElementById("formError");
+          function show(msg) {
+            status.textContent = msg;
+            status.className = "field-status" + (msg ? " phone-error" : "");
+            status.style.display = msg ? "block" : "none";
+            if (msg) input.setAttribute("aria-invalid", "true");
+            else input.removeAttribute("aria-invalid");
+          }
+          // No check on blur: showing a message on blur moves the button down while it is being tapped,
+          // so the tap misses. Check on submit, then re-check while typing once an error is shown.
+          input.addEventListener("input", function () {
+            if (!status.textContent) return;
+            show(phoneProblem(input.value));
+            if (!status.textContent) errorEl.classList.remove("show");
+          });
+          form.addEventListener("submit", function (e) {
+            var msg = phoneProblem(input.value);
+            if (!msg) {
+              // form-utils.js formats a bare 10-digit Indian number as "+98765..." (wrong country code).
+              // Add +91 here, before form-utils reads the form.
+              var c = input.value.replace(/[\s\-().]/g, "").replace(/^0(?=[6-9]\d{9}$)/, "");
+              if (/^[6-9]\d{9}$/.test(c)) input.value = "+91 " + c.slice(0, 5) + " " + c.slice(5);
+              return;
+            }
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            show(msg);
+            errorEl.textContent = "Check your phone number, or leave it empty.";
+            errorEl.classList.add("show");
+            input.focus();
+          });
+        }
+
+        function showContent(restored) {
+          function reveal() {
+            gate.style.display = "none";
+            content.classList.add("unlocked");
+            loadPack(function (pack) {
+              renderPack(pack);
+              if (restored) track("starter_pack_restored", { content_version: STARTER_PACK_VERSION });
+              if (!restored || !location.hash) content.scrollIntoView({ block: "start" });
+            });
+          }
+          if (restored) { reveal(); return; }
+          gate.style.transition = "opacity .4s ease, transform .4s ease";
+          gate.style.opacity = "0";
+          gate.style.transform = "translateY(-10px)";
+          setTimeout(reveal, 400);
+        }
+
+        // ---------- Load the content only after unlock ----------
+        function loadPack(done) {
+          if (typeof STARTER_PACK !== "undefined") { done(STARTER_PACK); return; }
+          statusEl.classList.remove("is-error");
+          statusEl.textContent = "Loading the starter pack...";
+          var s = document.createElement("script");
+          s.src = "/starter-pack-content.js?v=" + encodeURIComponent(STARTER_PACK_VERSION);
+          s.async = true;
+          s.onload = function () {
+            if (typeof STARTER_PACK === "undefined") { loadFailed(s, done); return; }
+            statusEl.textContent = "";
+            if (STARTER_PACK.version !== STARTER_PACK_VERSION) console.warn("Starter pack version mismatch", STARTER_PACK.version, STARTER_PACK_VERSION);
+            done(STARTER_PACK);
+          };
+          s.onerror = function () { loadFailed(s, done); };
+          document.body.appendChild(s);
+        }
+
+        function loadFailed(s, done) {
+          if (s && s.parentNode) s.parentNode.removeChild(s);
+          statusEl.classList.add("is-error");
+          statusEl.textContent = "The starter pack could not load. Check your internet connection and try again.";
+          var btn = document.createElement("button");
+          btn.type = "button";
+          btn.className = "btn-retry";
+          btn.textContent = "Try again";
+          btn.addEventListener("click", function () { loadPack(done); });
+          statusEl.appendChild(btn);
+          track("starter_pack_load_error", {});
+        }
+
+        // ---------- Render ----------
+        var tabIds = [];
+        var activeTab = null;
+
+        function renderPack(pack) {
+          var R = window.SPMarkdown;
+          var tabsEl = document.getElementById("sp-tabs");
+          var panelsEl = document.getElementById("sp-panels");
+
+          document.getElementById("sp-intro").innerHTML = safeRender(function () {
+            return R.render(pack.intro, { linkPrompts: true, docId: "intro" });
+          });
+
+          tabsEl.innerHTML = "";
+          panelsEl.innerHTML = "";
+          tabIds = [];
+          pack.docs.forEach(function (doc, i) {
+            var id = String(doc.id).replace(/[^a-z0-9_-]/gi, "");
+            tabIds.push(id);
+
+            var tab = document.createElement("button");
+            tab.type = "button";
+            tab.className = "sp-tab";
+            tab.id = "tab-" + id;
+            tab.setAttribute("role", "tab");
+            tab.setAttribute("aria-controls", "panel-" + id);
+            tab.setAttribute("aria-selected", "false");
+            tab.tabIndex = -1;
+            tab.textContent = doc.title;
+            tab.addEventListener("click", function () { selectTab(id, { updateHash: true }); });
+            tabsEl.appendChild(tab);
+
+            var panel = document.createElement("div");
+            panel.className = "md sp-panel";
+            panel.id = "panel-" + id;
+            panel.setAttribute("role", "tabpanel");
+            panel.setAttribute("aria-labelledby", "tab-" + id);
+            panel.tabIndex = 0;
+            panel.hidden = true;
+            var isPrompts = id === "prompts";
+            panel.innerHTML = safeRender(function () {
+              return (isPrompts ? R.renderPromptIndex(doc.md) : "") +
+                R.render(doc.md, { promptDoc: isPrompts, linkPrompts: !isPrompts, docId: id });
+            });
+            panelsEl.appendChild(panel);
+          });
+
+          tabsEl.addEventListener("keydown", onTabKey);
+          content.addEventListener("click", onContentClick);
+          window.addEventListener("hashchange", function () { route(location.hash, true); });
+          route(location.hash, false);
+        }
+
+        function safeRender(fn) {
+          try { return fn(); }
+          catch (e) {
+            console.error(e);
+            return '<p class="sp-status is-error">This section could not be shown. Please reload the page.</p>';
+          }
+        }
+
+        // ---------- Tabs (ARIA tabs pattern, automatic activation) ----------
+        function selectTab(id, opts) {
+          opts = opts || {};
+          if (tabIds.indexOf(id) === -1) id = DEFAULT_TAB;
+          tabIds.forEach(function (t) {
+            var tab = document.getElementById("tab-" + t);
+            var panel = document.getElementById("panel-" + t);
+            var on = t === id;
+            tab.setAttribute("aria-selected", on ? "true" : "false");
+            tab.tabIndex = on ? 0 : -1;
+            panel.hidden = !on;
+          });
+          if (opts.focusTab) document.getElementById("tab-" + id).focus();
+          if (opts.updateHash) {
+            try { history.replaceState(null, "", "#" + id); } catch (e) {}
+          }
+          if (activeTab !== id) {
+            activeTab = id;
+            track("starter_pack_tab_view", { tab: id });
+          }
+        }
+
+        function onTabKey(e) {
+          var i = tabIds.indexOf(activeTab), next = null;
+          if (e.key === "ArrowRight" || e.key === "ArrowDown") next = (i + 1) % tabIds.length;
+          else if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = (i - 1 + tabIds.length) % tabIds.length;
+          else if (e.key === "Home") next = 0;
+          else if (e.key === "End") next = tabIds.length - 1;
+          if (next === null) return;
+          e.preventDefault();
+          selectTab(tabIds[next], { focusTab: true, updateHash: true });
+        }
+
+        // "#tech" opens a tab. "#p7" opens the prompt library and jumps to P7.
+        function route(hash, fromNavigation) {
+          var key = String(hash || "").replace(/^#/, "").toLowerCase();
+          var pm = key.match(/^p(\d{1,2})$/);
+          if (pm) {
+            selectTab("prompts");
+            var target = document.getElementById(key);
+            if (target) {
+              target.scrollIntoView({ block: "start" });
+              try { target.focus({ preventScroll: true }); } catch (e) { target.focus(); }
+            }
+            return;
+          }
+          selectTab(tabIds.indexOf(key) !== -1 ? key : DEFAULT_TAB);
+          if (fromNavigation && tabIds.indexOf(key) !== -1) {
+            document.getElementById("sp-tabs").scrollIntoView({ block: "start" });
+          }
+        }
+
+        function onContentClick(e) {
+          var ref = e.target.closest && e.target.closest("a.p-ref");
+          if (ref) {
+            e.preventDefault();
+            var id = ref.getAttribute("data-prompt");
+            track("starter_pack_prompt_link", { prompt: id, from: activeTab });
+            if (location.hash === "#" + id) route("#" + id, true);
+            else {
+              try { history.pushState(null, "", "#" + id); } catch (err) {}
+              route("#" + id, true);
+            }
+            return;
+          }
+          var btn = e.target.closest && e.target.closest(".copy-btn");
+          if (btn) onCopy(btn);
+        }
+
+        // ---------- Copy (clipboard API, then execCommand, then manual select) ----------
+        function onCopy(btn) {
+          var block = btn.closest(".code-block");
+          var code = block.querySelector("pre code");
+          var hint = block.querySelector(".copy-hint");
+          var text = code.textContent;
+          var doc = block.getAttribute("data-doc") || "";
+
+          function done(method) {
+            btn.textContent = "Copied";
+            btn.classList.add("copied");
+            hint.classList.add("ok");
+            hint.textContent = "Copied to clipboard";
+            track("starter_pack_copy", { doc: doc, method: method });
+            setTimeout(function () {
+              btn.textContent = "Copy";
+              btn.classList.remove("copied");
+              hint.classList.remove("ok");
+              hint.textContent = "";
+            }, 2000);
+          }
+          function manual() {
+            try {
+              var range = document.createRange();
+              range.selectNodeContents(code);
+              var sel = window.getSelection();
+              sel.removeAllRanges();
+              sel.addRange(range);
+            } catch (e) {}
+            hint.classList.remove("ok");
+            hint.textContent = "Press and hold to copy";
+            track("starter_pack_copy", { doc: doc, method: "manual" });
+          }
+          function fallback() {
+            if (execCopy(text, btn)) done("execCommand");
+            else manual();
+          }
+
+          var settled = false;
+          if (navigator.clipboard && window.isSecureContext && typeof navigator.clipboard.writeText === "function") {
+            // Some in-app browsers never settle the promise. Give up after 1.5 s.
+            var timer = setTimeout(function () { if (!settled) { settled = true; fallback(); } }, 1500);
+            navigator.clipboard.writeText(text).then(function () {
+              if (settled) return;
+              settled = true; clearTimeout(timer); done("clipboard");
+            }, function () {
+              if (settled) return;
+              settled = true; clearTimeout(timer); fallback();
+            });
+          } else {
+            fallback();
+          }
+        }
+
+        function execCopy(text, returnFocusTo) {
+          var ta = document.createElement("textarea");
+          ta.value = text;
+          ta.setAttribute("readonly", "");
+          ta.setAttribute("aria-hidden", "true");
+          ta.style.cssText = "position:fixed;top:0;left:0;width:1px;height:1px;opacity:0;font-size:16px;";
+          document.body.appendChild(ta);
+          var ok = false;
+          try {
+            ta.focus();
+            ta.select();
+            ta.setSelectionRange(0, text.length);
+            ok = document.execCommand("copy");
+          } catch (e) { ok = false; }
+          document.body.removeChild(ta);
+          if (returnFocusTo) try { returnFocusTo.focus({ preventScroll: true }); } catch (e) {}
+          return !!ok;
+        }
+      })();
+    </script>
+  </body>
+</html>

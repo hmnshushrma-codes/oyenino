@@ -8,11 +8,17 @@ Disallow: /frontend-deploy-prompt-data.json
 Disallow: /backend-deploy-prompt-data.json
 Disallow: /oye-nino-sql-beginners-guide.pdf
 Disallow: /sql-cheat-sheet-print.html
+Disallow: /starter-pack-content.js
+Disallow: /content/
 
 User-agent: Googlebot
+Disallow: /starter-pack-content.js
+Disallow: /content/
 Allow: /
 
 User-agent: Bingbot
+Disallow: /starter-pack-content.js
+Disallow: /content/
 Allow: /
 
 Sitemap: https://oyenino.com/sitemap.xml

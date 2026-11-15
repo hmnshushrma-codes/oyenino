@@ -13,7 +13,7 @@
 | What | Where |
 |------|-------|
 | Page HTML | `/your-page.html` at project root (standalone, NOT Astro) |
-| Shared validation | `/form-utils.js` (never modify, just reference) |
+| Shared validation | `/form-utils.js` (reference it; change it only for fixes, see "Changing form-utils.js") |
 | Optional dynamic data | `/your-page-data.json` |
 
 ## Two Patterns
@@ -253,6 +253,27 @@
 - `{formName}_network_error`
 - `rate_limited`
 - `turnstile_server_rejected`
+
+---
+
+## Analytics rule: no personal data in GA
+
+**Never send personal data to Google Analytics.** That means no name, email address, phone number, IP address, or anything else that identifies a person, in any GA event, on any page.
+
+- Send flags and categories instead: `has_name: true`, `form_id`, `tab`, `method`.
+- Do not pass a form's `payload` (or any part of it) to `gtag`, `trackEvent` or `oyeTrackEvent`.
+- Pass event parameters as an object literal so they can be checked.
+- `node scripts/check-starter-pack.js` scans every GA call in `form-utils.js` and every `.html` page and fails if an event includes personal fields. Run it before every commit that touches analytics.
+
+Known open item: three events in `form-utils.js` send the **email domain** (`email_mx_verified`/`email_mx_failed`, `email_typo_fixed`, `email_server_rejected`). They are listed as exceptions in the check and print a warning until the owner decides.
+
+## Changing form-utils.js
+
+`form-utils.js` is shared by every gated page, so treat it as stable. It **may** be changed for fixes like removing personal data from analytics (for example, `{formName}_success` used to send `visitor_name`), as long as:
+
+1. The change is the smallest one that fixes the problem.
+2. It comes with a test: add or update a check in `scripts/check-starter-pack.js`, and run it.
+3. You check one existing gated page still unlocks after the change.
 
 ---
 
