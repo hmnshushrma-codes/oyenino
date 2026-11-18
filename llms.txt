@@ -1,0 +1,23 @@
+# Oye Nino
+
+> Free guides and AI prompts for building websites, apps and home servers, written in plain English by Oye Nino (oyenino.com, Instagram @oye.nino).
+
+## Guides
+
+- [Git and GitHub guide](https://oyenino.com/git-github-guide.html): beginner guide to Git and GitHub, from the first commit to branches, forks, pull requests and undoing mistakes. The full guide is free to read; the command cheat sheet and PDF need a free sign-up (18+).
+- [Home Server Starter Pack](https://oyenino.com/starter-pack.html): find out if you need a home server, then build one. Free with sign-up (18+).
+- [SQL cheat sheet](https://oyenino.com/sql-cheat-sheet.html): SQL for complete beginners.
+- [Frontend deploy guide](https://oyenino.com/frontend-deploy-prompt.html)
+- [Backend deploy guide](https://oyenino.com/backend-deploy-prompt.html)
+- [Free AI prompts](https://oyenino.com/prompts.html): all free prompts and guides in one place.
+
+## More
+
+- [Veyra AI lead assistant](https://oyenino.com/veyra/)
+- [Existence design guides](https://oyenino.com/existence/)
+- [Privacy policy](https://oyenino.com/privacy-policy.html)
+
+## Notes
+
+- Content behind a sign-up form is not public and should not be quoted as if it were.
+- Contact: Instagram @oye.nino

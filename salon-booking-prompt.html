@@ -251,6 +251,17 @@
         footer{flex-direction:column;text-align:center;gap:.75rem}
       }
     </style>
+    <style>
+      /* nav-breakpoint: menu button up to 980px (scripts/nav-mobile-breakpoint.mjs) */
+      @media (min-width:601px) and (max-width:980px){
+        .nav-links{position:fixed;top:0;right:-100%;width:280px;max-width:85vw;height:100vh;height:100dvh;background:#0a0a0a;border-left:1px solid var(--border);padding:5rem 2rem 2rem;flex-direction:column;align-items:flex-start;gap:0;z-index:99;transition:right 0.35s cubic-bezier(0.4,0,0.2,1)}
+        .nav-links.open{right:0}
+        .nav-links a{padding:0.85rem 0;font-size:1rem;border-bottom:1px solid var(--border);width:100%}
+        .nav-links a:not(.nav-cta)::after{display:none}
+        .nav-cta{margin-top:1rem;text-align:center;display:block;width:100%;padding:0.85rem;border-bottom:none}
+        .mobile-toggle{display:block}
+      }
+    </style>
   </head>
   <body>
     <nav>
@@ -260,6 +271,7 @@
         <a href="/prompts.html">Free Prompts</a>
         <a href="/salon-backend-prompt.html">Backend Guide</a>
         <a href="/starter-pack.html">Starter Pack</a>
+        <a href="/git-github-guide.html">Git Guide</a>
         <a href="/#contact" class="nav-cta">Let's Talk</a>
       </div>
       <button class="mobile-toggle" id="mobToggle" aria-label="Menu">

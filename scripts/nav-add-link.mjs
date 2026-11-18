@@ -1,12 +1,19 @@
-// Adds a "Starter Pack" link to the copied-per-page site nav, just before the "Let's Talk" button.
+// Adds a link to the copied-per-page site nav, just before the "Let's Talk" button.
 // Safe to run more than once: pages that already have the link are left alone.
-// Run from the repo root: node scripts/nav-add-starter-pack.mjs
+// Run from the repo root:
+//   node scripts/nav-add-link.mjs /starter-pack.html "Starter Pack"
+//   node scripts/nav-add-link.mjs /git-github-guide.html "Git Guide"
+// The page the link points to gets aria-current="page" on its own link.
 // index.html has its own dropdown and mobile panel and is edited by hand.
 import { readFileSync, writeFileSync, readdirSync } from "node:fs";
 import { join, relative } from "node:path";
 
 const ROOT = new URL("..", import.meta.url).pathname;
-const HREF = "/starter-pack.html";
+const [HREF, LABEL] = process.argv.slice(2);
+if (!/^\/[a-z0-9\/-]+\.html$/.test(HREF || "") || !LABEL) {
+  console.error('Usage: node scripts/nav-add-link.mjs /page.html "Label"');
+  process.exit(1);
+}
 
 function listHtml(dir) {
   let out = [];
@@ -35,7 +42,7 @@ for (const file of listHtml(ROOT)) {
 
   const cta = lines.findIndex((l, i) => i > start && i <= end && /class="nav-cta"/.test(l));
   if (cta === -1) { skipped.push(rel + " (no nav-cta found)"); continue; }
-  const current = rel === "starter-pack.html" ? ' aria-current="page"' : "";
+  const current = "/" + rel === HREF ? ' aria-current="page"' : "";
   const isList = /<ul/.test(lines[start]);
   let at = cta;
   let indent = lines[cta].match(/^\s*/)[0];
@@ -43,9 +50,9 @@ for (const file of listHtml(ROOT)) {
     // CTA is either "<li><a ... nav-cta>...</a></li>" on one line, or "<li>" then the <a> on the next line
     if (!/<li/.test(lines[cta]) && /^\s*<li>\s*$/.test(lines[cta - 1])) at = cta - 1;
     indent = lines[at].match(/^\s*/)[0];
-    lines.splice(at, 0, `${indent}<li><a href="${HREF}"${current}>Starter Pack</a></li>`);
+    lines.splice(at, 0, `${indent}<li><a href="${HREF}"${current}>${LABEL}</a></li>`);
   } else {
-    lines.splice(at, 0, `${indent}<a href="${HREF}"${current}>Starter Pack</a>`);
+    lines.splice(at, 0, `${indent}<a href="${HREF}"${current}>${LABEL}</a>`);
   }
   writeFileSync(file, lines.join("\n"));
   changed.push(rel);

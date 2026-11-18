@@ -1226,6 +1226,30 @@
         }
       }
     </style>
+    <style>
+      /* nav-breakpoint: menu button up to 980px (scripts/nav-mobile-breakpoint.mjs) */
+      @media (min-width:769px) and (max-width:980px){
+        nav{padding: 0.8rem 1.25rem;}
+        .nav-links{display: none;
+          position: fixed;
+          top: 56px;
+          left: 0;
+          right: 0;
+          background: rgba(5, 5, 5, 0.97);
+          flex-direction: column;
+          padding: 1.5rem;
+          gap: 0.25rem;
+          border-bottom: 1px solid var(--border);
+          backdrop-filter: blur(24px);}
+        .nav-links.open{display: flex;}
+        .nav-links li{width: 100%;}
+        .nav-links a{display: block;
+          padding: 0.75rem 1rem;
+          border-radius: 8px;
+          font-size: 0.95rem;}
+        .mobile-toggle{display: block;}
+      }
+    </style>
   </head>
   <body>
     <!-- NAV -->
@@ -1243,6 +1267,7 @@
         <li><a href="/prompts.html">Free Prompts</a></li>
         <li><a href="/shopping-prompt.html">Shopping Prompt</a></li>
         <li><a href="/starter-pack.html">Starter Pack</a></li>
+        <li><a href="/git-github-guide.html">Git Guide</a></li>
         <li><a href="/#contact" class="nav-cta">Let's Talk</a></li>
       </ul>
     </nav>

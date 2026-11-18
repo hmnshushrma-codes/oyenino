@@ -15,6 +15,19 @@
  *                           and highlight [placeholders] inside code blocks
  *   linkPrompts    boolean  turn plain "P7" references in text into links to #p7
  *   docId          string   used for data attributes on code blocks
+ *
+ * Guide options (all off by default; the starter pack does not use them):
+ *   guide          boolean  turns on the four features below
+ *     callouts:      "> **Tip:** ...", "> **Warning:** ...", "> **Real-life analogy:** ...", "> **Note:** ..."
+ *                    become <div class="callout callout-tip" role="note"> etc. Other "> " quotes become plain callouts.
+ *     output blocks: a fence labelled ```output is shown as command output, without a copy button.
+ *     placeholders:  <UPPER-CASE> words in code (not output) are highlighted as "replace this".
+ *     page links:    [text](#section-id) links within the page (no other relative links)
+ *     heading ids:   ## and ### headings get id="<idPrefix>-<slug>" (unique per page via opts.usedIds).
+ *   idPrefix       string   prefix for heading ids
+ *   usedIds        object   shared map of ids already used on the page
+ *   diagrams       object   name -> trusted SVG HTML; a line "{{diagram:name}}" is replaced by it.
+ *                           Only the build script passes this, from files in the repo, never user input.
  */
 (function (root) {
   "use strict";
@@ -45,7 +58,9 @@
 
     // 1. Code spans, taken from the raw text so their content is never formatted.
     var text = String(raw).replace(/`([^`]+)`/g, function (_, code) {
-      return keep("<code>" + escapeHtml(code) + "</code>");
+      var c = escapeHtml(code);
+      if (opts && opts.guide) c = markPlaceholders(c);
+      return keep("<code>" + c + "</code>");
     });
 
     // 2. Escape everything else.
@@ -55,6 +70,10 @@
     text = text.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, function (all, label, url) {
       // url is already escaped; decode &amp; only for the scheme check
       var plain = url.replace(/&amp;/g, "&");
+      // Guide mode also allows links to a section on the same page, like (#gitignore)
+      if (opts && opts.guide && /^#[a-z0-9-]{1,80}$/.test(plain)) {
+        return keep('<a href="' + url + '">' + applyBold(label) + "</a>");
+      }
       if (!/^https?:\/\/[^\s]+$/i.test(plain)) return all;
       var inner = applyBold(label);
       return keep(
@@ -73,6 +92,17 @@
       text = text.replace(TOKEN_RE, function (_, i) { return stash[+i]; });
     }
     return text;
+  }
+
+  // <REPOSITORY-URL>, <file>, <COMMIT-HASH>: runs on escaped text, so it cannot create tags.
+  function markPlaceholders(escaped) {
+    return escaped.replace(/&lt;([A-Za-z][A-Za-z0-9_-]{0,40})&gt;/g,
+      '<mark class="ph" title="Replace this with your own value">&lt;$1&gt;</mark>');
+  }
+
+  function slugify(s) {
+    return String(s).toLowerCase().replace(/`/g, "").replace(/&[a-z]+;/g, " ")
+      .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "section";
   }
 
   function applyBold(s) {
@@ -141,6 +171,7 @@
   function renderCode(lang, lines, opts) {
     var body = escapeHtml(lines.join("\n"));
     var isPrompt = !!(opts && opts.promptDoc);
+    if (opts && opts.guide) return renderGuideCode(lang, lines, body, opts);
     if (isPrompt) {
       // Highlight [placeholders]. Runs on escaped text, so the match cannot create tags.
       body = body.replace(/\[([^\[\]\n]{1,200})\]/g, '<mark class="ph">[$1]</mark>');
@@ -157,6 +188,44 @@
     );
   }
 
+  function renderGuideCode(lang, lines, body, opts) {
+    var isOutput = lang === "output";
+    if (isOutput) {
+      return '<div class="code-block is-output" data-lang="output"><div class="code-head"><span class="code-lang">Output</span></div>' +
+        '<pre class="code-body" tabindex="0"><code>' + body + "</code></pre></div>";
+    }
+    var first = "";
+    for (var k = 0; k < lines.length; k++) {
+      var t = lines[k].trim();
+      if (t && t.charAt(0) !== "#") { first = t; break; }
+    }
+    if (first.length > 60) first = first.slice(0, 57) + "...";
+    var label = lang ? escapeHtml(lang) : "code";
+    return (
+      '<div class="code-block" data-lang="' + label + '">' +
+      '<div class="code-head"><span class="code-lang">' + label + "</span>" +
+      '<span class="copy-hint" aria-live="polite"></span>' +
+      '<button type="button" class="copy-btn" aria-label="Copy: ' + escapeHtml(first || label) + '">Copy</button></div>' +
+      '<pre class="code-body" tabindex="0"><code>' + markPlaceholders(body) + "</code></pre></div>"
+    );
+  }
+
+  var CALLOUTS = { "tip": "tip", "warning": "warning", "real-life analogy": "analogy", "note": "note" };
+
+  function renderCallout(quoteLines, opts) {
+    var md = quoteLines.join("\n");
+    var kind = "note", title = "";
+    var m = md.match(/^\*\*([A-Za-z -]{2,30}):\*\*\s*/);
+    if (m && CALLOUTS[m[1].toLowerCase()]) {
+      kind = CALLOUTS[m[1].toLowerCase()];
+      title = m[1];
+      md = md.slice(m[0].length);
+    }
+    var inner = render(md, { guide: true, headingOffset: 3, diagrams: null });
+    return '<div class="callout callout-' + kind + '" role="note">' +
+      (title ? '<p class="callout-title">' + escapeHtml(title) + "</p>" : "") + inner + "</div>";
+  }
+
   // ---------- BLOCKS ----------
 
   var RE_FENCE = /^\s*```\s*([A-Za-z0-9_+.#-]*)\s*$/;
@@ -165,6 +234,7 @@
   var RE_OL = /^\s*(\d{1,9})[.)]\s+(.*)$/;
   var RE_TASK = /^\[([ xX])\]\s+(.*)$/;
   var RE_PROMPT_HEADING = /^P(\d{1,2}):\s*(.+)$/;
+  var RE_DIAGRAM = /^\s*\{\{diagram:([a-z0-9-]+)\}\}\s*$/;
 
   function render(md, opts) {
     opts = opts || {};
@@ -176,6 +246,7 @@
     function isBlockStart(line, next) {
       return (
         RE_FENCE.test(line) || RE_HEADING.test(line) || RE_UL.test(line) || RE_OL.test(line) ||
+        (opts.guide && (/^\s*>/.test(line) || RE_DIAGRAM.test(line))) ||
         (/^\s*\|/.test(line) && next !== undefined && isTableSep(next))
       );
     }
@@ -196,6 +267,23 @@
         continue;
       }
 
+      if (opts.guide) {
+        // Callout: consecutive "> " lines
+        if (/^\s*>/.test(line)) {
+          var q = [];
+          while (i < lines.length && /^\s*>/.test(lines[i])) { q.push(lines[i].replace(/^\s*>\s?/, "")); i++; }
+          out.push(renderCallout(q, opts));
+          continue;
+        }
+        // Diagram from a trusted file passed in by the build script
+        var dg = line.match(RE_DIAGRAM);
+        if (dg && opts.diagrams && Object.prototype.hasOwnProperty.call(opts.diagrams, dg[1])) {
+          out.push(opts.diagrams[dg[1]]);
+          i++;
+          continue;
+        }
+      }
+
       // Heading
       var h = line.match(RE_HEADING);
       if (h) {
@@ -204,6 +292,12 @@
         var pm = opts.promptDoc && h[1].length === 3 && text.match(RE_PROMPT_HEADING);
         if (pm) {
           id = ' id="p' + parseInt(pm[1], 10) + '" tabindex="-1" class="p-heading"';
+        } else if (opts.guide && opts.idPrefix) {
+          var base = opts.idPrefix + "-" + slugify(text), hid = base, n = 2;
+          var used = opts.usedIds || (opts.usedIds = {});
+          while (used[hid]) hid = base + "-" + n++;
+          used[hid] = true;
+          id = ' id="' + hid + '"';
         }
         out.push("<h" + level + id + ">" + renderInline(text, { linkPrompts: false }) + "</h" + level + ">");
         i++;
@@ -296,6 +390,7 @@
     escapeHtml: escapeHtml,
     render: render,
     renderInline: renderInline,
+    slugify: slugify,
     promptIndex: promptIndex,
     renderPromptIndex: renderPromptIndex,
     P_MAX: P_MAX

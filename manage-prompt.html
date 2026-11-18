@@ -167,6 +167,17 @@
         .page-hero{padding:7rem 1.5rem 3rem;min-height:auto}.hero-glow{width:300px;height:250px}.magnetic-title{font-size:clamp(2rem,8vw,3rem)}.float-card{display:none}.cursor-glow{display:none}.gate-wrap{padding:0 1rem}.gate-card{padding:1.75rem 1.25rem}.cf-turnstile{transform:scale(.9);transform-origin:left top}.prompt-text{font-size:.72rem;padding:1rem}.prompt-card{padding:1.25rem}.unlock-banner{flex-direction:column;text-align:center;padding:1.25rem}#prompt-content{padding:0 1rem 4rem}.how-to-use,.cheat-sheet{padding:1.5rem 1.25rem}.cheat-row{flex-direction:column;gap:.3rem}.cheat-row:hover{transform:none}.prompts-cta{padding:2rem 1.25rem}.cta-buttons{flex-direction:column;align-items:center}footer{flex-direction:column;text-align:center}
       }
     </style>
+    <style>
+      /* nav-breakpoint: menu button up to 980px (scripts/nav-mobile-breakpoint.mjs) */
+      @media (min-width:769px) and (max-width:980px){
+        .nav-links{position:fixed;top:0;right:-100%;width:280px;max-width:85vw;height:100vh;height:100dvh;background:#0a0a0a;border-left:1px solid var(--border);padding:5rem 2rem 2rem;flex-direction:column;align-items:flex-start;gap:0;z-index:99;transition:right 0.35s cubic-bezier(0.4,0,0.2,1)}
+        .nav-links.open{right:0}
+        .nav-links a{padding:0.85rem 0;font-size:1rem;border-bottom:1px solid var(--border);width:100%}
+        .nav-links a:not(.nav-cta)::after{display:none}
+        .nav-cta{margin-top:1rem;text-align:center;display:block;width:100%;padding:0.85rem;border-bottom:none}
+        .mobile-toggle{display:block}
+      }
+    </style>
   </head>
   <body>
     <div class="cursor-glow" id="cursorGlow"></div>
@@ -177,6 +188,7 @@
         <a href="/prompts.html">Free Prompts</a>
         <a href="/existence/">Existence</a>
         <a href="/starter-pack.html">Starter Pack</a>
+        <a href="/git-github-guide.html">Git Guide</a>
         <a href="/#contact" class="nav-cta">Let's Talk</a>
       </div>
       <button class="mobile-toggle" id="mobToggle" aria-label="Menu">
