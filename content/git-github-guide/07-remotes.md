@@ -127,7 +127,7 @@ fatal: Need to specify how to reconcile divergent branches.
 Nothing is broken. You have three choices:
 
 - **Merge** (`--no-rebase`): keeps both sets of commits and joins them with a merge commit. The simplest choice when you are starting out.
-- **Rebase** (`--rebase`): replays your commits on top of your teammate's, for a straight line of history. Useful later; skip it for now.
+- **Rebase** (`--rebase`): replays your commits on top of your teammate's, for a straight line of history. See [Rebase and squash](#rebase).
 - **Fast-forward only** (`--ff-only`): refuses to combine anything. Useful as a safety setting, but in this situation it stops.
 
 To merge:
@@ -170,7 +170,7 @@ To https://github.com/rahul-example/my-first-app.git
    193a734..64de4bd  main -> main
 ```
 
-If both of you changed the **same lines**, Git cannot decide which version to keep and reports a **merge conflict**. It marks both versions inside the file; you keep the right text, delete the markers, then `git add` the file and `git commit`. Read both versions carefully before you delete anything.
+If both of you changed the **same lines**, Git cannot decide which version to keep and reports a **merge conflict**. It marks both versions inside the file; you keep the right text, delete the markers, then `git add` the file and `git commit`. Read both versions carefully before you delete anything. Step by step in [Merging and merge conflicts](#merging).
 
 > **Tip:** To make merging the default for every `git pull`, run `git config --global pull.rebase false` once. If you would rather decide each time, leave it unset and Git will keep asking.
 

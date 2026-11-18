@@ -1,0 +1,37 @@
+<figure class="diagram">
+<svg viewBox="0 0 360 300" role="img" aria-labelledby="dgm-title dgm-desc">
+<title id="dgm-title">Fast-forward merge compared with a merge commit</title>
+<desc id="dgm-desc">Top: main has not moved since the branch started, so a fast-forward simply moves the main label forward to the branch's last commit, and no new commit is made. Bottom: main has a new commit of its own, so Git makes a merge commit M that joins both lines.</desc>
+<g font-family="Outfit,system-ui,sans-serif">
+<text x="16" y="22" font-size="14" font-weight="600" fill="#eeeae4">Fast-forward</text>
+<text x="16" y="40" font-size="12" fill="#b5b0a8">main has no new commits: the label just moves</text>
+<text x="16" y="166" font-size="14" font-weight="600" fill="#eeeae4">Merge commit</text>
+<text x="16" y="184" font-size="12" fill="#b5b0a8">both sides have new commits: Git joins them</text>
+</g>
+<g stroke-width="3" fill="none">
+<path d="M40 92H280" stroke="#00F0A0"/>
+<path d="M40 92H120" stroke="#5c5852"/>
+<path d="M40 220H310" stroke="#5c5852"/>
+<path d="M104 220C126 220 136 270 160 270H230C258 270 272 220 296 220" stroke="#00F0A0"/>
+</g>
+<g font-family="'JetBrains Mono',monospace" font-size="12" text-anchor="middle">
+<g fill="#111111" stroke-width="2.5">
+<circle cx="44" cy="92" r="13" stroke="#b5b0a8"/><circle cx="118" cy="92" r="13" stroke="#b5b0a8"/>
+<circle cx="192" cy="92" r="13" stroke="#00F0A0"/><circle cx="266" cy="92" r="13" stroke="#00F0A0"/>
+<circle cx="44" cy="220" r="13" stroke="#b5b0a8"/><circle cx="104" cy="220" r="13" stroke="#b5b0a8"/><circle cx="200" cy="220" r="13" stroke="#b5b0a8"/>
+<circle cx="166" cy="270" r="13" stroke="#00F0A0"/><circle cx="230" cy="270" r="13" stroke="#00F0A0"/>
+<circle cx="300" cy="220" r="15" stroke="#00F0A0"/>
+</g>
+<g fill="#eeeae4"><text x="44" y="96">A</text><text x="118" y="96">B</text><text x="44" y="224">A</text><text x="104" y="224">B</text><text x="200" y="224">C</text></g>
+<g fill="#00F0A0"><text x="192" y="96">C</text><text x="266" y="96">D</text><text x="166" y="274">D</text><text x="230" y="274">E</text><text x="300" y="224">M</text></g>
+</g>
+<g font-family="'JetBrains Mono',monospace" font-size="11">
+<path d="M118 118V108" stroke="#5c5852" stroke-width="2"/>
+<text x="118" y="132" text-anchor="middle" fill="#8a857e">main before</text>
+<path d="M266 66V78" stroke="#00F0A0" stroke-width="2"/>
+<text x="266" y="60" text-anchor="middle" fill="#00F0A0">main after</text>
+<text x="300" y="196" text-anchor="middle" fill="#00F0A0">merge commit</text>
+</g>
+</svg>
+<figcaption>A <strong>fast-forward</strong> adds no new commit. A <strong>merge commit</strong> (M) has two parents and records that two lines of work were joined.</figcaption>
+</figure>

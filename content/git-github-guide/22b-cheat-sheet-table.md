@@ -40,8 +40,15 @@
 | Older way to switch | `git checkout <BRANCH-NAME>` | Same as `git switch`, seen in older guides |
 | Rename | `git branch -m <OLD-NAME> <NEW-NAME>` | Renames a local branch |
 | Delete a merged branch | `git branch -d <BRANCH-NAME>` | Refuses if it has unmerged work |
+| Delete, even if unmerged | `git branch -D <BRANCH-NAME>` | **Throws away** its unmerged commits |
+| Delete a branch on GitHub | `git push origin --delete <BRANCH-NAME>` | Removes the GitHub copy |
 | Merge into current branch | `git merge <BRANCH-NAME>` | Brings that branch's commits in |
 | Stop a merge | `git merge --abort` | Back to before the merge |
+| Merge as one commit | `git merge --squash <BRANCH-NAME>` | Stages all the branch's changes; then commit |
+| Replay your branch on main | `git rebase main` | Straight history; only for unshared commits |
+| After fixing a rebase conflict | `git rebase --continue` | Carries on replaying commits |
+| Stop a rebase | `git rebase --abort` | Back to before the rebase |
+| Tidy your last 3 commits | `git rebase -i HEAD~3` | Squash, reword or drop them |
 
 ### GitHub and remotes
 
@@ -56,6 +63,10 @@
 | Check for new commits | `git fetch origin` | Downloads without changing your files |
 | Pull, no surprises | `git pull --ff-only origin main` | Updates only if no merge is needed |
 | Pull and merge | `git pull --no-rebase origin main` | Updates and merges if both sides changed |
+| Fork: connect the original | `git remote add upstream <REPOSITORY-URL>` | Adds the original project as upstream |
+| Fork: get the original's updates | `git fetch upstream` | Downloads the original's new commits |
+| Fork: bring them into main | `git merge upstream/main` | Then `git push origin main` |
+| Forget deleted GitHub branches | `git fetch --prune` | Cleans up old remote branch names |
 
 ### Undo and fix
 
@@ -80,6 +91,22 @@
 | Include new files | `git stash push -u -m "<NOTE>"` | Also stashes untracked files |
 | List stashes | `git stash list` | Shows saved stashes |
 | Bring work back | `git stash pop` | Re-applies the latest stash and removes it |
+| Bring back, keep the stash | `git stash apply` | Re-applies but keeps it in the list |
+| Delete the latest stash | `git stash drop` | Removes it from the list |
 | Tag a release | `git tag -a v1.0.0 -m "<NOTE>"` | Labels the current commit |
 | List tags | `git tag --list` | Shows all tags |
 | Push a tag | `git push origin v1.0.0` | Tags are not pushed automatically |
+| Push all tags | `git push origin --tags` | Sends every new tag |
+| Delete a local tag | `git tag -d v1.0.0` | Removes it on your computer only |
+
+### Find what changed
+
+| Task | Command | What it does |
+| --- | --- | --- |
+| Show one commit | `git show <COMMIT-HASH>` | Message, author and changed lines |
+| History of one file | `git log --oneline -- <file>` | Only commits that touched it |
+| Commits by one person | `git log --oneline --author="<NAME>"` | Filters by author |
+| When did this text appear? | `git log --oneline -S "<TEXT>"` | Commits that added or removed it |
+| Who changed each line | `git blame <file>` | Commit, author and date per line |
+| Find the commit that broke it | `git bisect start` | Then `git bisect bad`, `git bisect good <COMMIT-HASH>` |
+| Finish bisecting | `git bisect reset` | Back to where you started |

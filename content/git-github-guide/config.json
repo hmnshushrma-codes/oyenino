@@ -6,7 +6,7 @@
   "page": {
     "url": "https://oyenino.com/git-github-guide.html",
     "title": "Git and GitHub Tutorial for Beginners + Cheat Sheet | Oye Nino",
-    "headline": "Git and GitHub: The Beginner Guide",
+    "headline": "Git and GitHub: The Complete Beginner Guide",
     "description": "Learn Git and GitHub step by step: commits, push, branches, forks, pull requests and how to undo mistakes safely. Free command cheat sheet included.",
     "datePublished": "2026-11-19"
   },
@@ -102,73 +102,67 @@
     {
       "id": "branches",
       "title": "Branches",
-      "summary": "One-line summary, written in batch 2.",
+      "summary": "Create, switch, rename and delete branches, and push them to GitHub.",
       "parts": [
         {
           "file": "08-branches.md"
         }
       ],
-      "draft": true,
       "mission": true
     },
     {
       "id": "branching-strategies",
       "title": "Branching strategies",
-      "summary": "One-line summary, written in batch 2.",
+      "summary": "GitHub flow, trunk-based and Git Flow, and which to pick.",
       "parts": [
         {
           "file": "09-branching-strategies.md"
         }
       ],
-      "draft": true,
       "mission": true
     },
     {
       "id": "merging",
       "title": "Merging and merge conflicts",
-      "summary": "One-line summary, written in batch 2.",
+      "summary": "Fast-forward vs merge commit, and how to fix a merge conflict.",
       "parts": [
         {
           "file": "10-merging.md"
         }
       ],
-      "draft": true,
       "mission": true
     },
     {
       "id": "rebase",
       "title": "Rebase and squash",
-      "summary": "One-line summary, written in batch 2.",
+      "summary": "Rebase onto main, the golden rule, and squashing commits.",
       "parts": [
         {
           "file": "11-rebase.md"
         }
       ],
-      "draft": true,
       "mission": true
     },
     {
       "id": "fork-clone-branch",
       "title": "Branch vs fork vs clone",
-      "summary": "One-line summary, written in batch 2.",
+      "summary": "Fork, clone and branch compared, plus contributing to open source.",
       "parts": [
         {
           "file": "12-fork-clone-branch.md"
         }
       ],
-      "draft": true,
       "mission": true
     },
     {
       "id": "pull-requests",
       "title": "Pull requests and code review",
-      "summary": "One-line summary, written in batch 2.",
+      "summary": "Open, describe, review and merge pull requests.",
       "parts": [
         {
           "file": "13-pull-requests.md"
         }
       ],
-      "draft": true,
       "mission": true
     },
     {
@@ -191,25 +185,23 @@
     {
       "id": "stash",
       "title": "Stash: put work aside for later",
-      "summary": "One-line summary, written in batch 3.",
+      "summary": "Put unfinished work aside and bring it back.",
       "parts": [
         {
           "file": "15-stash.md"
         }
       ],
-      "draft": true,
       "mission": true
     },
     {
       "id": "tags",
       "title": "Tags and releases",
-      "summary": "One-line summary, written in batch 3.",
+      "summary": "Tag releases, push tags and use semantic versions.",
       "parts": [
         {
           "file": "16-tags.md"
         }
       ],
-      "draft": true,
       "mission": true
     },
     {
@@ -226,49 +218,45 @@
     {
       "id": "debugging",
       "title": "Debugging with Git",
-      "summary": "One-line summary, written in batch 3.",
+      "summary": "log, show, blame and bisect to find what changed and when.",
       "parts": [
         {
           "file": "18-debugging.md"
         }
       ],
-      "draft": true,
       "mission": true
     },
     {
       "id": "common-errors",
       "title": "Common errors and fixes",
-      "summary": "One-line summary, written in batch 3.",
+      "summary": "The errors beginners hit most, with the exact text and the fix.",
       "parts": [
         {
           "file": "19-common-errors.md"
         }
       ],
-      "draft": true,
       "mission": true
     },
     {
       "id": "github-features",
       "title": "Useful GitHub features",
-      "summary": "One-line summary, written in batch 3.",
+      "summary": "Issues, Actions, Pages, releases, protection and the GitHub CLI.",
       "parts": [
         {
           "file": "20-github-features.md"
         }
       ],
-      "draft": true,
       "mission": true
     },
     {
       "id": "best-practices",
       "title": "Best practices and common mistakes",
-      "summary": "One-line summary, written in batch 3.",
+      "summary": "Everyday habits and the mistakes to avoid.",
       "parts": [
         {
           "file": "21-best-practices.md"
         }
       ],
-      "draft": true,
       "mission": true
     },
     {
@@ -294,13 +282,12 @@
     {
       "id": "practice",
       "title": "Practice mission and knowledge check",
-      "summary": "One-line summary, written in batch 4.",
+      "summary": "A hands-on mission and a quick knowledge check.",
       "parts": [
         {
           "file": "23-practice.md"
         }
       ],
-      "draft": true,
       "mission": true
     },
     {
@@ -318,13 +305,12 @@
     {
       "id": "glossary",
       "title": "Glossary",
-      "summary": "One-line summary, written in batch 4.",
+      "summary": "Every Git and GitHub term in plain English.",
       "parts": [
         {
           "file": "25-glossary.md"
         }
       ],
-      "draft": true,
       "mission": false
     },
     {

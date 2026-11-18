@@ -1,0 +1,27 @@
+<figure class="diagram">
+<svg viewBox="0 0 360 210" role="img" aria-labelledby="dgb-title dgb-desc">
+<title id="dgb-title">A feature branch next to main</title>
+<desc id="dgb-desc">The main branch has commits A, B and C. A branch called feature/contact-page starts at commit B and gets its own commits D and E. Main does not see D and E until the branch is merged back in commit M.</desc>
+<g stroke-width="3" fill="none">
+<path d="M34 64H326" stroke="#5c5852"/>
+<path d="M104 64C130 64 140 150 170 150H236" stroke="#00F0A0"/>
+<path d="M236 150C268 150 280 64 300 64" stroke="#00F0A0" stroke-dasharray="6 5"/>
+</g>
+<g font-family="'JetBrains Mono',monospace" font-size="13" text-anchor="middle">
+<g fill="#111111" stroke="#b5b0a8" stroke-width="2.5">
+<circle cx="40" cy="64" r="15"/><circle cx="104" cy="64" r="15"/><circle cx="196" cy="64" r="15"/>
+</g>
+<g fill="#111111" stroke="#00F0A0" stroke-width="2.5">
+<circle cx="176" cy="150" r="15"/><circle cx="236" cy="150" r="15"/><circle cx="304" cy="64" r="15" stroke-dasharray="4 3"/>
+</g>
+<g fill="#eeeae4"><text x="40" y="69">A</text><text x="104" y="69">B</text><text x="196" y="69">C</text></g>
+<g fill="#00F0A0"><text x="176" y="155">D</text><text x="236" y="155">E</text><text x="304" y="69">M</text></g>
+</g>
+<g font-family="Outfit,system-ui,sans-serif" font-size="13">
+<text x="16" y="26" font-weight="600" fill="#eeeae4">main</text>
+<text x="16" y="196" font-weight="600" fill="#00F0A0">feature/contact-page</text>
+<text x="304" y="34" text-anchor="middle" fill="#b5b0a8">merge</text>
+</g>
+</svg>
+<figcaption>Commits <strong>D</strong> and <strong>E</strong> live only on the feature branch. <code>main</code> carries on without them until you merge, shown as <strong>M</strong>.</figcaption>
+</figure>
