@@ -293,6 +293,11 @@
       .gate-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:2.25rem;position:relative;overflow:hidden;max-width:560px;margin:0 0 2rem}
       .gate-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),transparent 60%)}
       .gate-title{font-family:var(--serif);font-size:1.5rem;font-weight:400;margin-bottom:.4rem}
+      .gate-card{margin-top:2rem;border-color:rgba(0,240,160,.35);box-shadow:0 0 0 1px rgba(0,240,160,.08),0 18px 50px rgba(0,0,0,.35)}
+      .gate-kicker{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+      .unlocked-links{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.75rem}
+      .unlocked-links a{display:inline-flex;align-items:center;min-height:44px;padding:0 1rem;border-radius:999px;border:1px solid rgba(0,240,160,.4);color:var(--accent);text-decoration:none;font-weight:500}
+      .unlocked-links a:hover{background:rgba(0,240,160,.08)}
       .gate-subtitle{font-size:.9rem;color:var(--text-muted);margin-bottom:1.25rem;font-weight:300}
       .gate-subtitle strong{color:var(--text-mid);font-weight:500}
       .teaser-list{list-style:none;margin-bottom:1.5rem;display:flex;flex-direction:column;gap:.55rem}
@@ -422,7 +427,7 @@
           <h1>Git and GitHub: the complete <em>beginner guide</em></h1>
           <p class="hero-sub">From your first commit to branches, forks, pull requests and fixing mistakes. Plain English, real commands, real output.</p>
           <div class="hero-actions">
-            <a class="btn btn-primary" href="#cheat-sheet">Get the free cheat sheet</a>
+            <a class="btn btn-primary" href="#unlock">Get the free cheat sheet + PDF</a>
             <a class="btn btn-ghost" href="#quick-differences">Start reading</a>
           </div>
           <p class="hero-comment">// commit &middot; <span>push</span> &middot; <span>branch</span> &middot; <span>fork</span> &middot; <span>pull request</span> &middot; <span>undo</span></p>
@@ -506,6 +511,53 @@
 <h2 id="quick-differences-title">Quick differences <a class="h-anchor" href="#quick-differences" aria-label="Link to this section">#</a></h2>
 <div class="md"><p>Four pairs that confuse almost everyone at the start.</p>
 <div class="table-wrap" role="region" tabindex="0" aria-label="Table, scroll sideways to see all columns"><table><thead><tr><th scope="col">These two</th><th scope="col">The short answer</th></tr></thead><tbody><tr><td><strong>Git</strong> vs <strong>GitHub</strong></td><td>Git is a free program on your computer that saves versions of your project. GitHub is a website that stores a copy of those versions online so you can share them and work with other people.</td></tr><tr><td><strong>Commit</strong> vs <strong>push</strong></td><td>A commit saves a version on your computer only. A push sends your commits to GitHub. Until you push, nobody else can see them.</td></tr><tr><td><strong>Branch</strong> vs <strong>fork</strong> vs <strong>clone</strong></td><td>A branch is a separate line of work inside one project. A fork is your own copy of someone else&#39;s project on GitHub. A clone is a copy of a project downloaded to your computer.</td></tr><tr><td><strong>Pull</strong> vs <strong>pull request</strong></td><td><code>git pull</code> downloads new commits and adds them to your work. A pull request is a page on GitHub where you ask the project owner to review your changes and accept them.</td></tr></tbody></table></div></div>
+<!-- Gate form for git-github-guide.html. Inserted by scripts/build-git-github-guide.mjs at the end of the section named in
+     config.json "gateFormIn" (near the top of the page, so readers see it early). Same fields, consent text, Turnstile and privacy note as the other gated pages. -->
+<div class="gate-card" id="unlock" tabindex="-1" aria-labelledby="unlock-title">
+  <p class="gate-kicker">Free with sign-up</p>
+  <h3 class="gate-title" id="unlock-title">Get the Git cheat sheet + PDF</h3>
+  <p class="gate-subtitle">The guide below is free to read. Sign up once to also unlock these. <strong>It opens right away.</strong></p>
+  <ul class="teaser-list">
+    <li>All 71 commands in one table, with a search box</li>
+    <li>The "I messed up, what now?" recovery list</li>
+    <li>A printable page and a PDF to keep</li>
+  </ul>
+  <noscript><p class="noscript-msg">Unlocking needs JavaScript. The rest of the guide works without it. To unlock, turn JavaScript on, or open this page in your phone's main browser.</p></noscript>
+  <form id="gateForm" novalidate>
+    <div class="form-group">
+      <label for="gate-name">Your name (required)</label>
+      <input type="text" id="gate-name" name="name" placeholder="Rahul Sharma" required autocomplete="name" maxlength="100" />
+    </div>
+    <div class="form-group">
+      <label for="gate-phone">Phone number (optional)</label>
+      <input type="tel" id="gate-phone" name="phone" placeholder="+91 98765 43210" autocomplete="tel" inputmode="tel" maxlength="20" aria-describedby="phoneStatus" />
+      <div class="field-status" id="phoneStatus" aria-live="polite"></div>
+    </div>
+    <div class="form-group">
+      <label for="gate-email">Email address (required)</label>
+      <input type="email" id="gate-email" name="email" placeholder="rahul@gmail.com" required autocomplete="email" inputmode="email" maxlength="120" aria-describedby="emailStatus" />
+      <div class="field-status" id="emailStatus" aria-live="polite"></div>
+    </div>
+    <div class="consent-group">
+      <input type="checkbox" id="marketingConsent" name="marketing_consent" value="yes" />
+      <label for="marketingConsent">I would like to get occasional learning tips and new guides from Oye Nino by email. This is optional. You can unsubscribe at any time.</label>
+    </div>
+    <div class="cf-turnstile turnstile-box" id="turnstileBox" data-sitekey="0x4AAAAAACgSvRvZpT5d_Ab5" data-theme="dark" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired"></div>
+    <script>
+      // The normal Turnstile widget is 300px wide and does not fit a 320px screen inside the card.
+      if (window.innerWidth < 380) document.getElementById("turnstileBox").setAttribute("data-size", "compact");
+    </script>
+    <div class="error-msg" id="formError" role="alert"></div>
+    <button type="submit" class="btn-unlock" id="unlockBtn" disabled>Fill in all fields</button>
+    <p class="gate-privacy">We collect your name and email, and your phone number if you give it, to give you this cheat sheet and to reply about your request. Your device type and approximate location are recorded for analytics. We do not sell your data. We only send marketing emails if you tick the box above. You need to be 18 or older to sign up. Read the <a href="/privacy-policy.html">privacy policy</a>.</p>
+  </form>
+</div>
+<div class="unlocked-note" id="unlockedNote" hidden>
+  <p class="unlocked-title">Cheat sheet unlocked</p>
+  <p id="gg-saved-note">It stays unlocked on this device. If you open this page in another browser or app, fill in the form again there.</p>
+  <p class="unlocked-links"><a href="#cheat-sheet">Open the cheat sheet</a> <a href="#part-messed-up">"I messed up" list</a></p>
+</div>
+<div class="gg-status" id="gg-status" role="status" aria-live="polite"></div>
 </section>
 <section class="g-section" id="what-is-git" aria-labelledby="what-is-git-title">
 <p class="mission-label">Mission 01</p>
@@ -1580,51 +1632,6 @@ fatal: repository &#39;https://github.com/rahul-example/my-frist-app.git/&#39; n
 <div class="md"><p>Every command from this guide in one table, grouped by task. Use the search box to find one fast, print it on one page, or keep the PDF on your phone.</p>
 <p>Words in <code><mark class="ph" title="Replace this with your own value">&lt;ANGLE-BRACKETS&gt;</mark></code> are placeholders: replace them, brackets included, with your own value.</p></div>
 <div class="gated-slot" id="part-command-table" data-part="command-table" data-filter="1" data-print="1"><div class="gated-teaser"><div class="teaser-preview" aria-hidden="true"><div class="table-wrap" role="region" tabindex="0" aria-label="Table, scroll sideways to see all columns"><table><thead><tr><th scope="col">Task</th><th scope="col">Command</th><th scope="col">What it does</th></tr></thead><tbody><tr><td>Check Git is installed</td><td><code>git --version</code></td><td>Prints your Git version</td></tr><tr><td>Set your name</td><td><code>git config --global user.name &quot;Your Name&quot;</code></td><td>Name stored in your commits</td></tr><tr><td>Set your email</td><td><code>git config --global user.email &quot;you@example.com&quot;</code></td><td>Email stored in your commits</td></tr></tbody></table></div></div><p class="gated-label">Free with sign-up</p><p class="gated-text">Every command from this guide in one table, grouped by task, with a search box, a print view and a PDF to save.</p><a class="btn-unlock-link" href="#unlock">Unlock it free</a></div></div>
-<!-- Gate form for git-github-guide.html. Inserted by scripts/build-git-github-guide.mjs into the section named in
-     config.json "gateFormIn". Same fields, consent text, Turnstile and privacy note as the other gated pages. -->
-<div class="gate-card" id="unlock" tabindex="-1" aria-labelledby="unlock-title">
-  <h3 class="gate-title" id="unlock-title">Unlock the free cheat sheet</h3>
-  <p class="gate-subtitle">Enter your details to unlock it. <strong>It opens right away.</strong></p>
-  <ul class="teaser-list">
-    <li>Every command in one table, with a search box</li>
-    <li>The "I messed up, what now?" recovery list</li>
-    <li>A printable page and a PDF to keep</li>
-  </ul>
-  <noscript><p class="noscript-msg">Unlocking needs JavaScript. The rest of the guide works without it. To unlock, turn JavaScript on, or open this page in your phone's main browser.</p></noscript>
-  <form id="gateForm" novalidate>
-    <div class="form-group">
-      <label for="gate-name">Your name (required)</label>
-      <input type="text" id="gate-name" name="name" placeholder="Rahul Sharma" required autocomplete="name" maxlength="100" />
-    </div>
-    <div class="form-group">
-      <label for="gate-phone">Phone number (optional)</label>
-      <input type="tel" id="gate-phone" name="phone" placeholder="+91 98765 43210" autocomplete="tel" inputmode="tel" maxlength="20" aria-describedby="phoneStatus" />
-      <div class="field-status" id="phoneStatus" aria-live="polite"></div>
-    </div>
-    <div class="form-group">
-      <label for="gate-email">Email address (required)</label>
-      <input type="email" id="gate-email" name="email" placeholder="rahul@gmail.com" required autocomplete="email" inputmode="email" maxlength="120" aria-describedby="emailStatus" />
-      <div class="field-status" id="emailStatus" aria-live="polite"></div>
-    </div>
-    <div class="consent-group">
-      <input type="checkbox" id="marketingConsent" name="marketing_consent" value="yes" />
-      <label for="marketingConsent">I would like to get occasional learning tips and new guides from Oye Nino by email. This is optional. You can unsubscribe at any time.</label>
-    </div>
-    <div class="cf-turnstile turnstile-box" id="turnstileBox" data-sitekey="0x4AAAAAACgSvRvZpT5d_Ab5" data-theme="dark" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired"></div>
-    <script>
-      // The normal Turnstile widget is 300px wide and does not fit a 320px screen inside the card.
-      if (window.innerWidth < 380) document.getElementById("turnstileBox").setAttribute("data-size", "compact");
-    </script>
-    <div class="error-msg" id="formError" role="alert"></div>
-    <button type="submit" class="btn-unlock" id="unlockBtn" disabled>Fill in all fields</button>
-    <p class="gate-privacy">We collect your name and email, and your phone number if you give it, to give you this cheat sheet and to reply about your request. Your device type and approximate location are recorded for analytics. We do not sell your data. We only send marketing emails if you tick the box above. You need to be 18 or older to sign up. Read the <a href="/privacy-policy.html">privacy policy</a>.</p>
-  </form>
-</div>
-<div class="unlocked-note" id="unlockedNote" hidden>
-  <p class="unlocked-title">Cheat sheet unlocked</p>
-  <p id="gg-saved-note">It stays unlocked on this device. If you open this page in another browser or app, fill in the form again there.</p>
-</div>
-<div class="gg-status" id="gg-status" role="status" aria-live="polite"></div>
 </section>
 <section class="g-section" id="practice" aria-labelledby="practice-title">
 <p class="mission-label">Mission 23</p>

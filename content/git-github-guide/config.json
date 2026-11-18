@@ -2,7 +2,7 @@
   "_comment": "Edit the Markdown files, then run: node scripts/build-git-github-guide.mjs. gateMode: partial (only parts marked gated) or full (everything except alwaysOpen sections). Changing version locks the gated part again for everyone. Sections with \"draft\": true are left off the page until they are written. Mission numbers are counted from the visible sections.",
   "version": "2026-11-18",
   "gateMode": "partial",
-  "gateFormIn": "cheat-sheet",
+  "gateFormIn": "quick-differences",
   "page": {
     "url": "https://oyenino.com/git-github-guide.html",
     "title": "Git and GitHub Tutorial for Beginners + Cheat Sheet | Oye Nino",

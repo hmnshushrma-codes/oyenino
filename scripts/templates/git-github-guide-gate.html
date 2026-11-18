@@ -1,10 +1,11 @@
-<!-- Gate form for git-github-guide.html. Inserted by scripts/build-git-github-guide.mjs into the section named in
-     config.json "gateFormIn". Same fields, consent text, Turnstile and privacy note as the other gated pages. -->
+<!-- Gate form for git-github-guide.html. Inserted by scripts/build-git-github-guide.mjs at the end of the section named in
+     config.json "gateFormIn" (near the top of the page, so readers see it early). Same fields, consent text, Turnstile and privacy note as the other gated pages. -->
 <div class="gate-card" id="unlock" tabindex="-1" aria-labelledby="unlock-title">
-  <h3 class="gate-title" id="unlock-title">Unlock the free cheat sheet</h3>
-  <p class="gate-subtitle">Enter your details to unlock it. <strong>It opens right away.</strong></p>
+  <p class="gate-kicker">Free with sign-up</p>
+  <h3 class="gate-title" id="unlock-title">Get the Git cheat sheet + PDF</h3>
+  <p class="gate-subtitle">The guide below is free to read. Sign up once to also unlock these. <strong>It opens right away.</strong></p>
   <ul class="teaser-list">
-    <li>Every command in one table, with a search box</li>
+    <li>All 71 commands in one table, with a search box</li>
     <li>The "I messed up, what now?" recovery list</li>
     <li>A printable page and a PDF to keep</li>
   </ul>
@@ -41,5 +42,6 @@
 <div class="unlocked-note" id="unlockedNote" hidden>
   <p class="unlocked-title">Cheat sheet unlocked</p>
   <p id="gg-saved-note">It stays unlocked on this device. If you open this page in another browser or app, fill in the form again there.</p>
+  <p class="unlocked-links"><a href="#cheat-sheet">Open the cheat sheet</a> <a href="#part-messed-up">"I messed up" list</a></p>
 </div>
 <div class="gg-status" id="gg-status" role="status" aria-live="polite"></div>
