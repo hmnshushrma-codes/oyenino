@@ -1,7 +1,7 @@
 <!doctype html>
 <!--
   Social preview image template (1200x630). Not linked from the site.
-  Rendered by scripts/render-og-images.mjs, which picks a variant with ?v=starter or ?v=site.
+  Rendered by scripts/render-og-images.mjs, which picks a variant with ?v=starter, ?v=site or ?v=git.
   Colours and fonts match the site tokens in starter-pack.html.
 -->
 <html lang="en">
@@ -39,6 +39,13 @@
   .site h1 em{font-style:normal}
   .site .sub{font-size:48px;max-width:900px}
   .site .foot{font-size:40px}
+
+  /* Git guide: a small branch-and-merge line above the title, like the diagrams on the page */
+  .git .motif{width:420px;height:56px;margin-bottom:22px}
+  .git h1{font-size:104px}
+  .git .sub{font-size:46px;margin-top:28px}
+  .git .rule{margin-top:32px}
+  .git .foot{font-size:38px;margin-top:24px}
 </style>
 </head>
 <body>
@@ -48,7 +55,20 @@
 <script>
   var v = new URLSearchParams(location.search).get("v") || "starter";
   var safe = document.getElementById("safe");
-  if (v === "site") {
+  if (v === "git") {
+    document.body.className = "git";
+    safe.innerHTML =
+      '<svg class="motif" viewBox="0 0 420 56" aria-hidden="true" fill="none">' +
+        '<path d="M10 14H410" stroke="#5c5852" stroke-width="4"/>' +
+        '<path d="M120 14C160 14 160 44 200 44H260C300 44 300 14 340 14" stroke="#00F0A0" stroke-width="4"/>' +
+        '<g fill="#050505" stroke-width="4"><circle cx="40" cy="14" r="9" stroke="#b5b0a8"/><circle cx="120" cy="14" r="9" stroke="#b5b0a8"/>' +
+        '<circle cx="230" cy="14" r="9" stroke="#b5b0a8"/><circle cx="200" cy="44" r="9" stroke="#00F0A0"/><circle cx="260" cy="44" r="9" stroke="#00F0A0"/>' +
+        '<circle cx="340" cy="14" r="11" stroke="#00F0A0"/></g></svg>' +
+      '<h1>Git and GitHub<br><em>beginner guide</em></h1>' +
+      '<p class="sub">Free guide + command cheat sheet</p>' +
+      '<div class="rule"></div>' +
+      '<p class="foot"><b>Oye Nino</b> | oyenino.com</p>';
+  } else if (v === "site") {
     document.body.className = "site";
     safe.innerHTML =
       '<h1>Oye <em>Nino</em></h1>' +

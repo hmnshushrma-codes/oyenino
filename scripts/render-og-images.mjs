@@ -2,6 +2,8 @@
 // Renders the social preview images from scripts/og/template.html with headless Chrome.
 //   starter-pack-og.jpg  (starter pack page)
 //   og-image.jpg         (sitewide fallback)
+//   git-github-guide-og.jpg (Git and GitHub guide)
+// Pass variant names to render only some: node scripts/render-og-images.mjs git
 // Both are 1200x630 JPG under 300 KB. Fonts load from Google Fonts, so this needs internet.
 //
 // Needs playwright-core and Chrome. The repo has no package.json on purpose, so point at an
@@ -26,7 +28,8 @@ const { chromium } = await import(pwPath ? pathToFileURL(path.join(pwPath, "inde
 const images = [
   { variant: "starter", out: "starter-pack-og.jpg" },
   { variant: "site", out: "og-image.jpg" },
-];
+  { variant: "git", out: "git-github-guide-og.jpg" },
+].filter((img) => process.argv.length <= 2 || process.argv.slice(2).includes(img.variant));
 
 const browser = await chromium.launch({ channel: "chrome", headless: true });
 const page = await browser.newPage({ viewport: { width: 1200, height: 630 }, deviceScaleFactor: 1 });

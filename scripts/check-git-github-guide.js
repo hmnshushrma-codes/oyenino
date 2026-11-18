@@ -217,6 +217,31 @@ for (const m of page.matchAll(/track\("([a-z_]+)",\s*(\{[^}]*\}|utm|\{\})/g)) {
 check(!/query:\s*input\.value/.test(page), "The search text must not be sent to GA");
 
 // ---------- Report ----------
+// ---------- Social preview image ----------
+{
+  const OG = "git-github-guide-og.jpg";
+  const IMG = "https://www.oyenino.com/" + OG;
+  const buf = fs.existsSync(path.join(ROOT, OG)) ? fs.readFileSync(path.join(ROOT, OG)) : null;
+  check(buf, `${OG} is missing`);
+  if (buf) {
+    // Width and height from the JPEG start-of-frame marker
+    let dim = null;
+    if (buf[0] === 0xff && buf[1] === 0xd8) {
+      for (let i = 2; i + 9 < buf.length && buf[i] === 0xff; i += 2 + buf.readUInt16BE(i + 2)) {
+        const mk = buf[i + 1];
+        if (mk >= 0xc0 && mk <= 0xcf && ![0xc4, 0xc8, 0xcc].includes(mk)) { dim = { h: buf.readUInt16BE(i + 5), w: buf.readUInt16BE(i + 7) }; break; }
+      }
+    }
+    check(dim && dim.w === 1200 && dim.h === 630, `${OG} should be a 1200x630 JPEG`);
+    check(buf.length < 300 * 1024, `${OG} should be under 300 KB`);
+  }
+  for (const ua of Object.keys(groups)) check(allowed(ua, "/" + OG), `robots.txt blocks /${OG} for ${ua}`);
+  const meta = (attr, name) => (page.match(new RegExp(`<meta ${attr}="${name}" content="([^"]*)"`)) || [])[1];
+  check(meta("property", "og:image") === IMG && meta("name", "twitter:image") === IMG, `og:image and twitter:image should be ${IMG}`);
+  check(meta("property", "og:image:width") === "1200" && meta("property", "og:image:height") === "630", "og:image width and height should be 1200 and 630");
+  check(/Git and GitHub/.test(meta("property", "og:image:alt") || "") && meta("property", "og:image:alt") === meta("name", "twitter:image:alt"), "Image alt text should describe the Git guide image, the same for og and twitter");
+}
+
 console.log(`Git guide: ${cfg.sections.length} sections, gateMode ${cfg.gateMode}, ${GG ? Object.keys(GG.parts).length : 0} gated part(s).`);
 console.log(`Pages with the site nav: ${navPages}.`);
 if (failures.length) {
@@ -225,3 +250,4 @@ if (failures.length) {
   process.exit(1);
 }
 console.log(`All ${passes} checks passed.`);
+
