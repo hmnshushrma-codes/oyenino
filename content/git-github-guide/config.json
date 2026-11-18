@@ -1,0 +1,343 @@
+{
+  "_comment": "Edit the Markdown files, then run: node scripts/build-git-github-guide.mjs. gateMode: partial (only parts marked gated) or full (everything except alwaysOpen sections). Changing version locks the gated part again for everyone. Sections with \"draft\": true are left off the page until they are written. Mission numbers are counted from the visible sections.",
+  "version": "2026-11-18",
+  "gateMode": "partial",
+  "gateFormIn": "cheat-sheet",
+  "page": {
+    "url": "https://oyenino.com/git-github-guide.html",
+    "title": "Git and GitHub Tutorial for Beginners + Cheat Sheet | Oye Nino",
+    "headline": "Git and GitHub: The Beginner Guide",
+    "description": "Learn Git and GitHub step by step: commits, push, branches, forks, pull requests and how to undo mistakes safely. Free command cheat sheet included.",
+    "datePublished": "2026-11-19"
+  },
+  "sections": [
+    {
+      "id": "quick-differences",
+      "title": "Quick differences",
+      "summary": "Git vs GitHub, commit vs push, branch vs fork vs clone, pull vs pull request.",
+      "parts": [
+        {
+          "file": "00-quick-differences.md"
+        }
+      ],
+      "mission": false
+    },
+    {
+      "id": "what-is-git",
+      "title": "What is Git, and why use it?",
+      "summary": "What version control is, why it helps, and how Git differs from GitHub.",
+      "parts": [
+        {
+          "file": "01-what-is-git.md"
+        }
+      ],
+      "mission": true
+    },
+    {
+      "id": "mental-model",
+      "title": "How Git thinks: the four places your work lives",
+      "summary": "Working directory, staging area, local repository and remote.",
+      "parts": [
+        {
+          "file": "02-mental-model.md"
+        }
+      ],
+      "mission": true
+    },
+    {
+      "id": "setup",
+      "title": "Install and set up Git",
+      "summary": "Install Git, set your name and email, and log in to GitHub with HTTPS or SSH.",
+      "parts": [
+        {
+          "file": "03-setup.md"
+        }
+      ],
+      "mission": true
+    },
+    {
+      "id": "first-repo",
+      "title": "Your first repository",
+      "summary": "init, status, add, commit, log and diff, with real output.",
+      "parts": [
+        {
+          "file": "04-first-repo.md"
+        }
+      ],
+      "mission": true
+    },
+    {
+      "id": "good-commits",
+      "title": "Writing good commits",
+      "summary": "Small commits and clear messages, with bad and good examples.",
+      "parts": [
+        {
+          "file": "05-good-commits.md"
+        }
+      ],
+      "mission": true
+    },
+    {
+      "id": "push-to-github",
+      "title": "Put your project on GitHub",
+      "summary": "Create a GitHub repository, connect it and push.",
+      "parts": [
+        {
+          "file": "06-push-to-github.md"
+        }
+      ],
+      "mission": true
+    },
+    {
+      "id": "remotes",
+      "title": "Clone, fetch, pull and push",
+      "summary": "Clone, fetch, pull and push, and what to do when histories split.",
+      "parts": [
+        {
+          "file": "07-remotes.md"
+        }
+      ],
+      "mission": true
+    },
+    {
+      "id": "branches",
+      "title": "Branches",
+      "summary": "One-line summary, written in batch 2.",
+      "parts": [
+        {
+          "file": "08-branches.md"
+        }
+      ],
+      "draft": true,
+      "mission": true
+    },
+    {
+      "id": "branching-strategies",
+      "title": "Branching strategies",
+      "summary": "One-line summary, written in batch 2.",
+      "parts": [
+        {
+          "file": "09-branching-strategies.md"
+        }
+      ],
+      "draft": true,
+      "mission": true
+    },
+    {
+      "id": "merging",
+      "title": "Merging and merge conflicts",
+      "summary": "One-line summary, written in batch 2.",
+      "parts": [
+        {
+          "file": "10-merging.md"
+        }
+      ],
+      "draft": true,
+      "mission": true
+    },
+    {
+      "id": "rebase",
+      "title": "Rebase and squash",
+      "summary": "One-line summary, written in batch 2.",
+      "parts": [
+        {
+          "file": "11-rebase.md"
+        }
+      ],
+      "draft": true,
+      "mission": true
+    },
+    {
+      "id": "fork-clone-branch",
+      "title": "Branch vs fork vs clone",
+      "summary": "One-line summary, written in batch 2.",
+      "parts": [
+        {
+          "file": "12-fork-clone-branch.md"
+        }
+      ],
+      "draft": true,
+      "mission": true
+    },
+    {
+      "id": "pull-requests",
+      "title": "Pull requests and code review",
+      "summary": "One-line summary, written in batch 2.",
+      "parts": [
+        {
+          "file": "13-pull-requests.md"
+        }
+      ],
+      "draft": true,
+      "mission": true
+    },
+    {
+      "id": "undo",
+      "title": "Undo mistakes safely",
+      "summary": "restore, amend, reset, revert and reflog, and when each is safe.",
+      "parts": [
+        {
+          "file": "14-undo.md"
+        },
+        {
+          "file": "14b-undo-messed-up.md",
+          "gated": true,
+          "id": "messed-up",
+          "teaser": "A step-by-step \"I messed up, what now?\" list: pick what went wrong and get the safest fix."
+        }
+      ],
+      "mission": true
+    },
+    {
+      "id": "stash",
+      "title": "Stash: put work aside for later",
+      "summary": "One-line summary, written in batch 3.",
+      "parts": [
+        {
+          "file": "15-stash.md"
+        }
+      ],
+      "draft": true,
+      "mission": true
+    },
+    {
+      "id": "tags",
+      "title": "Tags and releases",
+      "summary": "One-line summary, written in batch 3.",
+      "parts": [
+        {
+          "file": "16-tags.md"
+        }
+      ],
+      "draft": true,
+      "mission": true
+    },
+    {
+      "id": "gitignore",
+      "title": ".gitignore and secrets",
+      "summary": "Keep passwords and junk files out of Git, and what to do if a secret leaked.",
+      "parts": [
+        {
+          "file": "17-gitignore.md"
+        }
+      ],
+      "mission": true
+    },
+    {
+      "id": "debugging",
+      "title": "Debugging with Git",
+      "summary": "One-line summary, written in batch 3.",
+      "parts": [
+        {
+          "file": "18-debugging.md"
+        }
+      ],
+      "draft": true,
+      "mission": true
+    },
+    {
+      "id": "common-errors",
+      "title": "Common errors and fixes",
+      "summary": "One-line summary, written in batch 3.",
+      "parts": [
+        {
+          "file": "19-common-errors.md"
+        }
+      ],
+      "draft": true,
+      "mission": true
+    },
+    {
+      "id": "github-features",
+      "title": "Useful GitHub features",
+      "summary": "One-line summary, written in batch 3.",
+      "parts": [
+        {
+          "file": "20-github-features.md"
+        }
+      ],
+      "draft": true,
+      "mission": true
+    },
+    {
+      "id": "best-practices",
+      "title": "Best practices and common mistakes",
+      "summary": "One-line summary, written in batch 3.",
+      "parts": [
+        {
+          "file": "21-best-practices.md"
+        }
+      ],
+      "draft": true,
+      "mission": true
+    },
+    {
+      "id": "cheat-sheet",
+      "title": "Command cheat sheet",
+      "summary": "Every command in one searchable table, printable, with a PDF.",
+      "parts": [
+        {
+          "file": "22-cheat-sheet.md"
+        },
+        {
+          "file": "22b-cheat-sheet-table.md",
+          "gated": true,
+          "id": "command-table",
+          "filter": true,
+          "print": true,
+          "teaser": "Every command from this guide in one table, grouped by task, with a search box, a print view and a PDF to save.",
+          "previewRows": 3
+        }
+      ],
+      "mission": true
+    },
+    {
+      "id": "practice",
+      "title": "Practice mission and knowledge check",
+      "summary": "One-line summary, written in batch 4.",
+      "parts": [
+        {
+          "file": "23-practice.md"
+        }
+      ],
+      "draft": true,
+      "mission": true
+    },
+    {
+      "id": "faq",
+      "title": "Questions people ask",
+      "summary": "Short answers to the questions beginners ask most.",
+      "alwaysOpen": true,
+      "parts": [
+        {
+          "file": "24-faq.md"
+        }
+      ],
+      "mission": false
+    },
+    {
+      "id": "glossary",
+      "title": "Glossary",
+      "summary": "One-line summary, written in batch 4.",
+      "parts": [
+        {
+          "file": "25-glossary.md"
+        }
+      ],
+      "draft": true,
+      "mission": false
+    },
+    {
+      "id": "next-steps",
+      "title": "Where to go next",
+      "summary": "Official Git and GitHub documentation for going further.",
+      "alwaysOpen": true,
+      "parts": [
+        {
+          "file": "26-next-steps.md"
+        }
+      ],
+      "mission": false
+    }
+  ]
+}

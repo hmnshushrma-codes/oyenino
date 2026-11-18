@@ -1,0 +1,45 @@
+<!-- Gate form for git-github-guide.html. Inserted by scripts/build-git-github-guide.mjs into the section named in
+     config.json "gateFormIn". Same fields, consent text, Turnstile and privacy note as the other gated pages. -->
+<div class="gate-card" id="unlock" tabindex="-1" aria-labelledby="unlock-title">
+  <h3 class="gate-title" id="unlock-title">Unlock the free cheat sheet</h3>
+  <p class="gate-subtitle">Enter your details to unlock it. <strong>It opens right away.</strong></p>
+  <ul class="teaser-list">
+    <li>Every command in one table, with a search box</li>
+    <li>The "I messed up, what now?" recovery list</li>
+    <li>A printable page and a PDF to keep</li>
+  </ul>
+  <noscript><p class="noscript-msg">Unlocking needs JavaScript. The rest of the guide works without it. To unlock, turn JavaScript on, or open this page in your phone's main browser.</p></noscript>
+  <form id="gateForm" novalidate>
+    <div class="form-group">
+      <label for="gate-name">Your name (required)</label>
+      <input type="text" id="gate-name" name="name" placeholder="Rahul Sharma" required autocomplete="name" maxlength="100" />
+    </div>
+    <div class="form-group">
+      <label for="gate-phone">Phone number (optional)</label>
+      <input type="tel" id="gate-phone" name="phone" placeholder="+91 98765 43210" autocomplete="tel" inputmode="tel" maxlength="20" aria-describedby="phoneStatus" />
+      <div class="field-status" id="phoneStatus" aria-live="polite"></div>
+    </div>
+    <div class="form-group">
+      <label for="gate-email">Email address (required)</label>
+      <input type="email" id="gate-email" name="email" placeholder="rahul@gmail.com" required autocomplete="email" inputmode="email" maxlength="120" aria-describedby="emailStatus" />
+      <div class="field-status" id="emailStatus" aria-live="polite"></div>
+    </div>
+    <div class="consent-group">
+      <input type="checkbox" id="marketingConsent" name="marketing_consent" value="yes" />
+      <label for="marketingConsent">I would like to get occasional learning tips and new guides from Oye Nino by email. This is optional. You can unsubscribe at any time.</label>
+    </div>
+    <div class="cf-turnstile turnstile-box" id="turnstileBox" data-sitekey="0x4AAAAAACgSvRvZpT5d_Ab5" data-theme="dark" data-callback="onTurnstileSuccess" data-expired-callback="onTurnstileExpired"></div>
+    <script>
+      // The normal Turnstile widget is 300px wide and does not fit a 320px screen inside the card.
+      if (window.innerWidth < 380) document.getElementById("turnstileBox").setAttribute("data-size", "compact");
+    </script>
+    <div class="error-msg" id="formError" role="alert"></div>
+    <button type="submit" class="btn-unlock" id="unlockBtn" disabled>Fill in all fields</button>
+    <p class="gate-privacy">We collect your name and email, and your phone number if you give it, to give you this cheat sheet and to reply about your request. Your device type and approximate location are recorded for analytics. We do not sell your data. We only send marketing emails if you tick the box above. You need to be 18 or older to sign up. Read the <a href="/privacy-policy.html">privacy policy</a>.</p>
+  </form>
+</div>
+<div class="unlocked-note" id="unlockedNote" hidden>
+  <p class="unlocked-title">Cheat sheet unlocked</p>
+  <p id="gg-saved-note">It stays unlocked on this device. If you open this page in another browser or app, fill in the form again there.</p>
+</div>
+<div class="gg-status" id="gg-status" role="status" aria-live="polite"></div>
